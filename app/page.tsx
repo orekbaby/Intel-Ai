@@ -8,9 +8,6 @@ import {
   sorting,
   sponsors,
 } from "@/utils/mockData";
-import { MdArrowOutward } from "react-icons/md";
-
-import { Button } from "@/components/ui/button";
 
 import {
   Accordion,
@@ -171,8 +168,6 @@ export default function Home() {
           <h5 className="font-normal text-[32px] leading-[51.84px] mb-6 text-[#03FFA3]">
             Join the top companies already using Intel AI
           </h5>
-
-          {/* <img src="/clues.svg" alt="clues-img" width={100} height={50} /> */}
         </div>
         <div className="flex justify-between mb-56">
           {sponsors?.map((row, index) => (
@@ -212,7 +207,7 @@ export default function Home() {
                 src={row.img}
                 width={45}
                 height={45}
-                alt="cable-tag"
+                alt="cable-icon"
                 className="mb-8"
               />
               <h5 className="font-medium text-[29.91px leading-[28.88px] w-[60%] text-left mb-5">
