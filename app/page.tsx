@@ -394,8 +394,8 @@ export default function Home() {
             Advantages
           </h5>
           <p className="font-normal text-base text-[#BDBDBD] w-auto px-44 mb-5 text-center">
-            Discover a world of possibilities with Glossy's exceptional features
-            tailored to enhance your coding journey.
+            Discover a world of possibilities with Glossy&apos; exceptional
+            features tailored to enhance your coding journey.
           </p>
         </div>
         {/* grid section */}
