@@ -37,62 +37,179 @@ import Testimonials2 from "@/components/carousel/Testimonials2";
 import Testimonials3 from "@/components/carousel/Testimonials3";
 
 export default function Home() {
+  const bgClipText: React.CSSProperties = {
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+  };
+
+  const style: React.CSSProperties = {
+    background:
+      "radial-gradient(circle, rgba(133, 255, 211, .2), rgba(7, 99, 65, .2))",
+    backgroundBlendMode: "darken",
+    filter: "blur(50px)",
+  };
+  //   rainbow on top
+  //   #03FFA3  3, 255, 163, 1
+  // 20%
+  // #DC1FFF  220, 31, 255, 1
+  // 20%
+
+  // footer gradient
+  // #7F56D9 127, 86, 217, 1
+  // 20.7%
+  // #100C0E 16, 12, 14, 1
+  // 19.8%
+
+  //   eclipse colors
+  // #D9FFF1  217, 255, 241, 1
+  // 80%
+  // #03FFA3 3, 255, 163, 1
+  // 40%
+  // #03FFA3  3, 255, 163, 1
+  // 35%
+
+  const style1: React.CSSProperties = {
+    background:
+      "radial-gradient(circle, rgba(133, 255, 211, .2), rgba(7, 99, 65, .2))",
+    backgroundBlendMode: "darken",
+    filter: "blur(50px)",
+  };
+
+  const style2: React.CSSProperties = {
+    background:
+      "radial-gradient(circle, rgba(133, 255, 211, .2), rgba(7, 99, 65, .2))",
+    backgroundBlendMode: "darken",
+    filter: "blur(60px)",
+  };
+
+  const style3: React.CSSProperties = {
+    background:
+      "radial-gradient(circle, rgba(0, 209, 178, 1), rgba(7, 99, 65, .2))",
+    backgroundBlendMode: "darken",
+    filter: "blur(60px)",
+  };
+
+  const style4: React.CSSProperties = {
+    background:
+      "radial-gradient(circle, rgba(127, 86, 217, 0.8), rgba(16, 12, 14, 0.9))",
+    backgroundBlendMode: "darken",
+    filter: "blur(70px)",
+  };
+
+  const style5: React.CSSProperties = {
+    background:
+      "radial-gradient(circle, rgba(3, 255, 163, .7), rgba(220, 31, 255, .7))",
+    backgroundBlendMode: "darken",
+    filter: "blur(50px)",
+  };
+
   return (
     <main className="mt-24 md:mt-20 lg:mt-20">
       {/* hero-section */}
-      <section>
+      <section className="first-gradient section relative w-full h-auto overflow-hidden">
         <div className="mx-auto w-full md:max-w-[1280px] lg:max-w-[1280px] px-5 md:px-4 lg:px-6 relative mb-10">
-          <div className="text-center w-auto px-28">
-            <h1 className="font-medium text-[64px] leading-[66.56px] text-center mb-5 text-[#7F56D9]">
+          <div className="w-auto px-28">
+            <div
+              style={style2}
+              className="bottom-[47%] -left-[1%] absolute w-[60%] h-[350px] -translate-x-1/2"
+            ></div>
+            <h1
+              style={bgClipText}
+              className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)] text-transparent font-medium text-[64px] leading-[66.56px] text-center mb-5 "
+            >
               Communication Protocol of Blockchain AI Agents
             </h1>
+            {/* First gradient */}
+
             <p className="font-normal text-[24px] text-[#8A8A8A] text-center mb-10 px-40">
               Tailored Intelligence built from the ground up specifically for
               the Web3 Ecosystem.
             </p>
-            <button
-              className="bg-gradient-to-r from-[rgba(58,58,58,.9)] via-[rgba(58,58,58,.9)] to-[rgba(0,0,0,.5)]
-    border-l border-l-[rgba(3,255,163,1)]
-    border-t border-t-[rgba(3,255,163,1)]
-    border-b-[3px] border-b-[rgba(3,255,163,1)]
-    border-r-[3px] border-r-[rgba(127,86,217,1)] items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white bg-button transition ease-in-out delay-150 hover:border-2 hover:bg-[#0B0F16] duration-300 dark:hover:bg-[#0B0F16] h-[70px]  w-[420px]  rounded-[66px] mb-16"
-              value="Log In"
-            >
+            <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10 shadow-xl shadow-[#BDFE1C1A] h-70 w-fit justify-center mx-auto">
               {" "}
-              Request Early Access
-              {/* <MdArrowOutward /> */}
-            </button>
+              <button className="flex gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[66px] py-5 px-28">
+                Request Early Access{" "}
+                <span className="text-[#03FFA3]">
+                  <svg
+                    width="6"
+                    height="7"
+                    viewBox="0 0 6 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    {" "}
+                    <path
+                      d="M0.146447 5.51803C-0.0488155 5.71329 -0.0488155 6.02987 0.146447 6.22514C0.341709 6.4204 0.658291 6.4204 0.853553 6.22514L0.146447 5.51803ZM5.74342 1.12817C5.74342 0.852023 5.51956 0.628166 5.24342 0.628166L0.743416 0.628166C0.467274 0.628166 0.243416 0.852023 0.243416 1.12817C0.243416 1.40431 0.467274 1.62817 0.743416 1.62817L4.74342 1.62817L4.74342 5.62817C4.74342 5.90431 4.96727 6.12817 5.24342 6.12817C5.51956 6.12817 5.74342 5.90431 5.74342 5.62817L5.74342 1.12817ZM0.853553 6.22514L5.59697 1.48172L4.88986 0.774612L0.146447 5.51803L0.853553 6.22514Z"
+                      fill="#BDFE1C"
+                    />{" "}
+                  </svg>{" "}
+                </span>
+              </button>{" "}
+            </div>
             <Image
               src="/hero-img.png"
               width={1088}
               height={721}
               alt="hero-img"
-              className="object-cover w-[100%] h-auto text-center"
+              className="object-cover w-[100%] h-auto text-center z-10"
             />
           </div>
         </div>
-        {/* second section */}
-        <div className="bg-[#181818] pt-32 w-auto px-36 text-center pb-28">
-          <h2 className="font-medium text-[64px] mb-10 leading-[75.52px]">
-            Meticulously Engineered To Deliver{" "}
-            <span className="text-blue-500"> Human-Like Responses</span>:
-          </h2>
-          <p className="font-normal text-[24px] px-32 mb-7 text-[#8A8A8A]">
-            Experience the sophistication of AI Agents that talks like a human
-            but works like a supercomputer. Intel AI&apos;s deep learning
-            algorithms are crafted to replicate the warmth, empathy, and
-            complexity of human interaction, ensuring that every message, reply,
-            or announcement feels genuinely personal.
-          </p>
-          <Image
-            src="/ai-img.png"
-            width={1002}
-            height={361.55}
-            alt="hero-img"
-            className=" object-cover w-auto h-auto text-center"
-          />
-        </div>
-        {/* custom ai */}
+      </section>
+      {/* second section */}
+      <div className="bg-[#181818] pt-32 w-auto px-36 text-center pb-28">
+        <h2 className="font-medium text-[64px] mb-10 leading-[75.52px]">
+          Meticulously Engineered To Deliver{" "}
+          <span
+            style={bgClipText}
+            className="bg-gradient-to-r from-[#03FFA3]  to-[#7F56D9] text-transparent"
+          >
+            {" "}
+            Human-Like Responses
+          </span>
+          :
+        </h2>
+        <p className="font-normal text-[24px] px-32 mb-7 text-[#8A8A8A]">
+          Experience the sophistication of AI Agents that talks like a human but
+          works like a supercomputer. Intel AI&apos;s deep learning algorithms
+          are crafted to replicate the warmth, empathy, and complexity of human
+          interaction, ensuring that every message, reply, or announcement feels
+          genuinely personal.
+        </p>
+        <Image
+          src="/ai-img.png"
+          width={1002}
+          height={361.55}
+          alt="hero-img"
+          className=" object-cover w-auto h-auto text-center"
+        />
+      </div>
+      {/* custom ai */}
+      <div className="relative w-full h-auto overflow-hidden ">
+        {/* first right gradient */}
+        <div
+          style={style}
+          className="-top-[3%] left-[98%] absolute w-[50%] h-[350px] -translate-x-1/2"
+        ></div>
+
+        {/* second left gradient */}
+        <div
+          style={style}
+          className="top-[35%] -left-[7%] absolute w-[50%] h-[350px] -translate-x-1/2 overflow-hidden"
+        ></div>
+
+        {/* third gradient */}
+        <div
+          style={style}
+          className="bottom-[50%] left-[98%] absolute w-[50%] h-[450px] -translate-x-1/2"
+        ></div>
+
+        {/* fouurth gradient */}
+        <div
+          style={style2}
+          className="-bottom-[3%] left-[98%] absolute w-[50%] h-[500px] -translate-x-1/2"
+        ></div>
+
         <div className="w-auto px-40 text-center pt-32 mb-16">
           <h3 className="font-medium text-[36px] mb-5">
             Custom AI Agents Like Never Before
@@ -165,7 +282,10 @@ export default function Home() {
           ))}
         </div>
         <div className="w-auto px-40 text-center">
-          <h5 className="font-normal text-[32px] leading-[51.84px] mb-6 text-[#03FFA3]">
+          <h5
+            style={bgClipText}
+            className="font-normal text-[32px] leading-[51.84px] mb-6 bg-gradient-to-r from-[#03FFA3]  to-[#7F56D9] text-transparent"
+          >
             Join the top companies already using Intel AI
           </h5>
         </div>
@@ -185,12 +305,14 @@ export default function Home() {
 
         {/* features section */}
         <div className="w-auto px-40 text-center">
-          <span
-            className="font-medium text-[13.96px] bg-[#7F56D9] w-[96.87px] h-[25.98px] text-center rounded-[66px] py-[3.99px]
-           px-[21.93px]"
-          >
-            Features
-          </span>
+          <div className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] w-fit rounded-[66px] mx-auto">
+            <span
+              className="font-medium text-[13.96px] bg-gradient-to-r from-[#03FFA3] to-[#7F56D9] w-[96.87px] h-[25.98px] text-center rounded-[66px] py-[3.99px]
+           px-[21.93px] shadow-drop"
+            >
+              Features
+            </span>
+          </div>
           <h5 className="font-medium text-[36px] leading-[58.15px] mt-8 mb-5">
             Glossy Unleashed: Latest Innovations
           </h5>
@@ -383,6 +505,7 @@ export default function Home() {
             </div>
           </div>
         ))}
+
         {/* Advantages Section */}
         <div className="text center w-auto px-40 mb-16">
           <h5 className="font-medium text-[36px] leading-[58.15px] mt-10 mb-3 text-center">
@@ -395,7 +518,7 @@ export default function Home() {
         </div>
         {/* grid section */}
 
-        <div className="grid grid-cols-3 gap-24 pb-40 px-28 w-auto border-b border-[#272727]">
+        <div className="grid grid-cols-3 gap-24 pb-40 mx-auto border-b border-[#272727] w-[85%]">
           {advantages?.map((row, index) => (
             <div key={index} className="">
               <Image
@@ -415,99 +538,135 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </div>
 
-        {/* testimonials section */}
-        <div className="text center w-auto px-40 mb-36 mt-20">
-          <h5 className="font-medium text-[36px] leading-[58.15px] mt-10 mb-5 text-center">
-            Voices of Innovation, Testimonials
-          </h5>
-          <p className="font-normal text-base text-[#BDBDBD] w-auto px-44 mb-5 text-center">
-            Discover what the coding community is saying about Glossy in our
-            Testimonials section. Immerse yourself in firsthand experiences as
-            developers share.
-          </p>
-        </div>
-        {/* carousel for testimonials */}
-        <div className="w-auto px-32 mb-60">
-          {/* // 33% of the carousel width. */}
+      {/* testimonials section */}
+      <div className="text center w-auto px-40 mb-36 mt-20">
+        <h5 className="font-medium text-[36px] leading-[58.15px] mt-10 mb-5 text-center">
+          Voices of Innovation, Testimonials
+        </h5>
+        <p className="font-normal text-base text-[#BDBDBD] w-auto px-44 mb-5 text-center">
+          Discover what the coding community is saying about Glossy in our
+          Testimonials section. Immerse yourself in firsthand experiences as
+          developers share.
+        </p>
+      </div>
+      {/* carousel for testimonials */}
+      <div className="w-auto px-32 mb-60">
+        {/* // 33% of the carousel width. */}
 
-          <Carousel>
-            <CarouselContent className="flex gap-x-10">
-              <CarouselItem className="basis-1/3">
-                <Testimonials />
-              </CarouselItem>
-              <CarouselItem className="basis-1/3 ">
-                {" "}
-                <Testimonials2 />
-              </CarouselItem>
-              <CarouselItem className="basis-1/3 ">
-                {" "}
-                <Testimonials3 />
-              </CarouselItem>
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        </div>
+        <Carousel>
+          <CarouselContent className="flex gap-x-10">
+            <CarouselItem className="basis-1/3">
+              <Testimonials />
+            </CarouselItem>
+            <CarouselItem className="basis-1/3 ">
+              {" "}
+              <Testimonials2 />
+            </CarouselItem>
+            <CarouselItem className="basis-1/3 ">
+              {" "}
+              <Testimonials3 />
+            </CarouselItem>
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
 
-        {/* FAQ */}
-        <div className="text center w-auto px-40 mb-12">
-          <h5 className="font-medium text-[40px] text-center mb-5">
-            Frequently asked questions
-          </h5>
-          <p className="font-normal text-base text-center text-[#8A8A8A]">
-            Everything you need to know
-          </p>
-        </div>
-        <div className="mx-auto max-w-screen-lg w-full md:w-[70%] lg:w-[70%] mb-48">
-          {accordionData?.map((row, index) => (
-            <div key={index} className="">
-              <Accordion className="" type="single" collapsible>
-                <AccordionItem className="border-none" value={row.value}>
-                  <AccordionTrigger1 className="font-normal text-base border-b border-[#2B2B2B] text-left">
-                    {row.trigger}
-                  </AccordionTrigger1>
-                  <AccordionContent className="text-left text-[#8A8A8A] font-normal text-base mt-3">
-                    {row.content}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-          ))}
-          <div className="w-full bg-[#25B8DE] px-4 md:px-0 lg:px-8 py-8 rounded-[20px] mb-24 md:mb-28 lg:mb-28 mt-12">
-            <h5 className=" font-medium text-base md:text-[24px] lg:text-[24px] text-[#E7F1FF] text-left">
-              Still have questions?
+      {/* FAQ */}
+      <>
+        <div className="relative w-full h-auto overflow-hidden">
+          <div
+            style={style2}
+            className="-bottom-[3%] left-[50%] absolute w-[60%] h-[300px] -translate-x-1/2"
+          ></div>
+          {/* rainbow- style */}
+          <Image
+            src="/ellipse3.png"
+            width={562.86}
+            height={100}
+            alt="eclipse"
+            className="absolute bottom-0 left-[30%]"
+          />
+
+          {/* eclipse style */}
+
+          {/* <div
+            style={style2}
+            className="-bottom-[3%] left-[50%] absolute w-[60%] h-[500px] -translate-x-1/2"
+          ></div> */}
+          <div className="text center w-auto px-40 mb-12">
+            <h5 className="font-medium text-[40px] text-center mb-5">
+              Frequently asked questions
             </h5>
-            <div className="flex justify-between">
-              <p className="font-normal text-[16px] leading-[1.7rem] mt-4 mb-4 text-[#2A336D]">
-                Can&apos;t find the answer you&apos;re looking for? Please chat
-                to our friendly team.
-              </p>
-              <button
-                className="
-    bg-gradient-to-r from-[rgba(58,58,58,.9)] via-[rgba(58,58,58,.9)] to-[rgba(0,0,0,.5)]
-    border-l border-l-[rgba(3,255,163,1)]
-    border-t border-t-[rgba(3,255,163,1)]
-    border-b-[3px] border-b-[rgba(3,255,163,1)]
-    border-r-[3px] border-r-[rgba(127,86,217,1)]
-    items-center justify-center text-sm font-medium
-    ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2
-    disabled:pointer-events-none disabled:opacity-50
-    dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800
-    hover:scale-95 dark:text-secondary text-white bg-button
-    transition ease-in-out delay-150 hover:border-2 hover:bg-[#0B0F16]
-    duration-300 dark:hover:bg-[#0B0F16] 
-    h-10 w-[153px] rounded-[66px]
-  "
-                value="Log In"
-              >
-                Sign Up
-              </button>
+            <p className="font-normal text-base text-center text-[#8A8A8A]">
+              Everything you need to know
+            </p>
+          </div>
+          <div className="relative mx-auto max-w-screen-lg w-full md:w-[70%] lg:w-[70%] mb-48">
+            {accordionData?.map((row, index) => (
+              <div key={index} className="">
+                <Accordion className="" type="single" collapsible>
+                  <AccordionItem className="border-none" value={row.value}>
+                    <AccordionTrigger1 className="font-normal text-base border-b border-[#2B2B2B] text-left">
+                      {row.trigger}
+                    </AccordionTrigger1>
+                    <AccordionContent className="text-left text-[#8A8A8A] font-normal text-base mt-3">
+                      {row.content}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            ))}
+            <div className="mb-28 mt-12">
+              <Image
+                src="/questions.png"
+                alt="Default Logo"
+                width={784}
+                height={157}
+                className="w-[100%]"
+              />
             </div>
+
+            {/* <div className="h-[157px] relative overflow-hidden w-full  px-4 md:px-0 lg:px-8 pt-12 pb-4 rounded-[20px] mb-24 md:mb-28 lg:mb-28 mt-12">
+              <div
+                className="w-full bg-gradient-to-r from-[rgba(189,254,28,.9)] via-[rgba(37,184,222,.
+              9)] to-[rgba(70,13,255,.9)] absolute top-0 left-0 h-full"
+              ></div>
+              <div
+                // style="clip-path: polygon(0 56%, 0% 100%, 100% 100%);"
+                className="bg-[url('/accordion-bg-img.png')] bg-center bg-no-repeat bg-contain w-[30%] h-auto absolute top-0 left-[10%] z-10"
+              ></div>
+              <div className="flex justify-between items-center w-full h-full z-20">
+                <div className="flex flex-col gap-5">
+                  <h5 className=" font-medium text-base md:text-[24px] lg:text-[24px] text-[#E7F1FF] text-left">
+                    Still have questions?
+                  </h5>
+
+                  <p className="font-normal text-[16px] leading-[1.7rem] mt-2 mb-4 text-[#2A336D] w-[387px] h-[42px]">
+                    Can&apos;t find the answer you&apos;re looking for? Please
+                    chat to our friendly team.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-r from-[rgba(189,254,28,.9)] to-[rgba(37,184,222,.9)] rounded-[66px] py-[2px] px-[2px] mb-10  shadow-drop">
+                  <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[66px] hover:bg-[#0B0F16]">
+                    Sign Up
+                  </button>
+                </div>
+              </div>
+            </div> */}
           </div>
         </div>
-        {/* footer section */}
-        <div className="bg-[#000000] flex justify-between px-32 py-20 border-b border-[#272727] pb-16">
+      </>
+
+      {/* footer section */}
+      <div className="bg-[#000000] relative w-full h-auto overflow-hidden ">
+        <div
+          style={style4}
+          className="-bottom-[3%] left-[99%] absolute w-[65%] h-[200px] -translate-x-1/2"
+        ></div>
+        <div className="flex justify-between mx-auto  px-32 py-20  pb-16">
           <div className="w-1/2 flex">
             <div className="">
               <Image
@@ -535,12 +694,12 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="flex justify-start bg-black pt-6 pb-10 px-32 w-auto">
+        <div className="flex justify-start pt-6 pb-5 mx-auto  border-t border-[#272727] w-[85%]">
           <p className="font-normal text-[10px]">
             Built with ⚡️ Intelai Company Inc
           </p>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

@@ -20,6 +20,7 @@ const config = {
     extend: {
       backgroundImage: {
         "background-image": "url('/background-img.png')",
+        "accordion-bg-img": "url('/accordion-bg-img.png')",
       },
       colors: {
         border: "hsl(var(--border))",
