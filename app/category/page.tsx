@@ -43,7 +43,7 @@ const page = () => {
               </h1>
               <div className="w-[562px] h-auto bg-[#131313] mb-8 py-8 mx-auto px-6 rounded-[20px]">
                 {description?.map((row, index) => (
-                  <div className="border-b border-[#1E1E1E] key={index} mt-5">
+                  <div key={index} className="border-b border-[#1E1E1E] mt-5">
                     <>
                       <h4 className="font-semibold text-sm mb-2 w-[90%]">
                         {row.name}
