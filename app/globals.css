@@ -25,6 +25,9 @@ body {
 .shadow-drop {
   box-shadow: 0px 4px 12.6px rgba(189, 254, 28, 0.16);
 }
+.shadow-drop2 {
+  box-shadow: 0px 0px 5.5px 0px rgba(3, 255, 163, 0.75);
+}
 
 /* section {
   max-width: 100%;

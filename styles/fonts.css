@@ -1,0 +1,8 @@
+/* styles/fonts.css */
+@font-face {
+  font-family: "Guaruja Neue";
+  src: url("/fonts/GuarujaNeue.woff2") format("woff2"),
+    url("/fonts/GuarujaNeue.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}

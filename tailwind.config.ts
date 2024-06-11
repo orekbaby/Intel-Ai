@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        guaruja: ["Guaruja Neue", "sans-serif"],
+      },
       backgroundImage: {
         "background-image": "url('/background-img.png')",
         "accordion-bg-img": "url('/accordion-bg-img.png')",

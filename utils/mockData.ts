@@ -70,6 +70,7 @@ export const integration = [
     img3: "/query.png",
     name2: "Query Escalation Protocol",
     integration: "/integration.png",
+    mobileImg: "/mobile-img1.png",
   },
 ];
 
@@ -85,6 +86,7 @@ export const content = [
     name2: "Query Escalation Protocol",
     backgroundimg: "/background-img.png",
     integration: "/content-calendar.png",
+    mobileImg: "/mobile-img2.png",
   },
 ];
 
@@ -99,7 +101,8 @@ export const sorting = [
     img3: "/query.png",
     name2: "Content Strategy Setup",
     backgroundimg: "/background-img.png",
-    integration: "/portal.png",
+    integration: "/sorting-img.png",
+    mobileImg: "/mobile-img3.png",
   },
 ];
 
@@ -177,17 +180,43 @@ export const alex = [
   },
 ];
 
+export const token = [
+  {
+    tokenImg: "/metamask.png",
+    token: "Metamask",
+  },
+
+  {
+    tokenImg: "/coinbase.png",
+    token: "Coinbase wallet",
+  },
+
+  {
+    tokenImg: "/market-cap.png",
+    token: "Market Cap",
+  },
+
+  {
+    tokenImg: "/trust-wallet.png",
+    token: "Trust Wallet",
+  },
+  {
+    tokenImg: "/other-wallet.png",
+    token: "Other Wallets",
+  },
+];
+
 export const accordionData = [
   {
-    trigger: "What makes Glossy stand out among other coding tools?",
+    trigger:
+      "What is Intel AI and how does it benefit community managers and influencers?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "1",
   },
 
   {
-    trigger:
-      "How does Profile View benefit developers in their day-to-day work?",
+    trigger: "How do I get started with training an AI on Intel AI?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "2",
@@ -195,15 +224,14 @@ export const accordionData = [
 
   {
     trigger:
-      "Can you elaborate on the significance of Editor Color Changes in Glossy?",
+      "What are 'Animation Steroids' and how can they enhance my projects?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "3",
   },
 
   {
-    trigger:
-      "How does Fast Theme Changes contribute to an efficient coding workflow?",
+    trigger: "How does the 'Advanced Query Escalation Protocol' work?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "4",
@@ -218,10 +246,45 @@ export const accordionData = [
   },
 
   {
-    trigger:
-      "Can Glossy be used for specific coding languages, or does it support a wide range of languages?",
+    trigger: "Is Intel AI secure and how does it protect my data?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "6",
+  },
+];
+
+export const description = [
+  {
+    name: "Token Project",
+    description:
+      "Projects focused on facilitating the launch of new tokens or crypto projects, offering early access to investors.",
+  },
+
+  {
+    name: "Launchpad",
+    description:
+      "Projects focused on facilitating the launch of new tokens or crypto projects, offering early access to investors.",
+  },
+
+  {
+    name: "Memecoin Project",
+    description:
+      "Projects centered around cryptocurrencies that originated from internet memes or have a humorous or viral aspect.",
+  },
+];
+
+export const chooseUser = [
+  {
+    img: "/manager.png",
+    title: "Community Manager",
+    content:
+      "Select a dedicated community manager to help nurture and grow your online community, ensuring a vibrant and engaged environment.",
+  },
+
+  {
+    img: "/influencer.png",
+    title: "KOL/Influencer",
+    content:
+      "Pick an influencer to amplify your brand’s message, connect with your target audience, and boost your visibility on social media",
   },
 ];
