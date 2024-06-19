@@ -1,3 +1,5 @@
+import { TiThLarge } from "react-icons/ti";
+
 export const communityOwners = [
   {
     img: "/img-1.png",
@@ -286,5 +288,91 @@ export const chooseUser = [
     title: "KOL/Influencer",
     content:
       "Pick an influencer to amplify your brand’s message, connect with your target audience, and boost your visibility on social media",
+  },
+];
+
+export const integrationDashboard = [
+  {
+    img: "/cable-tag.png",
+    img2: "/star-img.png",
+    title: " More integrations coming soon",
+    content:
+      " We are adding more channels for integrations. Discord, Notion, Zapier, Slack and many more",
+    button: "  Integrate now",
+  },
+];
+
+export const proUpgrade = [
+  {
+    img: "/star-pro.png",
+    title: "Upgrade to Pro",
+    content1: "How to use AI to create on-brand content",
+    content2: "Showcase practical business use cases",
+    button: "Upgrade now",
+  },
+];
+
+export const proDashboard = [
+  {
+    img: "/star-pro.png",
+    title: "Upgrade to Pro",
+    content1: "How to use AI to create on-brand content",
+    content2: "Showcase practical business use cases",
+    button: "Activate now",
+  },
+];
+
+export const trainingHistory = [
+  {
+    projectName: "Partnerships",
+    action: "Updated Document",
+    dateTime: "20, May 2024 10:15 am",
+  },
+
+  {
+    projectName: "Raise Announcement",
+    action: "Edited Document",
+    dateTime: "20, May 2024 10:15 am",
+  },
+
+  {
+    projectName: "Engagement",
+    action: "Updated Information",
+    dateTime: "20, May 2024 10:15 am",
+  },
+];
+
+export const form = [
+  {
+    label: " What is the name of your project?",
+    placeholder: "Metadapp",
+  },
+
+  {
+    label: "What is the category of your project?",
+    placeholder: "Launchpad",
+  },
+
+  {
+    label: "Add Website/URL",
+    placeholder: "",
+  },
+];
+
+export const inputData = [
+  {
+    title: "What is the name of your project?",
+    content: "",
+  },
+
+  {
+    title: "What is the category of your project?",
+    content: "",
+  },
+
+  {
+    title: "Add Website/URL",
+    content:
+      "Kindly upload any documents or links that you might have about your project or product. Whitepaper, Gitbook, Pitch Deck, Excel Sheet, FAQ documents and so on.",
   },
 ];

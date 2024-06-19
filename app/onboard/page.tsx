@@ -12,7 +12,7 @@ const page = () => {
 
   return (
     <>
-      <main className="mt-4 md:mt-20 lg:mt-28 mx-auto">
+      <main className="pt-4 md:pt-20 lg:pt-20 mx-auto">
         <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-60 ">
           {/* top gradient */}
           <div
@@ -43,7 +43,7 @@ const page = () => {
               AI now
             </p>
             {/* button */}
-            <Link href="/onboard">
+            <Link href="/dashboard">
               <button
                 className="bg-white items-center flex justify-center text-center 
                  text-xs font-normal ring-offset-white focus-visible:outline-none

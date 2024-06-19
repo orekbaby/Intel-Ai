@@ -1,10 +1,20 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaTelegramPlane } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
 import { description } from "@/utils/mockData";
+
 const page = () => {
+  type DescriptionItem = {
+    name: string;
+    description: string;
+  };
+
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+
+  const handleOptionClick = (index: number) => {
+    setSelectedOption(index);
+  };
+
   const style2: React.CSSProperties = {
     background:
       "radial-gradient(circle, rgba(3, 255, 163, 0.4), rgba(16, 12, 14, 0.5))",
@@ -38,20 +48,27 @@ const page = () => {
                 text-[32px] 
                leading-[33.28px] md:leading-[64px] lg:leading-[64px] text-center w-[378px] md:w-full lg:w-full mb-6 mx-auto "
               >
-                {" "}
-                Which Category Best Describes You?
+                Which Category Best Describes your community?
               </h1>
-              <div className="w-[562px] h-auto bg-[#131313] mb-8 py-8 mx-auto px-6 rounded-[20px]">
-                {description?.map((row, index) => (
-                  <div key={index} className="border-b border-[#1E1E1E] mt-5">
-                    <>
+              <div className="w-[562px] h-auto bg-[#131313] mb-8 py-4 mx-auto px-6 rounded-[20px]">
+                {description.map((row, index) => (
+                  <div
+                    key={index}
+                    className={`border-b border-[#1E1E1E] mt-5 ${
+                      selectedOption === index ? "border-gradient" : ""
+                    }`}
+                  >
+                    <div
+                      onClick={() => handleOptionClick(index)}
+                      className="cursor-pointer"
+                    >
                       <h4 className="font-semibold text-sm mb-2 w-[90%]">
                         {row.name}
                       </h4>
-                      <p className="leading-[16.8px] mb-4 font-normal w-[447px] text-sm text-[#4D4D4D] ">
+                      <p className="leading-[16.8px] mb-4 font-normal w-[447px] text-sm text-[#4D4D4D]">
                         {row.description}
                       </p>
-                    </>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -59,7 +76,7 @@ const page = () => {
               {/* button */}
               <Link href="/onboard">
                 <button
-                  className="bg-white items-center flex justify-center text-center 
+                  className="bg-white cursor-pointer items-center flex justify-center text-center 
                  text-xs font-normal ring-offset-white focus-visible:outline-none
                  text-[#0D0D0D] h-10 w-[204px] rounded-[20px] mx-auto shadow-drop2"
                 >

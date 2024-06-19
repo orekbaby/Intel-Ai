@@ -1,7 +1,7 @@
 import { chooseUser } from "@/utils/mockData";
 import React from "react";
 import Image from "next/image";
-
+import Link from "next/link";
 const page = () => {
   const style2: React.CSSProperties = {
     background:
@@ -34,37 +34,41 @@ const page = () => {
             >
               Are you a
             </h2>
-            <div className="flex justify-center  gap-10  mx-auto rounded-[40px] ">
-              {chooseUser?.map((row, index) => (
-                <div
-                  key={index}
-                  className="hover:bg-gradient-to-r from-[rgba(189,254,28,0.9)]
+            <Link href="/category">
+              <div className="flex justify-center  gap-10  mx-auto rounded-[40px] ">
+                {chooseUser?.map((row, index) => (
+                  <div
+                    key={index}
+                    className="hover:bg-gradient-to-r from-[rgba(189,254,28,0.9)]
                   to-[rgba(37,184,222,0.9)] py-[2px] px-[2px] 
                   w-fit rounded-[40px] cursor-pointer"
-                >
-                  <div
-                    className={`bg-gradient-to-r from-[rgba(28,28,28,0.9)] ${
-                      index === 1 ? "to-[#131313]" : "to-[rgba(0,0,0,0.9)]"
-                    } w-[250px] h-[200px] rounded-[40px] mx-auto px-6 py-8`}
                   >
-                    <Image
-                      src={row.img}
-                      width={40}
-                      height={40}
-                      className="mb-5"
-                      alt="manager"
-                    />
-                    <h3 className="font-medium text-base mb-2">{row.title}</h3>
-                    <p
-                      className="font-normal text-xs w-[212px] h-[56px] text-[#707070]"
-                      style={{ fontWeight: 300 }}
+                    <div
+                      className={`bg-gradient-to-r from-[rgba(28,28,28,0.9)] ${
+                        index === 1 ? "to-[#131313]" : "to-[rgba(0,0,0,0.9)]"
+                      } w-[250px] h-[200px] rounded-[40px] mx-auto px-6 py-8`}
                     >
-                      {row.content}
-                    </p>
+                      <Image
+                        src={row.img}
+                        width={40}
+                        height={40}
+                        className="mb-5"
+                        alt="manager"
+                      />
+                      <h3 className="font-medium text-base mb-2">
+                        {row.title}
+                      </h3>
+                      <p
+                        className="font-normal text-xs w-[212px] h-[56px] text-[#707070]"
+                        style={{ fontWeight: 300 }}
+                      >
+                        {row.content}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </Link>
           </div>
         </section>
       </main>

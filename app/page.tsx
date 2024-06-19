@@ -17,6 +17,7 @@ import {
   AccordionTrigger1,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Link from "next/link";
 
 import Image from "next/image";
 
@@ -55,12 +56,6 @@ export default function Home() {
   // #DC1FFF  220, 31, 255, 1
   // 20%
 
-  // footer gradient
-  // #7F56D9 127, 86, 217, 1
-  // 20.7%
-  // #100C0E 16, 12, 14, 1
-  // 19.8%
-
   //   eclipse colors
   // #D9FFF1  217, 255, 241, 1
   // 80%
@@ -76,9 +71,6 @@ export default function Home() {
     filter: "blur(50px)",
   };
 
-  //   #03FFA3
-  // 31.5%
-  // #100C0E
   const style2: React.CSSProperties = {
     background:
       "radial-gradient(circle, rgba(3, 255, 163, 0.4), rgba(16, 12, 14, 0.5))",
@@ -124,7 +116,7 @@ export default function Home() {
                text-transparent font-medium text-[32px] md:text-[60px] lg:text-[60px] 
                leading-[36.28px] md:leading-[66.56px] lg:leading-[66.56px] text-center w-[378px] md:w-full lg:w-full mb-5 mx-auto "
             >
-              Communication Protocol of Blockchain AI Agents
+              Collaboration Protocol of Blockchain AI Agents
             </h1>
             {/* First gradient */}
             <p className="font-normal text-sm text-[20px] md:text-[24px] lg:text-[24px] text-[#8A8A8A] text-center mb-10 px-2 md:px-40 lg:px-40 w-[378px] h-[36px] leading-[33.2px] d:w-full lg:w-full md:h-full lg:h-full mx-auto">
@@ -132,27 +124,30 @@ export default function Home() {
               the Web3 Ecosystem.
             </p>
             {/* mobile button */}
-            <div className="shadow-drop block md:hidden lg:hidden bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10  h-[43px] md:h-[70px] lg:h-[70px] w-fit justify-center text-center mx-auto">
-              <button className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[66px] py-2 md:py-5 lg:py-5 px-12 md:px-28 lg:px-28 text-center font-medium text-sm">
-                Request Early Access
-                <span className="text-[#03FFA3]">
-                  <svg
-                    width="6"
-                    height="7"
-                    viewBox="0 0 6 7"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.146447 5.51803C-0.0488155 5.71329 -0.0488155 6.02987 0.146447 6.22514C0.341709 6.4204 0.658291 6.4204 0.853553 6.22514L0.146447 5.51803ZM5.74342 1.12817C5.74342 0.852023 5.51956 0.628166 5.24342 0.628166L0.743416 0.628166C0.467274 0.628166 0.243416 0.852023 0.243416 1.12817C0.243416 1.40431 0.467274 1.62817 0.743416 1.62817L4.74342 1.62817L4.74342 5.62817C4.74342 5.90431 4.96727 6.12817 5.24342 6.12817C5.51956 6.12817 5.74342 5.90431 5.74342 5.62817L5.74342 1.12817ZM0.853553 6.22514L5.59697 1.48172L4.88986 0.774612L0.146447 5.51803L0.853553 6.22514Z"
-                      fill="#BDFE1C"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </div>
+            <Link href="/logIn">
+              <div className="shadow-drop block md:hidden lg:hidden bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10  h-[43px] md:h-[70px] lg:h-[70px] w-fit justify-center text-center mx-auto">
+                <button className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[66px] py-2 md:py-5 lg:py-5 px-12 md:px-28 lg:px-28 text-center font-medium text-sm">
+                  Request Early Access
+                  <span className="text-[#03FFA3]">
+                    <svg
+                      width="6"
+                      height="7"
+                      viewBox="0 0 6 7"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.146447 5.51803C-0.0488155 5.71329 -0.0488155 6.02987 0.146447 6.22514C0.341709 6.4204 0.658291 6.4204 0.853553 6.22514L0.146447 5.51803ZM5.74342 1.12817C5.74342 0.852023 5.51956 0.628166 5.24342 0.628166L0.743416 0.628166C0.467274 0.628166 0.243416 0.852023 0.243416 1.12817C0.243416 1.40431 0.467274 1.62817 0.743416 1.62817L4.74342 1.62817L4.74342 5.62817C4.74342 5.90431 4.96727 6.12817 5.24342 6.12817C5.51956 6.12817 5.74342 5.90431 5.74342 5.62817L5.74342 1.12817ZM0.853553 6.22514L5.59697 1.48172L4.88986 0.774612L0.146447 5.51803L0.853553 6.22514Z"
+                        fill="#BDFE1C"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </Link>
+
             {/* mobile picture */}
-            {/* 354.47px Height 134.96px */}
+
             <div className="mx-auto block md:hidden lg:hidden h-[134.96px] w-[354.47px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-tl-[35px] rounded-tr-[40px] border border-white border-opacity-[25%] ">
               <Image
                 width={354.47}
@@ -162,28 +157,31 @@ export default function Home() {
                 className="object-cover h-auto text-center z-20 rounded-tl-[30px] rounded-tr-[33px]"
               />
             </div>
-            <div
-              className="shadow-drop hidden md:block lg:block bg-gradient-to-r from-[rgba(3,255,163,.9)]
+            <Link href="logIn">
+              <div
+                className="shadow-drop hidden md:block lg:block bg-gradient-to-r from-[rgba(3,255,163,.9)]
              to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10 md:mb-16 lg:mb-16 h-[43px] md:h-[70px] lg:h-[70px] w-fit justify-center mx-auto"
-            >
-              <button className="flex gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[66px] py-2 md:py-5 lg:py-5 px-12 md:px-28 lg:px-28 text-center">
-                Request Early Access
-                <span className="text-[#03FFA3]">
-                  <svg
-                    width="6"
-                    height="7"
-                    viewBox="0 0 6 7"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.146447 5.51803C-0.0488155 5.71329 -0.0488155 6.02987 0.146447 6.22514C0.341709 6.4204 0.658291 6.4204 0.853553 6.22514L0.146447 5.51803ZM5.74342 1.12817C5.74342 0.852023 5.51956 0.628166 5.24342 0.628166L0.743416 0.628166C0.467274 0.628166 0.243416 0.852023 0.243416 1.12817C0.243416 1.40431 0.467274 1.62817 0.743416 1.62817L4.74342 1.62817L4.74342 5.62817C4.74342 5.90431 4.96727 6.12817 5.24342 6.12817C5.51956 6.12817 5.74342 5.90431 5.74342 5.62817L5.74342 1.12817ZM0.853553 6.22514L5.59697 1.48172L4.88986 0.774612L0.146447 5.51803L0.853553 6.22514Z"
-                      fill="#BDFE1C"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </div>
+              >
+                <button className="flex gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[66px] py-2 md:py-5 lg:py-5 px-12 md:px-28 lg:px-28 text-center">
+                  Request Early Access
+                  <span className="text-[#03FFA3]">
+                    <svg
+                      width="6"
+                      height="7"
+                      viewBox="0 0 6 7"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.146447 5.51803C-0.0488155 5.71329 -0.0488155 6.02987 0.146447 6.22514C0.341709 6.4204 0.658291 6.4204 0.853553 6.22514L0.146447 5.51803ZM5.74342 1.12817C5.74342 0.852023 5.51956 0.628166 5.24342 0.628166L0.743416 0.628166C0.467274 0.628166 0.243416 0.852023 0.243416 1.12817C0.243416 1.40431 0.467274 1.62817 0.743416 1.62817L4.74342 1.62817L4.74342 5.62817C4.74342 5.90431 4.96727 6.12817 5.24342 6.12817C5.51956 6.12817 5.74342 5.90431 5.74342 5.62817L5.74342 1.12817ZM0.853553 6.22514L5.59697 1.48172L4.88986 0.774612L0.146447 5.51803L0.853553 6.22514Z"
+                        fill="#BDFE1C"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </Link>
+
             {/* Hero image with higher z-index */}
             <Image
               src="/hero-img.png"

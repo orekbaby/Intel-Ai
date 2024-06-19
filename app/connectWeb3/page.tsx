@@ -12,7 +12,7 @@ const page = () => {
 
   return (
     <>
-      <main className="mt-4 md:mt-20 lg:mt-52 mx-auto">
+      <main className="mt-4 md:mt-20 lg:mt-44 mx-auto">
         <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-60 ">
           {/* top gradient */}
           <div
@@ -46,7 +46,7 @@ const page = () => {
                   key={index}
                   className="flex w-[250px] h-[40px] rounded-[16px] py-[10px] px-[16px] bg-[#1A1A1A] mb-3 mx-auto"
                 >
-                  <Link href="/category">
+                  <Link href="/user">
                     <div className="flex justify-center items-center text-left gap-4 cursor-pointer">
                       <Image
                         src={row.tokenImg}

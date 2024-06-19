@@ -2,13 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Guaruja+Neue:wght@400;700&display=swap");
+
+:root {
+  --font-guaruja: "Guaruja Neue", sans-serif;
+}
+
 body {
   background: #0d0d0d;
-  color: #fff; /* Setting text color for the whole body */
+  color: #fff;
   margin: 0;
   padding: 0;
   max-width: 100%;
   overflow-x: hidden;
+  font-family: Guaruja Neue;
+}
+
+body,
+.dashboard-color {
+  background: #131313;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.border-gradient {
+  border: 2px solid;
+  border-image: linear-gradient(
+    to right,
+    rgba(189, 254, 28, 0.9),
+    rgba(37, 184, 222, 0.9)
+  );
+  border-image-slice: 3;
+  border-radius: 20px;
+  padding: 10px 20px 5px;
+}
+
+.first-icon {
+  border: 1px; /* Replace with your desired color */
+  border-color: #707070; /* Set the border color */
+}
+
+.bg-toggle-off {
+  background-color: #03ffa3;
+}
+.bg-toggle-on {
+  background-color: #545454;
+}
+
+.custom-input {
+  width: 397px;
+  height: 40px;
+  border-radius: 66px;
+  background-color: #131313;
+  color: white;
+  padding: 0 15px;
+}
+
+.text-input {
+  width: 383px;
+  height: 60px;
+  border-radius: 15px;
+  background-color: #0d0d0d;
+  color: #302d2d;
+  padding: 0 15px;
+  font-style: italic;
+  outline: 0;
 }
 
 .button-gradient-border {
