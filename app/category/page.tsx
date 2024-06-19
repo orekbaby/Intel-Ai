@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { description } from "@/utils/mockData";
 
-const page = () => {
-  type DescriptionItem = {
-    name: string;
-    description: string;
-  };
+type DescriptionItem = {
+  name: string;
+  description: string;
+};
 
+const Page = () => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
   const handleOptionClick = (index: number) => {
@@ -62,10 +62,10 @@ const page = () => {
                       onClick={() => handleOptionClick(index)}
                       className="cursor-pointer"
                     >
-                      <h4 className="font-semibold text-sm mb-2 w-[90%]">
+                      <h4 className="font-semibold text-sm mb-2 w-[90%] text-white">
                         {row.name}
                       </h4>
-                      <p className="leading-[16.8px] mb-4 font-normal w-[447px] text-sm text-[#4D4D4D]">
+                      <p className="leading-[16.8px] mb-4 font-normal w-[447px] text-sm text-[#4D4D4D] ">
                         {row.description}
                       </p>
                     </div>
@@ -83,9 +83,7 @@ const page = () => {
                   Next
                 </button>
               </Link>
-
-              {/* old button */}
-            </div>{" "}
+            </div>
           </div>
         </section>
       </main>
@@ -93,4 +91,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
