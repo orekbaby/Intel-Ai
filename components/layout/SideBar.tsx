@@ -43,7 +43,7 @@ const SideBar = () => {
       id: 2,
       img: "/x.png",
       name: "X Agents",
-      alt: "metabots-img",
+      alt: "x-img",
       link: "",
     },
     {

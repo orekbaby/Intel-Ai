@@ -82,7 +82,7 @@ const ApeTerminalTraining = () => {
               <TableHead className="w-[150px] font-normal text-[12px] text-[#898989]">
                 PROJECT NAME
               </TableHead>
-              <TableHead className="font-normal text-[12px] text-[#898989] text-center pl-10">
+              <TableHead className="font-normal text-[12px] text-[#898989] text-center pl-12">
                 <div className="w-[150px]">ACTION</div>
               </TableHead>
 
