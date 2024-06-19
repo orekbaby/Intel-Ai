@@ -41,7 +41,7 @@ const SideBar = () => {
     },
     {
       id: 2,
-      img: "/x.png",
+      img: "/X.png",
       name: "X Agents",
       alt: "x-img",
       link: "",
