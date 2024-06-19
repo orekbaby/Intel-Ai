@@ -103,7 +103,7 @@ export default function Home() {
     <main className="mt-4 md:mt-20 lg:mt-20">
       {/* hero-section */}
       <section className="first-gradient section relative w-full h-auto overflow-hidden mx-auto ">
-        <div className=" w-full md:max-w-[1280px] lg:max-w-[1280px] px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 z-10">
+        <div className=" w-full ">
           <div className=" px-0 md:px-28 lg:px-28">
             {/* Gradient background with lower z-index */}
             <div
@@ -113,8 +113,8 @@ export default function Home() {
             <h1
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
-               text-transparent font-medium text-[32px] md:text-[60px] lg:text-[60px] 
-               leading-[36.28px] md:leading-[66.56px] lg:leading-[66.56px] text-center w-[378px] md:w-full lg:w-full mb-5 mx-auto "
+               text-transparent font-medium text-[32px] md:text-[60px] lg:text-[64px] 
+               leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-full lg:w-[80%] mb-5 mx-auto"
             >
               Collaboration Protocol of Blockchain AI Agents
             </h1>

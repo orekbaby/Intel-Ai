@@ -275,6 +275,57 @@ export const description = [
   },
 ];
 
+// communication protocol mock
+export const announcementsModal = [
+  {
+    title: "Partnership Announcement",
+    content:
+      " Essential for showcasing strategic alliances that can leverage mutual strengths and enhance project credibility.",
+  },
+
+  {
+    title: "Platform/Feature Updates",
+    content:
+      "This includes upcoming and existing features which are vital for keeping the community aware of ongoing improvements and developments.",
+  },
+
+  {
+    title: "Fundraising Activity Announcement",
+    content:
+      "Covering all stages of fundraising, this is crucial for investor engagement and transparency.",
+  },
+
+  {
+    title: "Scheduled Platform Maintenance or Upgrades",
+    content:
+      "Important for setting expectations regarding availability and enhancements.",
+  },
+
+  {
+    title: "Milestone Updates",
+    content:
+      "Demonstrates progress and achievement, helping maintain investor and community confidence.",
+  },
+
+  {
+    title: "Roadmap Updates",
+    content:
+      "Keeps everyone informed about the future direction and adjustments based on dynamic market conditions or internal strategy shifts.",
+  },
+
+  {
+    title: "New Exchange Listings",
+    content:
+      "Critical for informing traders about new markets where they can buy or sell the token.",
+  },
+
+  {
+    title: "Security Incident Report",
+    content:
+      "Essential for transparency and trust, informing users about any potential or actual security issues and how they are being addressed.",
+  },
+];
+
 export const chooseUser = [
   {
     img: "/manager.png",

@@ -226,7 +226,7 @@ const page = () => {
                     </div>
                     <DialogContent
                       className="absolute top-[54%] left-[80%] -translate-x-1/2 w-full px-8 md:w-full lg:w-full
-                     bg-[#131313] border-none rounded-lg max-w-auto mb-20"
+                     bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
                     >
                       <DialogData />
                     </DialogContent>

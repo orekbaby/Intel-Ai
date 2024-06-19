@@ -10,8 +10,9 @@ import {
 import { FaTelegramPlane } from "react-icons/fa";
 import { trainingHistory } from "@/utils/mockData";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import DialogData from "@/components/dialog/DialogData";
+
 import Link from "next/link";
+import { announcementsModal } from "@/utils/mockData";
 
 const ApeTerminalTraining = () => {
   return (
@@ -19,10 +20,38 @@ const ApeTerminalTraining = () => {
       <h2 className="font-medium text-[36px] leading-[37.44px] pt-10 mb-7 text-center">
         What’s happening in your Community?
       </h2>
+
       <div className="flex justify-center items-center gap-10 mb-10">
-        <div className="flex items-center justify-center text-center font-medium text-sm leading-[14.56px] w-[266px] h-[50px] rounded-[200px] border border-[#202020] bg-[#181818]">
-          Upcoming Announcements
-        </div>
+        <Dialog>
+          <DialogTrigger>
+            <div
+              className="flex items-center justify-center text-center font-medium text-sm
+             leading-[14.56px] w-[266px] h-[50px] rounded-[200px] border border-[#202020] bg-[#181818]"
+            >
+              Upcoming Announcements
+            </div>
+          </DialogTrigger>
+          <DialogContent
+            className="absolute top-[58%] max-w-auto w-[562px] px-4 md:w-full lg:w-full
+                   bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]"
+          >
+            <div className="w-full md:w-full lg:w-full h-[400px] md:h-[400px] lg:h-[100vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+              {announcementsModal?.map((row, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col mb-5 pb-5 border-[#1E1E1E] border-b"
+                >
+                  <h5 className="font-semibold text-sm leading-[14.56px] mb-2">
+                    {row.title}
+                  </h5>
+                  <p className="font-normal text-sm leading-[16.56px] text-[#4D4D4D]">
+                    {row.content}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </DialogContent>
+        </Dialog>
 
         <div className="flex items-center justify-center text-center font-medium text-sm leading-[14.56px] w-[266px] h-[50px] rounded-[200px] border border-[#202020] bg-[#181818]">
           Community Engagement
