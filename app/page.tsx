@@ -119,7 +119,7 @@ export default function Home() {
               Collaboration Protocol of Blockchain AI Agents
             </h1>
             {/* First gradient */}
-            <p className="font-normal text-sm text-[20px] md:text-[24px] lg:text-[24px] text-[#8A8A8A] text-center mb-10 px-2 md:px-40 lg:px-40 w-[378px] h-[36px] leading-[33.2px] d:w-full lg:w-full md:h-full lg:h-full mx-auto">
+            <p className="font-normal text-sm text-[20px] md:text-[24px] lg:text-[24px] text-[#8A8A8A] text-center mb-10 px-2 md:px-40 lg:px-40 w-[378px] h-[36px] leading-[33.2px] d:w-full lg:w-[85%] md:h-full lg:h-full mx-auto">
               Tailored Intelligence built from the ground up specifically for
               the Web3 Ecosystem.
             </p>
