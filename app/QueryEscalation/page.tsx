@@ -25,19 +25,21 @@ const page = () => {
 
                 <div className="flex justify-start gap-4 items-center">
                   {escalationReport?.map((row, index) => (
-                    <div className="w-[138px] h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
-                      <p className="font-medium text-xs leading-[12.48px] mb-5">
-                        {row.title}
-                      </p>
-                      <p className="font-[300] text-[40px] leading-[41.6px]">
-                        {row.number}
-                      </p>
-                      <div className="w-[21px] h-[10px] rounded-[2px] flex justify-center items-center bg-[#03FFA3] bg-opacity-[11%]">
-                        <div className="flex justify-center items-center gap-1">
-                          <p className="font-medium text-[6px] text-[#76CA43] ">
-                            {row.percentage}
-                          </p>
-                          <FaArrowTurnUp className="w-[5px] h-[3px] text-[#76CA43] rotate-6" />
+                    <div key={index} className="">
+                      <div className="w-[138px] h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
+                        <p className="font-medium text-xs leading-[12.48px] mb-5">
+                          {row.title}
+                        </p>
+                        <p className="font-[300] text-[40px] leading-[41.6px]">
+                          {row.number}
+                        </p>
+                        <div className="w-[21px] h-[10px] rounded-[2px] flex justify-center items-center bg-[#03FFA3] bg-opacity-[11%]">
+                          <div className="flex justify-center items-center gap-1">
+                            <p className="font-medium text-[6px] text-[#76CA43] ">
+                              {row.percentage}
+                            </p>
+                            <FaArrowTurnUp className="w-[5px] h-[3px] text-[#76CA43] rotate-6" />
+                          </div>
                         </div>
                       </div>
                     </div>
