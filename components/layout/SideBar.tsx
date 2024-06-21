@@ -69,7 +69,10 @@ const SideBar = () => {
     pathName === "/trainAi";
 
   // workspace sidebar
-  const block = pathName === "/workspace" || pathName === "/workspaceData";
+  const block =
+    pathName === "/workspace" ||
+    pathName === "/workspaceData" ||
+    pathName === "/queryEscalation";
   //  pathName === "/communityManager" ||
   //  pathName === "/trainAi";
 

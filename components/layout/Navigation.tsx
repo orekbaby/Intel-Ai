@@ -55,7 +55,10 @@ const Navigation = () => {
     pathName === "/user";
 
   const train = pathName === "/trainAi";
-  const inline = pathName === "/workspace" || pathName === "/workspaceData";
+  const inline =
+    pathName === "/workspace" ||
+    pathName === "/workspaceData" ||
+    pathName === "/queryEscalation";
 
   return (
     <>
@@ -302,7 +305,7 @@ const Navigation = () => {
                   AI Training
                 </p>
               </Link>
-              <Link href="/QueryEscalation" className="">
+              <Link href="/queryEscalation" className="">
                 <p className="text-[13.75px] leading-[14.3px] font-medium hover:underline hover:underline-offset-4 text-[#6A6A6A]">
                   Query Escalation Protocol
                 </p>

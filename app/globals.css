@@ -72,6 +72,19 @@ body,
   outline: 0;
 }
 
+.text-input2 {
+  width: 315px;
+  height: 50px;
+  border-radius: 15px;
+  background-color: #0d0d0d;
+  color: #302d2d;
+  border-color: #272727;
+  border-width: 2px;
+  padding: 0 15px;
+  font-style: italic;
+  outline: 0;
+}
+
 .button-gradient-border {
   border-width: 2px;
   border-style: solid;

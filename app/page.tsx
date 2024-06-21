@@ -108,7 +108,7 @@ export default function Home() {
             {/* Gradient background with lower z-index */}
             <div
               style={style2}
-              className="bottom-[47%] -left-[1%] absolute w-[60%] h-[130px] md:h-[360px] lg:h-[360px] -translate-x-1/2 z-[-1]"
+              className="bottom-[47%] -left-[1%] absolute w-[100%] md:w-[60%] lg:w-[60%] h-[130px] md:h-[360px] lg:h-[360px] -translate-x-1/2 z-[-1]"
             ></div>
             <h1
               style={bgClipText}
@@ -119,14 +119,15 @@ export default function Home() {
               Collaboration Protocol of Blockchain AI Agents
             </h1>
             {/* First gradient */}
-            <p className="font-normal text-sm text-[20px] md:text-[24px] lg:text-[24px] text-[#8A8A8A] text-center mb-10 px-2 md:px-40 lg:px-40 w-[378px] h-[36px] leading-[33.2px] d:w-full lg:w-[85%] md:h-full lg:h-full mx-auto">
+            <p className="font-normal text-sm text-[20px] md:text-[24px] lg:text-[24px] text-[#8A8A8A] text-center mb-5 md:mb-10 lg:mb-10 px-2 md:px-40 lg:px-40 w-[378px] h-[36px] leading-[18.2px] md:leading-[33.2px] lg:leading-[33.2px] md:w-full lg:w-[85%] md:h-full lg:h-full mx-auto">
               Tailored Intelligence built from the ground up specifically for
               the Web3 Ecosystem.
             </p>
+
             {/* mobile button */}
             <Link href="/logIn">
-              <div className="shadow-drop block md:hidden lg:hidden bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10  h-[43px] md:h-[70px] lg:h-[70px] w-fit justify-center text-center mx-auto">
-                <button className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[66px] py-2 md:py-5 lg:py-5 px-12 md:px-28 lg:px-28 text-center font-medium text-sm">
+              <div className="shadow-drop block md:hidden lg:hidden bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[24px] py-[2px] px-[2px] mb-10 h-[43px] md:h-[70px] lg:h-[70px] w-fit justify-center text-center mx-auto">
+                <button className="flex items-center w-[258px] justify-center gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[24px] py-2 md:py-5 h-[43px] lg:py-5 px-12 md:px-28 lg:px-28 text-center font-medium text-sm">
                   Request Early Access
                   <span className="text-[#03FFA3]">
                     <svg
@@ -206,7 +207,7 @@ export default function Home() {
           </span>
           :
         </h2>
-        <p className="font-normal w-full h-[90px] md:h-auto lg:h-auto text-sm md:text-[20px] lg:text-[20px] px-2 md:px-32 lg:px-32 mb-12 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[31.2px] ">
+        <p className="font-normal w-full h-[90px] md:h-auto lg:h-auto text-[12px] md:text-[20px] lg:text-[20px] px-2 md:px-32 lg:px-32 mb-5 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]  ">
           Experience the sophistication of AI Agents that talks like a human but
           works like a supercomputer. Intel AI&apos;s deep learning algorithms
           are crafted to replicate the warmth, empathy, and complexity of human
@@ -252,7 +253,7 @@ export default function Home() {
           <h3 className="font-medium text-center text-[20px] md:text-[36px] lg:text-[36px] mb-5">
             Custom AI Agents Like Never Before
           </h3>
-          <p className="font-normal text-center text-sm md:text-[20px] lg:text-[20px] w-[370px] md:w-full lg:w-full h-[72px] md:h-auto lg:h-auto mx-auto px-2 md:px-40 lg:px-40 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[31.2px]">
+          <p className="font-normal text-center text-sm md:text-[20px] lg:text-[20px] w-[370px] md:w-full lg:w-full h-auto mx-auto px-0 md:px-40 lg:px-40 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
             Intel AI leverages a custom LLM architecture that&apos;s fine-tuned
             to grasp the intricacies of blockchain technology, its narratives,
             trends, & community nuances with unparalleled precision
@@ -263,7 +264,7 @@ export default function Home() {
           {communityOwners?.map((row, index) => (
             <div
               key={index}
-              className="w-[350px] md:w-[400.88px] lg:w-[400.88px] h-[365px] md:h-[355.38px] lg:h-[355.38px] bg-[#070707] rounded-[20px] px-4 md:px-6 lg:px-6 pt-1 mb-12 md:mb-48 lg:mb-48 mx-auto"
+              className="w-[350px] md:w-[400.88px] lg:w-[400.88px] h-[365px] md:h-[355.38px] lg:h-[355.38px] bg-[#070707] rounded-[20px] px-6 md:px-6 lg:px-6 pt-1 mb-12 md:mb-48 lg:mb-48 mx-auto"
             >
               {" "}
               <Image
@@ -337,7 +338,8 @@ export default function Home() {
                 src={row.img}
                 width={122.85}
                 height={32.39}
-                alt="spnsors-img w-[101.23px] h-[20.72px] md:h-[32.39px] lg:h-[32.39px] md:w-[122.85px] lg:w-[122.85px]"
+                alt="spnsors-img w-[101.23px] h-[20.72px] md:h-[32.39px]
+                 lg:h-[32.39px] md:w-[122.85px] lg:w-[122.85px]"
               />
             </div>
           ))}
@@ -354,10 +356,13 @@ export default function Home() {
               Features
             </span>
           </div>
-          <h5 className="font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[36px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] mt-5 md:mt-8 lg:mt-8 mb-5 mx-auto">
+          <h5 className=" hidden md:block lg:block font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[36px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
             Glossy Unleashed: Latest Innovations
           </h5>
-          <p className="font-normal w-[90%] md:w-full lg:w-full h-[69px] md:h-auto lg:h-auto text-sm md:text-base lg:text-base text-[#BDBDBD] mx-auto px-0 md:px-32 lg:px-32 mb-12 md:mb-20 lg:mb-20">
+          <h5 className="block md:hidden lg:hidden font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[36px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
+            Empower Your Workflow with Cutting-Edge Features
+          </h5>
+          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-sm md:text-base lg:text-base text-[#BDBDBD] mx-auto px-2 md:px-32 lg:px-32 mb-12 md:mb-20 lg:mb-20 pt-5">
             Explore the frontier of coding evolution with Glossy Unleashed. Our
             latest features redefine the boundaries of what&apos;s possible in
             coding tools.
@@ -442,7 +447,7 @@ export default function Home() {
         {content?.map((row, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-32 lg:px-32 mb-20"
+            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10  md:px-32 lg:px-32 mb-20"
           >
             <div className="w-1/2">
               <div className="flex gap-2 justify-start w-[500px]">
@@ -470,7 +475,7 @@ export default function Home() {
               >
                 {row.title}
               </h5>
-              <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] mb-8 w-[387px]  h-[90px] md:w-[498px] md:h-[105px] lg:w-[498px] lg:h-[105px] leading-[20.8px]  ">
+              <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] mb-8 w-[376px] h-auto md:w-[498px] lg:w-[498px] leading-[18.2px] md:leading-[20.8px] lg:leading-[20.8px] px-0">
                 {row.description}
               </p>
 
@@ -491,7 +496,7 @@ export default function Home() {
             <div className="w-1/2 relative hidden md:block lg:block">
               <div
                 className="bg-background-image
-          w-[613.43px] h-[586px] rounded-[11%] border border-[#3A3A3A]"
+          w-[613.43px] h-[586px] rounded-[11%]"
               >
                 <Image
                   src={row.integration}
@@ -559,7 +564,7 @@ export default function Home() {
               >
                 {row.title}
               </h5>
-              <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] w-[500px] h-[144px] md:w-[498px] md:h-[126px] lg:w-[498px] lg:h-[126px] leading-[20.8px]">
+              <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] w-[361px] h-auto md:w-[498px] lg:w-[498px] leading-[18.2px] md:leading-[20.8px] lg:leading-[20.8px] md-px-0 lg:px-0 mb-7 md:mb-0 lg:mb-0">
                 {row.description}
               </p>
             </div>
@@ -567,7 +572,7 @@ export default function Home() {
             <div className="w-1/2 relative hidden md:block lg:block">
               <div
                 className="bg-background-image
-           w-[613.43px] rounded-[11%] border border-[#3A3A3A] h-auto"
+           w-[613.43px] rounded-[11%] h-auto"
               >
                 <Image
                   src={row.integration}
@@ -591,7 +596,7 @@ export default function Home() {
         ))}
 
         {/* Advantages Section */}
-        <div className="text center mx-auto  px-0 md:px-40 lg:px-40 mb-10 md:mb-16 lg:mb-16">
+        <div className="text center mx-auto px-0 md:px-40 lg:px-40 mb-10 md:mb-16 lg:mb-16">
           <h5 className="font-normal md:font-medium lg:font-medium text-[24px] md:text-[36px] lg:text-[36px] leading-[58.15px] mt-10 mb-3 text-center mx-auto">
             Advantages
           </h5>
@@ -599,7 +604,7 @@ export default function Home() {
           <p
             className="font-normal text-sm md:text-base lg:text-base
              text-[#BDBDBD] w-[333px] md:w-[95%] lg:w-[95%] 
-          h-[69px] mx-auto px-0 md:px-44 lg:px-44 mb-5 text-center leading-[27.92px]"
+          h-[69px] mx-auto px-0 md:px-44 lg:px-44 mb-5 text-center leading-[22.68px] md:leading-[27.92px] lg:leading-[27.92px]"
           >
             Discover a world of possibilities with Glossy&apos; exceptional
             features tailored to enhance your coding journey.
@@ -609,7 +614,7 @@ export default function Home() {
 
         <div
           className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 
-      gap-16 md:gap-24 lg:gap-24 pb-6 md:pb-40 lg:pb-40 px-4 md:px-0 lg:px-0 bg-transparent md:border-b lg:border-b  md:border-[#272727] lg:border-[#272727] w-[85%] md:w-full lg:w-[85%] mx-0 md:mx-auto lg:mx-auto"
+      gap-16 md:gap-24 lg:gap-24 pb-6 md:pb-40 lg:pb-40 px-2 md:px-0 lg:px-0 bg-transparent md:border-b lg:border-b  md:border-[#272727] lg:border-[#272727] w-full md:w-full lg:w-[85%] mx-0 md:mx-auto lg:mx-auto overflow-hidden"
         >
           {advantages?.map((row, index) => (
             <div key={index} className="">
@@ -625,8 +630,8 @@ export default function Home() {
                 {row.title}
               </h5>
               <p
-                className="font-normal text-sm md:text-base lg:text-base w-[400px] md:w-[382.79px]
-               h-[60px] text-[#BDBDBD] opacity-[45%]"
+                className="font-normal text-[14px] md:text-base lg:text-base w-[100%] md:w-[382.79px] lg:w-[382.79px]
+               h-auto text-[#BDBDBD] opacity-[45%]"
               >
                 {row.description}
               </p>
@@ -640,14 +645,14 @@ export default function Home() {
         <h5 className="font-medium text-[23px] md:text-[36px] lg:text-[36px] md:leading-[58.15px] leading-[38.77px] mt-10 mb-5 text-center mx-auto">
           Voices of Innovation, Testimonials
         </h5>
-        <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] mx-auto px-0 md:px-44 lg:px-44 mb-5 text-center">
+        <p className="font-normal text-sm leading-[22.68px] md:[27.68px] lg:leading-[27.68px] md:text-base lg:text-base text-[#BDBDBD] mx-auto px-2 md:px-44 lg:px-44 mb-5 text-center">
           Discover what the coding community is saying about Glossy in our
           Testimonials section. Immerse yourself in firsthand experiences as
           developers share.
         </p>
       </div>
       {/* carousel for testimonials */}
-      <div className="mx-auto px-8 md:px-32 lg:px-32 mb-20 md:mb-60 lg:mb-60">
+      <div className="mx-auto px-8 md:px-32 lg:px-32 mb-14 md:mb-60 lg:mb-60">
         {/* // 33% of the carousel width. */}
 
         <Carousel>
@@ -724,7 +729,7 @@ export default function Home() {
               />
             </div> */}
 
-            <div className="h-auto md:h-[157px] lg:h-[157px] relative overflow-hidden w-full px-3 md:px-0 lg:px-8 pt-6 md:pt-4 lg:pt-10 pb-0 md:pb-4 lg:pb-4 rounded-[20px] mb-24 md:mb-28 lg:mb-28 mt-16 bg-gradient-to-r from-[rgba(189,254,28,.9)] via-[rgba(37,184,222,.9)] to-[rgba(70,13,255,.9)]">
+            <div className="h-auto md:h-[157px] lg:h-[157px] relative overflow-hidden w-full px-3 md:px-0 lg:px-8 pt-6 md:pt-4 lg:pt-10 pb-0 md:pb-4 lg:pb-4 rounded-[20px] mb-24 md:mb-28 lg:mb-28 mt-40 bg-gradient-to-r from-[rgba(189,254,28,.9)] via-[rgba(37,184,222,.9)] to-[rgba(70,13,255,.9)]">
               <div className="">
                 <h5 className="font-medium text-[24px] text-[#E7F1FF] text-left">
                   Still have questions?

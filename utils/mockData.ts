@@ -71,7 +71,7 @@ export const integration = [
     name: "Content Strategy Setup",
     img3: "/query.png",
     name2: "Query Escalation Protocol",
-    integration: "/integration.png",
+    integration: "/train3.png",
     mobileImg: "/mobile-img1.png",
   },
 ];
@@ -87,7 +87,7 @@ export const content = [
     img3: "/query.png",
     name2: "Query Escalation Protocol",
     backgroundimg: "/background-img.png",
-    integration: "/content-calendar.png",
+    integration: "/train2.png",
     mobileImg: "/mobile-img2.png",
   },
 ];
@@ -103,7 +103,7 @@ export const sorting = [
     img3: "/query.png",
     name2: "Content Strategy Setup",
     backgroundimg: "/background-img.png",
-    integration: "/sorting-img.png",
+    integration: "/train-1.png",
     mobileImg: "/mobile-img3.png",
   },
 ];
@@ -205,6 +205,34 @@ export const token = [
   {
     tokenImg: "/other-wallet.png",
     token: "Other Wallets",
+  },
+];
+
+export const escalationReport = [
+  {
+    title: "Total Escallations",
+    number: "40",
+    percentage: "5%",
+  },
+
+  {
+    title: "Successfully sorted",
+    number: "20",
+    percentage: "5%",
+  },
+
+  {
+    img: "/discord2.png",
+    title: "Discord",
+    number: "08",
+    percentage: "5%",
+  },
+
+  {
+    img: "/telegram2.png",
+    title: "Telegram",
+    number: "10",
+    percentage: "5%",
   },
 ];
 
@@ -407,6 +435,274 @@ export const form = [
   {
     label: "Add Website/URL",
     placeholder: "",
+  },
+];
+
+export const unResolvedTable = [
+  {
+    number: "1.",
+    img: "/avatar1.png",
+    name: "@Ann928",
+    platform: "/discord-logo.png",
+    social: "Discord",
+    query: "I encountered a bug while using the workspace. Can you help?",
+    time: "10:15 am",
+    button: "sort",
+    altText: "social-handles",
+  },
+
+  {
+    number: "2.",
+    img: "/avatar2.png",
+    name: "@Roger20",
+    platform: "/twitter-main.png",
+    social: "Twitter",
+    query: "I'm having trouble accessing certain features. Can you assist me?",
+    time: "10:15 am",
+    button: "sort",
+    altText: "social-handles",
+  },
+
+  {
+    number: "3.",
+    img: "/avatar3.png",
+    name: "@Ahmad23",
+    platform: "/discord-logo.png",
+    social: "Discord",
+    query: "Can we get an update on the project's timeline?",
+    time: "10:15 am",
+    button: "sort",
+    altText: "social-handles",
+  },
+
+  {
+    number: "4.",
+    img: "/avatar4.png",
+    name: "@Justin32",
+    platform: "/twitter-main.png",
+    social: "twitter",
+    query: "There seems to be a conflict in our team. Can we discuss this?",
+    time: "10:15 am",
+    button: "sort",
+    altText: "social-handles",
+  },
+
+  {
+    number: "5.",
+    img: "/avatar4.png",
+    name: "@Jordyn10",
+    platform: "/twitter-main.png",
+    social: "Twitter",
+    query: "Can you clarify the guidelines for posting in the community?",
+    time: "10:15 am",
+    button: "sort",
+    altText: "social-handles",
+  },
+
+  {
+    number: "6.",
+    img: "/avatar4.png",
+    name: "@Corey111",
+    platform: "/Telegram-icon.png",
+    social: "Telegram",
+    query:
+      "'m not sure how to use the new tool that was introduced. Can someone explain?",
+    time: "10:15 am",
+    button: "sort",
+    altText: "social-handles",
+  },
+
+  {
+    number: "7.",
+    img: "/avatar4.png",
+    name: "@Jordyn10",
+    platform: "/twitter-main.png",
+    social: "Twitter",
+    query:
+      "I have a suggestion for improving the workspace. Who should I talk to?",
+    time: "10:15 am",
+    button: "sort",
+    altText: "social-handles",
+  },
+];
+
+// Resolved query Escalation
+
+export const resolvedTable = [
+  {
+    number: "1.",
+    img: "/avatar1.png",
+    name: "@Ann928",
+    platform: "/discord-logo.png",
+    social: "Discord",
+    query: "I encountered a bug while using the workspace. Can you help?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+
+  {
+    number: "2.",
+    img: "/avatar2.png",
+    name: "@Roger20",
+    platform: "/twitter-main.png",
+    social: "Twitter",
+    query: "I'm having trouble accessing certain features. Can you assist me?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+
+  {
+    number: "3.",
+    img: "/avatar3.png",
+    name: "@Ahmad23",
+    platform: "/discord-logo.png",
+    social: "Discord",
+    query: "Can we get an update on the project's timeline?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+
+  {
+    number: "4.",
+    img: "/avatar4.png",
+    name: "@Justin32",
+    platform: "/twitter-main.png",
+    social: "twitter",
+    query: "There seems to be a conflict in our team. Can we discuss this?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+
+  {
+    number: "5.",
+    img: "/avatar4.png",
+    name: "@Jordyn10",
+    platform: "/twitter-main.png",
+    social: "Twitter",
+    query: "Can you clarify the guidelines for posting in the community?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+
+  {
+    number: "6.",
+    img: "/avatar4.png",
+    name: "@Corey111",
+    platform: "/Telegram-icon.png",
+    social: "Telegram",
+    query:
+      "'m not sure how to use the new tool that was introduced. Can someone explain?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+
+  {
+    number: "7.",
+    img: "/avatar4.png",
+    name: "@Jordyn10",
+    platform: "/twitter-main.png",
+    social: "Twitter",
+    query:
+      "I have a suggestion for improving the workspace. Who should I talk to?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+];
+
+// All Table
+
+export const allTable = [
+  {
+    number: "1.",
+    img: "/avatar1.png",
+    name: "@Ann928",
+    platform: "/discord-logo.png",
+    social: "Discord",
+    query: "I encountered a bug while using the workspace. Can you help?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+
+  {
+    number: "2.",
+    img: "/avatar2.png",
+    name: "@Roger20",
+    platform: "/twitter-main.png",
+    social: "Twitter",
+    query: "I'm having trouble accessing certain features. Can you assist me?",
+    time: "10:15 am",
+    button: "Sort",
+    altText: "social-handles",
+  },
+
+  {
+    number: "3.",
+    img: "/avatar3.png",
+    name: "@Ahmad23",
+    platform: "/discord-logo.png",
+    social: "Discord",
+    query: "Can we get an update on the project's timeline?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+
+  {
+    number: "4.",
+    img: "/avatar4.png",
+    name: "@Justin32",
+    platform: "/twitter-main.png",
+    social: "twitter",
+    query: "There seems to be a conflict in our team. Can we discuss this?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
+  },
+
+  {
+    number: "5.",
+    img: "/avatar4.png",
+    name: "@Jordyn10",
+    platform: "/twitter-main.png",
+    social: "Twitter",
+    query: "Can you clarify the guidelines for posting in the community?",
+    time: "10:15 am",
+    button: "Sort",
+    altText: "social-handles",
+  },
+
+  {
+    number: "6.",
+    img: "/avatar4.png",
+    name: "@Corey111",
+    platform: "/Telegram-icon.png",
+    social: "Telegram",
+    query:
+      "'m not sure how to use the new tool that was introduced. Can someone explain?",
+    time: "10:15 am",
+    button: "Sort",
+    altText: "social-handles",
+  },
+
+  {
+    number: "7.",
+    img: "/avatar4.png",
+    name: "@Jordyn10",
+    platform: "/twitter-main.png",
+    social: "Twitter",
+    query:
+      "I have a suggestion for improving the workspace. Who should I talk to?",
+    time: "10:15 am",
+    button: "Resolved",
+    altText: "social-handles",
   },
 ];
 
