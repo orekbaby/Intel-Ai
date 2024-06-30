@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CiPaperplane } from "react-icons/ci";
 
-const communityModal = () => {
+const CommunityModal = () => {
   const [selectedOption, setSelectedOption] = useState("today");
   const options = [
     "Today",
@@ -21,6 +21,7 @@ const communityModal = () => {
   const handleOptionChange = (option: string) => {
     setSelectedOption(option);
   };
+
   return (
     <>
       <div className="w-full h-full">
@@ -158,4 +159,4 @@ const communityModal = () => {
   );
 };
 
-export default communityModal;
+export default CommunityModal;
