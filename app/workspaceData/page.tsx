@@ -197,7 +197,7 @@ const page = () => {
                     </p>
 
                     {/* fifth contenth */}
-                    <p className="font-[200] text-base leading-[19.2px] mb-5 w-[95%]">
+                    <p className="font-[200] text-base leading-[19.1px] mb-5 w-[95%]">
                       The company focuses on aggregating investments across
                       various asset classes, making investment opportunities
                       more accessible for SEC-accredited providers. Founded in
