@@ -65,13 +65,6 @@ const Navigation = () => {
       {pathName === "/" && (
         <header className=" w-full absolute top-0 left-0 z-40 flex items-center justify-between bg-[#0A0908] h-[60px] md:h-[70px] lg:h-[70px] px-3 md:px-20 lg:px-20">
           <Image src="/Logo.png" width={99} height={40} alt="logo" />
-          <div
-            ref={menuRef}
-            className=" block text-white ml-0 md:ml-6 lg:ml-6  text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
-            onClick={toggleMenu}
-          >
-            <FiMenu />
-          </div>
 
           {/* Menu Contents */}
           {menuOpen && (
@@ -126,29 +119,7 @@ const Navigation = () => {
       {/* Dashboard navigation  */}
 
       {show && (
-        <header className="w-full absolute z-40 top-0 left-[290px] flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
-          <div
-            ref={menuRef}
-            className=" block text-white ml-0 md:ml-6 lg:ml-6  text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
-            onClick={toggleMenu}
-          >
-            <FiMenu />
-          </div>
-
-          {/* Menu Contents */}
-          {menuOpen && (
-            <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
-              <div className="flex flex-col justify-center gap-6 text-sm font-normal">
-                <Link href="/communityManager">
-                  <MenuItem label="community Manager" />
-                </Link>
-                <Link href="/kolInfluencer">
-                  <MenuItem label="Kol Influencer" />
-                </Link>
-              </div>
-            </div>
-          )}
-
+        <header className="hidden w-full absolute z-40 top-0 left-[290px] md:flex lg:flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
           <div className=" hidden md:flex lg:flex items-center gap-6 justify-between">
             <div className="flex justify-center items-center gap-8">
               <Link href="/communityManager">
@@ -162,7 +133,7 @@ const Navigation = () => {
                 </p>
               </Link>
             </div>
-            <div className="flex items-center justify-end gap-6 ml-32">
+            <div className="flex items-center justify-end gap-6 ml-72">
               <p className="font-medium text-[20px] leading-[20.8px]">
                 Co-pilot
               </p>
@@ -199,27 +170,6 @@ const Navigation = () => {
           <div className="flex justify-end pr-10">
             <Image src="/Logo.png" width={97} height={30} alt="logo" />
           </div>
-          <div
-            ref={menuRef}
-            className=" block text-white ml-0 md:ml-6 lg:ml-6  text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
-            onClick={toggleMenu}
-          >
-            <FiMenu />
-          </div>
-
-          {/* Menu Contents */}
-          {menuOpen && (
-            <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
-              <div className="flex flex-col justify-center gap-6 text-sm font-normal">
-                <Link href="/communityManager">
-                  <MenuItem label="community Manager" />
-                </Link>
-                <Link href="/kolInfluencer">
-                  <MenuItem label="Kol Influencer" />
-                </Link>
-              </div>
-            </div>
-          )}
         </header>
       )}
 
@@ -275,7 +225,7 @@ const Navigation = () => {
       {/* TrainAi navigation  */}
 
       {train && (
-        <header className="w-full absolute z-40 top-0 left-[290px] flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
+        <header className="hidden md:flex lg:flex w-full absolute z-40 top-0 left-[290px] justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
           <div
             ref={menuRef}
             className=" block text-white ml-0 md:ml-6 lg:ml-6  text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
@@ -311,7 +261,7 @@ const Navigation = () => {
                 </p>
               </Link>
             </div>
-            <div className="flex items-center justify-end gap-6 ml-48">
+            <div className="flex items-center justify-end gap-6 ml-60">
               <p className="font-medium text-[20px] leading-[20.8px]">
                 Co-pilot
               </p>
@@ -347,13 +297,6 @@ const Navigation = () => {
         <header className="absolute z-40 top-0 left-0 flex justify-end h-[60px] md:h-[70px] lg:h-auto px-3 md:px-20 lg:px-10 py-4 border-[#363636] w-[95%] border-b ">
           <div className="flex justify-end pr-10">
             <Image src="/Logo.png" width={97} height={30} alt="logo" />
-          </div>
-          <div
-            ref={menuRef}
-            className=" block text-white ml-0 md:ml-6 lg:ml-6  text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
-            onClick={toggleMenu}
-          >
-            <FiMenu />
           </div>
 
           {/* Menu Contents */}

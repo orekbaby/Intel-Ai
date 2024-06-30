@@ -27,7 +27,7 @@ const page = () => {
             className="bottom-[-70%] right-0 absolute w-[40%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
           ></div>
 
-          <div className=" w-full md:max-w-[1280px] lg:max-w-[1280px] px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
+          <div className=" w-full px-0 md:px-4 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
             <h2
               className="text-sm text-[16.8px] text-white
                leading-[36.28px] md:leading-[64px] lg:leading-[64px] text-center mb-5"
@@ -35,7 +35,7 @@ const page = () => {
               Are you a
             </h2>
             <Link href="/category">
-              <div className="flex justify-center  gap-10  mx-auto rounded-[40px] ">
+              <div className="flex flex-col w-full md:flex-row lg:flex-row justify-center items-center px-20 md:px-0 lg-px-0 gap-4 md:gap-10 lg:gap-10 rounded-[40px] ">
                 {chooseUser?.map((row, index) => (
                   <div
                     key={index}
@@ -46,7 +46,7 @@ const page = () => {
                     <div
                       className={`bg-gradient-to-r from-[rgba(28,28,28,0.9)] ${
                         index === 1 ? "to-[#131313]" : "to-[rgba(0,0,0,0.9)]"
-                      } w-[250px] h-[200px] rounded-[40px] mx-auto px-6 py-8`}
+                      } w-[354px] md:w-[250px] lg:w-[250px] h-auto rounded-[40px] mx-auto px-4 md:px-6 lg:px-6 py-6 md:py-8 lg:py-8`}
                     >
                       <Image
                         src={row.img}
@@ -55,11 +55,11 @@ const page = () => {
                         className="mb-5"
                         alt="manager"
                       />
-                      <h3 className="font-medium text-base mb-2">
+                      <h3 className="font-medium text-sm md:text-base lg:text-base mb-2">
                         {row.title}
                       </h3>
                       <p
-                        className="font-normal text-xs w-[212px] h-[56px] text-[#707070]"
+                        className="font-[300] md:font-normal lg:font-normal text-xs w-full md:w-[212px] lg:w-[212px] h-auto text-[#707070]"
                         style={{ fontWeight: 300 }}
                       >
                         {row.content}
@@ -69,6 +69,19 @@ const page = () => {
                 ))}
               </div>
             </Link>
+
+            {/* button */}
+            <div className="pt-10">
+              <Link href="/category">
+                <button
+                  className="bg-white cursor-pointer items-center flex justify-center text-center 
+                 text-xs font-normal ring-offset-white focus-visible:outline-none
+                 text-[#0D0D0D] h-[55px] md:h-10 lg:h-10 w-[362px] md:w-[204px] lg:w-[204px] md:rounded-[20px] lg:rounded-[20px] rounded-[66px] mx-auto shadow-drop2"
+                >
+                  Next
+                </button>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

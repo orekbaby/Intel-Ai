@@ -26,8 +26,6 @@ interface ChatItem {
 
 const Page: React.FC = () => {
   const [chatItems, setChatItems] = useState<ChatItem[]>([]);
-  const [inputValue, setInputValue] = useState<string>("");
-  const [showResolveButton, setShowResolveButton] = useState<boolean>(false);
 
   const addQuery = (query: string) => {
     const newQuery: ChatItem = {
@@ -46,21 +44,7 @@ const Page: React.FC = () => {
       responderName: "Intel",
       responderSpan: "ai",
     };
-    setChatItems((prevItems) => [...prevItems, newQuery, newResponse]);
-    setShowResolveButton(true);
-  };
-
-  const handleSendQuery = () => {
-    if (inputValue.trim() !== "") {
-      addQuery(inputValue);
-      setInputValue("");
-    }
-  };
-
-  const handleResolveComment = () => {
-    setChatItems([]);
-    setShowResolveButton(false);
-    // Additional logic to update the table component cell can be added here
+    setChatItems([...chatItems, newQuery, newResponse]);
   };
 
   return (
@@ -148,7 +132,7 @@ const Page: React.FC = () => {
             <p className="font-normal text-base leading-[16.64px] mb-4">
               Query Sorting Portal
             </p>
-            <div className="w-[397px] h-[897px] overflow-y-auto scrollbar-hide overflow-x-hidden bg-[#181818] rounded-[20px] pb-5">
+            <div className="w-[397px] h-[824px] bg-[#181818] rounded-[20px]">
               <div className="w-[397px] flex justify-end px-6 items-center h-[65px] rounded-[20px] bg-[#252525]">
                 <CiMenuKebab className="text-base text-[#767676]" />
               </div>
@@ -197,7 +181,6 @@ const Page: React.FC = () => {
                           <p className="font-normal text-xs leading-[14.84px]">
                             {item.content}
                           </p>
-                          {/* absolute section */}
                           <div className="flex gap-1 items-center absolute bottom-[2%] left-[70%]">
                             <div className="">
                               <Image
@@ -224,32 +207,16 @@ const Page: React.FC = () => {
                 </div>
               </div>
 
-              {showResolveButton && (
-                <div className="pt-48 mb-5 px-4">
-                  <Button
-                    className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[25px] w-[133px] rounded-[24px] hover:bg-[#0B0F16] text-xs"
-                    onClick={handleResolveComment}
-                  >
-                    Resolve comment
-                    <FaArrowUp className="text-[10px] rotate-45" />
-                  </Button>
-                </div>
-              )}
-              <div className="flex justify-center items-center gap-2">
-                <div className="">
+              <div className="flex justify-center items-center gap-2 p-4">
+           
                   <input
                     type="text"
                     id="inputField2"
                     className="text-input2 font-normal pt-1 text-sm leading-[14.56px] italic"
                     placeholder="Input the proper response here ...."
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
                   />
-                </div>
-                <div
-                  onClick={handleSendQuery}
-                  className="w-[50px] h-[50px] rounded-full bg-[#03FFA3] flex justify-center items-center cursor-pointer"
-                >
+            
+                <div className="w-[50px] h-[50px] rounded-full bg-[#03FFA3] flex justify-center items-center">
                   <CiPaperplane className="w-[26px] h-[30px] text-black" />
                 </div>
               </div>
@@ -262,3 +229,113 @@ const Page: React.FC = () => {
 };
 
 export default Page;
+
+
+// resolve page
+import React from "react";
+import Image from "next/image";
+import {
+  Table,
+  TableHeader,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { unResolvedTable } from "@/utils/mockData";
+import { FaArrowUp } from "react-icons/fa6";
+
+interface UnresolvedProps {
+  addQuery: (query: string) => void;
+}
+
+const Unresolved: React.FC<UnresolvedProps> = ({ addQuery }) => {
+  return (
+    <div className="w-full">
+      <Table className="overflow-x-hidden w-full">
+        <TableHeader>
+          <TableRow className="border-[#373737] h-[40px] border-b bg-[#1D1D1D]">
+            <TableHead className="w-[100px] font-medium text-base leading-[16px]">
+              #
+            </TableHead>
+            <TableHead className="font-normal text-[12px] text-[#898989] leading-[12.48px]">
+              MONITORED GROUPS
+            </TableHead>
+            <TableHead className="font-normal text-[12px] text-[#898989] leading-[12.48px]">
+              PLATFORM
+            </TableHead>
+            <TableHead className="font-normal text-[12px] text-[#898989] leading-[12.48px]">
+              QUERY
+            </TableHead>
+            <TableHead className="text-center font-normal text-[12px] text-[#898989] leading-[12.48px]">
+              TIME
+            </TableHead>
+            <TableHead className="text-right"> </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {unResolvedTable.map((row, index) => (
+            <TableRow
+              key={index}
+              className={`border-none ${
+                index % 2 === 0 ? "bg-[#0A0908]" : "bg-[#1D1D1D]"
+              }`}
+            >
+              <TableCell className="font-medium text-base leading-[16px]">
+                {row.number}
+              </TableCell>
+              <TableCell className="">
+                <div className="w-[100px] flex items-center gap-1">
+                  <Image
+                    src={row.img}
+                    alt={row.altText}
+                    width={25}
+                    height={25}
+                  />
+                  <p className="font-medium text-[9px] md:text-sm lg:text-sm leading-[14.56px]">
+                    {row.name}
+                  </p>
+                </div>
+              </TableCell>
+              <TableCell className="">
+                <div className="flex items-center gap-1">
+                  <Image
+                    src={row.platform}
+                    alt={row.altText}
+                    width={25}
+                    height={25}
+                  />
+                  <p className="font-medium text-[9px] md:text-sm lg:text-sm leading-[14.56px]">
+                    {row.social}
+                  </p>
+                </div>
+              </TableCell>
+              <TableCell className="text-left">
+                <div className="w-[250px]">
+                  <p className="font-medium text-[9px] md:text-sm lg:text-sm leading-[14.56px]">
+                    {row.query}
+                  </p>
+                </div>
+              </TableCell>
+              <TableCell className="text-right font-medium text-[9px] md:text-sm lg:text-sm leading-[14.56px]">
+                <div className="w-[100px] pr-2">{row.time}</div>
+              </TableCell>
+              <TableCell className="text-left font-normal text-[9px] md:text-[10px] lg:text-xs leading-[12.48px] ">
+                <Button
+                  className="w-[66px] flex justify-center gap-1 items-center h-[25px] bg-[#03FFA3] rounded-[66px] text-center text-[#0D0D0D]"
+                  onClick={() => addQuery(row.query)}
+                >
+                  {row.button}
+                  <FaArrowUp className="text-[10px] rotate-45" />
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  );
+};
+
+export default Unresolved;

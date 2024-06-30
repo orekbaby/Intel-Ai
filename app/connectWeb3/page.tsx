@@ -27,14 +27,14 @@ const page = () => {
             className="bottom-[-50%] right-0 absolute w-[40%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
           ></div>
 
-          <div className=" w-full md:max-w-[1280px] lg:max-w-[1280px] px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
+          <div className=" w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
             <h2
               className="text-[36px] text-[#707070]
-               leading-[36.28px] md:leading-[64px] lg:leading-[64px] text-center"
+               leading-[36.28px] hidden md:block lg:block md:leading-[64px] lg:leading-[64px] text-center"
             >
               Connect Web3 Wallet
             </h2>
-            <div className="w-[270px] h-[311px] bg-[#131313] mx-auto rounded-[16px]">
+            <div className="w-[270px] h-[311px] bg-[#131313] mx-auto rounded-[16px] mt-40 md:mt-0 lg:mt-0">
               <div className="border-b border-[#202020] pt-4 pb-2 px-10 mb-3">
                 <p className="font-normal text-xs text-[#DBDBDB] text-center">
                   Connect Wallet
@@ -44,17 +44,20 @@ const page = () => {
               {token?.map((row, index) => (
                 <div
                   key={index}
-                  className="flex w-[250px] h-[40px] rounded-[16px] py-[10px] px-[16px] bg-[#1A1A1A] mb-3 mx-auto"
+                  className="flex items-center w-[250px]
+                   h-[40px] rounded-[16px] py-[16px] px-[16px] bg-[#1A1A1A] mb-3 mx-auto"
                 >
                   <Link href="/user">
-                    <div className="flex justify-center items-center text-left gap-4 cursor-pointer">
+                    <div className="flex justify-center items-center gap-3 cursor-pointer">
                       <Image
                         src={row.tokenImg}
-                        width={30}
-                        height={30}
+                        width={28}
+                        height={28}
                         alt="metamask"
                       />
-                      <p className="font-normal text-xs">{row.token}</p>
+                      <p className="font-normal text-center text-xs">
+                        {row.token}
+                      </p>
                     </div>
                   </Link>
                 </div>

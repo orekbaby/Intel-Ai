@@ -83,7 +83,7 @@ const SideBar = () => {
         <div className="z-50 hidden md:block lg:block fixed">
           <div
             className={`absolute z-1 top-0 left-0 min-h-screen bg-[#0D0D0D] py-3 border-r border-[#363636] transition-width duration-1000 px-4 bg shadow-md ${
-              isHovered ? "w-72" : "w-16"
+              isHovered ? "w-72" : "w-[100px]"
             }`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -239,13 +239,33 @@ const SideBar = () => {
                   ))}
               </div>
             </div>
+
+            {/* bottom wallet */}
+
+            <div className="mt-28 flex justify-center items-center w-[53px] h-[40px]  border border-[#131313] bg-[#141414] rounded-[10px] ">
+              <div className="flex gap-1 justify-start items-center py-2 px-2">
+                <div>
+                  <Image
+                    src="/profile.png"
+                    width={20}
+                    height={20}
+                    alt="profile"
+                    className=""
+                  />
+                </div>
+                <p className=" hidden font-normal text-sm leading">
+                  0x35b...a36b
+                </p>
+                <FaPlus className="w-[10px] h-[10px] text-[#C8C8C8]" />
+              </div>
+            </div>
           </div>
         </div>
       )}
 
       {/* sidebar for dashboard */}
       {show && (
-        <div className="absolute top-0 left-0 w-[290px] h-[100vh] border-[#363636] border px-12 z-40">
+        <div className="hidden md:block lg:block absolute top-0 left-0 w-[290px] h-[100vh] border-[#363636] border px-12 z-40">
           <div className="flex justify-center items-center w-full h-auto mb-20 pb-5 border-b border-[#363636]">
             <Image
               src="/Logo.png"

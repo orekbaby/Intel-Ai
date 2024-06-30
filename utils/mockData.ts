@@ -308,49 +308,248 @@ export const announcementsModal = [
   {
     title: "Partnership Announcement",
     content:
-      " Essential for showcasing strategic alliances that can leverage mutual strengths and enhance project credibility.",
+      "Essential for showcasing strategic alliances that can leverage mutual strengths and enhance project credibility.",
+    insructionText:
+      "Please provide detailed information about the new partnership. Include the:",
+    bullet1: "Partner's name.",
+    bullet2: "The objective of the partnership.",
+    bullet3: "The date of the announcement.",
+    bullet4: "How it benefits the project.",
   },
 
   {
     title: "Platform/Feature Updates",
     content:
       "This includes upcoming and existing features which are vital for keeping the community aware of ongoing improvements and developments.",
+    insructionText:
+      "Describe the upcoming platform or feature updates Include the:",
+    bullet1: "Name of the Feature.",
+    bullet2: "Details of the Update.",
+    bullet3: "Expected release date",
+    bullet4: "How it improves the platform.",
   },
 
   {
     title: "Fundraising Activity Announcement",
     content:
       "Covering all stages of fundraising, this is crucial for investor engagement and transparency.",
+    insructionText:
+      "Provide comprehensive details about upcoming fundraising events stage of the token sale Eg:",
+    bullet1: "(Private sale, pre-sale, public sale, LBP).",
+    bullet2: "Key dates for each stage.",
+    bullet3: "Target amounts.",
+    bullet4: "And, any special terms or incentives offered.",
   },
 
   {
     title: "Scheduled Platform Maintenance or Upgrades",
     content:
       "Important for setting expectations regarding availability and enhancements.",
+    insructionText:
+      " Provide information about the scheduled maintenance or upgrade.  Include:",
+    bullet1: "What will be affected.",
+    bullet2: "The start and end time.",
+    bullet3: "Expected impacts",
+    bullet4: "And, any action users need to take.",
   },
 
   {
     title: "Milestone Updates",
     content:
       "Demonstrates progress and achievement, helping maintain investor and community confidence.",
+    insructionText: " Describe the milestone your project has reached.Include:",
+    bullet1: "What the milestone is.",
+    bullet2: "The date you want it published.",
+    bullet3: "The significance of the milestone",
+    bullet4: "And, future steps related to it.",
   },
 
   {
     title: "Roadmap Updates",
     content:
       "Keeps everyone informed about the future direction and adjustments based on dynamic market conditions or internal strategy shifts.",
+    insructionText: " Update the project's roadmap.Include:",
+    bullet1: "New goals.",
+    bullet2: "Revised timelines",
+    bullet3: "And, the reasons for these updates.",
+    bullet4: "",
   },
 
   {
     title: "New Exchange Listings",
     content:
       "Critical for informing traders about new markets where they can buy or sell the token.",
+    insructionText: "Announce a new exchange listing.Include:",
+    bullet1: "Name of the exchange.",
+    bullet2: "The date of listing.",
+    bullet3: "And, expected benefits to investors.",
+    bullet4: "",
   },
 
   {
     title: "Security Incident Report",
     content:
       "Essential for transparency and trust, informing users about any potential or actual security issues and how they are being addressed.",
+    insructionText: " Report a security incident Describe:",
+    bullet1: "What happened.",
+    bullet2: "When it occurred & the date you want it published.",
+    bullet3: "How it was resolved.",
+    bullet4: "And, steps taken to prevent future incidents.",
+  },
+];
+
+// launchpadmock
+// upcoming project
+export const launchpadData = [
+  {
+    instruction: "Instructions:",
+    insructionText:
+      "Please provide detailed information about the new partnership. Include the:",
+    bullet1: "Partner's name.",
+    bullet2: "The objective of the partnership.",
+    bullet3: "The date of the announcement.",
+    bullet4: "How it benefits the project.",
+  },
+];
+
+// previuos listed project
+export const previousListings = [
+  {
+    projectName: "Metadapp",
+    instructions: "What do you want to update about this project",
+    projectTitle: "Project name:",
+    projectSpan: "Metadapp",
+  },
+
+  {
+    projectName: "Koi Pond",
+    instructions: "What do you want to update about this project",
+    projectTitle: "Project name:",
+    projectSpan: "KOI pond",
+  },
+
+  {
+    projectName: "Satoshi meme",
+    instructions: "What do you want to update about this project",
+    projectTitle: "Project name:",
+    projectSpan: "Satoshi meme",
+  },
+];
+
+// option triggers
+export const optionTriggers = [
+  {
+    id: "1",
+    options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+    options2: "Team Current & Future plans.",
+    options3: "New Exchange Listings.",
+    options4: "Success Story Update.",
+    value: "1",
+  },
+
+  {
+    id: "2",
+    options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+    options2: "Team Current & Future plans.",
+    options3: "New Exchange Listings.",
+    options4: "Success Story Update.",
+    value: "2",
+  },
+
+  {
+    id: "3",
+    options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+    options2: "Team Current & Future plans.",
+    options3: "New Exchange Listings.",
+    options4: "Success Story Update.",
+    value: "3",
+  },
+
+  {
+    id: "4",
+    options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+    options2: "Team Current & Future plans.",
+    options3: "New Exchange Listings.",
+    options4: "Success Story Update.",
+  },
+];
+
+// community engagement mock
+export const communityModals = [
+  {
+    title: "Upcoming Contests and Giveaways",
+    content:
+      "Great for boosting engagement and fun, these activities can help sustain and grow the community.",
+    instruction: "Instructions: (Type Content or Upload document) ",
+    insructionText:
+      "Please provide detailed information about the Upcoming Contests and Giveaways Include the:",
+    bullet1: "Theme or topic of the contest/giveaway.",
+    bullet2: "Specify eligible participants of the contest/giveaway.",
+    bullet3:
+      "Ensure your entry aligns with the theme/topic of the contest/giveaway & deadline.",
+    bullet4:
+      "Describe the prize(s) for the contest/giveaway, including any details regarding the number of winners, and prize value.",
+  },
+
+  {
+    title: "Upcoming Community AMA",
+    content:
+      "Helps in maintaining transparency, allows the community to raise concerns, and fosters a stronger connection with the project leaders.",
+    instruction: "Instructions:",
+    insructionText:
+      "Please provide detailed information about the Upcoming Contests and Giveaways Include the:",
+    bullet1: "Specify the date & time of the AMA.",
+    bullet2:
+      "Introduce the guest(s) and provide a brief background or bio, if applicable.",
+    bullet3:
+      "Specify how participants can submit their questions, e.g., comment on the AMA thread, use a specific hashtag, etc.",
+    bullet4:
+      "Specify the guidelines for participants on questions and discussions during the AMA session.",
+  },
+
+  {
+    title: "Fundraising Activity Announcement",
+    content:
+      "Covering all stages of fundraising, this is crucial for investor engagement and transparency.",
+    instruction: "Instructions: ",
+    insructionText:
+      "Please provide detailed information about the Upcoming Contests and Giveaways Include the:",
+    bullet1: "Specify the date & time of the AMA.",
+    bullet2:
+      "Introduce the guest(s) and provide a brief background or bio, if applicable.",
+    bullet3:
+      "Specify how participants can submit their questions, e.g., comment on the AMA thread, use a specific hashtag, etc.",
+    bullet4:
+      "Specify the guidelines for participants on questions and discussions during the AMA session.",
+  },
+
+  {
+    title: "⁠Upcoming Reward & Loyalty Program",
+    content:
+      " Encourages sustained engagement and investment in the project by rewarding active community members.",
+    instruction: "Instructions: ",
+    insructionText:
+      "Please provide detailed information about the Upcoming Contests and Giveaways Include the:",
+    bullet1: "Specify the date & time of the AMA.",
+    bullet2:
+      "Introduce the guest(s) and provide a brief background or bio, if applicable.",
+    bullet3:
+      "Specify how participants can submit their questions, e.g., comment on the AMA thread, use a specific hashtag, etc.",
+    bullet4:
+      "Specify the guidelines for participants on questions and discussions during the AMA session.",
+  },
+];
+
+// information modal
+
+export const informationModal = [
+  {
+    title: "Other Information",
+    content:
+      "Updates or special instructions that do not fall in any of the other categories.",
+    instruction: "Instructions: ",
+    insructionText: "Please provide detailed information about it.",
+    button: "Save",
   },
 ];
 
@@ -403,18 +602,21 @@ export const proDashboard = [
 
 export const trainingHistory = [
   {
+    number: "1",
     projectName: "Partnerships",
     action: "Updated Document",
     dateTime: "20, May 2024 10:15 am",
   },
 
   {
+    number: "2",
     projectName: "Raise Announcement",
     action: "Edited Document",
     dateTime: "20, May 2024 10:15 am",
   },
 
   {
+    number: "3",
     projectName: "Engagement",
     action: "Updated Information",
     dateTime: "20, May 2024 10:15 am",
@@ -706,6 +908,27 @@ export const allTable = [
   },
 ];
 
+// query escaltion mock
+export const querySection = [
+  {
+    query: "",
+    time: "11:00 am",
+    username: "Spockman2304",
+    img: "/avatar.png",
+  },
+];
+
+export const responseSection = [
+  {
+    response:
+      "**I'm sorry to hear you're experiencing a bug! Your issue has been escalated to our community manager, who will assist you shortly. In the meantime, could you please provide more details about the bug, such as what you were doing when it occurred and any error messages you received? This will help us resolve the issue more efficiently. Thank you for your patience!**",
+    time: "11:00 am",
+    img: "/glow-img.png",
+    name: "Intel",
+    span: "ai",
+  },
+];
+
 export const inputData = [
   {
     title: "What is the name of your project?",
@@ -721,5 +944,55 @@ export const inputData = [
     title: "Add Website/URL",
     content:
       "Kindly upload any documents or links that you might have about your project or product. Whitepaper, Gitbook, Pitch Deck, Excel Sheet, FAQ documents and so on.",
+  },
+];
+
+export const chipsButton = [
+  {
+    button: "What is get equity",
+  },
+
+  {
+    button: "When Private Sale?",
+  },
+
+  {
+    button: "Best features?",
+  },
+];
+
+export const userInput = [
+  {
+    question: "What is Getequity",
+    time: "11:00 am",
+    user: "You",
+    image: "/avatar.png",
+  },
+];
+export const userInput2 = [
+  {
+    question: "When Private Sale?",
+    time: "11:00 am",
+    user: "You",
+    image: "/avatar.png",
+  },
+];
+
+export const userInput3 = [
+  {
+    question: "Best features?",
+    time: "11:00 am",
+    user: "You",
+    image: "/avatar.png",
+  },
+];
+
+export const aiResponse = [
+  {
+    response:
+      "With a commitment to providing tools for investment, asset organization, and management in one convenient platform, GetEquity ensures a safe and efficient investment experience for accredited investors, from high-net-worth individuals to industry veterans.",
+    aiImage: "/glow-img.png",
+    name: " Intel",
+    span: "ai",
   },
 ];

@@ -13,7 +13,7 @@ const page = () => {
       <main className="pl-16 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
         <section className="relative w-full h-full mb-48 bg-[#131313]">
           <div className="w-full pl-8 pr-4 relative mb-0 md:mb-10 lg:mb-10 h-full">
-            <div className="pt-5">
+            <div className="pt-5 pl-6">
               <p className="font-medium text-[20px] mb-4">IntelAI Workspace</p>
               <div className="w-full flex justify-between gap-4 h-full">
                 <div className="w-[40%] bg-[#181818] h-[840px] rounded-[20px] ">
@@ -225,7 +225,7 @@ const page = () => {
                       </DialogTrigger>
                     </div>
                     <DialogContent
-                      className="absolute top-[54%] left-[80%] -translate-x-1/2 w-full px-8 md:w-full lg:w-full
+                      className="absolute top-[54%] left-[80%] -translate-x-1/2 w-full px-4 md:w-full lg:w-full
                      bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
                     >
                       <DialogData />

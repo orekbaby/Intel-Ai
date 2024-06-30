@@ -50,19 +50,6 @@ export default function Home() {
     backgroundBlendMode: "darken",
     filter: "blur(50px)",
   };
-  //   rainbow on top
-  //   #03FFA3  3, 255, 163, 1
-  // 20%
-  // #DC1FFF  220, 31, 255, 1
-  // 20%
-
-  //   eclipse colors
-  // #D9FFF1  217, 255, 241, 1
-  // 80%
-  // #03FFA3 3, 255, 163, 1
-  // 40%
-  // #03FFA3  3, 255, 163, 1
-  // 35%
 
   const style1: React.CSSProperties = {
     background:
@@ -104,7 +91,7 @@ export default function Home() {
       {/* hero-section */}
       <section className="first-gradient section relative w-full h-auto overflow-hidden mx-auto ">
         <div className=" w-full ">
-          <div className=" px-0 md:px-28 lg:px-28">
+          <div className="px-0 md:px-28 lg:px-28">
             {/* Gradient background with lower z-index */}
             <div
               style={style2}
@@ -371,7 +358,7 @@ export default function Home() {
         {integration?.map((row, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center 
+            className="flex flex-col md:flex-row lg:flex-row justify-center items-center
             mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-32 lg:px-32 mb-20"
           >
             <div className="w-1/2">
@@ -386,7 +373,7 @@ export default function Home() {
                 {row.title}
               </h5>
 
-              <p className="font-normal text-sm md:text-base lg:text-base  text-[#BDBDBD] mb-14 md:mb-10 lg:mb-10 w-[361px] md:w-[498px] lg:w-[498px] h-[54px] md:h-[63px] lg:h-[63px] leading-[20.8px] ">
+              <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] mb-14 md:mb-10 lg:mb-10 w-[361px] md:w-[498px] lg:w-[498px] h-[54px] md:h-[63px] lg:h-[63px] leading-[20.8px] ">
                 {row.description}
               </p>
               <div className="flex gap-2 w-[500px] justify-start">
@@ -418,7 +405,7 @@ export default function Home() {
             <div className="w-1/2 relative hidden md:block lg:block">
               <div
                 className="bg-background-image 
-           w-[613.43px] h-[586px] bg-center bg-no-repeat bg-contain"
+           w-[613.43px] h-[586px] bg-center bg-no-repeat bg-contain ml-0 md:ml-5 lg:ml-5"
               >
                 <Image
                   src={row.integration}
@@ -447,7 +434,7 @@ export default function Home() {
         {content?.map((row, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10  md:px-32 lg:px-32 mb-20"
+            className="flex flex-col md:flex-row lg:flex-row items-center justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10  md:px-32 lg:px-32 mb-20"
           >
             <div className="w-1/2">
               <div className="flex gap-2 justify-start w-[500px]">
@@ -496,7 +483,7 @@ export default function Home() {
             <div className="w-1/2 relative hidden md:block lg:block">
               <div
                 className="bg-background-image
-          w-[613.43px] h-[586px] rounded-[11%]"
+           w-[613.43px] h-[586px] bg-center bg-no-repeat bg-contain"
               >
                 <Image
                   src={row.integration}
@@ -523,7 +510,7 @@ export default function Home() {
         {sorting?.map((row, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-32 lg:px-32 mb-40"
+            className="flex flex-col md:flex-row lg:flex-row items-center justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-32 lg:px-32 mb-40"
           >
             <div className="w-1/2">
               <div className="flex gap-2 justify-start w-[500px]">
@@ -572,7 +559,7 @@ export default function Home() {
             <div className="w-1/2 relative hidden md:block lg:block">
               <div
                 className="bg-background-image
-           w-[613.43px] rounded-[11%] h-auto"
+           w-[613.43px] h-[586px] bg-center bg-no-repeat bg-contain"
               >
                 <Image
                   src={row.integration}

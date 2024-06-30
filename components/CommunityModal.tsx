@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { announcementsModal } from "@/utils/mockData";
+import { announcementsModal, communityModals } from "@/utils/mockData";
 import { FaCircle } from "react-icons/fa";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CiPaperplane } from "react-icons/ci";
 
-const AnnouncementModal = () => {
+const communityModal = () => {
   const [selectedOption, setSelectedOption] = useState("today");
   const options = [
     "Today",
@@ -24,11 +24,11 @@ const AnnouncementModal = () => {
   return (
     <>
       <div className="w-full h-full">
-        {announcementsModal?.map((row, index) => (
+        {communityModals?.map((row, index) => (
           <Dialog key={index}>
             <DialogTrigger className="cursor-pointer" asChild>
               <div className="flex flex-col mb-5 pb-5 border-[#1E1E1E] border-b text-left">
-                <h5 className="font-semibold text-sm leading-[14.56px] mb-2">
+                <h5 className="font-semibold  text-sm leading-[14.56px] mb-2">
                   {row.title}
                 </h5>
                 <p className="font-normal text-sm leading-[16.56px] text-[#4D4D4D]">
@@ -40,14 +40,14 @@ const AnnouncementModal = () => {
               className="absolute top-[52%] max-w-auto w-[460px]
                         h-[90vh] overflow-y-auto scrollbar-hide border-0 outline-none"
             >
-              <div className="w-full bg-[#131313] h-auto rounded-[20px] border-b border-[#131313] pb-10">
+              <div className="w-full h-auto bg-[#131313] border-b border-[#131313] rounded-[20px] pb-10">
                 <div className="bg-[#101010] border-[#181818] border-b px-4 py-[10px] w-[460px] h-[47px] mb-3">
                   <h5 className="font-semibold text-sm text-[14.56px]">
                     {row.title}
                   </h5>
                 </div>
-                <div className="px-4 w-auto">
-                  <p className="italic text-[13px] font-[300] mb-3">
+                <div className="w-auto p-2">
+                  <p className="italic text-[13.75px] font-[300] mb-3">
                     When do you want to inform your community about this
                     information?
                   </p>
@@ -158,4 +158,4 @@ const AnnouncementModal = () => {
   );
 };
 
-export default AnnouncementModal;
+export default communityModal;

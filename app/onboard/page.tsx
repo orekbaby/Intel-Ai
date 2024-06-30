@@ -27,31 +27,33 @@ const page = () => {
             className="bottom-[-50%] right-[-5%] absolute w-[40%] h-[130px] md:h-[500px] lg:h-[130px] translate-x-1/2 z-[-1]"
           ></div>
 
-          <div className=" w-full md:max-w-[1280px] lg:max-w-[1280px] px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
-            <Image
-              width={200}
-              height={200}
-              src="/onboard.png"
-              className="mx-auto mb-5"
-              alt=""
-            />
-            <h3 className="font-normal text-center text-[40px] leading-[40px] mx-auto mb-3">
-              Onboarded Successfully
-            </h3>
-            <p className="font-normal text-sm mx-auto text-center text-[#707070] w-[383px] mb-10">
-              Your info has been uploaded to the AI, you can begin testing your
-              AI now
-            </p>
-            {/* button */}
-            <Link href="/dashboard">
-              <button
-                className="bg-white items-center flex justify-center text-center 
+          <div className=" w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto pt-16">
+            <div className="">
+              <Image
+                width={200}
+                height={200}
+                src="/onboard.png"
+                className="mx-auto mb-5 w-[143px] h-[143px] md:w-[200px] lg:w-[200px]"
+                alt=""
+              />
+              <h3 className="font-normal text-center text-[32px] md:text-[40px] leading-[32px] md:leading-[40px] lg:leading-[40px] mx-auto mb-3">
+                Onboarded Successfully
+              </h3>
+              <p className="font-normal text-sm mx-auto text-center text-[#707070] w-[85%] md:w-[383px] lg:w-[383px] mb-10">
+                Your info has been uploaded to the AI, you can begin testing
+                your AI now
+              </p>
+              {/* button */}
+              <Link href="/dashboard">
+                <button
+                  className="bg-white items-center flex justify-center text-center 
                  text-xs font-normal ring-offset-white focus-visible:outline-none
-                 text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-              >
-                Go to dashboard
-              </button>
-            </Link>
+                 text-[#0D0D0D]  w-[298px] h-[55px] md:h-10 lg:h-10 md:w-[153px] lg:w-[153px]  rounded-[66px] mx-auto shadow-drop2"
+                >
+                  Go to dashboard
+                </button>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

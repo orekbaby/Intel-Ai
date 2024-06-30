@@ -72,6 +72,33 @@ body,
   outline: 0;
 }
 
+.text-input3 {
+  width: 450px;
+  height: 35px;
+  border-radius: 8px;
+  border-color: #363636;
+  border: 2px;
+  background-color: #0d0d0d;
+  color: #302d2d;
+  padding: 0 15px;
+  font-style: italic;
+  outline: 0;
+}
+
+/* Width
+420px
+Height
+35px
+Radius
+8px
+Border
+1px
+#0D0D0D
+1px
+All sides
+#363636
+Inner alignment */
+
 .text-input2 {
   width: 315px;
   height: 50px;
@@ -107,4 +134,15 @@ body,
   max-width: 100%;
   margin: 3rem auto;
   padding: 0 1.5rem;
+} */
+
+/* .border-gradient-active {
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to right,
+      rgba(3, 255, 163, 1) 0%,
+      rgba(127, 86, 217, 1) 100%
+    )
+    66;
 } */

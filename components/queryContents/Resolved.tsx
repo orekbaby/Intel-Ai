@@ -33,7 +33,7 @@ const Resolved = () => {
                 {" "}
                 TIME
               </TableHead>
-              <TableHead className="text-right"> </TableHead>
+              <TableHead className="text-right"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
