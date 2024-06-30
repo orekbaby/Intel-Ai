@@ -84,7 +84,7 @@ const DashboardPage: React.FC = () => {
                       <button
                         className="bg-white items-center flex justify-center text-center 
                  text-xs font-normal md:font-medium lg:font-medium ring-offset-white focus-visible:outline-none
-                 text-[#0D0D0D] w-[84px] h-[26px] md:w-[153px] md:h-10 lg:w-[153px] lg:h-10 rounded-[66px] md:rounded-[20px] lg:rounded-[20px] mx-auto leading-[12.8px]"
+                 text-[#0D0D0D] w-[84px] h-[26px] md:w-[153px] md:h-10 lg:w-[153px] lg:h-[40px] rounded-[66px] md:rounded-[20px] lg:rounded-[20px] mx-auto leading-[12.8px]"
                       >
                         Train AI
                       </button>
