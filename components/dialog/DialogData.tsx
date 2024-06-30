@@ -24,7 +24,7 @@ const DialogData: React.FC = () => {
 
   const handleButtonClick = (index: number) => {
     if (promptCount < 15) {
-      let newUserPrompts;
+      let newUserPrompts: any[] = []; // Explicitly define newUserPrompts as an array of any
       if (index === 0) {
         newUserPrompts = userInput;
       } else if (index === 1) {
