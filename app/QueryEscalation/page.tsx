@@ -8,6 +8,16 @@ import Unresolved from "@/components/queryContents/Unresolved";
 import Resolved from "@/components/queryContents/Resolved";
 import All from "@/components/queryContents/All";
 import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+import {
   escalationReport,
   querySection,
   responseSection,
@@ -145,6 +155,33 @@ const Page: React.FC = () => {
                 </TabsContent>
               </Tabs>
             </div>
+
+            {/* pagination  */}
+            <div className="">
+              <Pagination className="flex items-end justify-end">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious href="#" />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">1</PaginationLink>
+                    <PaginationLink href="#">2</PaginationLink>
+                    <PaginationLink href="#">3</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">8</PaginationLink>
+                    <PaginationLink href="#">9</PaginationLink>
+                    <PaginationLink href="#">10</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext href="#" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
           </div>
 
           <div className="w-[30%] pr-4">
@@ -258,6 +295,8 @@ const Page: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* pagination */}
         </div>
       </section>
     </main>

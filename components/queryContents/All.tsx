@@ -10,13 +10,15 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { allTable, resolvedTable, unResolvedTable } from "@/utils/mockData";
-import { FaArrowUp, FaArrowUpLong } from "react-icons/fa6";
+import { FaArrowUp } from "react-icons/fa6";
 
 const All = () => {
   return (
     <>
-      <div className="w-full">
-        <Table className="overflow-x-hidden w-full">
+      <div className="w-full overflow-hidden">
+        {" "}
+        {/* Updated overflow-hidden here */}
+        <Table className="overflow-x-auto scrollbar-hide w-full">
           <TableHeader>
             <TableRow className="border-[#373737] h-[40px] border-b bg-[#1D1D1D]">
               <TableHead className="w-[100px] font-medium text-base leading-[16px]">
@@ -38,7 +40,7 @@ const All = () => {
               <TableHead className="text-right"> </TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="overflow-x-auto scrollbar-hide">
             {allTable?.map((row, index) => (
               <TableRow
                 key={index}

@@ -15,7 +15,7 @@ const PreviouslyListed = () => {
         {previousListings?.map((row, index) => (
           <Dialog key={index}>
             <DialogTrigger className="cursor-pointer" asChild>
-              <div className="flex flex-col text-left w-[486px] h-[64px] gap-2">
+              <div className="flex flex-col text-left gap-2 w-[486px] h-[50px]">
                 <div className="">
                   <h5 className="font-medium text-sm leading-[14.56px] mb-2">
                     {row.projectName}
