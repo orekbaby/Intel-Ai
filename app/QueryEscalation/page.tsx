@@ -126,7 +126,10 @@ const Page: React.FC = () => {
                   className="w-full h-full pt-2 overflow-x-hidden"
                   value="Unresolved"
                 >
-                  <Unresolved addQuery={addQuery} />
+                  <Unresolved
+                    addQuery={addQuery}
+                    resolveComment={handleResolveComment}
+                  />
                 </TabsContent>
                 <TabsContent
                   className="w-full h-full pt-2 overflow-x-hidden"
@@ -198,7 +201,7 @@ const Page: React.FC = () => {
                             {item.content}
                           </p>
                           {/* absolute section */}
-                          <div className="flex gap-1 items-center absolute bottom-[2%] left-[70%]">
+                          <div className="flex gap-1 items-center absolute bottom-[5] left-[70%]">
                             <div className="">
                               <Image
                                 src={item.img}
