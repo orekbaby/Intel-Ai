@@ -97,7 +97,7 @@ const Page: React.FC = () => {
                       </p>
                       <div className="w-[21px] h-[10px] rounded-[2px] flex justify-center items-center bg-[#03FFA3] bg-opacity-[11%]">
                         <div className="flex justify-center items-center gap-1">
-                          <p className="font-medium text-[6px] text-[#76CA43]">
+                          <p className="font-[500] text-[6px] text-[#76CA43]">
                             {row.percentage}
                           </p>
                           <FaArrowUp className="w-[5px] h-[3px] text-[#76CA43] rotate-6" />
