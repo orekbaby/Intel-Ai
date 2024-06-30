@@ -184,16 +184,16 @@ const Page: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-[30%] pr-4">
+          <div className="w-[30%] pr-4 h-[897px] overflow-y-auto scrollbar-hide pb-5">
             <p className="font-normal text-base leading-[16.64px] mb-4">
               Query Sorting Portal
             </p>
-            <div className="w-[397px] h-[897px] overflow-y-auto scrollbar-hide overflow-x-hidden bg-[#181818] rounded-[20px] pb-5">
+            <div className="w-[397px] h-full bg-[#181818] rounded-[20px] pb-2 flex flex-col">
               <div className="w-[397px] flex justify-end px-6 items-center h-[65px] rounded-[20px] bg-[#252525]">
                 <CiMenuKebab className="text-base text-[#767676]" />
               </div>
               <div
-                className="p-4 overflow-y-auto"
+                className="p-4 overflow-y-auto flex-grow"
                 style={{ height: "calc(100% - 130px)" }}
               >
                 <div className="flex flex-col gap-4">
@@ -216,7 +216,7 @@ const Page: React.FC = () => {
                           </div>
                           <div
                             className="flex justify-center items-center bg-[#2D2D2D] border-[3px]
-                            border-[#181818] w-[107px] h-[28px] rounded-[20px] py-4 absolute left-7 bottom-[-15%]"
+                  border-[#181818] w-[107px] h-[28px] rounded-[20px] py-4 absolute left-7 bottom-[-15%]"
                           >
                             <p className="font-normal text-xs">
                               {item.username}
@@ -265,7 +265,7 @@ const Page: React.FC = () => {
               </div>
 
               {showResolveButton && (
-                <div className="pt-48 mb-5 px-4">
+                <div className="mb-5 px-4">
                   <Button
                     className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[25px] w-[133px] rounded-[24px] hover:bg-[#0B0F16] text-xs"
                     onClick={handleResolveComment}
@@ -275,22 +275,24 @@ const Page: React.FC = () => {
                   </Button>
                 </div>
               )}
-              <div className="flex justify-center items-center gap-2">
-                <div className="">
-                  <input
-                    type="text"
-                    id="inputField2"
-                    className="text-input2 font-normal pt-1 text-sm leading-[14.56px] italic"
-                    placeholder="Input the proper response here ...."
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                  />
-                </div>
-                <div
-                  onClick={handleSendQuery}
-                  className="w-[50px] h-[50px] rounded-full bg-[#03FFA3] flex justify-center items-center cursor-pointer"
-                >
-                  <CiPaperplane className="w-[26px] h-[30px] text-black" />
+              <div className="flex justify-center items-center gap-2 mt-auto">
+                <div className="flex justify-center items-center gap-2">
+                  <div className="">
+                    <input
+                      type="text"
+                      id="inputField2"
+                      className="text-input2 font-normal pt-1 text-sm leading-[14.56px] italic"
+                      placeholder="Input the proper response here ...."
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                    />
+                  </div>
+                  <div
+                    onClick={handleSendQuery}
+                    className="w-[50px] h-[50px] rounded-full bg-[#03FFA3] flex justify-center items-center cursor-pointer"
+                  >
+                    <CiPaperplane className="w-[26px] h-[30px] text-black" />
+                  </div>
                 </div>
               </div>
             </div>
