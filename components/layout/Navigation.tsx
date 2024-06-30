@@ -282,7 +282,7 @@ const Navigation = () => {
                     }`}
                   ></span>
                 </div>
-                <p className="font-medium text-[14px] leading-[14.56px] text-[#6B6B6B]">
+                <p className="font-medium text-sm leading-[14.56px] text-[#6B6B6B]">
                   {isChecked ? "ON" : "OFF"}
                 </p>
               </div>
