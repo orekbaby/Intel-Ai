@@ -21,7 +21,7 @@ const PreviouslyListed = () => {
                 } border-b border-[#131313]`}
               >
                 <div className="">
-                  <h5 className="font-medium text-sm leading-[14.56px] mb-2">
+                  <h5 className="font-medium text-[14px] leading-[14.56px] mb-2">
                     {row.projectName}
                   </h5>
                 </div>
