@@ -164,11 +164,12 @@ const CommunityModal = () => {
                   <p className="font-normal text-sm leading-[14.56px] text-[#E4E4E4] mb-2">
                     {row.insructionText}
                   </p>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col w-full">
                     {modalStates[index].bullets.map((bullet, bulletIndex) => (
                       <div
                         className="flex items-center gap-2"
                         key={bulletIndex}
+                        style={{ wordWrap: "break-word" }}
                       >
                         <FaCircle className="text-[#858585] text-[6px]" />
                         <input
@@ -186,7 +187,7 @@ const CommunityModal = () => {
                               handleBulletDelete(index, bulletIndex);
                             }
                           }}
-                          className="bg-transparent border-none outline-none text-[#858585] text-sm italic w-full"
+                          className="bg-transparent border-none outline-none text-[#858585] text-sm italic w-full break-all"
                         />
                       </div>
                     ))}

@@ -8,6 +8,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+type OptionTrigger = {
+  id: string;
+  options1: string;
+  options2: string;
+  options3: string;
+  options4: string;
+};
+
 const PreviouslyListed = () => {
   return (
     <>
@@ -47,7 +55,7 @@ const PreviouslyListed = () => {
                   type="single"
                   collapsible
                 >
-                  {optionTriggers.map((option, i) => (
+                  {optionTriggers.map((option: OptionTrigger, i) => (
                     <React.Fragment key={i}>
                       <AccordionItem
                         className="w-full border-none mb-3 md:mb-3 lg:mb-0 px-3"
@@ -56,13 +64,15 @@ const PreviouslyListed = () => {
                         <AccordionTrigger className="flex items-center gap-10 pr-[10%] border-b border-[#1E1E1E]">
                           <div className="flex items-center justify-center gap-2">
                             <p className="text-[9px] md:text-[13.75px] lg:text-[13.75px] font-[300] leading-[14.3px]">
-                              {option[`options${i + 1}`]}
+                              {option[`options${i + 1}` as keyof OptionTrigger]}
                             </p>
                           </div>
                           <p className="text-[#4CA244] font-bold text-xs md:text-base lg:text-base"></p>
                         </AccordionTrigger>
                         <AccordionContent>
-                          {`Content for ${option[`options${i + 1}`]}`}
+                          {`Content for ${
+                            option[`options${i + 1}` as keyof OptionTrigger]
+                          }`}
                         </AccordionContent>
                       </AccordionItem>
                     </React.Fragment>
