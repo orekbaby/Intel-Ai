@@ -85,7 +85,7 @@ const ProjectListings = () => {
               <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
                 Instructions:
               </h5>
-              <p className="font-normal text-sm leading-[16.56px] text-[#E4E4E4] mb-3">
+              <p className="font-normal text-sm leading-[16.55px] text-[#E4E4E4] mb-3">
                 {row.insructionText}
               </p>
               <div className="flex flex-col gap-1">
