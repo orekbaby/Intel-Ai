@@ -2,6 +2,8 @@ import { token } from "@/utils/mockData";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { FaArrowLeft } from "react-icons/fa";
 const page = () => {
   const style2: React.CSSProperties = {
     background:
@@ -26,6 +28,16 @@ const page = () => {
             style={style2}
             className="bottom-[-50%] right-0 absolute w-[40%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
           ></div>
+
+          {/* Back button */}
+          <div className="mb-6 flex justify-start absolute top-[-40%] left-10">
+            <Link href="logIn">
+              <button className="flex items-center text-[#707070]">
+                <FaArrowLeft className="mr-2 text-[#707070]" />
+                Back
+              </button>
+            </Link>
+          </div>
 
           <div className=" w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
             <h2

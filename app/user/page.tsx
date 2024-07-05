@@ -2,6 +2,7 @@ import { chooseUser } from "@/utils/mockData";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa6";
 const page = () => {
   const style2: React.CSSProperties = {
     background:
@@ -15,9 +16,20 @@ const page = () => {
       <main className="mt-4 md:mt-20 lg:mt-40 mx-auto">
         <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-60 ">
           {/* top gradient */}
+
+          {/* Back button */}
+          <div className="mb-6 flex justify-start absolute top-[-40%] left-10">
+            <Link href="/connectWeb3">
+              <button className="flex items-center text-[#707070]">
+                <FaArrowLeft className="mr-2 text-[#707070]" />
+                Back
+              </button>
+            </Link>
+          </div>
+
           <div
             style={style2}
-            className="top-[-190%] left-[-20%] absolute w-[20%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
+            className="top-[-18%] left-[-20%] absolute w-[20%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
           ></div>
 
           {/* bottom styling */}
@@ -71,7 +83,7 @@ const page = () => {
             </Link>
 
             {/* button */}
-            <div className="pt-10">
+            {/* <div className="pt-10">
               <Link href="/category">
                 <button
                   className="bg-white cursor-pointer items-center flex justify-center text-center 
@@ -81,7 +93,7 @@ const page = () => {
                   Next
                 </button>
               </Link>
-            </div>
+            </div> */}
           </div>
         </section>
       </main>

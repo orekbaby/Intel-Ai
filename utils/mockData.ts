@@ -285,13 +285,13 @@ export const accordionData = [
 
 export const description = [
   {
-    name: "Token Project",
+    name: "Launchpad",
     description:
       "Projects focused on facilitating the launch of new tokens or crypto projects, offering early access to investors.",
   },
 
   {
-    name: "Launchpad",
+    name: "Token Project",
     description:
       "Projects focused on facilitating the launch of new tokens or crypto projects, offering early access to investors.",
   },

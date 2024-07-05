@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { description } from "@/utils/mockData";
+import { FaArrowLeft } from "react-icons/fa";
 
 type DescriptionItem = {
   name: string;
@@ -31,7 +32,7 @@ const Page = () => {
     <>
       <main className="mt-4 md:mt-20 lg:mt-16 mx-auto">
         <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-48 ">
-          <div className=" w-full px-2 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
+          <div className="w-full px-2 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
             {/* top gradient */}
             <div
               style={style2}
@@ -42,6 +43,16 @@ const Page = () => {
               style={style2}
               className="bottom-[-70%] right-0 absolute w-[40%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
             ></div>
+
+            {/* Back button */}
+            <div className="mb-6 flex justify-start absolute top-[-8%] left-10">
+              <Link href="/user">
+                <button className="flex items-center text-[#707070]">
+                  <FaArrowLeft className="mr-2 text-[#707070]" />
+                  Back
+                </button>
+              </Link>
+            </div>
             <div className="">
               <h1
                 className=" pt-24 font-medium text-[15px] md:text-[32px] lg:text-[32px]
@@ -59,7 +70,7 @@ const Page = () => {
                     >
                       <div
                         onClick={() => handleOptionClick(index)}
-                        className="cursor-pointer"
+                        className="cursor-pointer hover:bg-[#181818] hover:p-2 transition-colors ease-in duration-300"
                       >
                         <h4 className="font-semibold text-sm mb-2 w-[90%] text-white">
                           {row.name}

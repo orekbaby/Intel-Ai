@@ -100,7 +100,7 @@ export default function Home() {
             <h1
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
-               text-transparent font-medium text-[32px] md:text-[60px] lg:text-[64px] 
+               text-transparent font-medium text-[32px] md:text-[60px] lg:text-[60px] 
                leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-full lg:w-[80%] mb-5 mx-auto"
             >
               Collaboration Protocol of Blockchain AI Agents
@@ -170,21 +170,35 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Hero image with higher z-index */}
-            <Image
-              src="/hero-img.png"
+            {/* Hero image with higher z-index  */}
+            <video
+              src="/Intel AI.mp4"
               width={1088}
               height={721}
-              alt="hero-img"
               className="object-cover w-[100%] h-auto text-center z-[1] hidden md:block lg:block"
+              loop
+              autoPlay
+              muted
+              controls
             />
+
+            {/* <div className="w-full h-auto z-[1] hidden md:block lg:block ">
+              <video
+                className="w-[1088px] max-w-[100%] h-auto object-cover"
+                src="/Intel AI.mp4"
+                loop
+                autoPlay
+                muted
+                controls
+              />
+            </div> */}
           </div>
         </div>
       </section>
 
       {/* Second section */}
       <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 mx-0 md:mx-auto lg:mx-auto px-0 md:px-36 lg:px-36 text-center pb-10 md:pb-28 lg:pb-28">
-        <h2 className=" w-[371px] h-[56px] md:w-full lg:w-full font-medium text-[22px] md:text-[60px] lg:text-[60px] mb-5 md:mb-32 lg:mb-32 leading-[28.32px] md:leading-[75.52px] lg:leading-[75.52px] text-center mx-auto">
+        <h2 className="w-[80%] h-auto md:w-full lg:w-full font-medium text-[22px] md:text-[60px] lg:text-[60px] mb-5 md:mb-10 lg:mb-10 leading-[28.32px] md:leading-[75.52px] lg:leading-[75.52px] text-center mx-auto">
           Meticulously Engineered To Deliver {""}
           <span
             style={bgClipText}
@@ -194,7 +208,7 @@ export default function Home() {
           </span>
           :
         </h2>
-        <p className="font-normal w-full h-[90px] md:h-auto lg:h-auto text-[12px] md:text-[20px] lg:text-[20px] px-2 md:px-32 lg:px-32 mb-5 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]  ">
+        <p className="font-normal w-full h-auto md:h-auto lg:h-auto text-[12px] md:text-[20px] lg:text-[20px] px-2 md:px-32 lg:px-32 mb-5 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]  ">
           Experience the sophistication of AI Agents that talks like a human but
           works like a supercomputer. Intel AI&apos;s deep learning algorithms
           are crafted to replicate the warmth, empathy, and complexity of human

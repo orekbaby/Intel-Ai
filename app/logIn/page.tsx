@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
-import { FaTelegramPlane } from "react-icons/fa";
+import { FaTelegramPlane, FaArrowLeft } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
+
 const page = () => {
   const style2: React.CSSProperties = {
     background:
@@ -20,7 +21,7 @@ const page = () => {
     <>
       <main className="mt-4 md:mt-20 lg:mt-20 mx-auto">
         <section className="first-gradient section relative w-full h-full z-10  mb-48 ">
-          <div className=" w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full">
+          <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full">
             {/* top-gradient */}
             <div
               style={style2}
@@ -32,6 +33,15 @@ const page = () => {
               style={style2}
               className="bottom-[-30%] right-[50%] absolute w-[40%] h-[130px] md:h-[500px] lg:h-[150px] translate-x-1/2"
             ></div>
+            {/* Back button */}
+            <div className="mb-6 flex justify-start absolute top-[-10%] left-10">
+              <Link href="/">
+                <button className="flex items-center text-[#707070]">
+                  <FaArrowLeft className="mr-2 text-[#707070]" />
+                  Back
+                </button>
+              </Link>
+            </div>
             <div className="z-[1]">
               <h1
                 style={bgClipText}

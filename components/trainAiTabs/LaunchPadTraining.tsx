@@ -32,7 +32,7 @@ const LaunchPadTraining = () => {
               </button>
             </div>
           </DialogTrigger>
-          <DialogContent className="absolute top-[58%] max-w-auto w-[562px] px-4 md:w-full lg:w-full bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
+          <DialogContent className="absolute top-[58%] max-w-auto w-[460px] px-4  bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
             <div className="w-full md:w-full lg:w-full h-[400px] md:h-[400px] lg:h-[100vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <ProjectListings />
             </div>
@@ -45,7 +45,7 @@ const LaunchPadTraining = () => {
               Update Previously Listed Projects
             </Button>
           </DialogTrigger>
-          <DialogContent className="absolute top-[58%] w-[486px] h-auto px-4 md:w-full lg:w-full bg-[#0D0D0D] border-b border-[#1E1E1E] rounded-[20px]">
+          <DialogContent className="absolute top-[58%] w-full h-auto px-0 md:w-full lg:w-[486px] bg-[#131313] border-b border-[#131313] rounded-[20px]">
             <div className="w-full md:w-full lg:w-full h-auto overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <PreviouslyListed />
             </div>

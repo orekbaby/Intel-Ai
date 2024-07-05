@@ -10,23 +10,29 @@ interface InputFieldProps {
   placeholder: string;
 }
 
+// Functionality for input field
 const InputField: React.FC<InputFieldProps> = ({ label, placeholder }) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [isFilled, setIsFilled] = useState<boolean>(false);
-  const [isBlurred, setIsBlurred] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState<boolean>(true);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
-    setIsBlurred(false);
+    setIsFilled(event.target.value.trim() !== "");
   };
 
   const handleInputBlur = () => {
-    setIsBlurred(true);
+    setIsEditing(false);
   };
 
-  React.useEffect(() => {
-    setIsFilled(inputValue.trim() !== "");
-  }, [inputValue]);
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      setIsEditing(false);
+    }
+  };
+  const handleClick = () => {
+    setIsEditing(true);
+  };
 
   return (
     <div className="border-[#2B2B2B] border-b pb-3 mb-6 w-full">
@@ -37,26 +43,31 @@ const InputField: React.FC<InputFieldProps> = ({ label, placeholder }) => {
         {label}
       </label>
       <div className="flex items-center">
-        {isFilled && isBlurred && (
+        {isFilled && !isEditing && (
           <div className="flex justify-center items-center w-[16px] h-[16px] rounded-full bg-[#4A6800] mt-2 mr-2">
             <FaCheck className="text-white w-[10px] h-[10px]" />
           </div>
         )}
-        <input
-          type="text"
-          id="inputField2"
-          className="custom-input mt-2 font-[300px] text-sm leading-[22.68px]"
-          placeholder={placeholder}
-          value={inputValue}
-          onChange={handleInputChange}
-          onBlur={handleInputBlur}
-        />
+        {isEditing ? (
+          <input
+            type="text"
+            id="inputField2"
+            className="custom-input mt-2 font-[300px] text-sm leading-[22.68px]"
+            placeholder={placeholder}
+            value={inputValue}
+            onChange={handleInputChange}
+            onBlur={handleInputBlur}
+            onKeyPress={handleKeyPress}
+          />
+        ) : (
+          <div
+            className="text-white font-semibold text-sm leading-[22.48px] mt-2 cursor-pointer "
+            onMouseEnter={handleClick}
+          >
+            {inputValue || placeholder}
+          </div>
+        )}
       </div>
-      {inputValue && (
-        <div className="text-white font-semibold text-sm leading-[22.48px] mt-2">
-          {inputValue}
-        </div>
-      )}
     </div>
   );
 };
@@ -65,6 +76,7 @@ const UrlInput: React.FC = () => {
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const [isEditing, setIsEditing] = useState<boolean>(true);
 
   const validateUrl = (value: string) => {
     const urlPattern = new RegExp(
@@ -88,10 +100,21 @@ const UrlInput: React.FC = () => {
     if (validateUrl(url)) {
       setIsValid(true);
       setError("");
+      setIsEditing(false);
     } else {
-      setError("Input a valid URL link");
+      setError("Please input a valid URL link");
       setIsValid(false);
     }
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleBlur();
+    }
+  };
+
+  const handleClick = () => {
+    setIsEditing(true);
   };
 
   return (
@@ -102,27 +125,27 @@ const UrlInput: React.FC = () => {
       >
         Add Website/URL
       </label>
-      <div className="flex items-center">
-        {isValid && (
+      <div className="flex items-center" onMouseEnter={handleClick}>
+        {isValid && !isEditing && (
           <div className="flex justify-center items-center w-[16px] h-[16px] rounded-full bg-[#4A6800] mt-3 mr-2">
             <FaCheck className="text-white w-[10px] h-[10px]" />
           </div>
         )}
-        <input
-          type="text"
-          id="inputField4"
-          className="custom-input mt-2 font-[300px] text-sm leading-[22.68px] pr-10 bg-transparent"
-          placeholder=""
-          value={url}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-      </div>
-      <div className="mt-2">
-        {url && (
-          <p className="text-sm leading-[22.68px] border-b border-[#2B2B2B] pb-3 pt-1">
-            {url}
-          </p>
+        {isEditing ? (
+          <input
+            type="text"
+            id="inputField4"
+            className="custom-input mt-2 font-[300px] text-sm leading-[22.68px] pr-10 bg-transparent"
+            placeholder=""
+            value={url}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onKeyPress={handleKeyPress}
+          />
+        ) : (
+          <div className="text-white font-semibold text-sm leading-[22.48px] mt-2 cursor-pointer">
+            {url || "Add Website/URL"}
+          </div>
         )}
       </div>
       {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
@@ -135,6 +158,7 @@ const Page: React.FC = () => {
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
   const [isUpload, setIsUpload] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [isCategoryEditing, setIsCategoryEditing] = useState<boolean>(true);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
@@ -179,6 +203,11 @@ const Page: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setSelectedCategory(event.target.value);
+    setIsCategoryEditing(false);
+  };
+
+  const handleCategoryMouseEnter = () => {
+    setIsCategoryEditing(true);
   };
 
   return (
@@ -191,6 +220,7 @@ const Page: React.FC = () => {
                 IntelAI Workspace
               </p>
               <div className="w-full flex justify-between gap-4 h-full px-4">
+                {/* first parts starts here */}
                 <div className="w-[40%] bg-[#181818] h-auto rounded-[20px]">
                   <div className="w-[490px] h-[105px] bg-[#1B1B1B] rounded-[20px] p-4 mb-16">
                     <h3 className="font-medium text-sm text-[#f9f9f9] mb-4">
@@ -212,39 +242,42 @@ const Page: React.FC = () => {
                         placeholder="Metadapp"
                       />
                       {/* category section starts here */}
-                      <div className="border-[#2B2B2B] border-b pb-3 mb-5 w-full">
+                      <div
+                        className="border-[#2B2B2B] border-b pb-3 mb-6 w-full"
+                        onMouseEnter={handleCategoryMouseEnter}
+                      >
                         <label
                           htmlFor="inputField3"
                           className="block text-white font-semibold text-sm leading-[22.48px] mb-3"
                         >
                           What is the category of your project?
                         </label>
-                        <div className="relative flex gap-1">
-                          {selectedCategory && (
-                            <div className="flex justify-center items-center w-[16px] h-[16px] rounded-full bg-[#4A6800] mt-6 mr-1">
+                        <div className="flex items-center">
+                          {selectedCategory && !isCategoryEditing && (
+                            <div className="flex justify-center items-center w-[16px] h-[16px] rounded-full bg-[#4A6800] mt-2 mr-2">
                               <FaCheck className="text-white w-[10px] h-[10px]" />
                             </div>
                           )}
-                          <select
-                            id="inputField3"
-                            className="custom-input mt-2 font-[300px] text-sm leading-[22.68px] pr-4"
-                            defaultValue=""
-                            onChange={handleCategoryChange}
-                          >
-                            <option className="" value="" disabled hidden>
-                              Select Category
-                            </option>
-                            <option value="launchpad">Launchpad</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="development">Development</option>
-                            <option value="legal">Legal</option>
-                          </select>
+                          {isCategoryEditing ? (
+                            <select
+                              id="category"
+                              value={selectedCategory}
+                              onChange={handleCategoryChange}
+                              className="text-white custom-input mt-2 font-[300px] text-sm leading-[22.68px] rounded p-2"
+                              style={{ border: "none", outline: "none" }}
+                            >
+                              <option value="">Select a category </option>
+                              <option value="launchpad">Launchpad</option>
+                              <option value="Marketing">Marketing</option>
+                              <option value="Development">Development</option>
+                              <option value="Legal">Legal</option>
+                            </select>
+                          ) : (
+                            <div className="text-white font-semibold text-sm leading-[22.48px] mt-2 cursor-pointer">
+                              {selectedCategory}
+                            </div>
+                          )}
                         </div>
-                        {selectedCategory && (
-                          <div className="text-white font-semibold text-sm leading-[22.48px] mt-3">
-                            {selectedCategory}
-                          </div>
-                        )}
                       </div>
                       {/* category section ends here */}
                       <UrlInput />
@@ -265,11 +298,11 @@ const Page: React.FC = () => {
                           </span>{" "}
                         </p>
                         <div className=" flex items-center gap-1">
-                          {isUpload && (
+                          {/* {isUpload && (
                             <div className="flex justify-center items-center w-[16px] h-[16px] rounded-full bg-[#4A6800] mt-6 mr-1">
                               <FaCheck className="text-white w-[10px] h-[10px]" />
                             </div>
-                          )}
+                          )} */}
                           <input
                             type="file"
                             ref={fileInputRef}
@@ -277,22 +310,26 @@ const Page: React.FC = () => {
                             onChange={handleFileChange}
                             accept=".pdf,.doc,.docx"
                           />
-
-                          <button
-                            type="button"
-                            className="w-[397px] h-[60px] flex justify-center items-center mt-2 font-[300px] text-sm leading-[22.68px] text-center rounded-[66px] bg-[#131313] px-[15px] border border-[#363636]"
-                            onClick={handleButtonClick}
-                          >
-                            <p className="font-normal leading-[10.4px] text-[10px] text-[#858585]">
-                              Upload doc.{" "}
-                              <span className="font-semibold leading-[10.4px] text-[10px] text-[#858585]">
-                                PDF, GITBOOK, DOC
-                              </span>
-                            </p>
-                          </button>
+                          {!isUpload && (
+                            <button
+                              type="button"
+                              className="w-[397px] h-[60px] flex justify-center items-center mt-2 font-[300px] text-sm leading-[22.68px] text-center rounded-[66px] bg-[#131313] px-[15px] border border-[#363636]"
+                              onClick={handleButtonClick}
+                            >
+                              <p className="font-normal leading-[10.4px] text-[10px] text-[#858585]">
+                                Upload doc.{" "}
+                                <span className="font-semibold leading-[10.4px] text-[10px] text-[#858585]">
+                                  PDF, GITBOOK, DOC
+                                </span>
+                              </p>
+                            </button>
+                          )}
                         </div>
                         {uploadedFileName && (
                           <div className="flex items-center mt-5">
+                            <div className="flex justify-center items-center w-[16px] h-[16px] rounded-full bg-[#4A6800] mr-1">
+                              <FaCheck className="text-white w-[10px] h-[10px]" />
+                            </div>
                             <p className="text-white font-normal text-sm leading-[14.58px]">
                               {uploadedFileName}
                             </p>
@@ -317,6 +354,7 @@ const Page: React.FC = () => {
                     </form>
                   </div>
                 </div>
+                {/* input section ends here */}
                 <div className="w-[60%] bg-[#181818] rounded-[20px] h-[809px]">
                   <Image
                     src="/content-inside.png"

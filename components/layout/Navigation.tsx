@@ -54,11 +54,8 @@ const Navigation = () => {
     pathName === "/category" ||
     pathName === "/user";
 
-  const train = pathName === "/trainAi";
-  const inline =
-    pathName === "/workspace" ||
-    pathName === "/workspaceData" ||
-    pathName === "/querySolving";
+  const train = pathName === "/trainAi" || pathName === "/querySolving";
+  const inline = pathName === "/workspace" || pathName === "/workspaceData";
 
   return (
     <>
@@ -123,8 +120,8 @@ const Navigation = () => {
           <div className=" hidden md:flex lg:flex items-center gap-6 justify-between">
             <div className="flex justify-center items-center gap-8">
               <Link href="/communityManager">
-                <p className="text-base font-medium hover:underline hover:underline-offset-4">
-                  community Manager
+                <p className="text-base font-medium hover:underline hover:underline-offset-4 text-[#6D6D6D]">
+                  Community Manager
                 </p>
               </Link>
               <Link href="/kolInfluencer" className="">
@@ -167,7 +164,7 @@ const Navigation = () => {
 
       {visible && (
         <header className="absolute z-40 top-0 left-0 flex justify-end h-[60px] md:h-[70px] lg:h-auto px-3 md:px-20 lg:px-10 py-4 border-[#363636] w-[95%] border-b ">
-          <div className="flex justify-end pr-10">
+          <div className="flex justify-start pr-10">
             <Image src="/Logo.png" width={97} height={30} alt="logo" />
           </div>
         </header>
@@ -225,10 +222,10 @@ const Navigation = () => {
       {/* TrainAi navigation  */}
 
       {train && (
-        <header className="hidden md:flex lg:flex w-full absolute z-40 top-0 left-[290px] justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
+        <header className="hidden md:flex lg:flex w-full absolute z-40 top-0 left-[1px] justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
           <div
             ref={menuRef}
-            className=" block text-white ml-0 md:ml-6 lg:ml-6  text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
+            className=" block text-white ml-0 md:ml-6 lg:ml-6 text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
             onClick={toggleMenu}
           >
             <FiMenu />
@@ -248,8 +245,8 @@ const Navigation = () => {
             </div>
           )}
 
-          <div className=" hidden md:flex lg:flex items-center gap-6 justify-between">
-            <div className="flex justify-center items-center gap-6">
+          <div className="hidden md:flex lg:flex items-center gap-6 justify-between">
+            <div className="flex justify-center items-center gap-6 pl-[500px]">
               <Link href="/communityManager">
                 <p className="text-[13.75px] leading-[14.3px] font-medium hover:underline hover:underline-offset-4">
                   AI Training
@@ -261,7 +258,7 @@ const Navigation = () => {
                 </p>
               </Link>
             </div>
-            <div className="flex items-center justify-end gap-6 ml-60">
+            <div className="flex items-center justify-end gap-6 ml-80">
               <p className="font-medium text-[20px] leading-[20.8px]">
                 Co-pilot
               </p>

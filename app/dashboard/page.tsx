@@ -80,7 +80,7 @@ const DashboardPage: React.FC = () => {
                     requirements seamlessly.
                   </p>
                   <div className="pt-8">
-                    <Link href="/trainAi">
+                    <Link href="/workspace">
                       <button
                         className="bg-white items-center flex justify-center text-center 
                  text-xs font-normal md:font-medium lg:font-medium ring-offset-white focus-visible:outline-none

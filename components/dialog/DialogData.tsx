@@ -78,6 +78,12 @@ const DialogData: React.FC = () => {
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSendPrompt();
+    }
+  };
+
   const [selectedOption, setSelectedOption] = useState("telegram");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -92,8 +98,8 @@ const DialogData: React.FC = () => {
 
   return (
     <>
-      <div className="w-full md:w-full lg:w-full h-[400px] md:h-[400px] lg:h-[100vh] overflow-y-auto scrollbar-hide outline-0 mb-5 pt-5">
-        <div className="relative w-[193px] h-[40px] flex justify-between items-center px-4 rounded-[10px] bg-[#1D1D1D] mb-5">
+      <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto scrollbar-hide outline-0 mb-5 pt-5 pb-20">
+        <div className="w-[193px] h-[40px] flex justify-between items-center px-4 rounded-[10px] bg-[#1D1D1D] mb-5">
           <div
             className="w-full h-full flex justify-between items-center px-4 rounded-[10px] cursor-pointer"
             onClick={toggleDropdown}
@@ -272,66 +278,69 @@ const DialogData: React.FC = () => {
           {/* ends here */}
 
           {/* input box and send button section */}
-          <div className="pt-60 flex justify-center items-center gap-4">
-            <div className="">
-              <input
-                type="text"
-                id="inputField2"
-                className="text-input pt-1 font-[300px] text-sm leading-[22.68px]"
-                placeholder="Ask any question"
-                value={inputValue}
-                onChange={handleInputChange}
-              />
+          <div className="fixed pb-16 bg-[#181818] w-full h-fit bottom-0 left-0">
+            <div className="flex justify-center items-center gap-4">
+              <div className="">
+                <input
+                  type="text"
+                  id="inputField2"
+                  className="text-input pt-1 font-[300px] text-sm leading-[22.68px]"
+                  placeholder="Ask any question"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+              <Button
+                className="w-[60px] h-[60px] rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
+                onClick={handleSendPrompt}
+              >
+                <CiPaperplane className="w-[26px] h-[26px] text-black" />
+              </Button>
             </div>
-            <Button
-              className="w-[60px] h-[60px] rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
-              onClick={handleSendPrompt}
-            >
-              <CiPaperplane className="w-[26px] h-[26px] text-black" />
-            </Button>
-          </div>
-          {/* stimulate your telegram button */}
+            {/* stimulate your telegram button */}
 
-          <Dialog>
-            <div className="mb-20 flex justify-center pt-6 ">
-              <DialogTrigger>
-                <div className="flex justify-center items-center pt-1">
-                  <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] w-fit rounded-[66px] py-[2px] px-[2px] mb-10  shadow-drop">
-                    <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[177px] rounded-[66px] hover:bg-[#0B0F16] font-normal text-xs">
-                      Complete Simulation
-                    </button>
+            <Dialog>
+              <div className="flex justify-center pt-6 ">
+                <DialogTrigger>
+                  <div className="flex justify-center items-center pt-1">
+                    <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] w-fit rounded-[66px] py-[2px] px-[2px] shadow-drop">
+                      <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[177px] rounded-[66px] hover:bg-[#0B0F16] font-normal text-xs">
+                        Complete Simulation
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </DialogTrigger>
-              <DialogContent className="px-8 md:w-full lg:w-full border-none rounded-lg max-w-auto w-[540px] h-[401px] bg-[#181818]">
-                <div className="mx-auto">
-                  <Image
-                    width={120}
-                    height={120}
-                    src="/onboard.png"
-                    className="mx-auto mb-5 pt-10"
-                    alt=""
-                  />
-                  <h3 className="font-medium text-center text-[20px] leading-[26px] w-[80%] mx-auto mb-4">
-                    Congratulations on Completing Your Initial Training!
-                  </h3>
-                  <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-[383px] mb-5">
-                    The next step is to integrate your Telegram community
-                  </p>
-                  {/* button */}
-                  <Link href="/community">
-                    <button
-                      className="bg-white items-center flex justify-center text-center 
+                </DialogTrigger>
+                <DialogContent className="px-8 md:w-full lg:w-full border-none rounded-lg max-w-auto w-[540px] h-[401px] bg-[#181818]">
+                  <div className="mx-auto">
+                    <Image
+                      width={120}
+                      height={120}
+                      src="/onboard.png"
+                      className="mx-auto mb-5 pt-10"
+                      alt=""
+                    />
+                    <h3 className="font-medium text-center text-[20px] leading-[26px] w-[80%] mx-auto mb-4">
+                      Congratulations on Completing Your Initial Training!
+                    </h3>
+                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-[383px] mb-5">
+                      The next step is to integrate your Telegram community
+                    </p>
+                    {/* button */}
+                    <Link href="/trainAi">
+                      <button
+                        className="bg-white items-center flex justify-center text-center 
                                   text-xs font-normal ring-offset-white focus-visible:outline-none
                                   text-[#0D0D0D] h-10 w-[199px] rounded-[66px] mx-auto shadow-drop2"
-                    >
-                      Integrate your community now
-                    </button>
-                  </Link>
-                </div>
-              </DialogContent>
-            </div>
-          </Dialog>
+                      >
+                        Integrate your community now
+                      </button>
+                    </Link>
+                  </div>
+                </DialogContent>
+              </div>
+            </Dialog>
+          </div>
         </div>
       </div>
     </>
