@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { FaTelegramPlane, FaDiscord, FaTwitter } from "react-icons/fa";
+
 import Image from "next/image";
-import { IoIosArrowDown } from "react-icons/io";
+
 import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import { CiPaperplane } from "react-icons/ci";
 import Link from "next/link";
@@ -15,12 +15,20 @@ import {
   userInput2,
   userInput3,
 } from "@/utils/mockData";
+import SocialMenu from "../SocialMenu";
 
 const DialogData: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null); // State to track active button index
   const [conversation, setConversation] = useState<any[]>([]); // State to track conversation
   const [promptCount, setPromptCount] = useState<number>(0); // State to track prompt count
   const [inputValue, setInputValue] = useState<string>(""); // State to track input value
+  const latestMessageRef = useRef<HTMLDivElement>(null); // Ref to track latest message
+
+  useEffect(() => {
+    if (latestMessageRef.current) {
+      latestMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [conversation]);
 
   const handleButtonClick = (index: number) => {
     if (promptCount < 15) {
@@ -84,94 +92,10 @@ const DialogData: React.FC = () => {
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState("telegram");
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOptionChange = (option: string) => {
-    setSelectedOption(option);
-    setIsOpen(false); // Close the dropdown after selection
-  };
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <>
       <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto scrollbar-hide outline-0 mb-5 pt-5 pb-20">
-        <div className="w-[193px] h-[40px] flex justify-between items-center px-4 rounded-[10px] bg-[#1D1D1D] mb-5">
-          <div
-            className="w-full h-full flex justify-between items-center px-4 rounded-[10px] cursor-pointer"
-            onClick={toggleDropdown}
-          >
-            <div className="flex gap-2 items-center">
-              {selectedOption === "telegram" && (
-                <div className="w-[14px] h-[14px] rounded-full bg-[#2B6AFF] flex justify-center items-center">
-                  <FaTelegramPlane className="w-[10px] h-[10px]" />
-                </div>
-              )}
-              {selectedOption === "discord" && (
-                <div className="w-[14px] h-[14px] rounded-full bg-[#7289DA] flex justify-center items-center">
-                  <FaDiscord className="w-[10px] h-[10px]" />
-                </div>
-              )}
-              {selectedOption === "twitter" && (
-                <div className="w-[14px] h-[14px] rounded-full bg-[#1DA1F2] flex justify-center items-center">
-                  <FaTwitter className="w-[10px] h-[10px]" />
-                </div>
-              )}
-              <p className="font-normal text-xs leading-[12.48px]">
-                {selectedOption === "telegram" && "Telegram"}
-                {selectedOption === "discord" && "Discord"}
-                {selectedOption === "twitter" && "Twitter"}
-              </p>
-            </div>
-            <IoIosArrowDown className="w-[15px] h-[15px]" />
-          </div>
-          {isOpen && (
-            <div className="absolute top-full left-0 w-full bg-[#1D1D1D] shadow-md rounded-b-[10px] mt-1">
-              <div
-                className="px-4 py-2 cursor-pointer hover:bg-gray-700"
-                onClick={() => handleOptionChange("telegram")}
-              >
-                <div className="flex gap-2 items-center">
-                  <div className="w-[14px] h-[14px] rounded-full bg-[#2B6AFF] flex justify-center items-center">
-                    <FaTelegramPlane className="w-[10px] h-[10px]" />
-                  </div>
-                  <p className="font-normal text-xs leading-[12.48px]">
-                    Telegram
-                  </p>
-                </div>
-              </div>
-              <div
-                className="px-4 py-2 cursor-pointer hover:bg-gray-700"
-                onClick={() => handleOptionChange("discord")}
-              >
-                <div className="flex gap-2 items-center">
-                  <div className="w-[14px] h-[14px] rounded-full bg-[#7289DA] flex justify-center items-center">
-                    <FaDiscord className="w-[10px] h-[10px]" />
-                  </div>
-                  <p className="font-normal text-xs leading-[12.48px]">
-                    Discord
-                  </p>
-                </div>
-              </div>
-              <div
-                className="px-4 py-2 cursor-pointer hover:bg-gray-700"
-                onClick={() => handleOptionChange("twitter")}
-              >
-                <div className="flex gap-2 items-center">
-                  <div className="w-[14px] h-[14px] rounded-full bg-[#1DA1F2] flex justify-center items-center">
-                    <FaTwitter className="w-[10px] h-[10px]" />
-                  </div>
-                  <p className="font-normal text-xs leading-[12.48px]">
-                    Twitter
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        <SocialMenu />
 
         <div className="bg-[#181818] px-6 rounded-[20px]">
           <div className="flex w-full h-[60px] bg-[#1B1B1B] rounded-[20px] px-8 mb-3 items-center justify-between">
@@ -187,7 +111,6 @@ const DialogData: React.FC = () => {
               </p>
             </div>
           </div>
-
           {/* chips options */}
           <div className="flex justify-center gap-1 items-center mb-14">
             {chipsButton?.map((row, index) => (
@@ -209,7 +132,6 @@ const DialogData: React.FC = () => {
               </div>
             ))}
           </div>
-
           {/* conversation section */}
           {conversation?.map((entry, index) => (
             <div key={index}>
@@ -264,6 +186,7 @@ const DialogData: React.FC = () => {
               </div>
             </div>
           ))}
+          <div ref={latestMessageRef} />
           {/* conversation section ends here */}
 
           {/* like section starts */}
@@ -276,7 +199,6 @@ const DialogData: React.FC = () => {
             </div>
           </div>
           {/* ends here */}
-
           {/* input box and send button section */}
           <div className="fixed pb-16 bg-[#181818] w-full h-fit bottom-0 left-0">
             <div className="flex justify-center items-center gap-4">
@@ -289,6 +211,7 @@ const DialogData: React.FC = () => {
                   value={inputValue}
                   onChange={handleInputChange}
                   onKeyDown={handleKeyDown}
+                  autoComplete="off"
                 />
               </div>
               <Button

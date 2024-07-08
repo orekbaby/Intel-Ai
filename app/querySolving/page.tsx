@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CiMenuKebab, CiPaperplane } from "react-icons/ci";
@@ -37,6 +37,13 @@ const Page = () => {
   const [chatItems, setChatItems] = useState<ChatItem[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [showResolveButton, setShowResolveButton] = useState<boolean>(false);
+  const latestMessageRef = useRef<HTMLDivElement>(null); // Ref to track latest message
+
+  useEffect(() => {
+    if (latestMessageRef.current) {
+      latestMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chatItems]);
 
   const addQuery = (query: string) => {
     const newQuery: ChatItem = {
@@ -95,7 +102,7 @@ const Page = () => {
         ]);
         setShowResolveButton(true); // Show the resolve button after typing is done
       }
-    }, 50); // Adjust typing speed here (milliseconds per character)
+    }, 30); // Adjust typing speed here (milliseconds per character)
   };
 
   const handleSendQuery = () => {
@@ -299,6 +306,8 @@ const Page = () => {
                   )}
                 </div>
               ))}
+              <div ref={latestMessageRef} />
+              {/* scroll to this element  */}
             </div>
           </div>
           <div className="bg-[#181818] absolute pb-16  w-full h-fit bottom-0 right-0 ">
@@ -313,6 +322,7 @@ const Page = () => {
                 </Button>
               </div>
             )}
+
             {/* bg-[#181818] */}
             <div className="flex justify-center items-center gap-2">
               <div className="">
@@ -324,6 +334,7 @@ const Page = () => {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
+                  autoComplete="off"
                 />
               </div>
               <div

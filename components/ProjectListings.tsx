@@ -143,6 +143,7 @@ const ProjectListings = () => {
                       onChange={handleInputChange}
                       onBlur={handleInputBlur}
                       onKeyDown={handleKeyDown}
+                      autoComplete="off" // Disable autocomplete
                     />
                   ) : (
                     <div

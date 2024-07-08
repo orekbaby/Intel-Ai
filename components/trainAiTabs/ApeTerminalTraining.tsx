@@ -6,6 +6,7 @@ import ApeTerminalTable from "@/components/ApeTerminalTable";
 import AnnouncementModal from "../AnnouncementModal";
 import CommunityModal from "../CommunityModal";
 import OtherInformationModal from "../OtherInformationModal";
+import DialogData from "../dialog/DialogData";
 
 const ApeTerminalTraining = () => {
   return (
@@ -71,22 +72,11 @@ const ApeTerminalTraining = () => {
             Training History
           </p>
         </div>
-        <DialogContent className="px-6 md:px-8 lg:px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
-          <div className="mx-auto pt-8">
-            <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-              Your Journey Starts Here
-            </h3>
-            <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-              Before you start using your community workspace, it&apos;s
-              important to train your AI. Discover the benefits of AI training
-              here.
-            </p>
-            <Link href="/workspace">
-              <button className="bg-white items-center flex justify-center text-center text-xs font-normal ring-offset-white focus-visible:outline-none text-[#0D0D0D] h-[55px] md:h-10 lg:h-10 w-[298px] md:w-[153px] lg:w-[153px] rounded-[66px] mx-auto shadow-drop2">
-                Train your AI now
-              </button>
-            </Link>
-          </div>
+        <DialogContent
+          className="absolute top-[54%] left-[80%] -translate-x-1/2 w-full px-4 md:w-full lg:w-full
+                     bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
+        >
+          <DialogData />
         </DialogContent>
       </Dialog>
 

@@ -120,13 +120,13 @@ select option:hover {
 .custom-calendar .rdp-day {
   width: 34px;
   height: 34px;
-  background-color: #252525;
+  background-color: #242424;
   border: 0.75px solid #272727;
 }
 
 .custom-calendar .rdp-day_selected,
 .custom-calendar .rdp-day:hover {
-  background-color: #404040;
+  background-color: #727272;
   border-color: #272727;
 }
 
@@ -191,3 +191,17 @@ select option:hover {
     )
     66;
 } */
+
+/* Style the autofill suggestions */
+input::-webkit-autofill {
+  background-color: black !important;
+  color: white !important;
+}
+
+input::-webkit-autofill:hover {
+  background-color: #333 !important;
+}
+
+input:-webkit-autofill::first-line {
+  color: white !important;
+}

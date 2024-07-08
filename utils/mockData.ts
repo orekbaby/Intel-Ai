@@ -1,5 +1,3 @@
-import { TiThLarge } from "react-icons/ti";
-
 export const communityOwners = [
   {
     img: "/img-1.png",
@@ -306,6 +304,7 @@ export const description = [
 // communication protocol mock
 export const announcementsModal = [
   {
+    id: "1",
     title: "Partnership Announcement",
     content:
       "Essential for showcasing strategic alliances that can leverage mutual strengths and enhance project credibility.",
@@ -318,6 +317,7 @@ export const announcementsModal = [
   },
 
   {
+    id: "2",
     title: "Platform/Feature Updates",
     content:
       "This includes upcoming and existing features which are vital for keeping the community aware of ongoing improvements and developments.",
@@ -330,6 +330,7 @@ export const announcementsModal = [
   },
 
   {
+    id: "3",
     title: "Fundraising Activity Announcement",
     content:
       "Covering all stages of fundraising, this is crucial for investor engagement and transparency.",
@@ -342,6 +343,7 @@ export const announcementsModal = [
   },
 
   {
+    id: "4",
     title: "Scheduled Platform Maintenance or Upgrades",
     content:
       "Important for setting expectations regarding availability and enhancements.",
@@ -354,6 +356,7 @@ export const announcementsModal = [
   },
 
   {
+    id: "5",
     title: "Milestone Updates",
     content:
       "Demonstrates progress and achievement, helping maintain investor and community confidence.",
@@ -365,6 +368,7 @@ export const announcementsModal = [
   },
 
   {
+    id: "6",
     title: "Roadmap Updates",
     content:
       "Keeps everyone informed about the future direction and adjustments based on dynamic market conditions or internal strategy shifts.",
@@ -376,6 +380,7 @@ export const announcementsModal = [
   },
 
   {
+    id: "7",
     title: "New Exchange Listings",
     content:
       "Critical for informing traders about new markets where they can buy or sell the token.",
@@ -387,6 +392,7 @@ export const announcementsModal = [
   },
 
   {
+    id: "8",
     title: "Security Incident Report",
     content:
       "Essential for transparency and trust, informing users about any potential or actual security issues and how they are being addressed.",
@@ -412,6 +418,18 @@ export const launchpadData = [
   },
 ];
 
+export const metadappInfo = [
+  {
+    instruction: "Instructions:",
+    insructionText:
+      "Please provide detailed information about the new partnership. Include the:",
+    bullet1: "Partner's name.",
+    bullet2: "The objective of the partnership.",
+    bullet3: "The date of the announcement.",
+    bullet4: "How it benefits the project.",
+  },
+];
+
 // previuos listed project
 export const previousListings = [
   {
@@ -419,6 +437,19 @@ export const previousListings = [
     instructions: "What do you want to update about this project",
     projectTitle: "Project name:",
     projectSpan: "Metadapp",
+    id: "2",
+    options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+    options2: "Team Current & Future plans.",
+    options3: "New Exchange Listings.",
+    options4: "Success Story Update.",
+    value: "1",
+    instruction: "Instructions:",
+    insructionText:
+      "Please provide detailed information about the new partnership. Include the:",
+    bullet1: "Partner's name.",
+    bullet2: "The objective of the partnership.",
+    bullet3: "The date of the announcement.",
+    bullet4: "How it benefits the project.",
   },
 
   {
@@ -426,6 +457,19 @@ export const previousListings = [
     instructions: "What do you want to update about this project",
     projectTitle: "Project name:",
     projectSpan: "KOI pond",
+    id: "2",
+    options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+    options2: "Team Current & Future plans.",
+    options3: "New Exchange Listings.",
+    options4: "Success Story Update.",
+    value: "2",
+    instruction: "Instructions:",
+    insructionText:
+      "Please provide detailed information about the new partnership. Include the:",
+    bullet1: "Partner's name.",
+    bullet2: "The objective of the partnership.",
+    bullet3: "The date of the announcement.",
+    bullet4: "How it benefits the project.",
   },
 
   {
@@ -433,45 +477,55 @@ export const previousListings = [
     instructions: "What do you want to update about this project",
     projectTitle: "Project name:",
     projectSpan: "Satoshi meme",
-  },
-];
-
-// option triggers
-export const optionTriggers = [
-  {
     id: "1",
     options1: "Milestone Updates (Post-Fundraising Follow-ups).",
     options2: "Team Current & Future plans.",
     options3: "New Exchange Listings.",
     options4: "Success Story Update.",
-    value: "1",
-  },
-
-  {
-    id: "2",
-    options1: "Milestone Updates (Post-Fundraising Follow-ups).",
-    options2: "Team Current & Future plans.",
-    options3: "New Exchange Listings.",
-    options4: "Success Story Update.",
-    value: "2",
-  },
-
-  {
-    id: "3",
-    options1: "Milestone Updates (Post-Fundraising Follow-ups).",
-    options2: "Team Current & Future plans.",
-    options3: "New Exchange Listings.",
-    options4: "Success Story Update.",
     value: "3",
+    instruction: "Instructions:",
+    insructionText:
+      "Please provide detailed information about the new partnership. Include the:",
+    bullet1: "Partner's name.",
+    bullet2: "The objective of the partnership.",
+    bullet3: "The date of the announcement.",
+    bullet4: "How it benefits the project.",
   },
+];
 
-  {
-    id: "4",
-    options1: "Milestone Updates (Post-Fundraising Follow-ups).",
-    options2: "Team Current & Future plans.",
-    options3: "New Exchange Listings.",
-    options4: "Success Story Update.",
-  },
+// option triggers
+export const optionTriggers = [
+  // {
+  //   id: "1",
+  //   options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+  //   options2: "Team Current & Future plans.",
+  //   options3: "New Exchange Listings.",
+  //   options4: "Success Story Update.",
+  //   value: "1",
+  // },
+  // {
+  // id: "2",
+  // options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+  // options2: "Team Current & Future plans.",
+  // options3: "New Exchange Listings.",
+  // options4: "Success Story Update.",
+  // value: "2",
+  // },
+  // {
+  //   id: "3",
+  //   options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+  //   options2: "Team Current & Future plans.",
+  //   options3: "New Exchange Listings.",
+  //   options4: "Success Story Update.",
+  //   value: "3",
+  // },
+  // {
+  //   id: "4",
+  //   options1: "Milestone Updates (Post-Fundraising Follow-ups).",
+  //   options2: "Team Current & Future plans.",
+  //   options3: "New Exchange Listings.",
+  //   options4: "Success Story Update.",
+  // },
 ];
 
 // community engagement mock

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { informationModal } from "@/utils/mockData";
 import Image from "next/image";
+import { FaCircle } from "react-icons/fa";
 
 interface ModalState {
   newBullet: string;
@@ -10,11 +11,7 @@ interface ModalState {
   showSaveMessage: boolean;
 }
 
-import { CiPaperplane } from "react-icons/ci";
-import { FaCircle } from "react-icons/fa";
-
 const OtherInformationModal: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<string>("today");
   const [modalStates, setModalStates] = useState<ModalState[]>(
     informationModal.map((row) => ({
       newBullet: "",
@@ -23,18 +20,9 @@ const OtherInformationModal: React.FC = () => {
     }))
   );
 
-  const options = [
-    "Today",
-    "26 June 2024",
-    "1 week",
-    "1 month",
-    "5 days",
-    // Add more options as needed
-  ];
-
-  const handleOptionChange = (option: string) => {
-    setSelectedOption(option);
-  };
+  const [openModals, setOpenModals] = useState<boolean[]>(
+    Array(OtherInformationModal.length).fill(false)
+  );
 
   const handleTextareaChange = (index: number, value: string) => {
     const newModalStates = [...modalStates];
@@ -44,16 +32,30 @@ const OtherInformationModal: React.FC = () => {
 
   const handleSave = (index: number) => {
     const newModalStates = [...modalStates];
+    newModalStates[index].showSaveMessage = true;
     if (newModalStates[index].newBullet.trim() !== "") {
       newModalStates[index].bullets.push(newModalStates[index].newBullet);
       newModalStates[index].newBullet = "";
-      newModalStates[index].showSaveMessage = true;
+    }
+    setModalStates(newModalStates);
+    setTimeout(() => {
+      const newModalStatesAfterTimeout = [...newModalStates];
+      newModalStatesAfterTimeout[index].showSaveMessage = false;
+      setModalStates(newModalStatesAfterTimeout);
+      setOpenModals((prev) => {
+        const newOpenModals = [...prev];
+        newOpenModals[index] = false;
+        return newOpenModals;
+      });
+    }, 2000); // Hide message after 2 seconds and close modal
+  };
+
+  const handleAddBullet = (index: number) => {
+    const newModalStates = [...modalStates];
+    if (newModalStates[index].newBullet.trim() !== "") {
+      newModalStates[index].bullets.push(newModalStates[index].newBullet);
+      newModalStates[index].newBullet = "";
       setModalStates(newModalStates);
-      setTimeout(() => {
-        const newModalStatesAfterTimeout = [...newModalStates];
-        newModalStatesAfterTimeout[index].showSaveMessage = false;
-        setModalStates(newModalStatesAfterTimeout);
-      }, 2000); // Hide message after 2 seconds
     }
   };
 
@@ -77,8 +79,28 @@ const OtherInformationModal: React.FC = () => {
     <>
       <div className="">
         {informationModal?.map((row, index) => (
-          <Dialog key={index}>
-            <DialogTrigger className="cursor-pointer" asChild>
+          <Dialog
+            key={index}
+            open={openModals[index]}
+            onOpenChange={(isOpen) => {
+              setOpenModals((prev) => {
+                const newOpenModals = [...prev];
+                newOpenModals[index] = isOpen;
+                return newOpenModals;
+              });
+            }}
+          >
+            <DialogTrigger
+              className="cursor-pointer"
+              asChild
+              onClick={() =>
+                setOpenModals((prev) => {
+                  const newOpenModals = [...prev];
+                  newOpenModals[index] = true;
+                  return newOpenModals;
+                })
+              }
+            >
               <div className="flex flex-col mb-5 pb-5 border-[rgb(30,30,30)] border-b text-left">
                 <div className="bg-[#101010] px-4 py-2 flex border-[#181818] items-center mb-10">
                   <h5 className="font-medium text-sm leading-[14.56px] mb-2">
@@ -159,6 +181,12 @@ const OtherInformationModal: React.FC = () => {
                       onChange={(e) =>
                         handleTextareaChange(index, e.target.value)
                       }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault(); // Prevent new line
+                          handleAddBullet(index);
+                        }
+                      }}
                     />
                     <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                       <Image
