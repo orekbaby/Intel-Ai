@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/accordion";
 import { FaCircle } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { CiPaperplane } from "react-icons/ci";
 
 interface ModalState {
   newBullet: string;
@@ -54,40 +53,21 @@ const PreviouslyListed: React.FC = () => {
     setModalStates(newModalStates);
   };
 
-  const handleAddBullet = (index: number) => {
-    const newModalStates = [...modalStates];
-    if (newModalStates[index].newBullet.trim() !== "") {
-      newModalStates[index].bullets.push(newModalStates[index].newBullet);
-      newModalStates[index].newBullet = "";
-      setModalStates(newModalStates);
-    }
-  };
-
   const handleSave = (index: number) => {
     const newModalStates = [...modalStates];
     newModalStates[index].showSaveMessage = true;
     setModalStates(newModalStates);
+    localStorage.setItem("modalStates", JSON.stringify(newModalStates));
     setTimeout(() => {
       const newModalStatesAfterTimeout = [...newModalStates];
       newModalStatesAfterTimeout[index].showSaveMessage = false;
       setModalStates(newModalStatesAfterTimeout);
+      setOpenModals((prev) => {
+        const newOpenModals = [...prev];
+        newOpenModals[index] = false;
+        return newOpenModals;
+      });
     }, 2000); // Hide message after 2 seconds
-  };
-
-  const handleBulletChange = (
-    modalIndex: number,
-    bulletIndex: number,
-    value: string
-  ) => {
-    const newModalStates = [...modalStates];
-    newModalStates[modalIndex].bullets[bulletIndex] = value;
-    setModalStates(newModalStates);
-  };
-
-  const handleBulletDelete = (modalIndex: number, bulletIndex: number) => {
-    const newModalStates = [...modalStates];
-    newModalStates[modalIndex].bullets.splice(bulletIndex, 1);
-    setModalStates(newModalStates);
   };
 
   return (
@@ -118,7 +98,7 @@ const PreviouslyListed: React.FC = () => {
                 </div>
               </div>
             </DialogTrigger>
-            <DialogContent className="absolute top-[52%] w-[486px] h-auto overflow-y-auto scrollbar-hide border-0 outline-none">
+            <DialogContent className="absolute top-[55%] w-[486px] h-auto overflow-y-auto scrollbar-hide border-0 outline-none">
               <div className="w-full h-auto bg-[#131313] border-b border-[#131313] rounded-[20px] pb-10">
                 <div className="bg-[#101010] border-[#181818] border-b px-4 py-[10px] w-[460px] h-[47px] mb-3">
                   <h5 className="font-semibold text-sm text-[14.56px]">
@@ -167,23 +147,7 @@ const PreviouslyListed: React.FC = () => {
                                 <input
                                   type="text"
                                   value={bullet}
-                                  onChange={(e) =>
-                                    handleBulletChange(
-                                      index,
-                                      bulletIndex,
-                                      e.target.value
-                                    )
-                                  }
-                                  onKeyDown={(e) => {
-                                    if (
-                                      e.key === "Backspace" &&
-                                      e.currentTarget.selectionStart === 0 &&
-                                      e.currentTarget.selectionEnd ===
-                                        e.currentTarget.value.length
-                                    ) {
-                                      handleBulletDelete(index, bulletIndex);
-                                    }
-                                  }}
+                                  readOnly
                                   className="bg-transparent border-none outline-none text-[#858585] text-sm italic w-full"
                                 />
                               </div>
@@ -202,11 +166,6 @@ const PreviouslyListed: React.FC = () => {
                             onChange={(e) =>
                               handleTextareaChange(index, e.target.value)
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                handleAddBullet(index);
-                              }
-                            }}
                           />
                           <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                             <img
@@ -216,12 +175,6 @@ const PreviouslyListed: React.FC = () => {
                               alt="textarea-icon"
                               className=""
                             />
-                            <button
-                              className="w-[27px] h-[27px] rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
-                              onClick={() => handleAddBullet(index)}
-                            >
-                              <CiPaperplane className="w-[14px] h-[14px] text-black" />
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -234,17 +187,22 @@ const PreviouslyListed: React.FC = () => {
                         >
                           Save
                         </button>
-                        {modalStates[index].showSaveMessage && (
-                          <p className="absolute bottom-[50%] left-[40%]  text-green-500 px-3 py-1 rounded-md text-sm">
-                            Saved successfully
-                          </p>
-                        )}
+                        <div className="absolute top-[50%] left-[35%] text-center mt-2 text-green-500">
+                          {modalStates[index].showSaveMessage && (
+                            <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                              <p className="text-sm font-normal">
+                                {" "}
+                                Saved successfully!
+                              </p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
-
-                {/* accordion 2 */}
+                {/* 
+                accordion2 */}
 
                 <Accordion
                   className="w-full md:w-[510px] lg:w-[510px]"
@@ -280,23 +238,7 @@ const PreviouslyListed: React.FC = () => {
                                 <input
                                   type="text"
                                   value={bullet}
-                                  onChange={(e) =>
-                                    handleBulletChange(
-                                      index,
-                                      bulletIndex,
-                                      e.target.value
-                                    )
-                                  }
-                                  onKeyDown={(e) => {
-                                    if (
-                                      e.key === "Backspace" &&
-                                      e.currentTarget.selectionStart === 0 &&
-                                      e.currentTarget.selectionEnd ===
-                                        e.currentTarget.value.length
-                                    ) {
-                                      handleBulletDelete(index, bulletIndex);
-                                    }
-                                  }}
+                                  readOnly
                                   className="bg-transparent border-none outline-none text-[#858585] text-sm italic w-full"
                                 />
                               </div>
@@ -315,11 +257,6 @@ const PreviouslyListed: React.FC = () => {
                             onChange={(e) =>
                               handleTextareaChange(index, e.target.value)
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                handleAddBullet(index);
-                              }
-                            }}
                           />
                           <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                             <img
@@ -329,12 +266,6 @@ const PreviouslyListed: React.FC = () => {
                               alt="textarea-icon"
                               className=""
                             />
-                            <button
-                              className="w-[27px] h-[27px] rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
-                              onClick={() => handleAddBullet(index)}
-                            >
-                              <CiPaperplane className="w-[14px] h-[14px] text-black" />
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -347,18 +278,22 @@ const PreviouslyListed: React.FC = () => {
                         >
                           Save
                         </button>
-                        {modalStates[index].showSaveMessage && (
-                          <p className="absolute bottom-[50%] left-[40%]  text-green-500 px-3 py-1 rounded-md text-sm">
-                            Saved successfully
-                          </p>
-                        )}
+                        <div className="absolute top-[50%] left-[35%] text-center mt-2 text-green-500">
+                          {modalStates[index].showSaveMessage && (
+                            <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                              <p className="text-sm font-normal">
+                                {" "}
+                                Saved successfully!
+                              </p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
 
-                {/* third accordion */}
-
+                {/* 3rd accordion */}
                 <Accordion
                   className="w-full md:w-[510px] lg:w-[510px]"
                   type="single"
@@ -393,23 +328,7 @@ const PreviouslyListed: React.FC = () => {
                                 <input
                                   type="text"
                                   value={bullet}
-                                  onChange={(e) =>
-                                    handleBulletChange(
-                                      index,
-                                      bulletIndex,
-                                      e.target.value
-                                    )
-                                  }
-                                  onKeyDown={(e) => {
-                                    if (
-                                      e.key === "Backspace" &&
-                                      e.currentTarget.selectionStart === 0 &&
-                                      e.currentTarget.selectionEnd ===
-                                        e.currentTarget.value.length
-                                    ) {
-                                      handleBulletDelete(index, bulletIndex);
-                                    }
-                                  }}
+                                  readOnly
                                   className="bg-transparent border-none outline-none text-[#858585] text-sm italic w-full"
                                 />
                               </div>
@@ -428,11 +347,6 @@ const PreviouslyListed: React.FC = () => {
                             onChange={(e) =>
                               handleTextareaChange(index, e.target.value)
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                handleAddBullet(index);
-                              }
-                            }}
                           />
                           <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                             <img
@@ -442,12 +356,6 @@ const PreviouslyListed: React.FC = () => {
                               alt="textarea-icon"
                               className=""
                             />
-                            <button
-                              className="w-[27px] h-[27px] rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
-                              onClick={() => handleAddBullet(index)}
-                            >
-                              <CiPaperplane className="w-[14px] h-[14px] text-black" />
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -460,17 +368,22 @@ const PreviouslyListed: React.FC = () => {
                         >
                           Save
                         </button>
-                        {modalStates[index].showSaveMessage && (
-                          <p className="absolute bottom-[50%] left-[40%]  text-green-500 px-3 py-1 rounded-md text-sm">
-                            Saved successfully
-                          </p>
-                        )}
+                        <div className="absolute top-[50%] left-[35%] text-center mt-2 text-green-500">
+                          {modalStates[index].showSaveMessage && (
+                            <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                              <p className="text-sm font-normal">
+                                {" "}
+                                Saved successfully!
+                              </p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
 
-                {/* accordion trigger four */}
+                {/* 4th accordion */}
 
                 <Accordion
                   className="w-full md:w-[510px] lg:w-[510px]"
@@ -487,7 +400,7 @@ const PreviouslyListed: React.FC = () => {
                       </p>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="w-[460px] h-auto bg-[#1B1B1B] pt-2 pb-4 px-4 rounded-bl">
+                      <div className="w-[460px] h-auto bg-[#1B1B1B] pt-2 pb-0 px-4 rounded-bl">
                         <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
                           Instructions:
                         </h5>
@@ -506,23 +419,7 @@ const PreviouslyListed: React.FC = () => {
                                 <input
                                   type="text"
                                   value={bullet}
-                                  onChange={(e) =>
-                                    handleBulletChange(
-                                      index,
-                                      bulletIndex,
-                                      e.target.value
-                                    )
-                                  }
-                                  onKeyDown={(e) => {
-                                    if (
-                                      e.key === "Backspace" &&
-                                      e.currentTarget.selectionStart === 0 &&
-                                      e.currentTarget.selectionEnd ===
-                                        e.currentTarget.value.length
-                                    ) {
-                                      handleBulletDelete(index, bulletIndex);
-                                    }
-                                  }}
+                                  readOnly
                                   className="bg-transparent border-none outline-none text-[#858585] text-sm italic w-full"
                                 />
                               </div>
@@ -541,11 +438,6 @@ const PreviouslyListed: React.FC = () => {
                             onChange={(e) =>
                               handleTextareaChange(index, e.target.value)
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                handleAddBullet(index);
-                              }
-                            }}
                           />
                           <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                             <img
@@ -555,29 +447,28 @@ const PreviouslyListed: React.FC = () => {
                               alt="textarea-icon"
                               className=""
                             />
-                            <button
-                              className="w-[27px] h-[27px] rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
-                              onClick={() => handleAddBullet(index)}
-                            >
-                              <CiPaperplane className="w-[14px] h-[14px] text-black" />
-                            </button>
                           </div>
                         </div>
                       </div>
                       <hr className="border-t border-[#222222]" />
                       {/* Save button */}
-                      <div className="flex justify-center pt-5 mx-auto items-center">
+                      <div className="flex justify-center pt-5 pb-20 mx-auto items-center">
                         <button
                           className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
                           onClick={() => handleSave(index)}
                         >
                           Save
                         </button>
-                        {modalStates[index].showSaveMessage && (
-                          <p className="absolute bottom-[50%] left-[40%]  text-green-500 px-3 py-1 rounded-md text-sm">
-                            Saved successfully
-                          </p>
-                        )}
+                        <div className="absolute top-[50%] left-[35%] text-center mt-2 text-green-500">
+                          {modalStates[index].showSaveMessage && (
+                            <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                              <p className="text-sm font-normal">
+                                {" "}
+                                Saved successfully!
+                              </p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>

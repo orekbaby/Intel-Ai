@@ -3,40 +3,40 @@ import React, { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { informationModal } from "@/utils/mockData";
 import Image from "next/image";
-import { FaCircle } from "react-icons/fa";
 
 interface ModalState {
-  newBullet: string;
-  bullets: string[];
+  newContent: string;
   showSaveMessage: boolean;
 }
 
 const OtherInformationModal: React.FC = () => {
   const [modalStates, setModalStates] = useState<ModalState[]>(
-    informationModal.map((row) => ({
-      newBullet: "",
-      bullets: [],
+    informationModal.map(() => ({
+      newContent: "",
       showSaveMessage: false,
     }))
   );
 
   const [openModals, setOpenModals] = useState<boolean[]>(
-    Array(OtherInformationModal.length).fill(false)
+    Array(informationModal.length).fill(false)
   );
 
   const handleTextareaChange = (index: number, value: string) => {
     const newModalStates = [...modalStates];
-    newModalStates[index].newBullet = value;
+    newModalStates[index].newContent = value;
     setModalStates(newModalStates);
   };
 
   const handleSave = (index: number) => {
     const newModalStates = [...modalStates];
     newModalStates[index].showSaveMessage = true;
-    if (newModalStates[index].newBullet.trim() !== "") {
-      newModalStates[index].bullets.push(newModalStates[index].newBullet);
-      newModalStates[index].newBullet = "";
-    }
+
+    // Save the entered content to local storage
+    localStorage.setItem(
+      `modalContent_${index}`,
+      newModalStates[index].newContent
+    );
+
     setModalStates(newModalStates);
     setTimeout(() => {
       const newModalStatesAfterTimeout = [...newModalStates];
@@ -48,31 +48,6 @@ const OtherInformationModal: React.FC = () => {
         return newOpenModals;
       });
     }, 2000); // Hide message after 2 seconds and close modal
-  };
-
-  const handleAddBullet = (index: number) => {
-    const newModalStates = [...modalStates];
-    if (newModalStates[index].newBullet.trim() !== "") {
-      newModalStates[index].bullets.push(newModalStates[index].newBullet);
-      newModalStates[index].newBullet = "";
-      setModalStates(newModalStates);
-    }
-  };
-
-  const handleBulletChange = (
-    modalIndex: number,
-    bulletIndex: number,
-    value: string
-  ) => {
-    const newModalStates = [...modalStates];
-    newModalStates[modalIndex].bullets[bulletIndex] = value;
-    setModalStates(newModalStates);
-  };
-
-  const handleBulletDelete = (modalIndex: number, bulletIndex: number) => {
-    const newModalStates = [...modalStates];
-    newModalStates[modalIndex].bullets.splice(bulletIndex, 1);
-    setModalStates(newModalStates);
   };
 
   return (
@@ -117,7 +92,7 @@ const OtherInformationModal: React.FC = () => {
                 </div>
               </div>
             </DialogTrigger>
-            <DialogContent className="absolute top-[50%] max-w-auto w-[460px] h-auto overflow-y-auto scrollbar-hide border-0 outline-none">
+            <DialogContent className="absolute top-[50%] max-w-auto w-[460px] h-auto overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none">
               <div className="w-full h-auto bg-[#131313] border-b border-[#131313] rounded-[20px] pb-10">
                 <div className="bg-[#101010] border-[#181818] border-b px-4 py-[10px] w-[460px] h-[47px] mb-1">
                   <h5 className="font-semibold text-sm text-[14.56px]">
@@ -134,59 +109,24 @@ const OtherInformationModal: React.FC = () => {
                   />
                   <hr className="border-b border-[#222222] pt-3" />
                 </div>
-
-                <div className="w-[460px] h-auto bg-[#1B1B1B] pt-2 pb-4 px-4 rounded-bl-[20px] rounded-br-[20px]">
+                <div className="w-[460px] h-auto bg-[#1B1B1B] pt-2 pb-4 px-4 rounded-bl">
                   <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
-                    {row.instruction}
+                    Instructions:
                   </h5>
-                  <p className="font-normal text-sm leading-[14.56px] text-[#E4E4E4] mb-2">
+                  <p className="font-normal text-sm w-[80%] leading-[14.56px] text-[#E4E4E4] mb-3">
                     {row.insructionText}
                   </p>
-                  <div className="flex flex-col">
-                    {modalStates[index].bullets.map((bullet, bulletIndex) => (
-                      <div
-                        className="flex items-center gap-2"
-                        key={bulletIndex}
-                      >
-                        <FaCircle className="text-[#858585] text-[6px]" />
-                        <input
-                          type="text"
-                          value={bullet}
-                          onChange={(e) =>
-                            handleBulletChange(
-                              index,
-                              bulletIndex,
-                              e.target.value
-                            )
-                          }
-                          onKeyDown={(e) => {
-                            if (e.key === "Backspace" && bullet === "") {
-                              handleBulletDelete(index, bulletIndex);
-                            }
-                          }}
-                          className="bg-transparent border-none outline-none text-[#858585] text-sm italic w-full"
-                        />
-                      </div>
-                    ))}
-                  </div>
                 </div>
-
                 {/* text area starts here */}
                 <div className="pt-8 pb-3 px-2 w-auto">
                   <div className="relative w-[420px] h-[108px] bg-[#0D0D0D] rounded-[12px] border border-[#363636]">
                     <textarea
                       className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#7B7B7B] font-normal italic text-xs"
                       placeholder="Add more information"
-                      value={modalStates[index].newBullet}
+                      value={modalStates[index].newContent}
                       onChange={(e) =>
                         handleTextareaChange(index, e.target.value)
                       }
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault(); // Prevent new line
-                          handleAddBullet(index);
-                        }
-                      }}
                     />
                     <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                       <Image
@@ -210,11 +150,16 @@ const OtherInformationModal: React.FC = () => {
                     Save
                   </button>
                 </div>
-                {modalStates[index].showSaveMessage && (
-                  <div className="absolute top-[40%] left-[38%] text-center mt-2 text-green-500">
-                    Saved successfully!
-                  </div>
-                )}
+                <div className="absolute top-[40%] left-[33%] text-center mt-2 text-green-500">
+                  {modalStates[index].showSaveMessage && (
+                    <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                      <p className="text-sm font-normal">
+                        {" "}
+                        Saved successfully!
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </DialogContent>
           </Dialog>

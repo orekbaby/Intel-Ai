@@ -3,7 +3,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
-const page = () => {
+
+const Page = () => {
   const style2: React.CSSProperties = {
     background:
       "radial-gradient(circle, rgba(3, 255, 163, 0.3), rgba(16, 12, 14, 0.2))",
@@ -13,7 +14,7 @@ const page = () => {
 
   return (
     <>
-      <main className="mt-4 md:mt-20 lg:mt-40 mx-auto">
+      <main className="mt-4 md:mt-20 lg:mt-28 mx-auto">
         <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-60 ">
           {/* top gradient */}
 
@@ -39,21 +40,24 @@ const page = () => {
             className="bottom-[-70%] right-0 absolute w-[40%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
           ></div>
 
-          <div className=" w-full px-0 md:px-4 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
+          <div className="w-full px-0 md:px-4 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
             <h2
               className="text-sm text-[16.8px] text-white
                leading-[36.28px] md:leading-[64px] lg:leading-[64px] text-center mb-5"
             >
               Are you a
             </h2>
-            <Link href="/category">
-              <div className="flex flex-col w-full md:flex-row lg:flex-row justify-center items-center px-20 md:px-0 lg-px-0 gap-4 md:gap-10 lg:gap-10 rounded-[40px] ">
-                {chooseUser?.map((row, index) => (
+            <div className="flex flex-col w-full md:flex-row lg:flex-row justify-center items-center px-20 md:px-0 lg:px-0 gap-4 md:gap-10 lg:gap-10 rounded-[40px]">
+              {chooseUser?.map((row, index) => (
+                <Link href={index === 0 ? "/category" : "#"} key={index}>
                   <div
-                    key={index}
-                    className="hover:bg-gradient-to-r from-[rgba(189,254,28,0.9)]
-                  to-[rgba(37,184,222,0.9)] py-[2px] px-[2px] 
-                  w-fit rounded-[40px] cursor-pointer"
+                    className={`hover:bg-gradient-to-r from-[rgba(189,254,28,0.9)]
+                    to-[rgba(37,184,222,0.9)] py-[2px] px-[2px] 
+                    w-fit rounded-[40px] ${
+                      index !== 0
+                        ? "cursor-not-allowed opacity-50"
+                        : "cursor-pointer"
+                    }`}
                   >
                     <div
                       className={`bg-gradient-to-r from-[rgba(28,28,28,0.9)] ${
@@ -78,22 +82,9 @@ const page = () => {
                       </p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </Link>
-
-            {/* button */}
-            {/* <div className="pt-10">
-              <Link href="/category">
-                <button
-                  className="bg-white cursor-pointer items-center flex justify-center text-center 
-                 text-xs font-normal ring-offset-white focus-visible:outline-none
-                 text-[#0D0D0D] h-[55px] md:h-10 lg:h-10 w-[362px] md:w-[204px] lg:w-[204px] md:rounded-[20px] lg:rounded-[20px] rounded-[66px] mx-auto shadow-drop2"
-                >
-                  Next
-                </button>
-              </Link>
-            </div> */}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       </main>
@@ -101,4 +92,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

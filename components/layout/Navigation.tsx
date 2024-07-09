@@ -4,8 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+const Navigation = ({ selectedUser }: { selectedUser: string | null }) => {
+  const router = useRouter();
+  const isCommunityManager = selectedUser === "Community Manager";
+  const isKolInfluencer = selectedUser === "KOL Influencer";
 
-const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -117,16 +121,19 @@ const Navigation = () => {
 
       {show && (
         <header className="hidden w-full absolute z-40 top-0 left-[290px] md:flex lg:flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
-          <div className=" hidden md:flex lg:flex items-center gap-6 justify-between">
+          <div className="hidden md:flex lg:flex items-center gap-6 justify-between">
             <div className="flex justify-center items-center gap-8">
               <Link href="/communityManager">
-                <p className="text-base font-medium hover:underline hover:underline-offset-4 text-[#6D6D6D]">
+                <p className="text-base font-medium hover:underline hover:underline-offset-4 text-white">
                   Community Manager
                 </p>
               </Link>
-              <Link href="/kolInfluencer" className="">
-                <p className="text-base font-medium hover:underline hover:underline-offset-4">
-                  Kol Influencer
+              <Link href="/kolInfluencer">
+                <p
+                  className="text-base font-medium hover:underline hover:underline-offset-4 text-[#6D6D6D]"
+                  style={{ pointerEvents: "none", opacity: 0.5 }}
+                >
+                  KOL Influencer
                 </p>
               </Link>
             </div>

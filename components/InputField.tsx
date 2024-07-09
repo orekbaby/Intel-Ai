@@ -1,6 +1,6 @@
 // InputField component
 import React, { useState } from "react";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaCaretDown } from "react-icons/fa"; // Import dropdown icon
 
 interface InputFieldProps {
   label: string;
@@ -16,7 +16,7 @@ const InputField: React.FC<InputFieldProps> = ({
   onChange, // Destructure onChange from props
 }) => {
   const [isFilled, setIsFilled] = useState<boolean>(false);
-  const [isEditing, setIsEditing] = useState<boolean>(true);
+  const [isEditing, setIsEditing] = useState<boolean>(true); // Initially false
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
@@ -25,7 +25,9 @@ const InputField: React.FC<InputFieldProps> = ({
   };
 
   const handleInputBlur = () => {
-    setIsEditing(false);
+    if (value.trim() !== "") {
+      setIsEditing(false);
+    }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -46,12 +48,7 @@ const InputField: React.FC<InputFieldProps> = ({
       >
         {label}
       </label>
-      <div className="flex items-center">
-        {isFilled && !isEditing && (
-          <div className="flex justify-center items-center w-[16px] h-[16px] rounded-full bg-[#4A6800] mt-2 mr-2">
-            <FaCheck className="text-white w-[10px] h-[10px]" />
-          </div>
-        )}
+      <div className="flex items-center relative">
         {isEditing ? (
           <input
             type="text"
@@ -65,12 +62,24 @@ const InputField: React.FC<InputFieldProps> = ({
             autoComplete="off" // Disable autocomplete
           />
         ) : (
-          <div
-            className="text-white font-semibold text-sm leading-[22.48px] mt-2 cursor-pointer"
-            onMouseEnter={handleClick}
-          >
-            {value || placeholder}
-          </div>
+          <>
+            {isFilled && (
+              <div className="flex justify-center items-center w-[16px] h-[16px] rounded-full bg-[#4A6800] mt-2 mr-2">
+                <FaCheck className="text-white w-[10px] h-[10px]" />
+              </div>
+            )}
+            <div
+              className="text-white font-semibold text-sm leading-[22.48px] mt-2 cursor-pointer"
+              onClick={handleClick}
+            >
+              {value || placeholder}
+            </div>
+
+            <FaCaretDown
+              className="text-white absolute right-[5%] cursor-pointer mt-2"
+              onClick={handleClick} // Show input on click
+            />
+          </>
         )}
       </div>
     </div>

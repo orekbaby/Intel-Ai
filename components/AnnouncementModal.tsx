@@ -7,19 +7,15 @@ import Image from "next/image";
 import Calendar from "@/components/Calendar";
 
 interface ModalState {
-  newBullet: string;
-  bullets: string[];
+  textAreaContent: string;
   showSaveMessage: boolean;
 }
 
 const AnnouncementModal: FC = () => {
   const [selectedOption, setSelectedOption] = useState<string>("today");
   const [modalStates, setModalStates] = useState<ModalState[]>(
-    announcementsModal.map((row) => ({
-      newBullet: "",
-      bullets: [row.bullet1, row.bullet2, row.bullet3, row.bullet4].filter(
-        Boolean
-      ),
+    announcementsModal.map(() => ({
+      textAreaContent: "",
       showSaveMessage: false,
     }))
   );
@@ -50,17 +46,20 @@ const AnnouncementModal: FC = () => {
 
   const handleTextareaChange = (index: number, value: string) => {
     const newModalStates = [...modalStates];
-    newModalStates[index].newBullet = value;
+    newModalStates[index].textAreaContent = value;
     setModalStates(newModalStates);
   };
 
   const handleSave = (index: number) => {
     const newModalStates = [...modalStates];
     newModalStates[index].showSaveMessage = true;
-    if (newModalStates[index].newBullet.trim() !== "") {
-      newModalStates[index].bullets.push(newModalStates[index].newBullet);
-      newModalStates[index].newBullet = "";
-    }
+
+    // Save the entered content to local storage
+    localStorage.setItem(
+      `modalText_${index}`,
+      newModalStates[index].textAreaContent
+    );
+
     setModalStates(newModalStates);
     setTimeout(() => {
       const newModalStatesAfterTimeout = [...newModalStates];
@@ -72,31 +71,6 @@ const AnnouncementModal: FC = () => {
         return newOpenModals;
       });
     }, 2000); // Hide message after 2 seconds and close modal
-  };
-
-  const handleAddBullet = (index: number) => {
-    const newModalStates = [...modalStates];
-    if (newModalStates[index].newBullet.trim() !== "") {
-      newModalStates[index].bullets.push(newModalStates[index].newBullet);
-      newModalStates[index].newBullet = "";
-      setModalStates(newModalStates);
-    }
-  };
-
-  const handleBulletChange = (
-    modalIndex: number,
-    bulletIndex: number,
-    value: string
-  ) => {
-    const newModalStates = [...modalStates];
-    newModalStates[modalIndex].bullets[bulletIndex] = value;
-    setModalStates(newModalStates);
-  };
-
-  const handleBulletDelete = (modalIndex: number, bulletIndex: number) => {
-    const newModalStates = [...modalStates];
-    newModalStates[modalIndex].bullets.splice(bulletIndex, 1);
-    setModalStates(newModalStates);
   };
 
   return (
@@ -134,7 +108,7 @@ const AnnouncementModal: FC = () => {
           </DialogTrigger>
           <DialogContent
             className="absolute top-[52%] max-w-auto w-[460px]
-                      h-[90vh] overflow-y-auto scrollbar-hide border-0 outline-none"
+                      h-[90vh] overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none"
           >
             <div className="w-full bg-[#131313] h-auto rounded-[20px] border-b border-[#131313] pb-10">
               <div className="bg-[#101010] border-[#181818] border-b px-4 py-[10px] w-[460px] h-[47px] mb-3">
@@ -195,45 +169,48 @@ const AnnouncementModal: FC = () => {
                 <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
                   Instructions:
                 </h5>
-                <p className="font-normal text-sm leading-[14.56px] text-[#E4E4E4] mb-2">
+                <p className="font-normal text-sm w-[80%] leading-[14.56px] text-[#E4E4E4] mb-3">
                   {row.insructionText}
                 </p>
-                <div className="flex flex-col">
-                  {modalStates[index].bullets.map((bullet, bulletIndex) => (
-                    <div className="flex items-center gap-2" key={bulletIndex}>
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-2 items-center">
+                    <FaCircle className="text-[#858585] text-[6px]" />
+                    <p className="font-normal italic text-sm leading-[14.56px] text-[#858585]">
+                      {row.bullet1}
+                    </p>
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <FaCircle className="text-[#858585] text-[6px]" />
+                    <p className="font-normal italic text-sm leading-[14.56px] text-[#858585]">
+                      {row.bullet2}
+                    </p>
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <FaCircle className="text-[#858585] text-[6px]" />
+                    <p className="font-normal italic text-sm leading-[14.56px] text-[#858585]">
+                      {row.bullet3}
+                    </p>
+                  </div>
+                  {row.bullet4 && (
+                    <div className="flex gap-2 items-center">
                       <FaCircle className="text-[#858585] text-[6px]" />
-                      <input
-                        type="text"
-                        value={bullet}
-                        onChange={(e) =>
-                          handleBulletChange(index, bulletIndex, e.target.value)
-                        }
-                        onKeyDown={(e) => {
-                          if (e.key === "Backspace" && bullet === "") {
-                            handleBulletDelete(index, bulletIndex);
-                          }
-                        }}
-                        className="bg-transparent border-none outline-none text-[#858585] text-sm italic w-full"
-                      />
+                      <p className="font-normal italic text-sm leading-[14.56px] text-[#858585]">
+                        {row.bullet4}
+                      </p>
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
+
               <div className="pt-8 pb-3 px-2 w-auto">
                 <div className="relative w-[420px] h-[108px] bg-[#0D0D0D] rounded-[12px] border border-[#363636]">
                   <textarea
-                    className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#7B7B7B] font-normal italic text-xs"
+                    className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#f9f9f9] font-normal italic text-xs mb-t"
                     placeholder="Add more information"
-                    value={modalStates[index].newBullet}
+                    value={modalStates[index].textAreaContent}
                     onChange={(e) =>
                       handleTextareaChange(index, e.target.value)
                     }
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.preventDefault(); // Prevent new line
-                        handleAddBullet(index);
-                      }
-                    }}
                   />
                   <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                     <Image
@@ -244,22 +221,22 @@ const AnnouncementModal: FC = () => {
                       className=""
                     />
                   </div>
-                  <hr className="border-t border-[#222222]" />
                 </div>
-                <div className="flex justify-center pt-5 mx-auto items-center">
-                  <button
-                    onClick={() => handleSave(index)}
-                    className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
-                  >
-                    Save
-                  </button>
-                </div>
+              </div>
+              <hr className="border-b border-[#222222]" />
+              <div className="flex justify-center pt-5 mx-auto items-center">
+                <button
+                  onClick={() => handleSave(index)}
+                  className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
+                >
+                  Save
+                </button>
               </div>
 
               <div className="absolute top-[50%] left-[35%] text-center mt-2 text-green-500">
                 {modalStates[index].showSaveMessage && (
-                  <div className="text-green-500 text-sm">
-                    Saved successfully!
+                  <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                    <p className="text-sm font-normal"> Saved successfully!</p>
                   </div>
                 )}
               </div>

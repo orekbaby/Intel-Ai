@@ -13,7 +13,9 @@ const Page = () => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
   const handleOptionClick = (index: number) => {
-    setSelectedOption(index);
+    if (index === 0) {
+      setSelectedOption(index);
+    }
   };
 
   const style2: React.CSSProperties = {
@@ -55,14 +57,14 @@ const Page = () => {
             </div>
             <div className="">
               <h1
-                className=" pt-24 font-medium text-[15px] md:text-[32px] lg:text-[32px]
+                className="pt-16 font-medium text-[15px] md:text-[32px] lg:text-[32px]
                leading-[18.6px] md:leading-[64px] lg:leading-[64px] text-center w-[251px] md:w-full lg:w-full mb-6 mx-auto"
               >
                 Which Category Best Describes your community?
               </h1>
               <div className="w-[362px] md:w-[562px] lg:w-[562px] h-auto bg-[#0D0D0D] border border-[#1B1B1B] mb-10 md:mb-8 lg:mb-8 py-2 md:py-4 lg:py-4 mx-auto px-6 md:px-6 lg:px-6 rounded-[16px] md:rounded-[20px] lg:rounded-[20px]">
                 {description.map((row, index) => (
-                  <Link href="/onboard" key={index}>
+                  <Link href={index === 0 ? "/onboard" : "#"} key={index}>
                     <div
                       className={`border-b border-[#1E1E1E] mt-5 ${
                         selectedOption === index ? "border-gradient" : ""
@@ -70,7 +72,9 @@ const Page = () => {
                     >
                       <div
                         onClick={() => handleOptionClick(index)}
-                        className="cursor-pointer hover:bg-[#181818] hover:p-2 transition-colors ease-in duration-300"
+                        className={`cursor-pointer  ${
+                          index !== 0 ? "opacity-20 cursor-not-allowed" : ""
+                        }`}
                       >
                         <h4 className="font-semibold text-sm mb-2 w-[90%] text-white">
                           {row.name}

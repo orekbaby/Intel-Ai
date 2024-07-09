@@ -1,10 +1,24 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane, FaArrowLeft } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
-const page = () => {
+const Page = () => {
+  const [invitationCode, setInvitationCode] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (invitationCode.trim() === "") {
+      alert("Please enter your invitation code.");
+    } else {
+      router.push("/connectWeb3");
+    }
+  };
+
   const style2: React.CSSProperties = {
     background:
       "radial-gradient(circle, rgba(3, 255, 163, 0.2), rgba(16, 12, 14, 0.2))",
@@ -20,15 +34,14 @@ const page = () => {
   return (
     <>
       <main className="mt-4 md:mt-20 lg:mt-20 mx-auto">
-        <section className="first-gradient section relative w-full h-full z-10  mb-48 ">
+        <section className="first-gradient section relative w-full h-full z-10 mb-48 ">
           <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full">
             {/* top-gradient */}
             <div
               style={style2}
               className="top-[-15%] right-[50%] absolute w-[40%] h-[130px] md:h-[500px] lg:h-[160px] translate-x-1/2 z-[-1]"
             ></div>
-            {/* 
-            bottom-gradient */}
+            {/* bottom-gradient */}
             <div
               style={style2}
               className="bottom-[-30%] right-[50%] absolute w-[40%] h-[130px] md:h-[500px] lg:h-[150px] translate-x-1/2"
@@ -46,8 +59,8 @@ const page = () => {
               <h1
                 style={bgClipText}
                 className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
-               text-transparent font-medium text-[40px] md:text-[60px] lg:text-[64px] 
-              leading-[40px] md:leading-[64px] lg:leading-[64px] text-center w-[378px] md:w-full lg:w-full mb-6 mx-auto"
+                text-transparent font-medium text-[40px] md:text-[60px] lg:text-[64px] 
+                leading-[40px] md:leading-[64px] lg:leading-[64px] text-center w-[378px] md:w-full lg:w-full mb-6 mx-auto"
               >
                 Welcome to Intel AI
               </h1>
@@ -55,7 +68,6 @@ const page = () => {
               <p className="font-normal text-sm text-white text-center mb-20 md:mb-10 lg:mb-10 px-0 w-[332px] h-[36px] leading-[18.8px] md:w-full lg:w-[393px] md:h-full lg:h-[51px] mx-auto">
                 Discover cutting-edge AI solutions designed to transform your
                 business and unlock new possibilities. Dive in and explore how{" "}
-                {""}
                 <span className="font-medium text-sm leading-[18.8px]">
                   Intel AI
                 </span>{" "}
@@ -65,7 +77,7 @@ const page = () => {
             {/* invitation code box */}
             <div
               className="border border-[#474747] bg-[#131313] bg-opacity-[6%] w-full
-             md:w-[543px] lg:w-[543px] h-[364px] md:h-[435px] lg:h-[435px] leading-[16.64px] mx-auto rounded-[20px] py-8 md:py-14 lg:py-14"
+              md:w-[543px] lg:w-[543px] h-[364px] md:h-[435px] lg:h-[435px] leading-[16.64px] mx-auto rounded-[20px] py-8 md:py-14 lg:py-14"
             >
               <h2 className="font-medium text-base text-center leading-[16.4px] mb-4">
                 Enter Your Invitation Code
@@ -83,21 +95,22 @@ const page = () => {
                   Input your invitation code
                 </p>
                 <input
-                  className="mb-6 md:mb-5 lg:mb-5 mt-2 text-xs md:text-sm lg:text-sm w-[361px] md:w-[380px] lg:w-[380px] h-[49px] md:h-[40px] lg:h-[40px] py-[8px] px-6 md:px-[16px] lg:px-[16px] pr-[32px] italic bg-[#1B1B1B] font-[300] md:font-normal lg:font-normal text-[#616161]  rounded-[14px] md:rounded-[12px] lg:rounded-[12px] mx-auto"
+                  className="mb-6 md:mb-5 lg:mb-5 mt-2 text-xs md:text-sm lg:text-sm w-[361px] md:w-[380px] lg:w-[380px] h-[49px] md:h-[40px] lg:h-[40px] py-[8px] px-6 md:px-[16px] lg:px-[16px] pr-[32px] italic bg-[#1B1B1B] font-[300] md:font-normal lg:font-normal text-white rounded-[14px] md:rounded-[12px] lg:rounded-[12px] mx-auto"
                   type="text"
                   placeholder="Enter invite code"
+                  value={invitationCode}
+                  onChange={(e) => setInvitationCode(e.target.value)}
                 />
               </div>
               {/* button */}
-              <Link href="/connectWeb3">
-                <button
-                  className="bg-white items-center flex justify-center text-center 
-                 text-xs font-medium ring-offset-white focus-visible:outline-none
-                 text-[#0D0D0D] h-[52px] md:h-10 lg:h-10 w-[317px] md:w-[170px] lg:w-[170px] rounded-[40px] md:rounded-[20px] lg:rounded-[20px] mx-auto shadow-drop2"
-                >
-                  Submit
-                </button>
-              </Link>
+              <button
+                onClick={handleSubmit}
+                className="bg-white items-center flex justify-center text-center 
+                text-xs font-medium ring-offset-white focus-visible:outline-none
+                text-[#0D0D0D] h-[52px] md:h-10 lg:h-10 w-[317px] md:w-[170px] lg:w-[170px] rounded-[40px] md:rounded-[20px] lg:rounded-[20px] mx-auto shadow-drop2"
+              >
+                Submit
+              </button>
 
               {/* old button */}
 
@@ -110,7 +123,6 @@ const page = () => {
                       <FaTelegramPlane className="w-[15px] h-[15px]" />
                     </div>
                     <div className=" flex justify-center  items-center w-[30px] h-[30px] bg-white rounded-full">
-                      {" "}
                       <FaXTwitter className="w-[15px] h-[15px] text-black" />
                     </div>
                   </div>
@@ -124,4 +136,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

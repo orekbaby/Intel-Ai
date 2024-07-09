@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
@@ -6,9 +7,15 @@ import ApeTerminalTable from "@/components/ApeTerminalTable";
 import AnnouncementModal from "../AnnouncementModal";
 import CommunityModal from "../CommunityModal";
 import OtherInformationModal from "../OtherInformationModal";
-import DialogData from "../dialog/DialogData";
+import DialogData2 from "../DialogData2";
 
 const ApeTerminalTraining = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleCompleteSimulation = () => {
+    setIsDialogOpen(false);
+  };
+
   return (
     <div className="w-full h-auto mx-auto px-0 md:px-10 lg:px-10">
       <h2 className="font-medium text-[30px] md:text-[36px] lg:text-[36px] leading-[33.28px] md:leading-[37.44px] lg:leading-[37.44px] pt-0 md:pt-10 lg:pt-10 mb-7 text-center px-0 md:px-0 lg:px-0 w-[100%] md:w-full lg:w-full">
@@ -57,10 +64,13 @@ const ApeTerminalTraining = () => {
         </Dialog>
       </div>
 
-      <Dialog>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <div className="mb-20 flex flex-col md:flex-row lg:flex-row justify-center mx-auto">
-          <DialogTrigger>
-            <button className="flex justify-center mx-auto bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] gap-1 items-center text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[48px] md:h-[42px] lg:h-[42px] w-[282px] md:w-[222px] lg:w-[222px] rounded-[21px] hover:bg-[#0B0F16]">
+          <DialogTrigger asChild>
+            <button
+              onClick={() => setIsDialogOpen(true)}
+              className="flex justify-center mx-auto bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] gap-1 items-center text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[48px] md:h-[42px] lg:h-[42px] w-[282px] md:w-[222px] lg:w-[222px] rounded-[21px] hover:bg-[#0B0F16]"
+            >
               <div className="w-[14px] h-[14px] rounded-full bg-[#2B6AFF] flex justify-center items-center">
                 <FaTelegramPlane className="w-[10px] h-[10px]" />
               </div>
@@ -76,7 +86,7 @@ const ApeTerminalTraining = () => {
           className="absolute top-[54%] left-[80%] -translate-x-1/2 w-full px-4 md:w-full lg:w-full
                      bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
         >
-          <DialogData />
+          <DialogData2 onCompleteSimulation={handleCompleteSimulation} />
         </DialogContent>
       </Dialog>
 

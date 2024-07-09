@@ -231,7 +231,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="fixed top-0 right-0 h-[100vh] w-[30%] pb-20 overflow-y-auto scrollbar-hide pt-24">
+      <div className="fixed top-10 right-0 h-[100vh] w-[30%] pb-20 overflow-y-auto scrollbar-hide pt-24">
         <p className="font-normal text-base leading-[16.64px] mb-4">
           Query Sorting Portal
         </p>

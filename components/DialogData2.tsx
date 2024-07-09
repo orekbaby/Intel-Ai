@@ -15,9 +15,12 @@ import {
   userInput2,
   userInput3,
 } from "@/utils/mockData";
-import SocialMenu from "../SocialMenu";
+import SocialMenu from "./SocialMenu";
+interface DialogData2Props {
+  onCompleteSimulation: () => void;
+}
 
-const DialogData: React.FC = () => {
+const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null); // State to track active button index
   const [conversation, setConversation] = useState<any[]>([]); // State to track conversation
   const [promptCount, setPromptCount] = useState<number>(0); // State to track prompt count
@@ -223,46 +226,18 @@ const DialogData: React.FC = () => {
             </div>
             {/* stimulate your telegram button */}
 
-            <Dialog>
-              <div className="flex justify-center pt-6 ">
-                <DialogTrigger>
-                  <div className="flex justify-center items-center pt-1">
-                    <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] w-fit rounded-[66px] py-[2px] px-[2px] shadow-drop">
-                      <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[177px] rounded-[66px] hover:bg-[#0B0F16] font-normal text-xs">
-                        Complete Simulation
-                      </button>
-                    </div>
-                  </div>
-                </DialogTrigger>
-                <DialogContent className="px-8 md:w-full lg:w-full border-none rounded-lg max-w-auto w-[540px] h-[401px] bg-[#181818]">
-                  <div className="mx-auto">
-                    <Image
-                      width={120}
-                      height={120}
-                      src="/onboard.png"
-                      className="mx-auto mb-5 pt-10"
-                      alt=""
-                    />
-                    <h3 className="font-medium text-center text-[20px] leading-[26px] w-[80%] mx-auto mb-4">
-                      Congratulations on Completing Your Initial Training!
-                    </h3>
-                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-[383px] mb-5">
-                      The next step is to integrate your Telegram community
-                    </p>
-                    {/* button */}
-                    <Link href="/communityManager">
-                      <button
-                        className="bg-white items-center flex justify-center text-center 
-                                  text-xs font-normal ring-offset-white focus-visible:outline-none
-                                  text-[#0D0D0D] h-10 w-[199px] rounded-[66px] mx-auto shadow-drop2"
-                      >
-                        Integrate your community now
-                      </button>
-                    </Link>
-                  </div>
-                </DialogContent>
+            <div className="flex justify-center pt-6 ">
+              <div className="flex justify-center items-center pt-1">
+                <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] w-fit rounded-[66px] py-[2px] px-[2px] shadow-drop">
+                  <Button
+                    className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[177px] rounded-[66px] hover:bg-[#0B0F16] font-normal text-xs"
+                    onClick={onCompleteSimulation}
+                  >
+                    Complete Simulation
+                  </Button>
+                </div>
               </div>
-            </Dialog>
+            </div>
           </div>
         </div>
       </div>
@@ -270,4 +245,4 @@ const DialogData: React.FC = () => {
   );
 };
 
-export default DialogData;
+export default DialogData2;

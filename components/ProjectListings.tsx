@@ -1,14 +1,18 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { FaCheck, FaCircle, FaTimes } from "react-icons/fa";
+import { FaCaretDown, FaCheck, FaCircle, FaTimes } from "react-icons/fa";
 import { launchpadData } from "@/utils/mockData";
 
-const ProjectListings = () => {
+interface ProjectListingsProps {
+  onClose: () => void;
+}
+const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [isFilled, setIsFilled] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(true);
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
-  const [isUpload, setIsUpload] = useState(false);
+  const [isUpload, setIsUpload] = useState<boolean>(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -24,8 +28,9 @@ const ProjectListings = () => {
       setIsEditing(false);
     }
   };
-  const handleMouseEnter = () => {
-    setIsEditing(true);
+
+  const toggleInput = () => {
+    setIsEditing(!isEditing);
   };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -69,6 +74,19 @@ const ProjectListings = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = ""; // Clear the input
     }
+  };
+
+  const handleSave = () => {
+    // Save to local storage
+    localStorage.setItem("projectName", inputValue);
+    // Show success message
+    setShowSuccessMessage(true);
+    // Close modal after 2 seconds
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+      // Close modal
+      onClose();
+    }, 2000);
   };
 
   return (
@@ -116,6 +134,8 @@ const ProjectListings = () => {
                     {row.bullet4}
                   </p>
                 </div>
+
+                {/* Render other bullet points similarly */}
               </div>
             </div>
 
@@ -128,7 +148,7 @@ const ProjectListings = () => {
                 >
                   What is the name of your project?
                 </label>
-                <div className="flex items-center">
+                <div className="flex items-center relative">
                   {isFilled && !isEditing && (
                     <div className="flex justify-center items-center w-[16px] h-[16px] rounded-full bg-[#4A6800] mt-2 mr-2">
                       <FaCheck className="text-white w-[10px] h-[10px]" />
@@ -137,7 +157,7 @@ const ProjectListings = () => {
                   {isEditing ? (
                     <input
                       id="inputField3"
-                      className="custom-input2 mt-2 font-[300px] text-sm leading-[22.68px] pr-4"
+                      className="custom-input2 mt-2 font-[300px] text-sm leading-[22.68px] pr-4 "
                       value={inputValue}
                       placeholder="Enter project name"
                       onChange={handleInputChange}
@@ -147,15 +167,15 @@ const ProjectListings = () => {
                     />
                   ) : (
                     <div
-                      className="text-white font-semibold text-sm leading-[22.48px] mt-2 cursor-pointer"
-                      onMouseEnter={handleMouseEnter}
+                      className="text-white font-semibold text-sm leading-[22.48px] mt-2 cursor-pointer flex items-center"
+                      onClick={toggleInput}
                     >
-                      {inputValue || "Enter project name"}
+                      {inputValue || "Enter project name"}{" "}
+                      <FaCaretDown className="ml-2 absolute right-[5%]" />
                     </div>
                   )}
                 </div>
               </div>
-
               {/* Upload button */}
               <div className="border-[#2B2B2B] border-b pb-4 mb-5 w-full">
                 <label
@@ -217,10 +237,21 @@ const ProjectListings = () => {
 
               {/* Save button */}
               <div className="flex justify-center pt-5 mx-auto items-center">
-                <button className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs">
+                <button
+                  className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
+                  onClick={handleSave}
+                >
                   Save
                 </button>
               </div>
+              {/* pop up message */}
+              {showSuccessMessage && (
+                <div className="absolute top-[50%] left-[25%] text-center mt-2 text-green-500">
+                  <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                    <p className="text-sm font-normal">Saved successfully!</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
