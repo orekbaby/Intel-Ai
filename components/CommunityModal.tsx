@@ -11,7 +11,7 @@ interface ModalState {
   showSaveMessage: boolean;
 }
 
-const communityModal: FC = () => {
+const CommunityModal: FC = () => {
   const [selectedOption, setSelectedOption] = useState<string>("today");
   const [modalStates, setModalStates] = useState<ModalState[]>(
     communityModals.map(() => ({
@@ -251,4 +251,4 @@ const communityModal: FC = () => {
   );
 };
 
-export default communityModal;
+export default CommunityModal;

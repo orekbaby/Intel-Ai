@@ -214,8 +214,8 @@ export default function Home() {
         </h2>
         <p className="font-normal w-full h-auto text-[12px] md:text-[20px] lg:text-[20px] px-2 md:px-32 lg:px-32 mb-5 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
           Experience the sophistication of AI Agents that talk like a human but
-          work like a supercomputer. Intel AI's deep learning algorithms are
-          crafted to replicate the warmth, empathy, and complexity of human
+          work like a supercomputer. Intel AI&apos;s deep learning algorithms
+          are crafted to replicate the warmth, empathy, and complexity of human
           interaction, ensuring that every message, reply, or announcement feels
           genuinely personal.
         </p>
