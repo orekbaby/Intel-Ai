@@ -5,10 +5,8 @@ import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-const Navigation = ({ selectedUser }: { selectedUser: string | null }) => {
+const Navigation = () => {
   const router = useRouter();
-  const isCommunityManager = selectedUser === "Community Manager";
-  const isKolInfluencer = selectedUser === "KOL Influencer";
 
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
