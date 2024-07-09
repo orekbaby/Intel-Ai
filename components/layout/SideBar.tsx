@@ -37,7 +37,7 @@ const SideBar = () => {
       img: MdOutlineSignalCellularAlt,
       name: "AI Community Workspace",
       alt: "workspace-img",
-      link: "/workspace",
+      link: "/trainAi",
     },
     {
       id: 2,
