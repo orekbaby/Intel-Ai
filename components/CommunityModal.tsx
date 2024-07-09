@@ -235,7 +235,7 @@ const CommunityModal: FC = () => {
                 <div className="absolute top-[50%] left-[35%] text-center mt-2 text-green-500">
                   {modalStates[index].showSaveMessage && (
                     <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
-                      <p className="text-sm font-normal">
+                      <p className="text-[14px] font-normal">
                         {" "}
                         Saved successfully!
                       </p>
