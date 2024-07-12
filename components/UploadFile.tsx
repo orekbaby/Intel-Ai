@@ -32,7 +32,10 @@ const UploadFile: React.FC<UploadFileProps> = ({ value, onChange }) => {
       >
         Upload Document
       </label>
-      <p className="text-[#858585] font-normal text-sm leading-[16.58px] mb-3 w-[90%]">
+      <p
+        className="text-[#858585] font-normal text-sm leading-[16.58px] mb-3 w-[95%] md:w-[90%] lg:w-[90px] 
+      xl:w-[80%] 2xl:w-[70%]"
+      >
         Kindly upload a document that contains detailed information about your
         project including Tokenomics, FAQs etc. PDF version of your{" "}
         <span className="text-white font-normal text-sm leading-[14.58px]">

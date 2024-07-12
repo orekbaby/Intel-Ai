@@ -1,9 +1,8 @@
 "use client";
+import { useAppStore } from "@/src/store";
 import React, { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-
 import Image from "next/image";
-
 import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import { CiPaperplane } from "react-icons/ci";
 import Link from "next/link";
@@ -16,6 +15,7 @@ import {
   userInput3,
 } from "@/utils/mockData";
 import SocialMenu from "../SocialMenu";
+import { useRouter } from "next/navigation";
 
 const DialogData: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null); // State to track active button index
@@ -92,6 +92,14 @@ const DialogData: React.FC = () => {
     }
   };
 
+  const router = useRouter();
+  const completeTrain = useAppStore((state) => state.completeTrain);
+
+  const handleNavigation = () => {
+    completeTrain();
+    router.push("/communityManager");
+  };
+
   return (
     <>
       <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto scrollbar-hide outline-0 mb-5 pt-20 pb-20">
@@ -102,7 +110,7 @@ const DialogData: React.FC = () => {
             <p className="font-normal text-left text-sm leading-[14.56px] text-[#858585]">
               Simulation workspace
             </p>
-            <div className="w-[110px] h-[40px] flex justify-center items-center text-center rounded-[10px] bg-[#131313]">
+            <div className="hidden md:flex lg:flex w-[110px] h-[40px] justify-center items-center text-center rounded-[10px] bg-[#131313]">
               <p className="font-normal text-sm leading-[14.65px]">
                 {promptCount}
                 <span className="font-normal text-sm leading-[14.65px] text-[#3C3C3C]">
@@ -112,7 +120,7 @@ const DialogData: React.FC = () => {
             </div>
           </div>
           {/* chips options */}
-          <div className="flex justify-center gap-1 items-center mb-14">
+          <div className="flex justify-center gap-0 md:gap-1 lg:gap-1 xl:gap-2 2xl:gap-2 items-center mb-14 px-6">
             {chipsButton?.map((row, index) => (
               <div
                 key={index}
@@ -124,7 +132,7 @@ const DialogData: React.FC = () => {
               >
                 <Button
                   key={index}
-                  className={`w-[149px] h-[37px] flex justify-center items-center rounded-[8px] py-2 px-6 font-medium text-[12.76px] bg-[#2C2C2C]`}
+                  className={`w-[126px] md:w-[149px] lg:w-[149px] xl:w-[149px] 2xl:w-[163px] h-[37px] flex justify-center items-center rounded-[8px] py-2 px-6 font-medium text-[12.76px] bg-[#2C2C2C]`}
                   onClick={() => handleButtonClick(index)}
                 >
                   {row.button}
@@ -137,7 +145,7 @@ const DialogData: React.FC = () => {
             <div key={index}>
               <div className="flex justify-end mb-8 relative">
                 <div className="">
-                  <div className="w-[264px] h-[53px] rounded-[20px] bg-[#696969] px-4 py-2">
+                  <div className="w-[183px] md:w-[264px] lg:w-[264px] xl:w-[270px] 2xl:w-[274px] h-[53px] rounded-[20px] bg-[#696969] px-4 py-2">
                     <h5 className="font-normal text-xs mb-1">
                       {entry.user.question}
                     </h5>
@@ -160,7 +168,7 @@ const DialogData: React.FC = () => {
               </div>
 
               <div className="relative mb-8">
-                <div className="w-[375px] h-[126px] rounded-[20px] bg-[#2D2D2D] px-3 py-2">
+                <div className="w-[339px] h-[120px] md:w-[375px] lg:w-[375px] xl:w-[380px] 2xl:w-[385px] md:h-[126px] lg:h-[126px] rounded-[20px] bg-[#2D2D2D] px-3 py-2">
                   <p className="font-normal text-xs leading-[16.48px]">
                     {entry.ai.response}
                   </p>
@@ -190,7 +198,7 @@ const DialogData: React.FC = () => {
           {/* conversation section ends here */}
 
           {/* like section starts */}
-          <div className="flex gap-2 pt-5">
+          <div className="flex gap-2 pt-10 md:pt-5 lg:pt-5">
             <div className="w-[26px] h-[26px] rounded-full bg-[#2D2D2D] flex justify-center items-center">
               <FaRegThumbsUp className="text-[#8E8E8E] w-[14px] h-[14px]" />
             </div>
@@ -200,9 +208,9 @@ const DialogData: React.FC = () => {
           </div>
           {/* ends here */}
           {/* input box and send button section */}
-          <div className="fixed pb-16 bg-[#181818] w-full h-fit bottom-0 left-0">
-            <div className="flex justify-center items-center gap-4">
-              <div className="">
+          <div className="fixed pb-16 bg-[#181818] w-full h-fit bottom-0 left-0 pt-5 md:pt-0 lg:pt-0">
+            <div className="flex justify-center items-center gap-2 md:gap-4 lg:gap-4 xl:gap-4 2xl:gap-4">
+              <div className="pl-2 md:pl-0 lg:pl-0">
                 <input
                   type="text"
                   id="inputField2"
@@ -250,15 +258,14 @@ const DialogData: React.FC = () => {
                       The next step is to integrate your Telegram community
                     </p>
                     {/* button */}
-                    <Link href="/communityManager">
-                      <button
-                        className="bg-white items-center flex justify-center text-center 
-                                  text-xs font-normal ring-offset-white focus-visible:outline-none
-                                  text-[#0D0D0D] h-10 w-[199px] rounded-[66px] mx-auto shadow-drop2"
-                      >
-                        Integrate your community now
-                      </button>
-                    </Link>
+                    <button
+                      onClick={handleNavigation}
+                      className="bg-white items-center flex justify-center text-center 
+                text-xs font-normal ring-offset-white focus-visible:outline-none
+                text-[#0D0D0D] h-10 w-[199px] rounded-[66px] mx-auto shadow-drop2"
+                    >
+                      Integrate your community now
+                    </button>
                   </div>
                 </DialogContent>
               </div>

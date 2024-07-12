@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useAppStore } from "@/src/store";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { MdOutlineSignalCellularAlt } from "react-icons/md";
@@ -10,6 +11,8 @@ import { IoCopyOutline } from "react-icons/io5";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa6";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 interface SidebarItem {
   id: number;
@@ -76,6 +79,9 @@ const SideBar = () => {
   //  pathName === "/communityManager" ||
   //  pathName === "/trainAi";
 
+  const router = useRouter();
+  const aiTrainCompleted = useAppStore((state) => state.aiTrainCompleted);
+
   return (
     <>
       {/* sidebar for Workspace */}
@@ -138,58 +144,136 @@ const SideBar = () => {
                 {sideBar
                   .filter((data) => data.id === 1 || data.id === 2)
                   .map((data, index) => (
-                    <Link
-                      className="flex items-center gap-3 p-2"
-                      href={data.link}
-                      prefetch={false}
-                      key={data.id}
-                    >
-                      {/* Render the icon directly if it's a React icon */}
-                      {typeof data.img !== "string" && (
-                        <data.img
-                          size={14}
-                          style={
-                            index === 0
-                              ? {
+                    <div key={data.id} className="flex items-center gap-3 p-2">
+                      {data.id === 1 ? (
+                        <Dialog>
+                          <DialogTrigger className="cursor-pointer flex items-center gap-3">
+                            {typeof data.img !== "string" && (
+                              <data.img
+                                size={14}
+                                style={{
                                   color: "#707070",
                                   borderColor: "#707070",
                                   borderWidth: "1px",
                                   borderStyle: "solid",
-                                }
-                              : {}
-                          }
-                        />
-                      )}
-                      {/* Render image if it's a string */}
-                      {typeof data.img === "string" && (
-                        <Image
-                          src={data.img}
-                          alt={data.alt}
-                          width={14}
-                          height={14}
-                          style={
-                            index === 0
-                              ? {
+                                }}
+                              />
+                            )}
+                            {typeof data.img === "string" && (
+                              <Image
+                                src={data.img}
+                                alt={data.alt}
+                                width={14}
+                                height={14}
+                                style={{
                                   color: "#707070",
                                   borderColor: "#707070",
                                   borderWidth: "1px",
                                   borderStyle: "solid",
-                                }
-                              : {}
-                          }
-                        />
+                                }}
+                              />
+                            )}
+                            <p
+                              className={`font-normal text-sm leading-[14px] text-[#707070] ${
+                                !isHovered && "hidden"
+                              }`}
+                            >
+                              {data.name}
+                            </p>
+                          </DialogTrigger>
+
+                          <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
+                            {aiTrainCompleted ? (
+                              <div className="mx-auto pt-8">
+                                <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                                  Welcome to Your Workspace
+                                </h3>
+                                <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                                  With your workspace, you can easily create
+                                  announcements, engage with your community,
+                                  update projects, and simulate actions
+                                  seamlessly.
+                                </p>
+                                <button
+                                  onClick={() => router.push("/trainAi")}
+                                  className="bg-white items-center flex justify-center text-center 
+                        text-xs font-normal ring-offset-white focus-visible:outline-none
+                        text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+                                >
+                                  Get Started
+                                </button>
+                              </div>
+                            ) : (
+                              <div className="mx-auto pt-8 text-center">
+                                <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                                  Access Restricted
+                                </h3>
+                                <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                                  Before you start using your community
+                                  workspace, it&apos;s important to train your
+                                  AI. Discover the benefits of AI training here.
+                                </p>
+                                <button
+                                  onClick={() => router.push("/workspace")}
+                                  className="bg-white items-center flex justify-center text-center 
+                        text-xs font-normal ring-offset-white focus-visible:outline-none
+                        text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+                                >
+                                  Train your AI now
+                                </button>
+                              </div>
+                            )}
+                          </DialogContent>
+                        </Dialog>
+                      ) : (
+                        <Link
+                          href={data.link}
+                          prefetch={false}
+                          className="flex items-center gap-3"
+                        >
+                          {/* Render the icon directly if it's a React icon */}
+                          {typeof data.img !== "string" && (
+                            <data.img
+                              size={14}
+                              style={{
+                                color: "#707070",
+                                borderColor: "#707070",
+                                borderWidth: "1px",
+                                borderStyle: "solid",
+                              }}
+                            />
+                          )}
+                          {/* Render image if it's a string */}
+                          {typeof data.img === "string" && (
+                            <Image
+                              src={data.img}
+                              alt={data.alt}
+                              width={14}
+                              height={14}
+                              style={
+                                index === 0
+                                  ? {
+                                      color: "#707070",
+                                      borderColor: "#707070",
+                                      borderWidth: "1px",
+                                      borderStyle: "solid",
+                                    }
+                                  : {}
+                              }
+                            />
+                          )}
+                          <h2
+                            className={`font-medium text-sm text-[#707070] ${
+                              !isHovered && "hidden"
+                            }`}
+                          >
+                            {data.name}
+                          </h2>
+                        </Link>
                       )}
-                      <h2
-                        className={`font-medium text-sm text-[#707070] ${
-                          !isHovered && "hidden"
-                        }`}
-                      >
-                        {data.name}
-                      </h2>
-                    </Link>
+                    </div>
                   ))}
               </div>
-
               <h3
                 className={`mb-3 text-center text-xs ${
                   !isHovered && "hidden"
@@ -296,27 +380,47 @@ const SideBar = () => {
                   AI Community Workspace
                 </p>
               </DialogTrigger>
-              <DialogContent className="px-8  border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
-                <div className="mx-auto pt-8">
-                  <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-                    Welcome to Your Workspace
-                  </h3>
-                  <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-                    With your workspace, you can easily create announcements,
-                    engage with your community, update projects, and simulate
-                    actions seamlessly.
-                  </p>
-                  {/* button */}
-                  <Link href="/workspace">
+
+              <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
+                {aiTrainCompleted ? (
+                  <div className="mx-auto pt-8">
+                    <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                      Welcome to Your Workspace
+                    </h3>
+                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                      With your workspace, you can easily create announcements,
+                      engage with your community, update projects, and simulate
+                      actions seamlessly.
+                    </p>
                     <button
+                      onClick={() => router.push("/trainAi")}
                       className="bg-white items-center flex justify-center text-center 
-                                  text-xs font-normal ring-offset-white focus-visible:outline-none
-                                  text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+            text-xs font-normal ring-offset-white focus-visible:outline-none
+            text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
                     >
                       Get Started
                     </button>
-                  </Link>
-                </div>
+                  </div>
+                ) : (
+                  <div className="mx-auto pt-8 text-center">
+                    <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                      Access Restricted
+                    </h3>
+                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                      Before you start using your community workspace, it&apos;s
+                      important to train your AI. Discover the benefits of AI
+                      training here.
+                    </p>
+                    <button
+                      onClick={() => router.push("/workspace")}
+                      className="bg-white items-center flex justify-center text-center 
+            text-xs font-normal ring-offset-white focus-visible:outline-none
+            text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+                    >
+                      Train your AI now
+                    </button>
+                  </div>
+                )}
               </DialogContent>
             </Dialog>
           </div>

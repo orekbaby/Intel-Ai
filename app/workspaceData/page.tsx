@@ -7,17 +7,20 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import DialogData from "@/components/dialog/DialogData";
 import Link from "next/link";
+import { userDocInfo } from "@/utils/mockData";
 const page = () => {
   return (
     <>
-      <div className="pl-16 w-full h-full overflow-hidden mb-4 ">
+      <div className="pl-0 md:pl-16 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-full overflow-hidden mb-4 ">
         <section className="relative w-full h-full mb-48 bg-[#131313]">
-          <div className="w-full pl-8 pr-4 relative mb-0 md:mb-10 lg:mb-10 h-full">
-            <div className="pt-5 pl-6  h-full overflow-hidden">
-              <p className="font-medium text-[20px] mb-4">IntelAI Workspace</p>
-              <div className="w-full flex justify-between gap-4 h-full">
-                <div className="w-[40%] bg-transparent h-[840px] overflow-y-auto scrollbar-hide rounded-[20px] ">
-                  <div className="w-[490px] h-[105px] bg-[#1B1B1B] rounded-[20px] p-4 mb-10">
+          <div className="w-full pl-0 md:pl-8 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
+            <div className="pt-5 pl-2 md:pl-6 lg:pl-6 xl:pl-8 2xl:pl-10  h-full overflow-hidden">
+              <p className="font-medium text-base md:text-[20px] lg:text-[20px] xl:[20px] 2xl:[24px] mb-4">
+                IntelAI Workspace
+              </p>
+              <div className="w-full flex flex-col gap-4 md:flex-row lg:flex-row xl:flex-row 2xl:flex-rowjustify-between  h-full">
+                <div className="w-full md:w-[40%] lg:w-[40%] xl:w-[40%] 2xl:w-[45%] bg-transparent h-[840px] overflow-y-auto scrollbar-hide rounded-[20px] ">
+                  <div className="w-full md:w-[490px] lg:w-[490px] h-auto bg-[#1B1B1B] rounded-[20px] p-4 mb-10">
                     <h3 className="font-medium text-sm text-[#f9f9f9] mb-4">
                       Provide Context
                     </h3>
@@ -27,13 +30,13 @@ const page = () => {
                       accurate assistance.
                     </p>
                   </div>
-                  <div className="w-full h-[230px] overflow-y-auto scrollbar-hide mb-10">
+                  <div className="w-full h-[250px] md:h-[230px] lg:h-[230px] overflow-y-auto scrollbar-hide mb-10">
                     <h4 className="font-normal text-sm text-[#D6D6D6] italic mb-5 pl-3">
                       UPLOAD DOCUMENTS
                     </h4>
 
                     {/* my form data*/}
-                    <div className="px-6">
+                    <div className="px-2 md:px-6 lg-px-6">
                       <div className="border-b border-[#2B2B2B] pb-3 mb-6 w-full flex justify-between">
                         <h5
                           className="text-[#ABABAB] font-bold
@@ -74,7 +77,7 @@ const page = () => {
                           {" "}
                           Upload Document
                         </p>
-                        <p className="text-[#858585] font-normal text-sm leading-[16.58px] w-[90%] mb-3">
+                        <p className="text-[#858585] font-normal text-sm leading-[16.58px] w-full md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-[80%] mb-3">
                           Kindly upload any documents or links that you might
                           have about your project or product.
                           <span className="text-white font-normal text-sm leading-[14.58px]">
@@ -84,7 +87,7 @@ const page = () => {
                         </p>
 
                         <div
-                          className="justify-between gap-2 items-center pt-5 w-[397px] h-[60px] flex mt-2 font-[300px] text-sm
+                          className="justify-between gap-2 items-center pt-5 w-[370px] md:w-[397px] lg:w-[397px] h-[60px] flex mt-2 font-[300px] text-sm
                         text-center rounded-[66px] bg-[#131313] px-[15px] pb-4 border-[#4A6800] border"
                         >
                           <div className="flex flex-col">
@@ -131,7 +134,7 @@ const page = () => {
                   </Link>
                 </div>
 
-                <div className="w-[60%] bg-[#181818] rounded-[20px] h-[840px] overflow-y-auto scrollbar-hide relative">
+                <div className="w-full md:w-[60%] lg:w-[60%] bg-[#181818] rounded-[20px] h-[840px] overflow-y-auto scrollbar-hide relative">
                   <div className="w-full h-[60px] rounded-[20px] bg-[#1B1B1B] flex justify-between items-center px-5 mb-10">
                     <p className="font-normal text-sm leading-[14.56px] text-[#858585]">
                       Test Area
@@ -154,63 +157,15 @@ const page = () => {
                     className="ml-10 mb-1"
                   />
 
-                  <div className="w-full  ml-10 border-l-2 border-[#03FFA3] px-2 h-[230px] overflow-y-auto scrollbar-hide mb-5">
+                  <div className="w-full  ml-10 border-l-2 border-[#03FFA3] px-2  h-[250px] md:h-[230px] lg:h-[230px] overflow-y-auto scrollbar-hide mb-5">
                     {/* first content */}
-                    <p className="font-[200] text-base leading-[19.2px] mb-5 w-[95%]">
-                      GetEquity is a dynamic platform that democratizes access
-                      to private capital investments, providing a marketplace
-                      for investors of all types to engage in private company
-                      investments across diverse markets like the Middle East,
-                      Africa, and Europe. 
-                    </p>
-
-                    {/* second content */}
-                    <p className="font-[200] text-base leading-[19.2px] mb-5 w-[95%]">
-                      The company focuses on aggregating investments across
-                      various asset classes, making investment opportunities
-                      more accessible for SEC-accredited providers. Founded in
-                      2020 and based in Lagos, Nigeria, GetEquity operates as a
-                      private marketplace facilitating the trade of digital
-                      securities and assets securely and privately. Their
-                      innovative approach allows users to fund their wallets
-                      easily, invest in vetted investment products, buy and sell
-                      shares, and even gift equity to family and friends. 
-                    </p>
-
-                    {/* third content */}
-                    <p className="font-[200] text-base leading-[19.2px] mb-5 w-[95%]">
-                      The company focuses on aggregating investments across
-                      various asset classes, making investment opportunities
-                      more accessible for SEC-accredited providers. Founded in
-                      2020 and based in Lagos, Nigeria, GetEquity operates as a
-                      private marketplace facilitating the trade of digital
-                      securities and assets securely and privately. Their
-                      innovative approach allows users to fund their wallets
-                      easily, invest in vetted investment products, buy and sell
-                      shares, and even gift equity to family and friends.
-                    </p>
-
-                    {/* fourth content */}
-                    <p className="font-[200] text-base leading-[19.2px] mb-5 w-[95%]">
-                      GetEquity is a dynamic platform that democratizes access
-                      to private capital investments, providing a marketplace
-                      for investors of all types to engage in private company
-                      investments across diverse markets like the Middle East,
-                      Africa, and Europe. 
-                    </p>
-
-                    {/* fifth contenth */}
-                    <p className="font-[200] text-base leading-[19.1px] mb-5 w-[95%]">
-                      The company focuses on aggregating investments across
-                      various asset classes, making investment opportunities
-                      more accessible for SEC-accredited providers. Founded in
-                      2020 and based in Lagos, Nigeria, GetEquity operates as a
-                      private marketplace facilitating the trade of digital
-                      securities and assets securely and privately. Their
-                      innovative approach allows users to fund their wallets
-                      easily, invest in vetted investment products, buy and sell
-                      shares, and even gift equity to family and friends.
-                    </p>
+                    {userDocInfo?.map((row, index) => (
+                      <div key={index} className="">
+                        <p className="font-[200] text-base leading-[19.2px] mb-5 w-full md:w-[95%] lg:w-[95%] xl:[90%] 2xl:[85%]">
+                          {row.content}
+                        </p>
+                      </div>
+                    ))}
                   </div>
 
                   {/* button */}
@@ -227,8 +182,36 @@ const page = () => {
                         </button>
                       </DialogTrigger>
                     </div>
+                    <DialogContent className="hidden px-8 md:w-full lg:w-full border-none rounded-lg max-w-auto w-[540px] h-[401px] bg-[#181818]">
+                      <div className="mx-auto">
+                        <Image
+                          width={48}
+                          height={48}
+                          src="/loader.png"
+                          className="mx-auto mb-5 pt-10 bg-[#181818]"
+                          alt=""
+                        />
+                        <h3 className="font-medium text-center text-[20px] leading-[26px] w-[80%] mx-auto mb-4">
+                          Creating your simulation workspace
+                        </h3>
+                        <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-[383px] mb-5">
+                          Please wait while your AI generates the test
+                          environment for your results.
+                        </p>
+                        {/* button */}
+                        <Link href="/communityManager">
+                          <button
+                            className="bg-white items-center flex justify-center text-center 
+                                  text-xs font-normal ring-offset-white focus-visible:outline-none
+                                  text-[#0D0D0D] h-10 w-[199px] rounded-[66px] mx-auto shadow-drop2"
+                          >
+                            Integrate your community now
+                          </button>
+                        </Link>
+                      </div>
+                    </DialogContent>
                     <DialogContent
-                      className="absolute top-[54%] left-[80%] -translate-x-1/2 w-full px-4 md:w-full lg:w-full
+                      className="absolute top-[54%] left-[50%] md:left-[80%] lg:left-[80%] -translate-x-1/2 w-full px-0 md:px-4 lg:px-4 md:w-full lg:w-full
                      bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
                     >
                       <DialogData />

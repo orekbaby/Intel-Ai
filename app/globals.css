@@ -83,6 +83,11 @@ body,
   outline: 0;
 }
 
+@media (max-width: 768px) {
+  .text-input {
+    width: 336px;
+  }
+}
 .text-input3 {
   width: 450px;
   height: 35px;
@@ -204,4 +209,10 @@ input::-webkit-autofill:hover {
 
 input:-webkit-autofill::first-line {
   color: white !important;
+}
+
+@media (max-width: 768px) {
+  .text-input {
+    width: 306px;
+  }
 }

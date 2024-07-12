@@ -1050,3 +1050,29 @@ export const aiResponse = [
     span: "ai",
   },
 ];
+export const userDocInfo = [
+  {
+    content:
+      "GetEquity is a dynamic platform that democratizes accessto private capital investments, providing a marketplace for investors of all types to engage in private company investments across diverse markets like the Middle East,Africa, and Europe. ",
+  },
+
+  {
+    content:
+      "The company focuses on aggregating investments across various asset classes, making investment opportunities more accessible for SEC-accredited providers Founded in 2020 and based in Lagos, Nigeria, GetEquity operates as a private marketplace facilitating the trade of digital securities and assets securely and privately. Their innovative approach allows users to fund their wallets easily, invest in vetted investment products, buy and sell shares, and even gift equity to family and friends.  ",
+  },
+
+  {
+    content:
+      "The company focuses on aggregating investments across various asset classes, making investment opportunities more accessible for SEC-accredited providers Founded in 2020 and based in Lagos, Nigeria, GetEquity operates as a private marketplace facilitating the trade of digital securities and assets securely and privately. Their innovative approach allows users to fund their wallets easily, invest in vetted investment products, buy and sell shares, and even gift equity to family and friends.  ",
+  },
+
+  {
+    content:
+      "GetEquity is a dynamic platform that democratizes access to private capital investments, providing a marketplace for investors of all types to engage in private company investments across diverse markets like the Middle East,Africa, and Europe",
+  },
+
+  {
+    content:
+      " The company focuses on aggregating investments across various asset classes, making investment opportunities more accessible for SEC-accredited providers Founded in 2020 and based in Lagos, Nigeria, GetEquity operates as a private marketplace facilitating the trade of digital securities and assets securely and privately. Their innovative approach allows users to fund their wallets easily, invest in vetted investment products, buy and sell shares, and even gift equity to family and friends.",
+  },
+];

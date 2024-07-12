@@ -30,13 +30,13 @@ const LaunchPadTraining = () => {
         What’s new with your launchpad projects?
       </h2>
 
-      <div className="flex flex-col md:flex-row lg:flex-row justify-center items-center gap-6 md:gap-8 lg:gap-8 mb-10">
+      <div className="flex flex-col md:flex-row lg:flex-row justify-center items-center gap-2 md:gap-8 lg:gap-8 mb-10">
         <Dialog>
           <DialogTrigger
             className="cursor-pointer"
             onClick={() => setIsOpen(true)}
           >
-            <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[200px] py-[2px] px-[2px] mb-10 mt-10 shadow-drop">
+            <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[200px] py-[2px] px-[2px] mb-5 md:mb-10 lg:mb-10 xl:mb-12 2xl:mb-10 mt-10 shadow-drop">
               <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[76px] md:h-[50px] lg:h-[50px] w-[354px] md:w-[266px] lg:w-[266px] rounded-[200px] hover:bg-[#0B0F16]">
                 Upcoming Project Listings
               </button>

@@ -100,19 +100,19 @@ export default function Home() {
             <h1
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
-   text-transparent font-medium text-[32px] md:text-[60px] lg:text-[60px] 
+   text-transparent font-medium text-[32px] md:text-[56px] lg:text-[60px] xl:text-[64px] 2xl:text-[70px]
    leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-full lg:w-[60%] mb-5 mx-auto"
             >
               Collaboration Protocol of Blockchain AI Agents
             </h1>
-            <p className="font-normal text-[20px] md:text-[24px] lg:text-[24px] text-[#8A8A8A] text-center mb-5 md:mb-10 lg:mb-10 px-2 md:px-40 lg:px-40 w-[378px] md:w-full lg:w-[85%] leading-[18.2px] md:leading-[33.2px] lg:leading-[33.2px] mx-auto">
+            <p className="font-normal text-[20px] md:text-[24px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-[#8A8A8A] text-center mb-5 md:mb-10 lg:mb-10 px-2 md:px-40 lg:px-40 w-[378px] md:w-full lg:w-[85%] leading-[18.2px] md:leading-[33.2px] lg:leading-[33.2px] mx-auto">
               Tailored Intelligence built from the ground up specifically for
               the Web3 Ecosystem.
             </p>
 
             {/* mobile button */}
             <Link href="/logIn">
-              <div className="shadow-drop block md:hidden lg:hidden bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[24px] py-[2px] px-[2px] mb-10 h-[43px] md:h-[70px] lg:h-[70px] w-fit justify-center text-center mx-auto">
+              <div className="shadow-drop block md:hidden lg:hidden bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[24px] py-[2px] px-[2px] mb-10 h-[43px] md:h-[70px] lg:h-[70px]   w-fit justify-center text-center mx-auto">
                 <button className="flex items-center w-[258px] justify-center gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[24px] py-2 md:py-5 h-[43px] lg:py-5 px-12 md:px-28 lg:px-28 text-center font-medium text-sm">
                   Request Early Access
                   <span className="text-[#03FFA3]">
@@ -135,19 +135,22 @@ export default function Home() {
 
             {/* mobile picture */}
 
-            <div className="mx-auto block md:hidden lg:hidden h-[134.96px] w-[354.47px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-tl-[35px] rounded-tr-[40px] border border-white border-opacity-[25%] ">
-              <Image
+            <div className="mx-auto block md:hidden lg:hidden h-[134.96px] w-[354.47px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)]  border border-white border-opacity-[25%] rounded-[20px] ">
+              <video
                 width={354.47}
                 height={134.96}
-                alt="crop-img"
-                src="/crop-img.png"
-                className="object-cover h-auto text-center z-20 rounded-tl-[30px] rounded-tr-[33px]"
+                src="/Intel AI.mp4"
+                className="object-cover h-auto text-center z-20"
+                loop
+                autoPlay
+                muted
+                playsInline
               />
             </div>
             <Link href="logIn">
               <div
                 className="shadow-drop hidden md:block lg:block bg-gradient-to-r from-[rgba(3,255,163,.9)]
-             to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10 md:mb-16 lg:mb-16 h-[43px] md:h-[70px] lg:h-[70px] w-fit justify-center mx-auto"
+             to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10 md:mb-16 lg:mb-16 h-[43px] md:h-[70px] lg:h-[70px] xl:h-[70px] 2xl:h-[75px] w-fit justify-center mx-auto"
               >
                 <button className="flex gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[66px] py-2 md:py-5 lg:py-5 px-12 md:px-28 lg:px-28 text-center">
                   Request Early Access
@@ -178,12 +181,11 @@ export default function Home() {
                 src="/Intel AI.mp4"
                 width={1088}
                 height={721}
-                className="object-cover p-2 w-[100%] h-auto text-center z-[1] hidden md:block lg:block rounded-[20px]"
+                className="hidden md:block lg:block object-cover p-2 w-[100%] h-auto text-center z-[1] rounded-[20px]"
                 loop
                 autoPlay
                 muted
                 playsInline
-                style={{ display: "block" }}
               />
             </div>
 
@@ -376,7 +378,7 @@ export default function Home() {
         {integration?.map((row, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center items-center
+            className="flex flex-col md:flex-row lg:flex-row justify-center
             mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-32 lg:px-32 mb-20"
           >
             <div className="w-1/2">
@@ -452,7 +454,7 @@ export default function Home() {
         {content?.map((row, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row lg:flex-row items-center justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10  md:px-32 lg:px-32 mb-20"
+            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10  md:px-32 lg:px-32 mb-20"
           >
             <div className="w-1/2">
               <div className="flex gap-2 justify-start w-[500px]">
@@ -528,7 +530,7 @@ export default function Home() {
         {sorting?.map((row, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row lg:flex-row items-center justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-32 lg:px-32 mb-40"
+            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-32 lg:px-32 mb-40"
           >
             <div className="w-1/2">
               <div className="flex gap-2 justify-start w-[500px]">

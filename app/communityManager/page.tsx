@@ -5,6 +5,7 @@ import { MdArrowOutward } from "react-icons/md";
 import { FaCircle } from "react-icons/fa";
 import { proDashboard, proUpgrade } from "@/utils/mockData";
 import { CiCircleCheck } from "react-icons/ci";
+import Cookies from "js-cookie";
 
 const Page = () => {
   const bgClipText: React.CSSProperties = {

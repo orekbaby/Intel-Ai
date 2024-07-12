@@ -1,4 +1,5 @@
 "use client";
+import Cookies from "js-cookie";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -58,6 +59,8 @@ const Navigation = () => {
 
   const train = pathName === "/trainAi" || pathName === "/querySolving";
   const inline = pathName === "/workspace" || pathName === "/workspaceData";
+  const userSelect = Cookies.get("user");
+  // console.log("select user - ", userSelect);
 
   return (
     <>
@@ -115,25 +118,31 @@ const Navigation = () => {
         </header>
       )}
 
-      {/* Dashboard navigation  */}
+      {/*  oard navigation  */}
 
       {show && (
         <header className="hidden w-full absolute z-40 top-0 left-[290px] md:flex lg:flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
           <div className="hidden md:flex lg:flex items-center gap-6 justify-between">
             <div className="flex justify-center items-center gap-8">
-              <Link href="/communityManager">
-                <p className="text-base font-medium hover:underline hover:underline-offset-4 text-white">
-                  Community Manager
-                </p>
-              </Link>
-              <Link href="/kolInfluencer">
-                <p
-                  className="text-base font-medium hover:underline hover:underline-offset-4 text-[#6D6D6D]"
-                  style={{ pointerEvents: "none", opacity: 0.5 }}
-                >
-                  KOL Influencer
-                </p>
-              </Link>
+              <p
+                className={`text-base font-medium ${
+                  userSelect === "communityManager"
+                    ? "text-white"
+                    : "text-[#6D6D6D]"
+                }`}
+              >
+                Community Manager
+              </p>
+
+              <p
+                className={`text-base font-medium ${
+                  userSelect === "kolInfluencer"
+                    ? "text-white"
+                    : "text-[#6D6D6D] cursor-not-allowed"
+                }`}
+              >
+                KOL Influencer
+              </p>
             </div>
             <div className="flex items-center justify-end gap-6 ml-72">
               <p className="font-medium text-[20px] leading-[20.8px]">

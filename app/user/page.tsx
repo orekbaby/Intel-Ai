@@ -1,8 +1,9 @@
-import { chooseUser } from "@/utils/mockData";
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
+import Cookies from "js-cookie";
 
 const Page = () => {
   const style2: React.CSSProperties = {
@@ -11,6 +12,14 @@ const Page = () => {
     backgroundBlendMode: "darken",
     filter: "blur(60px)",
   };
+
+  const [selectUser, setSelectUser] = useState<string>("");
+
+  const handleSelectUser = (selectedOption: string) => {
+    setSelectUser(selectedOption);
+    Cookies.set("user", selectedOption);
+  };
+  // console.log("selected user - ", selectUser);
 
   return (
     <>
@@ -48,42 +57,73 @@ const Page = () => {
               Are you a
             </h2>
             <div className="flex flex-col w-full md:flex-row lg:flex-row justify-center items-center px-20 md:px-0 lg:px-0 gap-4 md:gap-10 lg:gap-10 rounded-[40px]">
-              {chooseUser?.map((row, index) => (
-                <Link href={index === 0 ? "/category" : "#"} key={index}>
-                  <div
-                    className={`hover:bg-gradient-to-r from-[rgba(189,254,28,0.9)]
+              <Link
+                onClick={() => handleSelectUser("communityManager")}
+                href="/category"
+                className="cursor-pointer"
+              >
+                <div
+                  className="hover:bg-gradient-to-r from-[rgba(189,254,28,0.9)]
                     to-[rgba(37,184,222,0.9)] py-[2px] px-[2px] 
-                    w-fit rounded-[40px] ${
-                      index !== 0
-                        ? "cursor-not-allowed opacity-50"
-                        : "cursor-pointer"
-                    }`}
+                    w-fit rounded-[40px]"
+                >
+                  <div
+                    className="bg-gradient-to-r from-[rgba(28,28,28,0.9)] to-[rgba(0,0,0,0.9)]
+                      w-[354px] md:w-[250px] lg:w-[250px] h-auto rounded-[40px] mx-auto px-4 md:px-6 lg:px-6 py-6 md:py-8 lg:py-8"
                   >
-                    <div
-                      className={`bg-gradient-to-r from-[rgba(28,28,28,0.9)] ${
-                        index === 1 ? "to-[#131313]" : "to-[rgba(0,0,0,0.9)]"
-                      } w-[354px] md:w-[250px] lg:w-[250px] h-auto rounded-[40px] mx-auto px-4 md:px-6 lg:px-6 py-6 md:py-8 lg:py-8`}
+                    <Image
+                      src="/manager.png"
+                      width={40}
+                      height={40}
+                      className="mb-5"
+                      alt="manager"
+                    />
+                    <h3 className="font-medium text-sm md:text-base lg:text-base mb-2">
+                      Community Manager
+                    </h3>
+                    <p
+                      className="font-[300] md:font-normal lg:font-normal text-xs w-full md:w-[212px] lg:w-[212px] h-auto text-[#707070]"
+                      style={{ fontWeight: 300 }}
                     >
-                      <Image
-                        src={row.img}
-                        width={40}
-                        height={40}
-                        className="mb-5"
-                        alt="manager"
-                      />
-                      <h3 className="font-medium text-sm md:text-base lg:text-base mb-2">
-                        {row.title}
-                      </h3>
-                      <p
-                        className="font-[300] md:font-normal lg:font-normal text-xs w-full md:w-[212px] lg:w-[212px] h-auto text-[#707070]"
-                        style={{ fontWeight: 300 }}
-                      >
-                        {row.content}
-                      </p>
-                    </div>
+                      Select a dedicated community manager to help nurture and
+                      grow your online community, ensuring a vibrant and engaged
+                      environment.
+                    </p>
                   </div>
-                </Link>
-              ))}
+                </div>
+              </Link>
+
+              {/* second category */}
+
+              <div
+                className="hover:bg-gradient-to-r from-[rgba(189,254,28,0.9)]
+                    to-[rgba(37,184,222,0.9)] py-[2px] px-[2px] 
+                    w-fit rounded-[40px] cursor-not-allowed opacity-50"
+              >
+                <div
+                  className="bg-[#131313]
+                      w-[354px] md:w-[250px] lg:w-[250px] h-auto rounded-[40px] mx-auto px-4 md:px-6 lg:px-6 py-6 md:py-8 lg:py-8 shadow-lg"
+                >
+                  <Image
+                    src="/influencer.png"
+                    width={40}
+                    height={40}
+                    className="mb-5"
+                    alt="manager"
+                  />
+                  <h3 className="font-medium text-sm md:text-base lg:text-base mb-2">
+                    KOL/Influencer
+                  </h3>
+                  <p
+                    className="font-[300] md:font-normal lg:font-normal text-xs w-full md:w-[212px] lg:w-[212px] h-auto text-[#707070]"
+                    style={{ fontWeight: 300 }}
+                  >
+                    Pick an influencer to amplify your brand’s message, connect
+                    with your target audience, and boost your visibility on
+                    social media
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>

@@ -64,17 +64,17 @@ const Page: React.FC = () => {
   };
 
   return (
-    <main className="pl-16 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
+    <div className="pl-0 md:pl-16 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
       <section className="relative w-full h-[100vh] overflow-y-auto scrollbar-hide pb-5 dashboard-color">
-        <div className="w-full pl-8 pr-4 relative mb-0 md:mb-10 lg:mb-10 h-full">
+        <div className="w-full pl-0 md:pl-8 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
           <div className="pt-5">
-            <p className="font-medium text-[20px] mb-4 pl-6">
+            <p className="font-medium text-base md:text-[20px] lg:text-[20px] xl:[20px] 2xl:[24px] mb-4 pl-6">
               IntelAI Workspace
             </p>
-            <div className="w-full flex justify-between gap-4 h-full px-4">
+            <div className="w-full flex flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row justify-between gap-4 h-full px-4">
               {/* Input section */}
-              <div className="w-[40%] bg-[#181818] h-auto rounded-[20px]">
-                <div className="w-[490px] h-[105px] bg-[#1B1B1B] rounded-[20px] p-4 mb-16">
+              <div className="w-full md:w-[40%] lg:w-[40%] xl:w-[40%] 2xl:w-[45%] bg-[#181818] h-auto rounded-[20px]">
+                <div className="w-full md:w-[490px] lg:w-[490px] h-auto bg-[#1B1B1B] rounded-[20px] p-4 mb-16">
                   <h3 className="font-medium text-sm text-[#f9f9f9] mb-4">
                     Provide Context
                   </h3>
@@ -87,7 +87,7 @@ const Page: React.FC = () => {
                 <h4 className="font-normal text-sm text-[#D6D6D6] italic mb-5 pl-3">
                   UPLOAD DOCUMENTS
                 </h4>
-                <div className="pl-6">
+                <div className="px-4 md:px-6 lg-px-6">
                   <form className="space-y-4" onSubmit={handleSubmit}>
                     <InputField
                       label="What is the name of your project?"
@@ -105,10 +105,10 @@ const Page: React.FC = () => {
                       value={uploadedFile}
                       onChange={handleFileChange}
                     />
-                    <div className="flex justify-center pt-5 mx-auto items-center">
+                    <div className="flex justify-center pt-5 items-center">
                       <button
                         type="submit"
-                        className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[24px] hover:bg-[#0B0F16] text-xs"
+                        className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300  w-[370px] h-[52px] md:h-10 lg:h-10 xl:h-[43px] 2xl:h-[52px] md:w-[153px] lg:w-[153px] rounded-[24px] hover:bg-[#0B0F16] text-xs"
                       >
                         Submit
                       </button>
@@ -117,7 +117,7 @@ const Page: React.FC = () => {
                 </div>
               </div>
               {/* Image section */}
-              <div className="w-[60%] bg-[#181818] rounded-[20px] h-[809px]">
+              <div className="hidden md:block lg:block w-[60%] bg-[#181818] rounded-[20px] h-[809px]">
                 <Image
                   src="/content-inside.png"
                   width={878}
@@ -129,7 +129,7 @@ const Page: React.FC = () => {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 

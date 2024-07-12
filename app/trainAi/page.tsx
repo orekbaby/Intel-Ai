@@ -1,9 +1,11 @@
+// page.tsx
 import React from "react";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ApeTerminalTraining from "@/components/trainAiTabs/ApeTerminalTraining";
 import LaunchPadTraining from "@/components/trainAiTabs/LaunchPadTraining";
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <main className="pl-2 md:pl-[290px] lg:pl-[290px] w-full h-[100vh] overflow-y-auto scrollbar-hide">
@@ -20,11 +22,10 @@ const page = () => {
                      md:data-[state=active]:bg-transparent lg:data-[state=active]:bg-transparent text-[#4D4D4D] text-sm gap-2 font-medium"
                     value="ApeTerminalTraining"
                   >
-                    {" "}
                     ApeTerminalTraining
                   </TabsTrigger>
                   <TabsTrigger
-                    className="w-full md:w-fit lg:w-fit px-4 md:px-2 lg:px-2 py-2  data-[state=active]:bg-[#1E1E1E]
+                    className="w-full md:w-fit lg:w-fit px-4 md:px-2 lg:px-2 py-2 data-[state=active]:bg-[#1E1E1E]
                      md:data-[state=active]:bg-transparent lg:data-[state=active]:bg-transparent data-[state=active]:text-white text-[#4D4D4D] text-sm gap-2 font-medium rounded-[16px]"
                     value="LaunchPadTraining"
                   >
@@ -53,4 +54,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
