@@ -268,7 +268,7 @@ const Compose: React.FC = () => {
                       onToggle={handleToggle}
                     />
                     <Button
-                      className="font-medium text-xs w-[83px] h-[36px] rounded-[50px] bg-[#0D0D0D] leading-[12.48px]"
+                      className="font-medium text-[12px] w-[83px] h-[36px] rounded-[50px] bg-[#0D0D0D] leading-[12.48px]"
                       onClick={clearInput}
                     >
                       Clear
