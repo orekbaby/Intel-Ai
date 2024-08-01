@@ -67,18 +67,6 @@ const Threads: React.FC<ThreadsProps> = ({ handleSave, threadsContent }) => {
                       setProgress={setProgress}
                       onSave={handleSave}
                       onCloseModal={closeModal}
-                      updateProgress={function (
-                        isScheduling: boolean,
-                        actionType: "save" | "post"
-                      ): void {
-                        throw new Error("Function not implemented.");
-                      }}
-                      isScheduling={false}
-                      setIsScheduling={function (
-                        value: React.SetStateAction<boolean>
-                      ): void {
-                        throw new Error("Function not implemented.");
-                      }}
                     />
                   </div>
                 </DialogContent>
