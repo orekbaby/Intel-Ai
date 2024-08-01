@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 const Navigation = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -58,17 +59,26 @@ const Navigation = () => {
     pathName === "/user";
 
   const train = pathName === "/trainAi" || pathName === "/querySolving";
-  const inline = pathName === "/workspace" || pathName === "/workspaceData";
+  const inline = pathName === "/workspace";
   const userSelect = Cookies.get("user");
   // console.log("select user - ", userSelect);
+
+  const agents = pathName === "/x-Agents";
 
   return (
     <>
       {pathName === "/" && (
-        <header className=" w-full absolute top-0 left-0 z-40 flex items-center justify-between bg-[#0A0908] h-[60px] md:h-[70px] lg:h-[70px] px-3 md:px-20 lg:px-20">
+        <header className="w-full absolute top-0 left-0 z-40 flex items-center justify-between bg-[#0A0908] h-[60px] md:h-[70px] lg:h-[70px] px-3 md:px-20 lg:px-20">
           <Image src="/Logo.png" width={99} height={40} alt="logo" />
 
           {/* Menu Contents */}
+          <div
+            ref={menuRef}
+            className=" block text-white ml-0 md:ml-6 lg:ml-6  text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
+            onClick={toggleMenu}
+          >
+            <FiMenu />
+          </div>
           {menuOpen && (
             <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-3/6 bg-[#181818] py-8 px-4">
               <div className="flex flex-col justify-center gap-6 text-sm font-normal">
@@ -118,7 +128,7 @@ const Navigation = () => {
         </header>
       )}
 
-      {/*  oard navigation  */}
+      {/*  dashboard navigation  */}
 
       {show && (
         <header className="hidden w-full absolute z-40 top-0 left-[290px] md:flex lg:flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
@@ -177,7 +187,7 @@ const Navigation = () => {
       {/* login navigation */}
 
       {visible && (
-        <header className="absolute z-40 top-0 left-0 flex justify-end h-[60px] md:h-[70px] lg:h-auto px-3 md:px-20 lg:px-10 py-4 border-[#363636] w-[95%] border-b ">
+        <header className="fixed z-50 top-0 left-0 flex justify-end h-[60px] bg-black opacity-[1%] md:h-[70px] lg:h-[70px] px-3 md:px-20 lg:px-10 py-4 border-[#363636] w-[95%] border-b ">
           <div className="flex justify-start pr-10">
             <Image src="/Logo.png" width={97} height={30} alt="logo" />
           </div>
@@ -187,6 +197,57 @@ const Navigation = () => {
       {/* workspace navigation */}
       {inline && (
         <header className="absolute z-40 top-0 left-0 flex justify-end h-[60px] md:h-[72px] lg:h-auto px-3 md:px-20 lg:px-12 py-4 w-full bg-[#0D0D0D] gap-4">
+          <p className="font-medium text-[20px]">Co-pilot</p>
+          <div
+            ref={menuRef}
+            className=" block text-white ml-0 md:ml-6 lg:ml-6  text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
+            onClick={toggleMenu}
+          >
+            <FiMenu />
+          </div>
+
+          {/* Menu Contents */}
+          {menuOpen && (
+            <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
+              <div className="flex flex-col justify-center gap-6 text-sm font-normal">
+                <Link href="/communityManager">
+                  <MenuItem label="community Manager" />
+                </Link>
+                <Link href="/kolInfluencer">
+                  <MenuItem label="Kol Influencer" />
+                </Link>
+              </div>
+            </div>
+          )}
+          <div className="flex items-center justify-center gap-2">
+            <div
+              className="relative inline-block w-7 h-4 transition duration-200 ease-linear rounded-full cursor-pointer bg-[#545454]"
+              onClick={handleToggle}
+            >
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={handleToggle}
+                className="absolute opacity-0 w-full h-full cursor-pointer bg-[#545454]"
+              />
+              <span
+                className={`absolute left-0 inline-block w-3.5 h-3.5 transition duration-200 ease-linear transform rounded-full shadow ${
+                  isChecked ? "translate-x-3 bg-green-400" : "bg-white"
+                }`}
+              ></span>
+            </div>
+            <p className="font-medium text-[14px] leading-[14.56px] text-[#6B6B6B]">
+              {isChecked ? "ON" : "OFF"}
+            </p>
+          </div>
+        </header>
+      )}
+
+      {/* x-agents navigation */}
+
+      {agents && (
+        <header className="absolute z-40 top-0 left-0 flex justify-end h-[60px] md:h-[72px] lg:h-auto px-3 md:px-20 lg:px-12 py-4 w-full bg-[#0D0D0D] gap-4">
+          <p className="text-[18px] leading-[18.72px] font-medium"></p>
           <p className="font-medium text-[20px]">Co-pilot</p>
           <div
             ref={menuRef}
@@ -261,13 +322,23 @@ const Navigation = () => {
 
           <div className="hidden md:flex lg:flex items-center gap-6 justify-between">
             <div className="flex justify-center items-center gap-6 pl-[500px]">
-              <Link href="/communityManager">
-                <p className="text-[13.75px] leading-[14.3px] font-medium hover:underline hover:underline-offset-4">
+              <Link href="/trainAi">
+                <p
+                  className={`text-[13.75px] leading-[14.3px] font-medium ${
+                    pathname === "/trainAi" ? "text-white" : "text-[#6A6A6A]"
+                  }`}
+                >
                   AI Training
                 </p>
               </Link>
-              <Link href="/querySolving" className="">
-                <p className="text-[13.75px] leading-[14.3px] font-medium hover:underline hover:underline-offset-4 text-[#6A6A6A]">
+              <Link href="/querySolving">
+                <p
+                  className={`text-[13.75px] leading-[14.3px] font-medium ${
+                    pathname === "/querySolving"
+                      ? "text-white"
+                      : "text-[#6A6A6A]"
+                  }`}
+                >
                   Query Escalation Protocol
                 </p>
               </Link>

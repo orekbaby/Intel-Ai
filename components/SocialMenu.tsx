@@ -30,7 +30,7 @@ const SocialMenu = () => {
 
   const handleOptionChange = (option: string) => {
     setSelectedOption(option);
-    setIsOpen(false); // Close the dropdown after selection
+    setIsOpen(false);
   };
 
   const toggleDropdown = () => {

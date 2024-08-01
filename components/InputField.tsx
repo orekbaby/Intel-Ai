@@ -1,26 +1,25 @@
-// InputField component
 import React, { useState } from "react";
-import { FaCheck, FaCaretDown } from "react-icons/fa"; // Import dropdown icon
+import { FaCheck, FaCaretDown } from "react-icons/fa";
 
 interface InputFieldProps {
   label: string;
   placeholder: string;
-  value: string; // Define value prop
-  onChange: (value: string) => void; // Define onChange handler in props
+  value: string;
+  onChange: (value: string) => void;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
   label,
   placeholder,
   value,
-  onChange, // Destructure onChange from props
+  onChange,
 }) => {
   const [isFilled, setIsFilled] = useState<boolean>(false);
-  const [isEditing, setIsEditing] = useState<boolean>(true); // Initially false
+  const [isEditing, setIsEditing] = useState<boolean>(true);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    onChange(newValue); // Call onChange prop with updated value
+    onChange(newValue);
     setIsFilled(newValue.trim() !== "");
   };
 
@@ -55,11 +54,11 @@ const InputField: React.FC<InputFieldProps> = ({
             id="inputField2"
             className="custom-input mt-2 font-[300px] text-sm leading-[22.68px]"
             placeholder={placeholder}
-            value={value} // Use value prop for input value
+            value={value}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
             onKeyPress={handleKeyPress}
-            autoComplete="off" // Disable autocomplete
+            autoComplete="off"
           />
         ) : (
           <>
@@ -77,7 +76,7 @@ const InputField: React.FC<InputFieldProps> = ({
 
             <FaCaretDown
               className="text-white absolute right-[5%] cursor-pointer mt-2"
-              onClick={handleClick} // Show input on click
+              onClick={handleClick}
             />
           </>
         )}

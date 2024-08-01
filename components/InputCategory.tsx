@@ -1,6 +1,5 @@
-// input category component
 import React, { useState } from "react";
-import { FaCheck, FaCaretDown } from "react-icons/fa6"; // Import dropdown icon
+import { FaCheck, FaCaretDown } from "react-icons/fa6";
 
 interface InputCategoryProps {
   value: string;
@@ -36,7 +35,7 @@ const InputCategory: React.FC<InputCategoryProps> = ({ value, onChange }) => {
               id="category"
               value={value}
               onChange={handleCategoryChange}
-              className="text-white custom-input mt-2 font-[300px] text-sm leading-[22.68px] rounded p-2 w-full pr-10"
+              className="text-white custom-input mt-2 font-[300px] text-xs md:text-sm lg:text-sm leading-[22.68px] rounded p-2 w-full pr-10"
               style={{ border: "none", outline: "none" }}
               required
             >
@@ -61,7 +60,7 @@ const InputCategory: React.FC<InputCategoryProps> = ({ value, onChange }) => {
             </div>
             <FaCaretDown
               className="text-white absolute right-[5%] cursor-pointer mt-2"
-              onClick={handleClick} // Show input on click
+              onClick={handleClick}
             />
           </>
         )}

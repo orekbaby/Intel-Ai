@@ -49,7 +49,7 @@ body,
   background-color: #03ffa3;
 }
 .bg-toggle-on {
-  background-color: #545454;
+  background-color: #03ffa3;
 }
 
 .custom-input {
@@ -77,7 +77,7 @@ body,
   height: 60px;
   border-radius: 15px;
   background-color: #0d0d0d;
-  color: #302d2d;
+  color: text-#f9f9f9;
   padding: 0 15px;
   font-style: italic;
   outline: 0;
@@ -154,7 +154,7 @@ select option:hover {
   height: 50px;
   border-radius: 15px;
   background-color: #0d0d0d;
-  color: #302d2d;
+  color: #fff;
   border-color: #272727;
   border-width: 2px;
   padding: 0 15px;
@@ -215,4 +215,82 @@ input:-webkit-autofill::first-line {
   .text-input {
     width: 306px;
   }
+}
+
+.embla {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  position: relative;
+  min-width: 100%;
+  padding: 1rem;
+}
+
+/* code for editor */
+/* globals.css */
+#toolbar {
+  border: none;
+  background-color: #252525;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 4px 4px 0 0;
+}
+
+#toolbar .ql-formats {
+  display: inline-flex;
+  gap: 8px;
+}
+
+#toolbar button,
+#toolbar select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+#toolbar button:hover,
+#toolbar select:hover {
+  background-color: #e2e8f0;
+  border-radius: 4px;
+}
+
+.ql-container {
+  border: none;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+
+.ql-editor {
+  min-height: 200px;
+  padding: 16px;
+}
+
+.ql-editor.ql-blank::before {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* lexical editor */
+/* styles.css */
+.editor-header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.editor-content {
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-height: 200px;
 }

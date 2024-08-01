@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useAppStore } from "@/src/store";
+import { useAppStore } from "@/zustand/store";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { MdOutlineSignalCellularAlt } from "react-icons/md";
@@ -47,7 +47,7 @@ const SideBar = () => {
       img: "/X.png",
       name: "X Agents",
       alt: "x-img",
-      link: "",
+      link: "/x-Agents",
     },
     {
       id: 3,
@@ -75,12 +75,30 @@ const SideBar = () => {
   const block =
     pathName === "/workspace" ||
     pathName === "/workspaceData" ||
-    pathName === "/querySolving";
+    pathName === "/querySolving" ||
+    pathName === "/x-Agents";
   //  pathName === "/communityManager" ||
   //  pathName === "/trainAi";
 
   const router = useRouter();
   const aiTrainCompleted = useAppStore((state) => state.aiTrainCompleted);
+
+  const textToCopy = "0x35b...a36b";
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleCopyClick = () => {
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+        }, 2000);
+      })
+      .catch(() => {
+        // Handle error if necessary
+      });
+  };
 
   return (
     <>
@@ -448,7 +466,7 @@ const SideBar = () => {
             </Button>
           </div>
 
-          <div className="flex justify-between w-full items-center h-auto border border-[#131313] bg-[#141414] rounded-[24px] pr-2">
+          <div className="flex justify-between w-full items-center h-auto border border-[#131313] bg-[#141414] rounded-[24px] pr-2 relative">
             <div className="flex gap-2 justify-start items-center py-2 px-4">
               <div>
                 <Image
@@ -459,10 +477,18 @@ const SideBar = () => {
                   className="rounded-[50px]"
                 />
               </div>
-              <p className="font-normal text-sm leading">0x35b...a36b</p>
-              <IoCopyOutline className="w-[16px] h-[16px]" />
+              <p className="font-normal text-sm leading">{textToCopy}</p>
+              <IoCopyOutline
+                className="w-[16px] h-[16px] cursor-pointer"
+                onClick={handleCopyClick}
+              />
             </div>
             <FaPlus className="w-[20px] h-[10px] text-[#C8C8C8]" />
+            {showPopup && (
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-white text-black text-xs px-2 py-1 rounded-[12px]">
+                Text copied!
+              </div>
+            )}
           </div>
         </div>
       )}

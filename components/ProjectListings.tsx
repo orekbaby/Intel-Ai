@@ -46,17 +46,16 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
       if (!validTypes.includes(file.type)) {
         alert("Please upload a document in PDF, DOC, or DOCX format.");
         if (fileInputRef.current) {
-          fileInputRef.current.value = ""; // Clear the input
+          fileInputRef.current.value = "";
         }
         setUploadedFileName(null);
         setIsUpload(false);
       } else {
-        // Simulating file upload delay with setTimeout
         setTimeout(() => {
           console.log("File uploaded:", file.name);
           setUploadedFileName(file.name);
           setIsUpload(true);
-        }, 1000); // Replace with actual upload logic
+        }, 1000);
       }
     }
   };
@@ -72,19 +71,15 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
     setUploadedFileName(null);
     setIsUpload(false);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; // Clear the input
+      fileInputRef.current.value = "";
     }
   };
 
   const handleSave = () => {
-    // Save to local storage
     localStorage.setItem("projectName", inputValue);
-    // Show success message
     setShowSuccessMessage(true);
-    // Close modal after 2 seconds
     setTimeout(() => {
       setShowSuccessMessage(false);
-      // Close modal
       onClose();
     }, 2000);
   };
@@ -93,17 +88,17 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
     <>
       {launchpadData?.map((row, index) => (
         <div key={index}>
-          <div className="flex flex-col mb-5 pb-1 border-[#1E1E1E] border-b text-left">
-            <h5 className="font-medium cursor-pointer text-sm leading-[14.56px] pb-2">
+          <div className="flex flex-col mb-5 pb-1 border-[#1E1E1E] border-b text-left px-2 md:px-0 lg:px-0">
+            <h5 className="font-medium cursor-pointer text-[13px] md:text-sm lg:text-sm leading-[14.56px] pb-2">
               Upcoming Project Listings
             </h5>
           </div>
           <div className="w-full h-auto rounded-[20px] pb-10">
-            <div className="w-[460px] h-auto bg-[#1B1B1B] pt-3 pb-4 px-4 rounded-bl-[20px] rounded-br-[20px]">
+            <div className="w-[430px] md:w-[460px] lg:w-[460px] h-auto bg-[#1B1B1B] pt-3 pb-4 px-3 md:px-4 lg:px-4 rounded-bl-[20px] rounded-br-[20px]">
               <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
                 Instructions:
               </h5>
-              <p className="font-normal text-sm leading-[16.55px] text-[#E4E4E4] mb-3">
+              <p className="font-normal text-[13.5px] md:text-sm lg:text-sm leading-[16.55px] text-[#E4E4E4] mb-3">
                 {row.insructionText}
               </p>
               <div className="flex flex-col gap-1">
@@ -134,14 +129,12 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
                     {row.bullet4}
                   </p>
                 </div>
-
-                {/* Render other bullet points similarly */}
               </div>
             </div>
 
             {/* Input area starts here */}
             <div className="pt-7">
-              <div className="border-[#2B2B2B] border-b pb-3 mb-5 w-full">
+              <div className="border-[#2B2B2B] border-b pb-3 mb-5 w-full px-2 md:px-0 lg:px-0">
                 <label
                   htmlFor="inputField3"
                   className="block text-white font-semibold text-sm leading-[22.48px] mb-2"
@@ -177,7 +170,7 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
                 </div>
               </div>
               {/* Upload button */}
-              <div className="border-[#2B2B2B] border-b pb-4 mb-5 w-full">
+              <div className="border-[#2B2B2B] border-b pb-4 mb-5 w-full px-2 md:px-0 lg:px-0">
                 <label
                   htmlFor="inputField5"
                   className="block text-white font-semibold text-sm leading-[22.48px] pt-1 mb-3"
@@ -238,7 +231,7 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
               {/* Save button */}
               <div className="flex justify-center pt-5 mx-auto items-center">
                 <button
-                  className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
+                  className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[52px] md:h-10 lg:h-10 w-[325px] md:w-[153px] lg:w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
                   onClick={handleSave}
                 >
                   Save

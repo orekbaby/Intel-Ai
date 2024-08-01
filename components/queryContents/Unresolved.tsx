@@ -15,11 +15,13 @@ import { FaArrowUp } from "react-icons/fa6";
 interface UnresolvedProps {
   addQuery: (query: string) => void;
   resolveComment: () => void;
+  updateUserData: () => void;
 }
 
 const Unresolved: React.FC<UnresolvedProps> = ({
   addQuery,
   resolveComment,
+  updateUserData,
 }) => {
   return (
     <div className="w-full">
@@ -94,7 +96,10 @@ const Unresolved: React.FC<UnresolvedProps> = ({
               <TableCell className="text-left font-normal text-[9px] md:text-[10px] lg:text-xs leading-[12.48px]">
                 <Button
                   className="w-[66px] flex justify-center gap-1 items-center h-[25px] bg-[#03FFA3] rounded-[66px] text-center text-[#0D0D0D]"
-                  onClick={() => addQuery(row.query)}
+                  onClick={() => {
+                    updateUserData();
+                    addQuery(row.query);
+                  }}
                 >
                   {row.button === "Sort" ? "Resolve" : row.button}
                   <FaArrowUp className="text-[10px] rotate-45" />

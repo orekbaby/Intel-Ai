@@ -47,7 +47,7 @@ const ApeTerminalTable = () => {
                     : ""
                 }`}
               >
-                <TableCell className=" hidden md:block lg:block font-medium text-xs leading-[14.56px]">
+                <TableCell className="hidden md:block lg:block font-medium text-xs leading-[14.56px]">
                   <div className="w-[100px] md:w-full h-w-full">
                     {row.number}
                   </div>

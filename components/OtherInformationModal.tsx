@@ -47,7 +47,7 @@ const OtherInformationModal: React.FC = () => {
         newOpenModals[index] = false;
         return newOpenModals;
       });
-    }, 2000); // Hide message after 2 seconds and close modal
+    }, 2000);
   };
 
   return (
@@ -86,13 +86,13 @@ const OtherInformationModal: React.FC = () => {
                   <p className="font-semibold text-[13px] leading-[16.56px] text-white ">
                     {row.content}
                   </p>
-                  <p className="font-normal text-sm text-[#4D4D4D]">
+                  <p className="font-normal text-sm text-[#4D4D4D] pt-2">
                     Add other options
                   </p>
                 </div>
               </div>
             </DialogTrigger>
-            <DialogContent className="absolute top-[50%] max-w-auto w-[460px] h-auto overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none">
+            <DialogContent className="absolute top-[50%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px] h-auto overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none">
               <div className="w-full h-auto bg-[#131313] border-b border-[#131313] rounded-[20px] pb-10">
                 <div className="bg-[#101010] border-[#181818] border-b px-4 py-[10px] w-[460px] h-[47px] mb-1">
                   <h5 className="font-semibold text-sm text-[14.56px]">
@@ -118,8 +118,8 @@ const OtherInformationModal: React.FC = () => {
                   </p>
                 </div>
                 {/* text area starts here */}
-                <div className="pt-8 pb-3 px-2 w-auto">
-                  <div className="relative w-[420px] h-[108px] bg-[#0D0D0D] rounded-[12px] border border-[#363636]">
+                <div className="pt-8 pb-3 px-4 md:px-2 lg:px-2 w-auto">
+                  <div className="relative w-[360px] md:w-[420px] lg:w-[420px] h-[108px] bg-[#0D0D0D] rounded-[12px] border border-[#363636]">
                     <textarea
                       className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#7B7B7B] font-normal italic text-xs"
                       placeholder="Add more information"

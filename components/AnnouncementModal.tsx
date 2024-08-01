@@ -70,7 +70,7 @@ const AnnouncementModal: FC = () => {
         newOpenModals[index] = false;
         return newOpenModals;
       });
-    }, 2000); // Hide message after 2 seconds and close modal
+    }, 2000);
   };
 
   return (
@@ -107,16 +107,16 @@ const AnnouncementModal: FC = () => {
             </div>
           </DialogTrigger>
           <DialogContent
-            className="absolute top-[52%] max-w-auto w-[460px]
+            className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px]
                       h-[90vh] overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none"
           >
             <div className="w-full bg-[#131313] h-auto rounded-[20px] border-b border-[#131313] pb-10">
-              <div className="bg-[#101010] border-[#181818] border-b px-4 py-[10px] w-[460px] h-[47px] mb-3">
+              <div className="bg-[#101010] border-[#181818] border-b px-2 md:px-4 lg:px-4 py-[10px] w-[460px] h-[47px] mb-3">
                 <h5 className="font-semibold text-sm text-[14.56px]">
                   {row.title}
                 </h5>
               </div>
-              <div className="px-4 w-auto">
+              <div className="px-0 md:px-4 lg:px-4 w-auto">
                 <p className="italic text-[13px] font-[300] mb-3">
                   When do you want to inform your community about this
                   information?
@@ -127,7 +127,7 @@ const AnnouncementModal: FC = () => {
                   <select
                     value={selectedOption}
                     onChange={handleOptionChange}
-                    className="w-[420px] h-[44px] rounded-[16px] bg-[#2A2A2A] text-white px-4 py-2 outline-none border-none font-[300] text-sm"
+                    className="w-[350px] md:w-[420px] lg:w-[420px] xl:w-[420px] 2xl:w-[450px] h-[44px] rounded-[16px] bg-[#2A2A2A] text-white px-4 py-2 outline-none border-none font-[300] text-sm"
                   >
                     <option
                       value="today"
@@ -165,11 +165,11 @@ const AnnouncementModal: FC = () => {
                   {showCalendar && <Calendar onSave={handleDateSave} />}
                 </div>
               </div>
-              <div className="w-[460px] h-auto bg-[#1B1B1B] pt-2 pb-4 px-4 rounded-bl">
+              <div className="w-[420px] h-auto bg-[#1B1B1B] pt-2 pb-4 px-4 rounded-bl">
                 <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
                   Instructions:
                 </h5>
-                <p className="font-normal text-sm w-[80%] leading-[14.56px] text-[#E4E4E4] mb-3">
+                <p className="font-normal text-sm w-[80%] leading-[16.56px] text-[#E4E4E4] mb-3">
                   {row.insructionText}
                 </p>
                 <div className="flex flex-col gap-2">
@@ -203,7 +203,7 @@ const AnnouncementModal: FC = () => {
               </div>
 
               <div className="pt-8 pb-3 px-2 w-auto">
-                <div className="relative w-[420px] h-[108px] bg-[#0D0D0D] rounded-[12px] border border-[#363636]">
+                <div className="relative w-[375px] md:w-[420px] lg:w-[420px] h-[108px] bg-[#0D0D0D] rounded-[12px] border border-[#363636]">
                   <textarea
                     className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#f9f9f9] font-normal italic text-xs mb-t"
                     placeholder="Add more information"
@@ -224,7 +224,7 @@ const AnnouncementModal: FC = () => {
                 </div>
               </div>
               <hr className="border-b border-[#222222]" />
-              <div className="flex justify-center pt-5 mx-auto items-center">
+              <div className="flex justify-start md:justify-center lg:justify-center pt-5 items-start px-28 md:px-0 lg:px-0 md:items-center lg:items-center w-auto">
                 <button
                   onClick={() => handleSave(index)}
                   className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
@@ -233,7 +233,7 @@ const AnnouncementModal: FC = () => {
                 </button>
               </div>
 
-              <div className="absolute top-[50%] left-[35%] text-center mt-2 text-green-500">
+              <div className="absolute top-[50%] left-[28%] md:left-[35%] lg:left-[35%] text-center mt-2 text-green-500">
                 {modalStates[index].showSaveMessage && (
                   <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
                     <p className="text-sm font-normal"> Saved successfully!</p>

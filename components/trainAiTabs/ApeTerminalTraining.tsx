@@ -11,9 +11,14 @@ import DialogData2 from "../DialogData2";
 
 const ApeTerminalTraining = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isTableOpen, setIsTableOpen] = useState(false);
 
   const handleCompleteSimulation = () => {
     setIsDialogOpen(false);
+  };
+
+  const handleTableOpen = () => {
+    setIsTableOpen(true);
   };
 
   return (
@@ -28,8 +33,8 @@ const ApeTerminalTraining = () => {
               Upcoming Announcements
             </div>
           </DialogTrigger>
-          <DialogContent className="absolute top-[48%] max-w-auto w-[562px] px-4 md:w-full lg:w-full bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
-            <div className="w-full md:w-full lg:w-full h-[400px] md:h-[400px] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+          <DialogContent className="absolute top-[48%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
+            <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <AnnouncementModal />
             </div>
           </DialogContent>
@@ -42,8 +47,8 @@ const ApeTerminalTraining = () => {
               Community Engagement
             </div>
           </DialogTrigger>
-          <DialogContent className="absolute top-[50%] max-w-auto w-[562px] h-[400px] px-4 md:w-full lg:w-full bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
-            <div className="w-full md:w-full lg:w-full h-[400px] md:h-[400px] lg:h-[100vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+          <DialogContent className="absolute top-[50%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] h-auto px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
+            <div className=" w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <CommunityModal />
             </div>
           </DialogContent>
@@ -56,7 +61,7 @@ const ApeTerminalTraining = () => {
               Other Information
             </div>
           </DialogTrigger>
-          <DialogContent className="absolute top-[55%] w-[486px] h-auto px-0 md:w-full lg:w-full bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
+          <DialogContent className="absolute top-[55%] w-[430px] md:w-[486px] lg:w-[486px] h-auto px-4 md:px-0 lg:px-0 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
             <div className="w-full md:w-full lg:w-full h-auto overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <OtherInformationModal />
             </div>
@@ -77,20 +82,18 @@ const ApeTerminalTraining = () => {
               Simulate on Telegram
             </button>
           </DialogTrigger>
-
-          <p className="block md:hidden lg:hidden font-normal text-center text-[#BDFE1C] text-sm leading-[14.56px] border-b border-[#BDFE1C] w-fit pt-6 mx-auto">
-            Training History
-          </p>
         </div>
         <DialogContent
-          className="absolute top-[54%] left-[80%] -translate-x-1/2 w-full px-4 md:w-full lg:w-full
+          className="absolute top-[54%] left-[50%] md:left-[80%] lg:left-[80%] -translate-x-1/2 w-full px-0 md:px-4 lg:px-4 md:w-full lg:w-full
                      bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
         >
           <DialogData2 onCompleteSimulation={handleCompleteSimulation} />
         </DialogContent>
       </Dialog>
 
-      <div className="mx-auto text-left">
+      {/* desktop */}
+
+      <div className="hidden md:block lg:block mx-auto text-left">
         <p className="font-medium text-[18px] leading-[13px] mb-5">
           Training History
         </p>
@@ -99,10 +102,34 @@ const ApeTerminalTraining = () => {
         </p>
       </div>
 
-      {/* table component */}
-      <div className="mx-auto">
+      {/* table component for  desktop */}
+      <div className="mx-auto hidden md:block lg:block">
         <ApeTerminalTable />
       </div>
+
+      {/* mobile */}
+      {!isTableOpen ? (
+        <p
+          className="block md:hidden lg:hidden font-normal text-center text-[#BDFE1C] text-sm leading-[14.56px] border-b border-[#BDFE1C] w-fit pt-6 mx-auto"
+          onClick={handleTableOpen}
+        >
+          Training History
+        </p>
+      ) : (
+        <>
+          <div className="block md:hidden lg:hidden mx-auto text-left">
+            <p className="font-medium text-[18px] leading-[13px] mb-5">
+              Training History
+            </p>
+            <p className="font-normal text-sm leading-[13px] text-[#929292] mb-3">
+              Recent Training
+            </p>
+          </div>
+          <div className="mx-auto block md:hidden lg:hidden pb-20">
+            <ApeTerminalTable />
+          </div>
+        </>
+      )}
     </div>
   );
 };

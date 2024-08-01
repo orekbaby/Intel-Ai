@@ -20,7 +20,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <>
-      <main className="pl-2 md:pl-[290px] lg:pl-[290px] w-full h-[100vh] pb-8 md:pb-5 lg:pb-5">
+      <main className="pl-2 md:pl-[290px] lg:pl-[290px] w-full h-[80vh] md:h-[100vh] lg:h-[100vh]  pb-8 md:pb-5 lg:pb-5">
         <section className="dashboard-color relative w-full h-[100vh] rounded-tl-[20px] overflow-y-auto scrollbar-hide">
           <div className="w-full px-0 md:px-0 lg:px-2 relative mb-0 md:mb-10 lg:mb-10 h-full ml-0 md:ml-10 lg:ml-10">
             <h1 className="leading-[37.44px] text-[36px] mb-5 md:mb-7 lg:mb-7 font-[200] pt-10 md:pt-8 lg:pt-8">
@@ -154,49 +154,50 @@ const DashboardPage: React.FC = () => {
               ))}
 
               {proUpgrade?.map((row, index) => (
-                <div
-                  key={index}
-                  className="w-[371px] md:w-[437px] lg:w-[437px] h-auto rounded-[20px] bg-gradient-to-r from-[rgba(189,254,28,1)]
+                <div key={index} className="pb-20">
+                  <div
+                    className="w-[371px] md:w-[437px] lg:w-[437px] h-auto rounded-[20px] bg-gradient-to-r from-[rgba(189,254,28,1)]
            via-[rgba(37,184,222,1)] to-[rgba(70,13,255,1)] px-6 py-5"
-                >
-                  <div className="bg-[#505050] w-[53px] h-[53px] rounded-full flex items-center text-center justify-center mb-3">
-                    <Image
-                      src={row.img}
-                      width={30}
-                      height={30}
-                      alt="cable-icon"
-                      className=""
-                    />
-                  </div>
+                  >
+                    <div className="bg-[#505050] w-[53px] h-[53px] rounded-full flex items-center text-center justify-center mb-3">
+                      <Image
+                        src={row.img}
+                        width={30}
+                        height={30}
+                        alt="cable-icon"
+                        className=""
+                      />
+                    </div>
 
-                  <h4 className="font-medium text-base leading-[16.64px] mb-3">
-                    {row.title}
-                  </h4>
+                    <h4 className="font-medium text-base leading-[16.64px] mb-3">
+                      {row.title}
+                    </h4>
 
-                  <div className="flex gap-2">
-                    <CiCircleCheck />
-                    <p className="font-normal text-xs leading-[14.64px] text-white w-full mb-3">
-                      {row.content1}
-                    </p>
-                  </div>
+                    <div className="flex gap-2">
+                      <CiCircleCheck />
+                      <p className="font-normal text-xs leading-[14.64px] text-white w-full mb-3">
+                        {row.content1}
+                      </p>
+                    </div>
 
-                  <div className="flex gap-2">
-                    <CiCircleCheck />
-                    <p className="font-normal text-xs leading-[14.64px] text-white w-full mb-3">
-                      {row.content1}
-                    </p>
-                  </div>
+                    <div className="flex gap-2">
+                      <CiCircleCheck />
+                      <p className="font-normal text-xs leading-[14.64px] text-white w-full mb-3">
+                        {row.content1}
+                      </p>
+                    </div>
 
-                  <div className="flex justify-end">
-                    <Link href="/">
-                      <button
-                        className="bg-white items-center flex justify-center text-center 
+                    <div className="flex justify-end">
+                      <Link href="/">
+                        <button
+                          className="bg-white items-center flex justify-center text-center 
                  text-xs font-normal md:font-medium lg:font-medium ring-offset-white focus-visible:outline-none
                  text-[#0D0D0D] w-[105px] h-[26px] md:h-10 lg:h-10 md:w-[153px] lg:w-[153px] rounded-[66px] md:rounded-[20px] lg:rounded-[20px] mx-auto leading-[12.8px]"
-                      >
-                        {row.button}
-                      </button>
-                    </Link>
+                        >
+                          {row.button}
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}

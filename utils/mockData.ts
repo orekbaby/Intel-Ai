@@ -1076,3 +1076,170 @@ export const userDocInfo = [
       " The company focuses on aggregating investments across various asset classes, making investment opportunities more accessible for SEC-accredited providers Founded in 2020 and based in Lagos, Nigeria, GetEquity operates as a private marketplace facilitating the trade of digital securities and assets securely and privately. Their innovative approach allows users to fund their wallets easily, invest in vetted investment products, buy and sell shares, and even gift equity to family and friends.",
   },
 ];
+
+// content for content studio
+export const response = [
+  {
+    title: "response1",
+    response:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    img: "/glow-img.png",
+    button1: "Add to draft",
+    button2: "Tweet now",
+  },
+
+  {
+    title: "response2",
+    response:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    img: "/glow-img.png",
+    button1: "Add to draft",
+    button2: "Tweet now",
+  },
+
+  {
+    title: "response3",
+    response:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    img: "/glow-img.png",
+    button1: "Add to draft",
+    button2: "Tweet now",
+  },
+];
+
+export const scheduleTweet = [
+  {
+    tweet:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    thread: "Thread",
+    span: "(5)",
+    time: "20/03/2024",
+    spanTime: "10:40PM",
+  },
+
+  {
+    tweet:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    thread: "Thread",
+    span: "(5)",
+    time: "20/03/2024",
+    spanTime: "10:40PM",
+  },
+];
+
+export const postedContent = [
+  {
+    realTime: "1hr ago",
+    content:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    comment: "Comments",
+    commentSpan: "(1,234)",
+    likes: "Likes",
+    likesSpan: "(2,563)",
+    retweet: "Retweets",
+    retweetSpan: "(2,563)",
+  },
+
+  {
+    realTime: "1 day ago",
+    content:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    comment: "Comments",
+    commentSpan: "(1,234)",
+    likes: "Likes",
+    likesSpan: "(2,563)",
+    retweet: "Retweets",
+    retweetSpan: "(2,563)",
+  },
+];
+
+export const savedDrafts = [
+  {
+    draftTitle: "Exploring the Future of Finance: DeFi Revolution",
+    result:
+      " Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance&quos;Decentralized Finance, commonly known as DeFi, represents a revolutionary shift in the financial industry, leveraging blockchain technology to create an open, permissionless, and highly transparent financial ecosystem. Unlike traditional financial systems, which rely on centralized institutions like banks and brokerage firms, DeFi operates on decentralized networks, primarily Ethereum, enabling anyone with an internet connectionto access financial services. This democratization of financeeliminates intermediaries, reduces costs, and increases the speed of transactions, making financial services more accessible to the unbanked and underbanked populations around the world.",
+  },
+
+  {
+    draftTitle: "The meaning of LBP",
+    result:
+      " Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance&quos;Decentralized Finance, commonly known as DeFi, represents a revolutionary shift in the financial industry, leveraging blockchain technology to create an open, permissionless, and highly transparent financial ecosystem. Unlike traditional financial systems, which rely on centralized institutions like banks and brokerage firms, DeFi operates on decentralized networks, primarily Ethereum, enabling anyone with an internet connectionto access financial services. This democratization of financeeliminates intermediaries, reduces costs, and increases the speed of transactions, making financial services more accessible to the unbanked and underbanked populations around the world.",
+  },
+
+  {
+    draftTitle: "Get started with crypto",
+    result:
+      " Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance Decentralized Finance, commonly known as DeFi, represents a revolutionary shift in the financial industry, leveraging blockchain technology to create an open, permissionless, and highly transparent financial ecosystem. Unlike traditional financial systems, which rely on centralized institutions like banks and brokerage firms, DeFi operates on decentralized networks, primarily Ethereum, enabling anyone with an internet connectionto access financial services. This democratization of financeeliminates intermediaries, reduces costs, and increases the speed of transactions, making financial services more accessible to the unbanked and underbanked populations around the world.",
+  },
+];
+
+export const threadsContent = [
+  {
+    content:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    count: "1",
+    countNum: "/4 Threads",
+  },
+
+  {
+    content:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    count: "2",
+    countNum: "/4 Threads",
+  },
+
+  {
+    content:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    count: "3",
+    countNum: "/4 Threads",
+  },
+
+  {
+    content:
+      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
+    count: "4",
+    countNum: "/4 Threads",
+  },
+];
+
+export const hookModal = [
+  {
+    content: "Question Hook",
+  },
+
+  {
+    content: "Storytelling Hook",
+  },
+
+  {
+    content: "Statistic Hook",
+  },
+
+  {
+    content: "Bold Statement Hook",
+  },
+  {
+    content: "News Hook",
+  },
+
+  {
+    content: " How-To Hook",
+  },
+
+  {
+    content: "Listicle Hook",
+  },
+
+  {
+    content: "Problem/Solution Hook",
+  },
+
+  {
+    content: "Quote Hook",
+  },
+
+  {
+    content: "Mystery Hook",
+  },
+];

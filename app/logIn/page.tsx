@@ -5,6 +5,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane, FaArrowLeft } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Page = () => {
   const [invitationCode, setInvitationCode] = useState("");
@@ -13,7 +15,7 @@ const Page = () => {
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (invitationCode.trim() === "") {
-      alert("Please enter your invitation code.");
+      toast.error("Please enter your invitation code.");
     } else {
       router.push("/connectWeb3");
     }
@@ -33,8 +35,9 @@ const Page = () => {
 
   return (
     <>
-      <main className="mt-4 md:mt-20 lg:mt-20 mx-auto">
-        <section className="first-gradient section relative w-full h-full z-10 mb-48 ">
+      <main className="mt-0 md:mt-20 lg:mt-20 mx-auto">
+        <ToastContainer />
+        <section className="first-gradient section relative w-full h-[80vh] md:h-[100vh] lg:h-[100vh] z-10 mb-48 ">
           <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full">
             {/* top-gradient */}
             <div
@@ -47,7 +50,7 @@ const Page = () => {
               className="bottom-[-30%] right-[50%] absolute w-[40%] h-[130px] md:h-[500px] lg:h-[150px] translate-x-1/2"
             ></div>
             {/* Back button */}
-            <div className="mb-6 flex justify-start absolute top-[-10%] left-10">
+            <div className="mb-6 flex justify-start absolute top-[-8%] md:top-[-10%] left-15s md:left-10 lg:left-10">
               <Link href="/">
                 <button className="flex items-center text-[#707070]">
                   <FaArrowLeft className="mr-2 text-[#707070]" />
@@ -112,8 +115,6 @@ const Page = () => {
                 >
                   Submit
                 </button>
-
-                {/* old button */}
 
                 <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[16px] md:rounded-[66px] lg:rounded-[66px] py-[2px] px-[2px]  mt-10 shadow-drop w-fit mx-auto">
                   <button className="bg-[#090909] flex justify-center gap-5 items-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[50px] w-[317px] md:w-[379px] lg:w-[379px] rounded-[16px] md:rounded-[66px] lg:rounded-[66px] hover:bg-[#0B0F16]">

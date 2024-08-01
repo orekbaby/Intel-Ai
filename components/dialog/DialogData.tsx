@@ -1,5 +1,5 @@
 "use client";
-import { useAppStore } from "@/src/store";
+import { useAppStore } from "@/zustand/store";
 import React, { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Image from "next/image";
@@ -207,6 +207,7 @@ const DialogData: React.FC = () => {
             </div>
           </div>
           {/* ends here */}
+
           {/* input box and send button section */}
           <div className="fixed pb-16 bg-[#181818] w-full h-fit bottom-0 left-0 pt-5 md:pt-0 lg:pt-0">
             <div className="flex justify-center items-center gap-2 md:gap-4 lg:gap-4 xl:gap-4 2xl:gap-4">

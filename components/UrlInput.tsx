@@ -10,7 +10,7 @@ interface UrlInputProps {
 const UrlInput: React.FC<UrlInputProps> = ({ value, onChange }) => {
   const [error, setError] = useState("");
   const [isValid, setIsValid] = useState(false);
-  const [isEditing, setIsEditing] = useState<boolean>(true); // Initially false
+  const [isEditing, setIsEditing] = useState<boolean>(true);
 
   const validateUrl = (value: string) => {
     try {
@@ -18,7 +18,6 @@ const UrlInput: React.FC<UrlInputProps> = ({ value, onChange }) => {
       const hasValidProtocol =
         urlObj.protocol === "http:" || urlObj.protocol === "https:";
       const hasWWW = value.includes("www.");
-
       return hasValidProtocol && hasWWW;
     } catch (_) {
       return false;
@@ -66,7 +65,7 @@ const UrlInput: React.FC<UrlInputProps> = ({ value, onChange }) => {
               onChange={onChange}
               onBlur={handleBlur}
               onKeyPress={handleKeyPress}
-              autoComplete="off" // Disable autocomplete
+              autoComplete="off"
               required
             />
           </div>
@@ -85,7 +84,7 @@ const UrlInput: React.FC<UrlInputProps> = ({ value, onChange }) => {
             </div>
             <FaCaretDown
               className="text-white absolute right-[5%] ml-2 cursor-pointer mt-2"
-              onClick={handleClick} // Show input on click
+              onClick={handleClick}
             />
           </>
         )}

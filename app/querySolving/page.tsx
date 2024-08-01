@@ -5,13 +5,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CiMenuKebab, CiPaperplane } from "react-icons/ci";
 import Image from "next/image";
 import Unresolved from "@/components/queryContents/Unresolved";
+import UnresolvedMobile from "@/components/queryContents/UnresolvedMobile";
 import Resolved from "@/components/queryContents/Resolved";
 import All from "@/components/queryContents/All";
-import {
-  escalationReport,
-  querySection,
-  responseSection,
-} from "@/utils/mockData";
+import { escalationReport } from "@/utils/mockData";
 import {
   Pagination,
   PaginationContent,
@@ -37,7 +34,28 @@ const Page = () => {
   const [chatItems, setChatItems] = useState<ChatItem[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [showResolveButton, setShowResolveButton] = useState<boolean>(false);
-  const latestMessageRef = useRef<HTMLDivElement>(null); // Ref to track latest message
+  const latestMessageRef = useRef<HTMLDivElement>(null);
+  const [userData, setUserData] = useState({ name: "", img: "" });
+  const [showUserData, setShowUserData] = useState(false);
+
+  useEffect(() => {
+    const name = localStorage.getItem("redirectName") || "";
+    const img = localStorage.getItem("redirectImg") || "";
+
+    if (name && img) {
+      setUserData({ name, img });
+    }
+  }, []);
+
+  const updateUserData = () => {
+    const name = localStorage.getItem("redirectName") || "";
+    const img = localStorage.getItem("redirectImg") || "";
+
+    if (name && img) {
+      setUserData({ name, img });
+      setShowUserData(true);
+    }
+  };
 
   useEffect(() => {
     if (latestMessageRef.current) {
@@ -55,7 +73,6 @@ const Page = () => {
     };
     setChatItems((prevItems) => [...prevItems, newQuery]);
 
-    // Simulate typing delay before response
     setTimeout(() => {
       const newResponse: ChatItem = {
         type: "response",
@@ -67,10 +84,10 @@ const Page = () => {
         responderSpan: "ai",
       };
       simulateTyping(newResponse);
-    }, 1500); // Adjust delay time here (milliseconds)
+    }, 1500); //
 
     setInputValue("");
-    setShowResolveButton(false); // Hide the resolve button when a new query is added
+    setShowResolveButton(false);
   };
 
   const simulateTyping = (response: ChatItem) => {
@@ -100,9 +117,9 @@ const Page = () => {
           ...prevItems.slice(0, prevItems.length - 1),
           response,
         ]);
-        setShowResolveButton(true); // Show the resolve button after typing is done
+        setShowResolveButton(true);
       }
-    }, 30); // Adjust typing speed here (milliseconds per character)
+    }, 30);
   };
 
   const handleSendQuery = () => {
@@ -114,7 +131,6 @@ const Page = () => {
   const handleResolveComment = () => {
     setChatItems([]);
     setShowResolveButton(false);
-    // Additional logic to update the table component cell can be added here
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -123,16 +139,40 @@ const Page = () => {
     }
   };
   return (
-    <div className="w-full h-[100vh] relative overflow-y-auto scrollbar-hide  dashboard-color">
-      <div className="pl-[120px] w-[70%] h-full pt-5">
+    <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
+      <div className="pl-0 md:pl-[120px] lg:pl-[120px] w-full md:w-[70%] lg:w-[70%] h-full pt-5">
         <div className="pl-5">
           <div className="w-[150px] h-[35px] rounded-[25px] bg-[#1B1B1B] flex justify-center items-center mb-10">
             <p className="font-medium text-sm leading-[14.56px]">
               Escalation Report
             </p>
           </div>
+          {/* desktop */}
+          <div className="hidden md:flex lg:flex justify-start gap-4 items-center">
+            {escalationReport?.map((row, index) => (
+              <div key={index} className="">
+                <div className="w-[138px] h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
+                  <p className="font-medium text-xs leading-[12.48px] mb-5">
+                    {row.title}
+                  </p>
+                  <p className="font-[300] text-[40px] leading-[41.6px]">
+                    {row.number}
+                  </p>
+                  <div className="w-[21px] h-[10px] rounded-[2px] flex justify-center items-center bg-[#03FFA3] bg-opacity-[11%]">
+                    <div className="flex justify-center items-center gap-1">
+                      <p className="font-[500] text-[6px] text-[#76CA43]">
+                        {row.percentage}
+                      </p>
+                      <FaArrowUp className="w-[5px] h-[3px] text-[#76CA43] rotate-6" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
 
-          <div className="flex justify-start gap-4 items-center">
+          {/* mobile */}
+          <div className="grid grid-cols-2 gap-4 items-center md:hidden lg:hidden">
             {escalationReport?.map((row, index) => (
               <div key={index} className="">
                 <div className="w-[138px] h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
@@ -180,22 +220,48 @@ const Page = () => {
               </TabsTrigger>
             </TabsList>
             <TabsContent
-              className="w-full h-full pt-2 overflow-x-hidden"
+              className="hidden md:block lg:block w-full h-full pt-2 overflow-x-hidden"
               value="Unresolved"
             >
               <Unresolved
                 addQuery={addQuery}
                 resolveComment={handleResolveComment}
+                updateUserData={updateUserData}
+              />
+            </TabsContent>
+
+            <TabsContent
+              className="block md:hidden lg:hidden w-full h-full pt-2 overflow-x-hidden"
+              value="Unresolved"
+            >
+              <UnresolvedMobile
+                addQuery={addQuery}
+                resolveComment={handleResolveComment}
               />
             </TabsContent>
             <TabsContent
-              className="w-full h-full pt-2 overflow-x-hidden"
+              className="hidden md:block lg:block w-full h-full pt-2 overflow-x-hidden"
               value="Resolved"
             >
               <Resolved />
             </TabsContent>
+
             <TabsContent
-              className="w-full h-full pt-2 overflow-x-hidden"
+              className="block md:hidden lg:hidden w-full h-full pt-2 overflow-x-hidden"
+              value="Resolved"
+            >
+              <Resolved />
+            </TabsContent>
+
+            <TabsContent
+              className="w-full h-full pt-2 overflow-x-hidden hidden md:block lg:block"
+              value="All"
+            >
+              <All />
+            </TabsContent>
+
+            <TabsContent
+              className="block md:hidden lg:hidden w-full h-full pt-2 overflow-x-hidden"
               value="All"
             >
               <All />
@@ -204,8 +270,8 @@ const Page = () => {
         </div>
 
         {/* pagination  */}
-        <div className="">
-          <Pagination className="flex items-end justify-end">
+        <div className="hidden md:block lg:block">
+          <Pagination className="flex items-end justify-end ">
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious href="#" />
@@ -230,13 +296,27 @@ const Page = () => {
           </Pagination>
         </div>
       </div>
+      {/* desktop ends here */}
 
-      <div className="fixed top-10 right-0 h-[100vh] w-[30%] pb-20 overflow-y-auto scrollbar-hide pt-24">
+      <div className="hidden md:block lg:block fixed top-10 right-0 h-[90vh] md:h-[100vh] lg:h-[100vh] w-full md:w-[30%] lg:w-[30%] pb-20 overflow-y-auto scrollbar-hide pt-10 md:pt-24 lg:pt-24">
         <p className="font-normal text-base leading-[16.64px] mb-4">
           Query Sorting Portal
         </p>
         <div className="w-full h-full overflow-y-auto scrollbar-hide overflow-x-hidden bg-[#181818] rounded-[20px] pb-5">
-          <div className="bg-[#252525] w-[397px] flex justify-end px-6 items-center h-[65px] rounded-[20px]">
+          <div className="bg-[#252525] w-[397px] flex justify-between px-6 items-center h-[65px] rounded-[20px]">
+            {showUserData && (
+              <div className="flex items-center gap-1">
+                <Image
+                  src={userData.img}
+                  alt="User Avatar"
+                  width={25}
+                  height={25}
+                />
+                <p className="font-medium text-[15px] leading-[14.56px]">
+                  {userData.name}
+                </p>
+              </div>
+            )}
             <CiMenuKebab className="text-base text-[#767676]" />
           </div>
           <div
@@ -252,8 +332,8 @@ const Page = () => {
                   } mb-8 relative pt-6 px-4`}
                 >
                   {item.type === "query" ? (
-                    <div className="relative w-[375px] h-[69px] rounded-[20px] bg-[#2D2D2D] px-4 py-2">
-                      <p className="font-normal text-xs leading-[12.84px] mb-1">
+                    <div className="relative w-[237px] md:w-[375px] lg:w-[375px] h-[86px] md:h-[69px] lg:h-[69px] rounded-[20px] bg-[#2D2D2D] px-4 py-2">
+                      <p className="font-normal text-[13.75px] md:text-xs lg:text-xs leading-[15.6px] md:leading-[12.84px] lg:leading-[12.84px] mb-1">
                         {item.content}
                       </p>
                       <div className="flex justify-end">
@@ -278,7 +358,8 @@ const Page = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="relative w-[264px] h-[166px] rounded-[20px] bg-[#696969] px-3 py-4">
+                    // response section
+                    <div className="relative w-[284px] md:w-[264px] lg:w-[264px] h-[156px] md:h-[166px] lg:h-[166px] rounded-[20px] bg-[#696969] px-3 py-4">
                       <p className="font-normal text-xs leading-[14.84px]">
                         {item.content}
                       </p>
@@ -293,6 +374,7 @@ const Page = () => {
                             className=""
                           />
                         </div>
+
                         <div className="flex justify-center items-center bg-[#2D2D2D] border-[3px] border-[#181818] w-[57px] h-[28px] rounded-[20px]">
                           <p className="font-normal text-xs">
                             {item.responderName}

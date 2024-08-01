@@ -1,9 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-
 import Image from "next/image";
-
 import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import { CiPaperplane } from "react-icons/ci";
 import Link from "next/link";
@@ -21,11 +19,11 @@ interface DialogData2Props {
 }
 
 const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null); // State to track active button index
-  const [conversation, setConversation] = useState<any[]>([]); // State to track conversation
-  const [promptCount, setPromptCount] = useState<number>(0); // State to track prompt count
-  const [inputValue, setInputValue] = useState<string>(""); // State to track input value
-  const latestMessageRef = useRef<HTMLDivElement>(null); // Ref to track latest message
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [conversation, setConversation] = useState<any[]>([]);
+  const [promptCount, setPromptCount] = useState<number>(0);
+  const [inputValue, setInputValue] = useState<string>("");
+  const latestMessageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (latestMessageRef.current) {
@@ -35,7 +33,7 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
 
   const handleButtonClick = (index: number) => {
     if (promptCount < 15) {
-      let newUserPrompts: any[] = []; // Explicitly define newUserPrompts as an array of any
+      let newUserPrompts: any[] = [];
       if (index === 0) {
         newUserPrompts = userInput;
       } else if (index === 1) {
@@ -48,13 +46,13 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
         ...conversation,
         ...newUserPrompts.map((prompt: any) => ({
           user: prompt,
-          ai: aiResponse[0], // Assuming aiResponse array has corresponding responses
+          ai: aiResponse[0],
         })),
       ];
 
       setConversation(newConversation);
       setPromptCount(newConversation.length);
-      setActiveIndex(index === activeIndex ? null : index); // Toggle active state
+      setActiveIndex(index === activeIndex ? null : index);
     }
   };
 
@@ -115,7 +113,7 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
             </div>
           </div>
           {/* chips options */}
-          <div className="flex justify-center gap-1 items-center mb-14">
+          <div className="flex justify-center gap-0 md:gap-1 lg:gap-1 xl:gap-2 2xl:gap-2 items-center mb-14 px-6">
             {chipsButton?.map((row, index) => (
               <div
                 key={index}
@@ -127,7 +125,7 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
               >
                 <Button
                   key={index}
-                  className={`w-[149px] h-[37px] flex justify-center items-center rounded-[8px] py-2 px-6 font-medium text-[12.76px] bg-[#2C2C2C]`}
+                  className={`w-[126px] md:w-[149px] lg:w-[149px] xl:w-[149px] 2xl:w-[163px] h-[37px] flex justify-center items-center rounded-[8px] py-2 px-6 font-medium text-[12.76px] bg-[#2C2C2C]`}
                   onClick={() => handleButtonClick(index)}
                 >
                   {row.button}
@@ -140,7 +138,7 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
             <div key={index}>
               <div className="flex justify-end mb-8 relative">
                 <div className="">
-                  <div className="w-[264px] h-[53px] rounded-[20px] bg-[#696969] px-4 py-2">
+                  <div className="w-[183px] md:w-[264px] lg:w-[264px] xl:w-[270px] 2xl:w-[274px] h-[53px] rounded-[20px] bg-[#696969] px-4 py-2">
                     <h5 className="font-normal text-xs mb-1">
                       {entry.user.question}
                     </h5>
@@ -163,7 +161,7 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
               </div>
 
               <div className="relative mb-8">
-                <div className="w-[375px] h-[126px] rounded-[20px] bg-[#2D2D2D] px-3 py-2">
+                <div className="w-[339px] h-[120px] md:w-[375px] lg:w-[375px] xl:w-[380px] 2xl:w-[385px] md:h-[126px] lg:h-[126px] rounded-[20px] bg-[#2D2D2D] px-3 py-2">
                   <p className="font-normal text-xs leading-[16.48px]">
                     {entry.ai.response}
                   </p>
@@ -193,7 +191,7 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
           {/* conversation section ends here */}
 
           {/* like section starts */}
-          <div className="flex gap-2 pt-5">
+          <div className="flex gap-2 pt-10 md:pt-5 lg:pt-5">
             <div className="w-[26px] h-[26px] rounded-full bg-[#2D2D2D] flex justify-center items-center">
               <FaRegThumbsUp className="text-[#8E8E8E] w-[14px] h-[14px]" />
             </div>
@@ -202,10 +200,12 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
             </div>
           </div>
           {/* ends here */}
+
           {/* input box and send button section */}
-          <div className="fixed pb-16 bg-[#181818] w-full h-fit bottom-0 left-0">
-            <div className="flex justify-center items-center gap-4">
-              <div className="">
+
+          <div className="fixed pb-16 bg-[#181818] w-full h-fit bottom-0 left-0 pt-5 md:pt-0 lg:pt-0">
+            <div className="flex justify-center items-center gap-2 md:gap-4 lg:gap-4 xl:gap-4 2xl:gap-4">
+              <div className="pl-2 md:pl-0 lg:pl-0">
                 <input
                   type="text"
                   id="inputField2"
@@ -224,6 +224,7 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
                 <CiPaperplane className="w-[26px] h-[26px] text-black" />
               </Button>
             </div>
+
             {/* stimulate your telegram button */}
 
             <div className="flex justify-center pt-6 ">

@@ -1,3 +1,5 @@
+"use client";
+import React, { useEffect } from "react";
 import {
   advantages,
   communityOwners,
@@ -8,6 +10,7 @@ import {
   sorting,
   sponsors,
 } from "@/utils/mockData";
+import Marquee from "react-fast-marquee";
 
 import "../styles/fonts.css";
 import {
@@ -18,25 +21,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Link from "next/link";
-
 import Image from "next/image";
-
 import { accordionData } from "@/utils/mockData";
-
-// import Marquee from "react-fast-marquee";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
-import Testimonials from "@/components/carousel/Testimonials";
-
-import Testimonials2 from "@/components/carousel/Testimonials2";
-
-import Testimonials3 from "@/components/carousel/Testimonials3";
+import Carousel from "@/components/Carousel";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const bgClipText: React.CSSProperties = {
@@ -86,6 +74,13 @@ export default function Home() {
     filter: "blur(50px)",
   };
 
+  const style6: React.CSSProperties = {
+    background:
+      "radial-gradient(circle, rgba(3, 255, 163, .7), rgba(220, 31, 255, .7))",
+    backgroundBlendMode: "darken",
+    filter: "blur(50px)",
+  };
+
   return (
     <main className="mt-4 md:mt-20 lg:mt-20">
       {/* hero-section */}
@@ -97,15 +92,19 @@ export default function Home() {
               style={style2}
               className="bottom-[47%] -left-[1%] absolute w-[100%] md:w-[60%] lg:w-[60%] h-[130px] md:h-[360px] lg:h-[360px] -translate-x-1/2 z-[-1]"
             ></div>
+            <div
+              style={style6}
+              className="bottom-0 -left-[50%] absolute w-[100%] md:w-[60%] lg:w-[30%] h-[130px] md:h-[360px] lg:h-[160px] -translate-x-1/2 z-[-1]"
+            ></div>
             <h1
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
    text-transparent font-medium text-[32px] md:text-[56px] lg:text-[60px] xl:text-[64px] 2xl:text-[70px]
-   leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-full lg:w-[60%] mb-5 mx-auto"
+   leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-[75%] lg:w-[80%] xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto"
             >
               Collaboration Protocol of Blockchain AI Agents
             </h1>
-            <p className="font-normal text-[20px] md:text-[24px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-[#8A8A8A] text-center mb-5 md:mb-10 lg:mb-10 px-2 md:px-40 lg:px-40 w-[378px] md:w-full lg:w-[85%] leading-[18.2px] md:leading-[33.2px] lg:leading-[33.2px] mx-auto">
+            <p className="font-normal text-[18px] md:text-[24px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-[#8A8A8A] text-center mb-5 md:mb-10 lg:mb-10 px-2 md:px-40 lg:px-40 w-[378px] md:w-full lg:w-[95%] leading-[20.2px] md:leading-[33.2px] lg:leading-[33.2px] mx-auto">
               Tailored Intelligence built from the ground up specifically for
               the Web3 Ecosystem.
             </p>
@@ -135,12 +134,12 @@ export default function Home() {
 
             {/* mobile picture */}
 
-            <div className="mx-auto block md:hidden lg:hidden h-[134.96px] w-[354.47px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)]  border border-white border-opacity-[25%] rounded-[20px] ">
+            <div className="mx-auto block md:hidden lg:hidden h-auto w-[354.47px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)]  border border-white border-opacity-[25%] rounded-[20px] ">
               <video
-                width={354.47}
-                height={134.96}
+                width={368}
+                height={141}
                 src="/Intel AI.mp4"
-                className="object-cover h-auto text-center z-20"
+                className="object-cover h-auto text-center z-20 p-2"
                 loop
                 autoPlay
                 muted
@@ -173,39 +172,30 @@ export default function Home() {
             </Link>
 
             {/* Hero image with higher z-index  */}
-            <div
-              className="bg-gradient-to-r from-[rgba(3,255,163,.9)]
+            <div className="pb-0 md:pb-10 lg:pb-10 px-12">
+              <div
+                className="bg-gradient-to-r from-[rgba(3,255,163,.9)]
  to-[rgba(127,86,217,.9)] rounded-[20px] py-[2px] px-[2px] w-fit"
-            >
-              <video
-                src="/Intel AI.mp4"
-                width={1088}
-                height={721}
-                className="hidden md:block lg:block object-cover p-2 w-[100%] h-auto text-center z-[1] rounded-[20px]"
-                loop
-                autoPlay
-                muted
-                playsInline
-              />
+              >
+                <video
+                  src="/Intel AI.mp4"
+                  width={1088}
+                  height={721}
+                  className="hidden md:block lg:block object-cover p-2 w-[100%] h-auto text-center z-[1] rounded-[20px]"
+                  loop
+                  autoPlay
+                  muted
+                  playsInline
+                />
+              </div>
             </div>
-
-            {/* <div className="w-full h-auto z-[1] hidden md:block lg:block ">
-              <video
-                className="w-[1088px] max-w-[100%] h-auto object-cover"
-                src="/Intel AI.mp4"
-                loop
-                autoPlay
-                muted
-                controls
-              />
-            </div> */}
           </div>
         </div>
       </section>
 
       {/* Second section */}
-      <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 mx-0 md:mx-auto lg:mx-auto px-0 md:px-36 lg:px-36 text-center pb-10 md:pb-28 lg:pb-28">
-        <h2 className="w-[80%] h-auto md:w-[90%] lg:w-[95%] font-medium text-[22px] md:text-[60px] lg:text-[60px] mb-5 md:mb-10 lg:mb-10 leading-[28.32px] md:leading-[75.52px] lg:leading-[75.52px] text-center mx-auto">
+      <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 mx-0 md:mx-auto lg:mx-auto px-2 md:px-36 lg:px-36 text-center pb-10 md:pb-28 lg:pb-28 z-50">
+        <h2 className="w-full h-auto md:w-[90%] lg:w-full font-medium text-[24px] md:text-[60px] lg:text-[60px]  xl:text-[64px] 2xl:text-[64px] mb-5 md:mb-10 lg:mb-10 leading-[28.32px] md:leading-[75.52px] lg:leading-[75.52px] text-center mx-auto">
           Meticulously Engineered To Deliver {""}
           <span
             style={bgClipText}
@@ -214,7 +204,7 @@ export default function Home() {
             Human-Like Responses
           </span>
         </h2>
-        <p className="font-normal w-full h-auto text-[12px] md:text-[20px] lg:text-[20px] px-2 md:px-32 lg:px-32 mb-5 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
+        <p className="font-normal w-full h-auto text-[14px] md:text-[20px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] px-2 md:px-24 lg:px-32 mb-5 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
           Experience the sophistication of AI Agents that talk like a human but
           work like a supercomputer. Intel AI&apos;s deep learning algorithms
           are crafted to replicate the warmth, empathy, and complexity of human
@@ -247,7 +237,7 @@ export default function Home() {
         {/* third gradient */}
         <div
           style={style2}
-          className="bottom-[50%] left-[98%] absolute w-[50%] h-[450px] -translate-x-1/2"
+          className="top-[60%] left-[98%] absolute w-[50%] h-[450px] -translate-x-1/2"
         ></div>
 
         {/* fouurth gradient */}
@@ -256,11 +246,11 @@ export default function Home() {
           className="-bottom-[3%] left-[98%] absolute w-[50%] h-[450px] -translate-x-1/2"
         ></div>
 
-        <div className="mx-auto px-0 md:px-40 lg:px-40 text-center pt-16 md:pt-32 lg:pt-32 mb-10 md:mb-16 lg:mb-16">
+        <div className="mx-auto px-0 md:px-28 lg:px-40 xl:px-40 2xl:px-48 text-center pt-16 md:pt-28 lg:pt-32 mb-7 md:mb-16 lg:mb-16">
           <h3 className="font-medium text-center text-[20px] md:text-[36px] lg:text-[36px] mb-5">
             Custom AI Agents Like Never Before
           </h3>
-          <p className="font-normal text-center text-sm md:text-[20px] lg:text-[20px] w-[370px] md:w-full lg:w-full h-auto mx-auto px-0 md:px-40 lg:px-40 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
+          <p className="font-normal text-center text-sm md:text-[20px] lg:text-[20px] w-[370px] md:w-full lg:w-full h-auto mx-auto px-0 md:px-28 lg:px-40 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
             Intel AI leverages a custom LLM architecture that&apos;s fine-tuned
             to grasp the intricacies of blockchain technology, its narratives,
             trends, & community nuances with unparalleled precision
@@ -271,7 +261,7 @@ export default function Home() {
           {communityOwners?.map((row, index) => (
             <div
               key={index}
-              className="w-[350px] md:w-[400.88px] lg:w-[400.88px] h-[365px] md:h-[355.38px] lg:h-[355.38px] bg-[#070707] rounded-[20px] px-6 md:px-6 lg:px-6 pt-1 mb-12 md:mb-48 lg:mb-48 mx-auto"
+              className="w-[350px] md:w-[380.88px] lg:w-[400.88px] h-[365px] md:h-[355.38px] lg:h-[355.38px] xl:w-[400.88px] 2xl:w-[400.88px] bg-[#070707] rounded-[20px] px-6 md:px-6 lg:px-6 pt-1 mb-12 md:mb-48 lg:mb-48 mx-auto"
             >
               {" "}
               <Image
@@ -291,7 +281,7 @@ export default function Home() {
           {kolsInfluencers?.map((row, index) => (
             <div
               key={index}
-              className="w-[350px] h-[314px] md:w-[400.88px] md:h-[355.38px] lg:w-[400.88px] lg:h-[355.38px] bg-[#070707] rounded-[20px] px-4 md:px-6 lg:px-6  pt-1 mb-12 md:mb-36 lg:mb-36 mx-auto"
+              className="w-[350px] h-[314px] md:w-[400.88px] md:h-[355.38px]  lg:w-[400.88px] xl:w-[400.88px] 2xl:w-[400.88px] lg:h-[355.38px] xl:h-[355.38px] 2xl:h-[355.38px] bg-[#070707] rounded-[20px] px-4 md:px-6 lg:px-6  pt-1 mb-12 md:mb-36 lg:mb-36 mx-auto"
             >
               <Image
                 src={row.img}
@@ -312,7 +302,7 @@ export default function Home() {
             <div
               key={index}
               className=" 
-               w-[350px] md:w-[401.12px] lg:w-[401.12px] h-[336px] md:h-[355.38px] lg:h-[355.38px]
+               w-[350px] md:w-[401.12px] lg:w-[401.12px] h-[336px] md:h-[355.38px] lg:h-[355.38px] xl:h-[355.38px] 2xl:h-[355.38px]
               bg-[#070707] rounded-[20px] px-4 md:px-6 lg:px-6 pt-10 mb-12 md:mb-36 lg:mb-36 mx-auto"
             >
               <Image
@@ -329,32 +319,33 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className="mx-auto px-4 md:px-40 lg:px-40 text-center">
+        <div className="mx-auto px-4 md:px-32 lg:px-40 xl:px-40 2xl:px-48 text-center">
           <h5
             style={bgClipText}
-            className="font-normal text-[24px] md:text-[32px] lg:text-[32px] leading-[36.88px] md:leading-[51.84px] lg:leading-[51.84px] mb-5 md:mb-6 lg:mb-6 bg-gradient-to-r from-[#03FFA3] 
+            className="font-normal text-[24px] md:text-[27px] lg:text-[32px] xl:text-[32px] 2xl:text-[36px] leading-[36.88px] md:leading-[51.84px] lg:leading-[51.84px] mb-5 md:mb-6 lg:mb-6 bg-gradient-to-r from-[#03FFA3] 
              to-[#7F56D9] text-transparent"
           >
             Join the top companies already using Intel AI
           </h5>
         </div>
-        <div className="flex justify-center gap-4 md:gap-0 lg:gap-0 md:justify-between lg:justify-between mb-20 md:mb-56 lg:mb-56">
-          {sponsors?.map((row, index) => (
-            <div key={index} className=" flex justify-between">
-              <Image
-                src={row.img}
-                width={122.85}
-                height={32.39}
-                alt="spnsors-img w-[101.23px] h-[20.72px] md:h-[32.39px]
+        <Marquee className="py-2" pauseOnHover={true}>
+          <div className="flex justify-center gap-4 md:gap-10 lg:gap-10 md:justify-between lg:justify-between mb-20 md:mb-56 lg:mb-56">
+            {sponsors?.map((row, index) => (
+              <div key={index} className="flex justify-between">
+                <Image
+                  src={row.img}
+                  width={122.85}
+                  height={32.39}
+                  alt="sponsors-img w-[101.23px] h-[20.72px] md:h-[32.39px]
                  lg:h-[32.39px] md:w-[122.85px] lg:w-[122.85px]"
-              />
-            </div>
-          ))}
-        </div>
-        {/* <Marquee className="py-2" pauseOnHover={true}></Marquee> */}
+                />
+              </div>
+            ))}
+          </div>
+        </Marquee>
 
         {/* features section */}
-        <div className="mx-auto px-0 md:px-40 lg:px-40 text-center">
+        <div className="mx-auto px-0 md:px-32 lg:px-40 xl:px-40 2xl:px-48 text-center">
           <div className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] w-fit rounded-[66px] mx-auto">
             <span
               className="font-medium text-[13.96px] bg-gradient-to-r from-[#03FFA3] to-[#7F56D9] w-[96.87px] h-[25.98px] text-center rounded-[66px] py-[3.99px]
@@ -363,13 +354,13 @@ export default function Home() {
               Features
             </span>
           </div>
-          <h5 className=" hidden md:block lg:block font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[36px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
+          <h5 className=" hidden md:block lg:block font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[27px] lg:text-[36px] xl:text-[36px] 2xl:text-[40px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
             Glossy Unleashed: Latest Innovations
           </h5>
-          <h5 className="block md:hidden lg:hidden font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[36px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
+          <h5 className="block md:hidden lg:hidden font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[27px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
             Empower Your Workflow with Cutting-Edge Features
           </h5>
-          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-sm md:text-base lg:text-base text-[#BDBDBD] mx-auto px-2 md:px-32 lg:px-32 mb-12 md:mb-20 lg:mb-20 pt-5">
+          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-base lg:text-base text-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20 pt-5">
             Explore the frontier of coding evolution with Glossy Unleashed. Our
             latest features redefine the boundaries of what&apos;s possible in
             coding tools.
@@ -379,7 +370,7 @@ export default function Home() {
           <div
             key={index}
             className="flex flex-col md:flex-row lg:flex-row justify-center
-            mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-32 lg:px-32 mb-20"
+            mx-auto px-3 gap-0 md:gap-10 lg:gap-10 m md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-20"
           >
             <div className="w-1/2">
               <Image
@@ -389,11 +380,11 @@ export default function Home() {
                 alt="cable-icon"
                 className="mb-8"
               />
-              <h5 className="font-medium text-[22px] md:text-[29.91px] lg:text-[29.91px] leading-[31.2px] w-[369px] h-[39px] md:h-[62px] lg:h-[72px] md:w-[498px] lg:w-[498px] px-1 text-left mb-10 md:mb-5 lg:mb-5 md:leading-[38.88px] lg:leading-[38.88px]">
+              <h5 className="font-medium text-[22px] md:text-[24px] lg:text-[29.91px] xl:text-[32px] 2xl:text-[36px] leading-[31.2px] w-[369px] h-auto md:h-auto lg:h-auto md:w-[498px] lg:w-[498px] px-1 text-left mb-5 md:mb-5 lg:mb-5 xl:mb-5 2xl:mb-5 md:leading-[38.88px] lg:leading-[38.88px]">
                 {row.title}
               </h5>
 
-              <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] mb-14 md:mb-10 lg:mb-10 w-[361px] md:w-[498px] lg:w-[498px] h-[54px] md:h-[63px] lg:h-[63px] leading-[20.8px] ">
+              <p className="font-normal text-sm md:text-base lg:text-base xl:text-[18px] 2xl:text-[20px] text-[#BDBDBD] mb-14 md:mb-10 lg:mb-10 w-[361px] md:w-[498px] lg:w-[498px] h-[54px] md:h-[63px] lg:h-[63px] leading-[20.8px] ">
                 {row.description}
               </p>
               <div className="flex gap-2 w-[500px] justify-start">
@@ -454,7 +445,7 @@ export default function Home() {
         {content?.map((row, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10  md:px-32 lg:px-32 mb-20"
+            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-20"
           >
             <div className="w-1/2">
               <div className="flex gap-2 justify-start w-[500px]">
@@ -477,12 +468,12 @@ export default function Home() {
                 className="mb-8"
               />
               <h5
-                className="font-medium text-[24px] md:text-[29.91px] lg:text-[24px]
-               leading-[31.2px] md:leading-[28.88px] lg:w-leading-[28.88px] w-[369px] h-[39px] md:w-full lg:w-full md:h-auto lg:h-auto text-left mb-5 "
+                className="font-medium text-[22px] md:text-[24px] lg:text-[29.91px] xl:text-[32px] 2xl:text-[36px]
+               leading-[31.2px] md:leading-[28.88px] lg:w-leading-[28.88px] w-[369px] h-[39px] md:w-full lg:w-full md:h-auto lg:h-auto text-left mb:2 md:mb-5 lg:mb-5 xl:mb-5 2xl:mb-5 "
               >
                 {row.title}
               </h5>
-              <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] mb-8 w-[376px] h-auto md:w-[498px] lg:w-[498px] leading-[18.2px] md:leading-[20.8px] lg:leading-[20.8px] px-0">
+              <p className="font-normal text-sm md:text-base lg:text-base xl:text-[18px] 2xl:text-[20px] text-[#BDBDBD] mb-8 w-[376px] h-auto md:w-[498px] lg:w-[498px] leading-[18.2px] md:leading-[20.8px] lg:leading-[20.8px] px-0">
                 {row.description}
               </p>
 
@@ -530,7 +521,7 @@ export default function Home() {
         {sorting?.map((row, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-32 lg:px-32 mb-40"
+            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-40"
           >
             <div className="w-1/2">
               <div className="flex gap-2 justify-start w-[500px]">
@@ -566,12 +557,12 @@ export default function Home() {
               />
 
               <h5
-                className="font-medium text-[22px] md:text-[29.91px] lg:text-[29.91px] leading-[31.2px]
-               md:leading-[28.88px] lg:leading-[28.88px] w-[386px] md:w-[454px] lg:w-[500px] h-[39px] md:h-[48px] lg:h-[48px] text-left mb-2 md:mb-0 lg:mb-0"
+                className="font-medium text-[22px] md:text-[24px] lg:text-[29.91px] xl:text-[32px] 2xl:text-[36px] leading-[31.2px]
+               md:leading-[28.88px] lg:leading-[34.88px] w-[386px] md:w-[454px] lg:w-[500px] h-[39px] md:h-[48px] lg:h-[48px] text-left mb-2 md:mb-5 lg:mb-10 xl:mb-5 2xl:mb-5"
               >
                 {row.title}
               </h5>
-              <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] w-[361px] h-auto md:w-[498px] lg:w-[498px] leading-[18.2px] md:leading-[20.8px] lg:leading-[20.8px] md-px-0 lg:px-0 mb-7 md:mb-0 lg:mb-0">
+              <p className="pt-0 md:pt-5 lg: xl:pt-5 2xl:pt-5 font-normal text-sm md:text-base lg:text-base xl:text-[18px] 2xl:text-[20px] text-[#BDBDBD] w-[361px] h-auto md:w-[498px] lg:w-[498px] leading-[18.2px] md:leading-[20.8px] lg:leading-[20.8px] md-px-0 lg:px-0 mb-7 md:mb-0 lg:mb-0">
                 {row.description}
               </p>
             </div>
@@ -621,7 +612,7 @@ export default function Home() {
 
         <div
           className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 
-      gap-16 md:gap-24 lg:gap-24 pb-6 md:pb-40 lg:pb-40 px-2 md:px-0 lg:px-0 bg-transparent md:border-b lg:border-b  md:border-[#272727] lg:border-[#272727] w-full md:w-full lg:w-[85%] mx-0 md:mx-auto lg:mx-auto overflow-hidden"
+      gap-16 md:gap-24 lg:gap-24 pb-6 md:pb-40 lg:pb-32 px-2 md:px-0 lg:px-0 bg-transparent md:border-b lg:border-b  md:border-[#272727] lg:border-[#272727] w-full md:w-full lg:w-[85%] mx-0 md:mx-auto lg:mx-auto  "
         >
           {advantages?.map((row, index) => (
             <div key={index} className="">
@@ -659,26 +650,8 @@ export default function Home() {
         </p>
       </div>
       {/* carousel for testimonials */}
-      <div className="mx-auto px-8 md:px-32 lg:px-32 mb-14 md:mb-60 lg:mb-60">
-        {/* // 33% of the carousel width. */}
-
-        <Carousel>
-          <CarouselContent className="flex gap-x-10">
-            <CarouselItem className=" basis-full md:basis-1/3 lg:basis-1/3">
-              <Testimonials />
-            </CarouselItem>
-            <CarouselItem className="basis-full md:basis-1/3 lg:basis-1/3 ">
-              {" "}
-              <Testimonials2 />
-            </CarouselItem>
-            <CarouselItem className="basis-full md:basis-1/3 lg:basis-1/3">
-              {" "}
-              <Testimonials3 />
-            </CarouselItem>
-          </CarouselContent>
-          <CarouselPrevious className="ml-5 md:ml-0 lg:ml-0" />
-          <CarouselNext className="mr-5 md:mr-0 lg:mr-0" />
-        </Carousel>
+      <div className="mx-auto px-2 md:px-32 lg:px-32 mb-14 md:mb-60 lg:mb-60">
+        <Carousel />
       </div>
 
       {/* FAQ */}
@@ -726,18 +699,18 @@ export default function Home() {
                 </Accordion>
               </div>
             ))}
-            {/* <div className="mb-28 mt-48 md:mt-12 lg:mt-12">
-              <Image
-                src="/questions.png"
-                alt="Default Logo"
-                width={784}
-                height={157}
-                className="w-[100%]"
-              />
-            </div> */}
 
-            <div className="h-auto md:h-[157px] lg:h-[157px] relative overflow-hidden w-full px-3 md:px-0 lg:px-8 pt-6 md:pt-4 lg:pt-10 pb-0 md:pb-4 lg:pb-4 rounded-[20px] mb-24 md:mb-28 lg:mb-28 mt-40 bg-gradient-to-r from-[rgba(189,254,28,.9)] via-[rgba(37,184,222,.9)] to-[rgba(70,13,255,.9)]">
-              <div className="">
+            <div className="w-fit relative h-auto md:h-[157px] lg:h-auto overflow-hidden md:w-[784px] lg:w-[784px] px-3 md:px-6 lg:px-8 pt-6 md:pt-4 lg:pt-10 pb-0 md:pb-4 lg:pb-4 rounded-[20px] mb-24 md:mb-28 lg:mb-10 mt-40 bg-gradient-to-r from-[rgba(189,254,28,.9)] via-[rgba(37,184,222,.9)] to-[rgba(70,13,255,.9)] mx-auto">
+              <div className="absolute inset-0 bg-background-image w-full h-full bg-center bg-no-repeat bg-contain z-0">
+                <Image
+                  src="/vector-question.png"
+                  width={350}
+                  height={250}
+                  alt="bg-img"
+                  className="relative bottom-7 left-0 opacity-[60%]"
+                />
+              </div>
+              <div className="relative z-10">
                 <h5 className="font-medium text-[24px] text-[#E7F1FF] text-left">
                   Still have questions?
                 </h5>
@@ -746,7 +719,6 @@ export default function Home() {
                     Can&apos;t find the answer you&apos;re looking for? Please
                     chat to our friendly team.
                   </p>
-
                   <div className="w-fit md:w-auto mb-5 md:text-right md:mb-10 lg:mb-10 text-left">
                     <div className="bg-gradient-to-r from-[rgba(189,254,28,.9)] to-[rgba(37,184,222,.9)] rounded-[66px] py-[2px] px-[2px] shadow-drop">
                       <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[66px] hover:bg-[#0B0F16]">
@@ -762,44 +734,7 @@ export default function Home() {
       </>
 
       {/* footer section */}
-      <div className="bg-[#000000] relative w-full h-auto overflow-hidden ">
-        <div
-          style={style4}
-          className="-bottom-[3%] left-[99%] absolute w-[65%] h-[200px] -translate-x-1/2"
-        ></div>
-        <div className="flex flex-col md:flex-row lg:flex-row justify-between mx-auto px-3 md:px-32 lg:px-32  py-5 md:py-20 lg:py-20  pb-28 md:pb-16 lg:pb-16">
-          <div className="w-full md:w-1/2 lg:w-1/2 flex">
-            <div className="">
-              <Image
-                src="/Logo.png"
-                alt="Default Logo"
-                width={85.67}
-                height={24}
-                className="mb-10"
-              />
-            </div>
-          </div>
-
-          <div className="md:w-1/2 lg:w-1/2">
-            <h5 className="font-medium hidden md:block lg:block text-sm md:text-base lg:text-base mb-0 w-[337px] h-[52px] md:w-full lg:w-full">
-              Company
-            </h5>
-            <h5 className="block md:hidden lg:hidden font-medium text-sm md:text-base lg:text-base mb-5 w-[337px] h-[52px] md:w-[90%] lg:w-[90%] leading-[25.84px]">
-              Intelai: Empowering Collaboration in the Blockchain Industry
-            </h5>
-            <p className="font-normal text-sm text-[#868686] w-[362px] h-[40px] md:h-auto lg:h-auto md-w-full lg:w-full leading-[22.68px]">
-              Bringing together community managers and influencers to seamlessly
-              collaborate on projects across Telegram and Twitter. Join us to
-              elevate your blockchain initiatives.
-            </p>
-          </div>
-        </div>
-        <div className="flex justify-start pt-4 md:pt-6 lg:pt-6 pb-5 mx-auto  border-t border-[#272727] w-[95%] md:w-[85%] lg:w-[85%]">
-          <p className="font-normal text-[10px] px-2">
-            Built with ⚡️ Intelai Company Inc
-          </p>
-        </div>
-      </div>
+      <Footer />
     </main>
   );
 }
