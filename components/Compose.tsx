@@ -249,7 +249,7 @@ const Compose: React.FC = () => {
                   <div className="absolute bottom-0 w-full h-[54px] border-t border-[#272727] flex justify-between items-center px-4">
                     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                       <DialogTrigger className="cursor-pointer" asChild>
-                        <Button className="font-medium text-xs leading-[12.48px] bg-[#303030] w-auto h-[36px] rounded-[50px] py-[10px] px-4">
+                        <Button className="font-medium text-[12px] leading-[12.48px] bg-[#303030] w-auto h-[36px] rounded-[50px] py-[10px] px-4">
                           {selectedContent}
                         </Button>
                       </DialogTrigger>
