@@ -1,6 +1,6 @@
 "use client";
-import { savedDrafts } from "@/utils/mockData";
 import React, { useState } from "react";
+import { savedDrafts as initialDrafts } from "@/utils/mockData";
 import { Button } from "./ui/button";
 import { CiMenuKebab } from "react-icons/ci";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,8 +13,19 @@ import { CiImageOn } from "react-icons/ci";
 import { HiOutlineArrowPath } from "react-icons/hi2";
 
 const Drafts = () => {
+  const [draftResponses, setDraftResponses] = useState<string[]>([]);
+  const [drafts, setDrafts] = useState(initialDrafts);
   const [activeIndex, setActiveIndex] = useState<number>(0); // Default to the first index being active
-  const activeDraft = savedDrafts[activeIndex];
+
+  const activeDraft = drafts[activeIndex];
+
+  const handleAddToDraft = (newDraft: {
+    draftTitle: string;
+    result: string;
+  }) => {
+    setDrafts((prevDrafts) => [...prevDrafts, newDraft]);
+    setActiveIndex(drafts.length); // Set the new draft as active
+  };
 
   return (
     <>
@@ -77,7 +88,7 @@ const Drafts = () => {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  {savedDrafts.map((row, index) => (
+                  {drafts.map((row, index) => (
                     <DraftCard
                       key={index}
                       draftTitle={row.draftTitle}
@@ -108,13 +119,13 @@ const Drafts = () => {
                   </TabsTrigger>
                 </TabsList>
                 <TabsContent
-                  className="w-full  pt-5 md:pt-0 lg:pt-0 overflow-y-auto scrollbar-hide h-[300px] pb-28"
+                  className="w-full pt-5 md:pt-0 lg:pt-0 overflow-y-auto scrollbar-hide h-[300px] pb-28"
                   value="ScheduledTweet"
                 >
                   <ScheduleTweet />
                 </TabsContent>
                 <TabsContent
-                  className="w-full pt-5 md:pt-0 lg:pt-0  overflow-y-auto scrollbar-hide h-[300px] pb-28"
+                  className="w-full pt-5 md:pt-0 lg:pt-0 overflow-y-auto scrollbar-hide h-[300px] pb-28"
                   value="PostedContent"
                 >
                   <ContentPosted />

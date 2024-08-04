@@ -1,3 +1,4 @@
+// card.tsx
 import React from "react";
 import Image from "next/image";
 import { IoCopyOutline } from "react-icons/io5";
@@ -7,9 +8,10 @@ interface CardProps {
   title: string;
   response: string;
   img: string;
+  onAddToDraft: (title: string, response: string) => void; // Update prop type
 }
 
-const Card: React.FC<CardProps> = ({ title, response, img }) => {
+const Card: React.FC<CardProps> = ({ title, response, img, onAddToDraft }) => {
   return (
     <div className="w-[242px] h-auto pb-4 rounded-[16px] bg-[#252525] px-3">
       <div className="px-3 py-3 h-[34px] border-b border-[#3D3D3D] mb-5">
@@ -24,7 +26,10 @@ const Card: React.FC<CardProps> = ({ title, response, img }) => {
       </div>
       <div className="border-[#303030] border-t h-[44px]">
         <div className="w-full h-auto gap-4 flex justify-between items-center mb-5 pt-2">
-          <Button className="w-[122px] h-[33px] p-[10px] bg-[#0D0D0D] rounded-[50px] font-medium text-sm leading-[14.56px]">
+          <Button
+            className="w-[122px] h-[33px] p-[10px] bg-[#0D0D0D] rounded-[50px] font-medium text-sm leading-[14.56px]"
+            onClick={() => onAddToDraft(title, response)} // Pass title and response
+          >
             Add to draft
           </Button>
           <Button className="w-[122px] h-[33px] text-white font-medium text-sm leading-[14.56px] rounded-[50px] border-[#707070] border p-[10px]">

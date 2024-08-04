@@ -5,8 +5,9 @@ import Cookies from "js-cookie";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ContentPosted from "./ContentPosted";
+import { useToast } from "@/components/ui/use-toast";
 import ScheduleTweet from "./ScheduleTweet";
-import Calendar from "./Calendar";
+
 import Card from "./Card";
 import Threads from "./Threads";
 import TextEditor from "./TextEditor";
@@ -43,13 +44,23 @@ const response: Response[] = [
   },
 ];
 
-const Compose: React.FC = () => {
+interface ComposeProps {
+  onAddToDraft: (title: string, response: string) => void; // Update prop type
+}
+const Compose: React.FC<ComposeProps> = ({ onAddToDraft }) => {
+  const handleAddToDraft = (title: string, response: string) => {
+    // Add draft logic here
+    onAddToDraft(title, response);
+  };
+
   const [isTweetMode, setIsTweetMode] = useState<boolean>(true);
   const [savedDate, setSavedDate] = useState<string | null>(
     localStorage.getItem("savedDate")
   );
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [userInput, setUserInput] = useState<string>("");
+  const [copyMessage, setCopyMessage] = useState<string | null>(null);
+
   const [generatedResponses, setGeneratedResponses] = useState<Response[]>([]);
   const [typedResponses, setTypedResponses] = useState<string[]>([]);
   const [editorContent, setEditorContent] = useState<string>("");
@@ -58,6 +69,8 @@ const Compose: React.FC = () => {
   const [selectedContent, setSelectedContent] = useState("Hook type");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [images, setImages] = useState<{ [key: number]: string[] }>({});
+
   const [customContents, setCustomContents] = useState<object[]>([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [progress, setProgress] = useState(0); // For progress bar
@@ -70,6 +83,8 @@ const Compose: React.FC = () => {
   const handleToggle = () => {
     setIsTweetMode((prev) => !prev);
   };
+
+  const { toast } = useToast();
 
   const handleSelect = (content: string) => {
     setSelectedContent(content);
@@ -133,6 +148,47 @@ const Compose: React.FC = () => {
 
     // Update state or pass threads to the component that will display them
     setThreadsContent(threads); // Assuming you have a state or method to update this
+  };
+
+  const handleDivideThread = (index: number) => {
+    const thread = threadsContent[index];
+    const newContent = thread.content.slice(0, thread.content.length / 2);
+    const remainingContent = thread.content.slice(thread.content.length / 2);
+
+    setThreadsContent((prev) => [
+      ...prev.slice(0, index),
+      { ...thread, content: newContent, count: thread.count },
+      {
+        content: remainingContent,
+        count: thread.count + 1,
+        countNum: `${thread.count + 1}`,
+      },
+      ...prev.slice(index + 1),
+    ]);
+  };
+
+  const handleAddImage = (index: number, imageUrl: string) => {
+    setImages((prev) => ({
+      ...prev,
+      [index]: [...(prev[index] || []), imageUrl],
+    }));
+  };
+
+  const handleDeleteThread = (index: number) => {
+    setThreadsContent((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleCopyContent = (content: string) => {
+    navigator.clipboard
+      .writeText(content)
+      .then(() => {
+        toast({
+          description: "Text copied to clipboard.",
+        });
+      })
+      .catch((error) => {
+        console.error("Failed to copy text: ", error);
+      });
   };
 
   const handleButtonClick = () => {
@@ -222,7 +278,7 @@ const Compose: React.FC = () => {
     <>
       <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
         <div className="w-full flex justify-between">
-          <div className="w-[60%] bg-[#181818] h-[781px] overflow-y-auto scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px]">
+          <div className="w-[60%] bg-[#181818] h-[781px] overflow-y-auto scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px] pb-40">
             <div>
               <div className="flex justify-center items-center">
                 <p className="font-medium text-[20px] leading-[20.8px]">
@@ -293,7 +349,7 @@ const Compose: React.FC = () => {
                   </div>
                   <div className="flex justify-center items-center w-[571px] h-[9px] rounded-[24px] bg-[#1E1E1E] absolute bottom-0">
                     <div
-                      className="h-full rounded-[24px] pb-10 bg-gradient-to-r from-[#03FFA3] to-[#7F56D9]"
+                      className="h-full rounded-[24px]  bg-gradient-to-r from-[#03FFA3] to-[#7F56D9]"
                       style={{ width: `${progress}%` }}
                     ></div>
                   </div>
@@ -319,6 +375,7 @@ const Compose: React.FC = () => {
                         title={row.title}
                         response={typedResponses[index] || ""}
                         img={row.img}
+                        onAddToDraft={onAddToDraft} // Pass the function as a prop
                       />
                     </div>
                   </div>
@@ -328,6 +385,10 @@ const Compose: React.FC = () => {
               <Threads
                 threadsContent={threadsContent}
                 handleSave={handleSave}
+                handleDivideThread={handleDivideThread}
+                handleAddImage={handleAddImage}
+                handleDeleteThread={handleDeleteThread}
+                handleCopyContent={handleCopyContent}
               />
             )}
           </div>
