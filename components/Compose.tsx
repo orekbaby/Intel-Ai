@@ -269,9 +269,9 @@ const Compose: React.FC<ComposeProps> = ({ onAddToDraft }) => {
       setProgress(100); // Update progress to 100%
       setTimeout(() => {
         setShowSuccessMessage(true);
-        setTimeout(() => setShowSuccessMessage(false), 1000);
+        setTimeout(() => setShowSuccessMessage(false), 3000);
       }, 300);
-    }, 1000);
+    }, 3000);
   };
 
   return (
