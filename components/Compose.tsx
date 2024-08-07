@@ -80,6 +80,8 @@ const Compose: React.FC<ComposeProps> = ({ onAddToDraft }) => {
     Array<{ content: string; count: number; countNum: string }>
   >([]);
 
+  const [threadsText, setThreadsText] = useState<string>("");
+
   const handleToggle = () => {
     setIsTweetMode((prev) => !prev);
   };
@@ -293,6 +295,7 @@ const Compose: React.FC<ComposeProps> = ({ onAddToDraft }) => {
                     placeholder=""
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
+                    content={threadsText}
                   />
                   <div className="absolute bottom-[30%] right-5 flex justify-end">
                     <button
@@ -384,6 +387,7 @@ const Compose: React.FC<ComposeProps> = ({ onAddToDraft }) => {
             ) : (
               <Threads
                 threadsContent={threadsContent}
+                threadsText={threadsText}
                 handleSave={handleSave}
                 handleDivideThread={handleDivideThread}
                 handleAddImage={handleAddImage}
