@@ -1,5 +1,7 @@
 "use client";
-import { useAppStore } from "@/zustand/store";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '@/redux/combinedStore'; // Adjust import paths as needed
+import { completeTrain } from '@/appSlice';
 import React, { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Image from "next/image";
@@ -92,12 +94,14 @@ const DialogData: React.FC = () => {
     }
   };
 
+   const dispatch: AppDispatch = useDispatch();
   const router = useRouter();
-  const completeTrain = useAppStore((state) => state.completeTrain);
+  const aiTrainCompleted = useSelector((state: RootState) => state.app.aiTrainCompleted);
 
+  // Handler function to dispatch the completeTrain action and navigate
   const handleNavigation = () => {
-    completeTrain();
-    router.push("/communityManager");
+    dispatch(completeTrain());
+    router.push('/communityManager');
   };
 
   return (

@@ -1,9 +1,7 @@
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
-
 import { cookieStorage, createStorage } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
 
-// Get projectId from https://cloud.walletconnect.com
 export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
 if (!projectId) {
@@ -23,7 +21,7 @@ export const config = defaultWagmiConfig({
   chains,
   projectId,
   metadata,
-  ssr: true,
+  ssr: false, // Ensure SSR is disabled for client-side code
   storage: createStorage({
     storage: cookieStorage,
   }),

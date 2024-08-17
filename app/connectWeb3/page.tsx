@@ -6,30 +6,38 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount, useDisconnect } from "wagmi";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from '@/redux/combinedStore'; // Adjust import path as needed
+import { connectWallet, disconnect } from '@/authSlice'; // Adjust import path as needed
 
-const Page = () => {
+const Page: React.FC = () => {
   const style2: React.CSSProperties = {
     background:
       "radial-gradient(circle, rgba(3, 255, 163, 0.2), rgba(16, 12, 14, 0.2))",
     backgroundBlendMode: "darken",
     filter: "blur(60px)",
   };
+  
   const router = useRouter();
   const [connect, setConnect] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const { open } = useWeb3Modal();
   const { isConnected, address: publicAddress } = useAccount();
-  const { disconnect } = useDisconnect();
+  const { disconnect: wagmiDisconnect } = useDisconnect();
+  
+  const dispatch: AppDispatch = useDispatch();
+  const connectedAddress = useSelector((state: RootState) => state.auth.publicAddress);
 
   useEffect(() => {
     if (isConnected && publicAddress && connect) {
       setConnect(true);
+      dispatch(connectWallet(publicAddress));
       router.push("/user");
     }
-  }, [isConnected, publicAddress, connect, router]);
+  }, [isConnected, publicAddress, connect, router, dispatch]);
 
-  const handleConnectWallet = async (event: any) => {
+  const handleConnectWallet = async (event: React.MouseEvent) => {
     event.preventDefault();
     if (loading) return; // Prevent multiple clicks
     setLoading(true);
@@ -44,7 +52,8 @@ const Page = () => {
   };
 
   const handleLogOut = () => {
-    disconnect();
+    dispatch(disconnect());
+    wagmiDisconnect(); // Ensure the Wagmi disconnect is also called
   };
 
   return (
@@ -81,13 +90,10 @@ const Page = () => {
                     "Connecting..."
                   ) : (
                     <>
-                      {isConnected ? (
+                      {connectedAddress ? (
                         <div className="flex items-center justify-center gap-3 rounded-[12px] border-2 px-4 py-2 border-[#1e1e1e] ">
                           <p className="font-medium text-sm text-white">
-                            {`${publicAddress?.slice(
-                              0,
-                              8
-                            )}...${publicAddress?.slice(-8)}`}
+                            {`${connectedAddress.slice(0, 8)}...${connectedAddress.slice(-8)}`}
                           </p>
                         </div>
                       ) : (

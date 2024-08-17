@@ -4,7 +4,8 @@ import Image from "next/image";
 import { FaHome } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useAppStore } from "@/zustand/store";
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/combinedStore';
 import { SiBentobox } from "react-icons/si";
 import { MdOutlineSignalCellularAlt } from "react-icons/md";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -19,7 +20,8 @@ const FooterNav = () => {
     pathname === "/workspaceDataMobile";
 
   const router = useRouter();
-  const aiTrainCompleted = useAppStore((state) => state.aiTrainCompleted);
+  const aiTrainCompleted = useSelector((state: RootState) => state.app.aiTrainCompleted);
+
   return (
     <>
       {show && (
