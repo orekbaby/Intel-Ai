@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { useAppStore } from "@/zustand/store";
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/combinedStore'; // Adjust import paths as needed
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { MdOutlineSignalCellularAlt } from "react-icons/md";
@@ -81,7 +82,8 @@ const SideBar = () => {
   //  pathName === "/trainAi";
 
   const router = useRouter();
-  const aiTrainCompleted = useAppStore((state) => state.aiTrainCompleted);
+  const aiTrainCompleted = useSelector((state: RootState) => state.app.aiTrainCompleted);
+
 
   const textToCopy = "0x35b...a36b";
   const [showPopup, setShowPopup] = useState(false);

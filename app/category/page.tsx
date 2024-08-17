@@ -59,7 +59,7 @@ const Page = () => {
                 className="flex items-center text-[#707070]"
               >
                 <FaArrowLeft className="mr-2 text-[#707070]" />
-                Back
+               
               </button>
             </div>
             <div className="">
