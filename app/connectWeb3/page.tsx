@@ -108,7 +108,7 @@ const Page: React.FC = () => {
               </button>
             </Link>
           </div>
-          <w3m-button />
+
 
 
           <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">

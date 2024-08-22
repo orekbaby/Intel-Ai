@@ -53,10 +53,7 @@ const response: Response[] = [
   
 ];
 
-const serializedResponse = JSON.stringify(response);
 
-// Step 2: Store the serialized data in a cookie
-Cookies.set('userResponses', serializedResponse, { expires: 7 }); 
 
 interface ComposeProps {
   onAddToDraft: (title: string, response: string) => void; // Update prop type
@@ -74,6 +71,7 @@ const Compose: React.FC<ComposeProps> = ({ onAddToDraft }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [userInput, setUserInput] = useState<string>("");
   const [copyMessage, setCopyMessage] = useState<string | null>(null);
+  const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
 
   const [generatedResponses, setGeneratedResponses] = useState<Response[]>([]);
   const [typedResponses, setTypedResponses] = useState<string[]>([]);
@@ -230,22 +228,98 @@ const Compose: React.FC<ComposeProps> = ({ onAddToDraft }) => {
     typingEffect();
   };
 
-  const handleCardClick = (index: number) => {
-    
-    const selectedResponse = generatedResponses[index]?.response || "";
-    setEditorContent(selectedResponse);
-    setCharCount(selectedResponse.length);
-    setIsDialogOpen(true);
-
-    console.log("select-response:", selectedResponse)
+  const handleCancel = () => {
+    setIsDialogOpen(false);
+  };
+  const clearInput = () => {
+    setUserInput("");
   };
 
-  useEffect(() => {
-    const savedResponses = localStorage.getItem('typedResponses');
-    if (savedResponses) {
-        setTypedResponses(JSON.parse(savedResponses));
-    }
-}, []);
+  // posted content function
+  // AddPostedContent function remains the same
+
+const addPostedContent = (content: string) => {
+  const serializedResponse = JSON.stringify(response);
+
+  // Step 2: Store the serialized data in a cookie
+  Cookies.set('userResponses', serializedResponse, { expires: 7 }); 
+  
+  // Retrieve the current value of the cookie
+  let currentContent = Cookies.get("postedContents");
+  console.log("Current Cookie Content:", currentContent);
+
+  // Parse the current value into an array, or initialize a new array if the cookie does not exist
+  let contentArray = currentContent ? JSON.parse(currentContent) : [];
+
+  // Add the new editorContent object to the array
+  contentArray.push({ content });
+
+  // Convert the array back to a string
+  let updatedContent = JSON.stringify(contentArray);
+
+  // Save the updated array back to the cookie
+  Cookies.set("postedContents", updatedContent, {
+    expires: 7,
+    path: "/x-Agents",
+    secure: true,
+  });
+};
+
+const handleSave = (content?: string) => {
+  setIsScheduling(false); // Set the mode to posting
+  
+  // Use content passed in, or fall back to editorContent
+  const finalContent = content || editorContent;
+
+  if (!finalContent) {
+    console.log("No content to post");
+    return;
+  }
+
+  setEditorContent(""); // Clear editor content
+  addPostedContent(finalContent); // Add the content (whether from editor or directly passed in)
+
+  const postedContents = [...customContents];
+  setCustomContents(postedContents);
+  Cookies.set("postedContents", JSON.stringify(postedContents));
+  console.log("Custom Contents Cookie:", JSON.stringify(postedContents));
+
+  setProgress(25); // Set progress to 25%
+  setTimeout(() => {
+    setProgress(100); // Update progress to 100%
+    setTimeout(() => {
+      setShowSuccessMessage(true);
+      setTimeout(() => setShowSuccessMessage(false), 3000);
+    }, 300);
+  }, 3000);
+};
+
+const handleCardClick = (index: number) => {
+  setSelectedCardIndex(index); // Set the selected card index
+  const selectedResponse = generatedResponses[index]?.response || "";
+  setEditorContent(selectedResponse);
+  setCharCount(selectedResponse.length);
+  setIsDialogOpen(true);
+
+  console.log("select-response:", selectedResponse);
+};
+
+
+// New function to post directly from the card without using the editor
+const handlePostDirectly = (index: number | null) => {
+  if (index === null) {
+    console.error("No card selected to post.");
+    return;
+  }
+
+  const selectedResponse = generatedResponses[index]?.response || "";
+  handleSave(selectedResponse); // Directly post the selected response
+};
+
+const handlePostClick = () => {
+  handlePostDirectly(selectedCardIndex);
+};
+
 
 const handleEditSave = (index: number) => {
   const updatedResponses = [...typedResponses];
@@ -266,67 +340,19 @@ const handleEditSave = (index: number) => {
   }, 2000);
 };
 
-  const handleCancel = () => {
-    setIsDialogOpen(false);
-  };
-  const clearInput = () => {
-    setUserInput("");
-  };
+// useEffect remains the same
 
-  // posted content function
-  const addPostedContent = (content: string) => {
-    // Retrieve the current value of the cookie
-    let currentContent = Cookies.get("postedContents");
-    console.log("Current Cookie Content:", currentContent);
-
-    // Parse the current value into an array, or initialize a new array if the cookie does not exist
-    let contentArray = currentContent ? JSON.parse(currentContent) : [];
-
-    // Add the new editorContent object to the array
-    contentArray.push({
-      content: content,
-    });
-
-    // Convert the array back to a string
-    let updatedContent = JSON.stringify(contentArray);
-
-    // Save the updated array back to the cookie
-    Cookies.set("postedContents", updatedContent, {
-      expires: 7,
-      path: "/x-Agents",
-      secure: true,
-    });
-    // console.log("Updated Cookie Content:", updatedContent);
-  };
-
-  const handleSave = () => {
-    setIsScheduling(false); // Set the mode to postin
-    if (!editorContent) {
-      console.log("Editor content is empty");
-      return;
-    }
-
-    setEditorContent("");
-    addPostedContent(editorContent);
-    const postedContents = [...customContents];
-    setCustomContents(postedContents);
-    Cookies.set("postedContents", JSON.stringify(postedContents));
-    console.log("Custom Contents Cookie:", JSON.stringify(postedContents));
-
-    setProgress(25); // Set progress to 25%
-    setTimeout(() => {
-      setProgress(100); // Update progress to 100%
-      setTimeout(() => {
-        setShowSuccessMessage(true);
-        setTimeout(() => setShowSuccessMessage(false), 3000);
-      }, 300);
-    }, 3000);
-  };
+useEffect(() => {
+  const savedResponses = localStorage.getItem('typedResponses');
+  if (savedResponses) {
+    setTypedResponses(JSON.parse(savedResponses));
+  }
+}, []);
 
 
 
 
-  return (
+return (
     <>
       <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
         <div className="w-full flex justify-between">
@@ -434,6 +460,8 @@ const handleEditSave = (index: number) => {
           editorContent={editorContent}
           isDialogOpen={isDialogOpen}
           setIsDialogOpen={setIsDialogOpen} 
+          handlePostDirectly={handlePostDirectly}
+          selectedCardIndex={selectedCardIndex} 
           onAddToDraft={onAddToDraft} 
           handleEditSave={() => handleEditSave(index)} 
           handleCancel={handleCancel}
@@ -443,7 +471,7 @@ const handleEditSave = (index: number) => {
           setProgress={setProgress}
           handleSave={handleSave}
           closeModal={closeModal}
-
+handlePostClick={handlePostClick}
           
         />
 

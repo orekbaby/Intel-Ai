@@ -19,6 +19,11 @@ interface CardProps {
   handleEditSave: (index: number) => void; 
   handleCancel: () => void;
   handleCardClick: () => void;
+  handlePostClick:() => void;
+  selectedCardIndex: number | null; 
+  handlePostDirectly: (index: number | null) => void;
+
+
   onAddToDraft: (title: string, response: string) => void; 
   savedSuccessfully: boolean;
   openModal: boolean;
@@ -26,6 +31,7 @@ interface CardProps {
   setProgress: (index: number) => void; 
   handleSave: () => void;
   closeModal: () => void;
+  
   
 
 
@@ -45,6 +51,9 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
   handleSave,
   closeModal,
   savedSuccessfully,
+  selectedCardIndex,
+  handlePostDirectly,
+  handlePostClick,
  
   }) => {
   const [charCount, setCharCount] = useState<number>(0);
@@ -128,7 +137,7 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
                             setProgress={setProgress}
                             onSave={handleSave}
                             onCloseModal={closeModal}
-                          />
+                            />
                         </div>
                       </DialogContent>
                     </Dialog>
@@ -136,9 +145,15 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
         
 
         <div className="flex item-center justify-center">
-        <Button className="w-full h-[35px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] text-white rounded-[50px] border-none font-medium text-xs leading-[12.48px] text-black" onClick={handleSave}>
-            Tweet Now
-          </Button>
+        <Button
+  className="w-full h-[35px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] text-white rounded-[50px] border-none font-medium text-xs leading-[12.48px] text-black"
+  onClick={handlePostClick}
+
+
+>
+  Tweet Now
+</Button>
+
           </div>
 
       </div>

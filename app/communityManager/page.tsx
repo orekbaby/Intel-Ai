@@ -15,7 +15,7 @@ const Page = () => {
 
   return (
     <>
-      <section className="pl-[290px] w-full h-[100vh] mb-3 ">
+      <section className="pl-[270px] w-full h-[100vh] mb-3 ">
         <div className="flex w-full gap-2 dashboard-color h-[100vh] overflow-y-auto scrollbar-hide px-6">
           {/* Main section taking 70% of the width */}
           <div className="w-[70%] gap-2 ml-10 border-r border-[#363636] pr-5">
@@ -370,156 +370,76 @@ const Page = () => {
           </div>
           {/* Side section taking 30% of the width */}
 
-          <div className="w-[30%] ml-2 border-white">
-            <p className="font-normal text-xs leading-[12.48px] pt-5 mb-5">
-              Outstanding Tasks
-            </p>
-
-            <div className="flex flex-col">
-              <div className="w-[282px] h-[230px] rounded-[20px] bg-[#181818] px-4 mb-8">
-                <div
-                  className="w-[254px] h-[127px] mx-auto rounded-[20px] bg-gradient-to-r from-[rgba(7,7,7,1)]
-                  to-[rgba(24,24,24,1)] mt-2"
-                >
-                  {/* first persona */}
-                  <div className="relative">
-                    {/* persona images */}
-                    <Image
-                      src="/persona1.png"
-                      width={40}
-                      height={40}
-                      alt="female-persona"
-                      className="absolute top-0 left-2 z-10"
-                    />
-
-                    <Image
-                      src="/persona2.png"
-                      width={40}
-                      height={40}
-                      alt="male-persona"
-                      className="absolute right-3 bottom-[-20%]"
-                    />
-                    <div className="w-[186px] h-[44px] p-2 rounded-lg mx-auto mb-3">
-                      <div className="w-[159px] h-[48px] border-[#181818] border px-2 py-2 rounded-[10px] z-20">
-                        <p className="text-[8px] font-normal leading-[9.76px] mb-2 ">
-                          Mozihla
-                        </p>
-                        <p className="text-[8px] font-normal leading-[9.76px] text-[#6D6D6D] w-[85%]">
-                          Intel
-                          <span className="font-[900] text-[8px] text-white leading-[9.76px] ">
-                            ai
-                          </span>{" "}
-                          automatically blocks spams and tracks the progress.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* second persona */}
-                    <div className="w-[186px] h-[44px] p-2 rounded-lg mx-auto">
-                      <div className="w-[159px] h-[48px] border-[#181818] border px-2 py-2 rounded-[10px] ml-5">
-                        <p className="text-[8px] font-normal leading-[9.76px] mb-2 ">
-                          Mozihla
-                        </p>
-                        <p className="text-[8px] font-normal leading-[9.76px] text-[#6D6D6D] w-[85%]">
-                          Intel
-                          <span className="font-[900] text-[8px] text-white leading-[9.76px] ">
-                            ai
-                          </span>{" "}
-                          automatically blocks spams and tracks the progress.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <p className="pt-5 font-medium text-base leading-[14.64px] mb-3">
-                  Spam blocking and tracking
-                </p>
-                <p className="text-[12px] font-normal leading-[16.64px] text-[#6D6D6D] w-[85%]">
-                  Intel
-                  <span className="font-[900] text-[12px] text-white leading-[14.64px] ">
-                    ai{" "}
-                  </span>
-                  automatically blocks spams and tracks the progress.
-                </p>
-              </div>
-              {/* second box */}
-              <div className="w-[282px] h-[230px] rounded-[20px] bg-[#181818] px-4">
-                <div
-                  className="w-[250px] h-[110px] mx-auto rounded-[20px] bg-gradient-to-r from-[rgba(7,7,7,1)]
-                  to-[rgba(24,24,24,1)] mt-3"
-                >
-                  <Image
-                    src="/socials.png"
-                    width={250}
-                    height={110}
-                    alt="icon"
-                  />
-                </div>
-                <p className="pt-5 font-medium text-base leading-[14.64px] mb-3">
-                  More integrations coming soon
-                </p>
-                <p className="text-[12px] font-normal leading-[16.64px] text-[#6D6D6D] w-[95%]">
-                  We are adding more channels for integrations. Discord, Notion,
-                  Zapier, Slack and many more
-                </p>
-              </div>
-              {/* third box */}
-              <p className="text-xs font-normal leading-[12.48px] pt-10 mb-5">
-                Promotions
-              </p>
-
-              {/* upgrade pro */}
-              {proDashboard?.map((row, index) => (
-                <div
-                  key={index}
-                  className="w-[282px] h-[230px] rounded-[20px] bg-gradient-to-r from-[rgba(189,254,28,1)]
-           via-[rgba(37,184,222,1)] to-[rgba(70,13,255,1)] px-6 py-5 relative"
-                >
-                  <Image
-                    src={row.img}
-                    width={38}
-                    height={38}
-                    alt="star"
-                    className="absolute top-5 right-7"
-                  />
-
-                  <h4 className=" font-normal text-[48px] leading-[53.52px] mb-3">
-                    {row.title}
-                  </h4>
-                  <div className="flex gap-2">
-                    <CiCircleCheck />
-                    <p className="font-normal text-[10px] leading-[10.4px] text-white w-full mb-3">
-                      {row.content1}
-                    </p>
-                  </div>
-                  <div className="flex gap-2">
-                    <CiCircleCheck />
-                    <p className="font-normal text-[10px] leading-[10.4px] text-white w-full mb-3">
-                      {row.content1}
-                    </p>
-                  </div>
-                  <div className="flex justify-end">
-                    <Link href="/">
-                      <button
-                        className="bg-[#0D0D0D] items-center flex justify-center text-center 
-               ring-offset-white focus-visible:outline-none
-                  h-10 w-[153px] rounded-[20px] mx-auto"
-                      >
-                        <p
-                          style={bgClipText}
-                          className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]   text-xs font-normal]
-               text-transparent leading-[12.8px]"
-                        >
-                          {row.button}
-                        </p>
-                        <MdArrowOutward className="text-[#7F56D9] text-sm pb-1" />
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              ))}
+          <div className="w-full max-w-[30%] ml-2 border-white">
+  <p className="font-normal text-xs leading-[12.48px] pt-5 mb-5">Outstanding Tasks</p>
+  
+  <div className="flex flex-col">
+    <div className="w-full max-w-[100%] h-auto rounded-[20px] bg-[#181818] p-4 mb-8">
+      <div className="w-full max-w-[100%] h-auto mx-auto rounded-[20px] bg-gradient-to-r from-[rgba(7,7,7,1)] to-[rgba(24,24,24,1)] mt-2">
+        {/* first persona */}
+        <div className="relative">
+          {/* persona images */}
+          <Image src="/persona1.png" width={40} height={40} alt="female-persona" className="absolute top-0 left-2 z-10" />
+          <Image src="/persona2.png" width={40} height={40} alt="male-persona" className="absolute right-3 bottom-[-20%]" />
+          
+          <div className="w-full max-w-[186px] h-[44px] p-2 rounded-lg mx-auto mb-3">
+            <div className="w-full max-w-[159px] h-[48px] border-[#181818] border px-2 py-2 rounded-[10px] z-20">
+              <p className="text-[8px] font-normal leading-[9.76px] mb-2">Mozihla</p>
+              <p className="text-[8px] font-normal leading-[9.76px] text-[#6D6D6D] w-full">Intel <span className="font-[900] text-[8px] text-white leading-[9.76px]">ai</span> automatically blocks spams and tracks the progress.</p>
             </div>
           </div>
+          
+          {/* second persona */}
+          <div className="w-full max-w-[186px] h-[44px] p-2 rounded-lg mx-auto">
+            <div className="w-full max-w-[159px] h-[48px] border-[#181818] border px-2 py-2 rounded-[10px] ml-5">
+              <p className="text-[8px] font-normal leading-[9.76px] mb-2">Mozihla</p>
+              <p className="text-[8px] font-normal leading-[9.76px] text-[#6D6D6D] w-full">Intel <span className="font-[900] text-[8px] text-white leading-[9.76px]">ai</span> automatically blocks spams and tracks the progress.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p className="pt-5 font-medium text-base leading-[14.64px] mb-3">Spam blocking and tracking</p>
+      <p className="text-[12px] font-normal leading-[16.64px] text-[#6D6D6D] w-full">Intel <span className="font-[900] text-[12px] text-white leading-[14.64px]">ai</span> automatically blocks spams and tracks the progress.</p>
+    </div>
+
+    {/* second box */}
+    <div className="w-full max-w-[100%] h-auto rounded-[20px] bg-[#181818] p-4">
+      <div className="w-full max-w-[250px] h-auto mx-auto rounded-[20px] bg-gradient-to-r from-[rgba(7,7,7,1)] to-[rgba(24,24,24,1)] mt-3">
+        <Image src="/socials.png" width={250} height={110} alt="icon" />
+      </div>
+      <p className="pt-5 font-medium text-base leading-[14.64px] mb-3">More integrations coming soon</p>
+      <p className="text-[12px] font-normal leading-[16.64px] text-[#6D6D6D] w-full">We are adding more channels for integrations. Discord, Notion, Zapier, Slack, and many more.</p>
+    </div>
+
+    {/* third box */}
+    <p className="text-xs font-normal leading-[12.48px] pt-10 mb-5">Promotions</p>
+
+    {/* upgrade pro */}
+    {proDashboard?.map((row, index) => (
+      <div key={index} className="w-full max-w-[100%] h-auto rounded-[20px] bg-gradient-to-r from-[rgba(189,254,28,1)] via-[rgba(37,184,222,1)] to-[rgba(70,13,255,1)] p-6 py-5 relative">
+        <Image src={row.img} width={38} height={38} alt="star" className="absolute top-5 right-7" />
+        <h4 className="font-normal text-[48px] leading-[53.52px] mb-3">{row.title}</h4>
+        <div className="flex gap-2">
+          <CiCircleCheck />
+          <p className="font-normal text-[10px] leading-[10.4px] text-white w-full mb-3">{row.content1}</p>
+        </div>
+        <div className="flex gap-2">
+          <CiCircleCheck />
+          <p className="font-normal text-[10px] leading-[10.4px] text-white w-full mb-3">{row.content2}</p>
+        </div>
+        <div className="flex justify-end">
+          <Link href="/">
+            <button className="bg-[#0D0D0D] items-center flex justify-center text-center ring-offset-white focus-visible:outline-none h-10 w-full max-w-[153px] rounded-[20px] mx-auto">
+              <p style={bgClipText} className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)] text-xs font-normal text-transparent leading-[12.8px]">{row.button}</p>
+              <MdArrowOutward className="text-[#7F56D9] text-sm pb-1" />
+            </button>
+          </Link>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
         </div>
       </section>
     </>

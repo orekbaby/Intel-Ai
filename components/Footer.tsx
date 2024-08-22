@@ -31,8 +31,8 @@ const Footer = () => {
               <Image
                 src="/intel-logo.png"
                 alt="Default Logo"
-                width={226}
-                height={68}
+                width={215}
+                height={50}
                 className="mb-10"
               />
             </div>

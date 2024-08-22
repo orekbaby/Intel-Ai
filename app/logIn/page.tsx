@@ -62,7 +62,7 @@ const Page = () => {
               <h1
                 style={bgClipText}
                 className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
-                text-transparent font-medium text-[40px] md:text-[60px] lg:text-[64px] 
+                text-transparent font-medium text-[40px] md:text-[60px] lg:text-[52px] 
                 leading-[40px] md:leading-[64px] lg:leading-[64px] text-center w-[378px] md:w-full lg:w-full mb-6 mx-auto"
               >
                 Welcome to Intel AI

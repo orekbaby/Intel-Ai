@@ -154,32 +154,34 @@ const Navigation = () => {
                 KOL Influencer
               </p>
             </div>
-            <div className="flex items-center justify-end gap-6 ml-72">
-              <p className="font-medium text-[20px] leading-[20.8px]">
-                Co-pilot
-              </p>
-              <div className="flex items-center justify-center gap-1">
-                <div
-                  className="relative inline-block w-7 h-4 transition duration-200 ease-linear rounded-full cursor-pointer bg-[#545454]"
-                  onClick={handleToggle}
-                >
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={handleToggle}
-                    className="absolute opacity-0 w-full h-full cursor-pointer bg-[#545454]"
-                  />
-                  <span
-                    className={`absolute left-0 inline-block w-3.5 h-3.5 transition duration-200 ease-linear transform rounded-full shadow ${
-                      isChecked ? "translate-x-3 bg-green-400" : "bg-white"
-                    }`}
-                  ></span>
-                </div>
-                <p className="font-medium text-[14px] leading-[14.56px] text-[#6B6B6B]">
-                  {isChecked ? "ON" : "OFF"}
-                </p>
-              </div>
-            </div>
+            <div className="flex items-center justify-end gap-6 px-4 md:px-12 lg:px-24 xl:px-72">
+  <p className="font-medium text-[20px] leading-[20.8px]">
+    Co-pilot
+  </p>
+  <div className="flex items-center justify-center gap-1">
+    <div
+      className="relative inline-block w-7 h-4 transition duration-200 ease-linear rounded-full cursor-pointer bg-[#545454]"
+      onClick={handleToggle}
+    >
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleToggle}
+        className="absolute opacity-0 w-full h-full cursor-pointer bg-[#545454]"
+      />
+      <span
+        className={`absolute left-0 inline-block w-3.5 h-3.5 transition duration-200 ease-linear transform rounded-full shadow ${
+          isChecked ? "translate-x-3 bg-green-400" : "bg-white"
+        }`}
+      ></span>
+    </div>
+    <p className="font-medium text-[14px] leading-[14.56px] text-[#6B6B6B]">
+      {isChecked ? "ON" : "OFF"}
+    </p>
+  </div>
+</div>
+
+            {/* ends here */}
           </div>
         </header>
       )}
@@ -320,56 +322,60 @@ const Navigation = () => {
             </div>
           )}
 
-          <div className="hidden md:flex lg:flex items-center gap-6 justify-between">
-            <div className="flex justify-center items-center gap-6 pl-[500px]">
-              <Link href="/trainAi">
-                <p
-                  className={`text-[13.75px] leading-[14.3px] font-medium ${
-                    pathname === "/trainAi" ? "text-white" : "text-[#6A6A6A]"
-                  }`}
-                >
-                  AI Training
-                </p>
-              </Link>
-              <Link href="/querySolving">
-                <p
-                  className={`text-[13.75px] leading-[14.3px] font-medium ${
-                    pathname === "/querySolving"
-                      ? "text-white"
-                      : "text-[#6A6A6A]"
-                  }`}
-                >
-                  Query Escalation Protocol
-                </p>
-              </Link>
-            </div>
-            <div className="flex items-center justify-end gap-6 ml-80">
-              <p className="font-medium text-[20px] leading-[20.8px]">
-                Co-pilot
-              </p>
-              <div className="flex items-center justify-center gap-1">
-                <div
-                  className="relative inline-block w-7 h-4 transition duration-200 ease-linear rounded-full cursor-pointer bg-[#545454]"
-                  onClick={handleToggle}
-                >
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={handleToggle}
-                    className="absolute opacity-0 w-full h-full cursor-pointer bg-[#545454]"
-                  />
-                  <span
-                    className={`absolute left-0 inline-block w-3.5 h-3.5 transition duration-200 ease-linear transform rounded-full shadow ${
-                      isChecked ? "translate-x-3 bg-green-400" : "bg-white"
-                    }`}
-                  ></span>
-                </div>
-                <p className="font-medium text-sm leading-[14.56px] text-[#6B6B6B]">
-                  {isChecked ? "ON" : "OFF"}
-                </p>
-              </div>
-            </div>
-          </div>
+<div className="hidden md:flex lg:flex items-center justify-between gap-6 w-full">
+  {/* Adjusted Padding for Centering */}
+  <div className="flex justify-center items-center gap-6 ml-10 md:ml-[20rem]lg:ml-[25rem] xl:ml-[30rem]">
+    <Link href="/trainAi">
+      <p
+        className={`text-[13.75px] leading-[14.3px] font-medium ${
+          pathname === "/trainAi" ? "text-white" : "text-[#6A6A6A]"
+        }`}
+      >
+        AI Training
+      </p>
+    </Link>
+    <Link href="/querySolving">
+      <p
+        className={`text-[13.75px] leading-[14.3px] font-medium ${
+          pathname === "/querySolving"
+            ? "text-white"
+            : "text-[#6A6A6A]"
+        }`}
+      >
+        Query Escalation Protocol
+      </p>
+    </Link>
+  </div>
+
+  {/* Co-pilot and Toggle Button at the Far Right */}
+  <div className="flex items-center gap-6 pr-4 md:pr-8 lg:pr-12 xl:pr-16">
+    <p className="font-medium text-[20px] leading-[20.8px]">
+      Co-pilot
+    </p>
+    <div className="flex items-center justify-center gap-1">
+      <div
+        className="relative inline-block w-7 h-4 transition duration-200 ease-linear rounded-full cursor-pointer bg-[#545454]"
+        onClick={handleToggle}
+      >
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleToggle}
+          className="absolute opacity-0 w-full h-full cursor-pointer bg-[#545454]"
+        />
+        <span
+          className={`absolute left-0 inline-block w-3.5 h-3.5 transition duration-200 ease-linear transform rounded-full shadow ${
+            isChecked ? "translate-x-3 bg-green-400" : "bg-white"
+          }`}
+        ></span>
+      </div>
+      <p className="font-medium text-sm leading-[14.56px] text-[#6B6B6B]">
+        {isChecked ? "ON" : "OFF"}
+      </p>
+    </div>
+  </div>
+</div>
+
         </header>
       )}
 

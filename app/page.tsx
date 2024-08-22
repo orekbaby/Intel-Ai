@@ -86,7 +86,7 @@ export default function Home() {
       {/* hero-section */}
       <section className="first-gradient section relative w-full h-auto overflow-hidden mx-auto ">
         <div className=" w-full ">
-          <div className="px-0 md:px-28 lg:px-28">
+          <div className="px-0 md:px-28 lg:px-16">
             {/* Gradient background with lower z-index */}
             <div
               style={style2}
@@ -100,14 +100,15 @@ export default function Home() {
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
    text-transparent font-medium text-[32px] md:text-[40px] lg:text-[40px] xl:text-[64px] 2xl:text-[70px]
-   leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-[75%] lg:w-full xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto"
+   leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-[75%] lg:w-[100%] xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto"
             >
               Collaboration Protocol of Autonomous AI Agents
             </h1>
-            <p className="font-normal text-[16px] md:text-[24px] lg:text-[16px] xl:text-[28px] 2xl:text-[32px] text-[#8A8A8A] text-center mb-5 md:mb-10 lg:mb-10 px-2 md:px-40 lg:px-40 w-[378px] md:w-full lg:w-[95%] leading-[20.2px] md:leading-[33.2px] lg:leading-[33.2px] mx-auto">
-              Tailored Intelligence built from the ground up specifically for
-              the Web3 Ecosystem.
-            </p>
+            <p className="font-normal text-[16px] md:text-[18px] lg:text-[24px] xl:text-[24px] 2xl:text-[24px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-12 w-full max-w-[900px] leading-[24px] md:leading-[26px] lg:leading-[28px] xl:leading-[30px] mx-auto w-[80%]">
+  Tailored Intelligence built from the ground up specifically for
+  the Web3 Ecosystem.
+</p>
+
 
             {/* mobile button */}
             <Link href="/logIn">
@@ -194,31 +195,32 @@ export default function Home() {
       </section>
 
       {/* Second section */}
-      <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 mx-0 md:mx-auto lg:mx-auto px-2 md:px-36 lg:px-36 text-center pb-10 md:pb-28 lg:pb-28 z-50">
-        <h2 className="w-full h-auto md:w-[90%] lg:w-full font-medium text-[24px] md:text-[60px] lg:text-[40px]  xl:text-[64px] 2xl:text-[64px] mb-5 md:mb-10 lg:mb-10 leading-[28.32px] md:leading-[75.52px] lg:leading-[75.52px] text-center mx-auto">
-          Meticulously Engineered To Deliver {""}
-          <span
-            style={bgClipText}
-            className="bg-gradient-to-r from-[#03FFA3] to-[#7F56D9] text-transparent"
-          >
-            Human-Like Responses
-          </span>
-        </h2>
-        <p className="font-normal w-full h-auto text-[14px] md:text-[20px] lg:text-[16px] xl:text-[24px] 2xl:text-[27px] px-2 md:px-24 lg:px-32 mb-5 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
-          Experience the sophistication of AI Agents that talk like a human but
-          work like a supercomputer. Intel AI&apos;s deep learning algorithms
-          are crafted to replicate the warmth, empathy, and complexity of human
-          interaction, ensuring that every message, reply, or announcement feels
-          genuinely personal.
-        </p>
-        <Image
-          src="/ai-img.png"
-          width={1002}
-          height={361.55}
-          alt="hero-img"
-          className="object-cover mx-auto max-w-[100%] text-center w-[272px] h-[101px]  md:h-auto lg:h-auto md:w-full lg:w-full"
-        />
-      </div>
+      <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 px-4 md:px-24 lg:px-36 text-center pb-10 md:pb-20 lg:pb-20 mx-auto">
+  <h2 className="font-medium text-[24px] md:text-[36px] lg:text-[48px] xl:text-[60px] 2xl:text-[64px] mb-4 md:mb-8 lg:mb-8 leading-[28px] md:leading-[40px] lg:leading-[72px] text-center">
+    Meticulously Engineered To Deliver {""}
+    <span
+      style={bgClipText}
+      className="bg-gradient-to-r from-[#03FFA3] to-[#7F56D9] text-transparent"
+    >
+      Human-Like Responses
+    </span>
+  </h2>
+  <p className="font-normal text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] px-4 md:px-8 lg:px-12 mb-4 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[28px]">
+    Experience the sophistication of AI Agents that talk like a human but
+    work like a supercomputer. Intel AI's deep learning algorithms
+    are crafted to replicate the warmth, empathy, and complexity of human
+    interaction, ensuring that every message, reply, or announcement feels
+    genuinely personal.
+  </p>
+  <Image
+    src="/ai-img.png"
+    width={1002}
+    height={361.55}
+    alt="hero-img"
+    className="object-cover mx-auto max-w-full h-auto"
+  />
+</div>
+
 
       {/* custom ai */}
       <div className="relative w-full h-auto overflow-hidden ">
@@ -246,19 +248,19 @@ export default function Home() {
           className="-bottom-[3%] left-[98%] absolute w-[50%] h-[450px] -translate-x-1/2"
         ></div>
 
-        <div className="mx-auto px-0 md:px-28 lg:px-40 xl:px-40 2xl:px-48 text-center pt-16 md:pt-28 lg:pt-32 mb-7 md:mb-16 lg:mb-16">
+        <div className="mx-auto px-0 md:px-28 lg:px-32 xl:px-40 2xl:px-48 text-center pt-16 md:pt-28 lg:pt-32 mb-7 md:mb-16 lg:mb-16">
           <h3 className="font-medium text-center text-[20px] md:text-[36px] lg:text-[36px] mb-5">
             Custom AI Agents Like Never Before
           </h3>
-          <p className="font-normal text-center text-sm md:text-[20px] lg:text-[18px] w-[370px] md:w-full lg:w-full h-auto mx-auto px-0 md:px-28 lg:px-40 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
+          <p className="font-normal text-center text-sm md:text-[14px] lg:text-[14px] w-[370px] md:w-full lg:w-full h-auto mx-auto px-0 md:px-28 lg:px-40 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[31.2px] lg:leading-[18.2px]">
             Intel AI leverages a custom LLM architecture that&apos;s fine-tuned
             to grasp the intricacies of blockchain technology, its narratives,
             trends, & community nuances with unparalleled precision
           </p>
         </div>
         {/* custom ai */}
-        <div className="flex flex-col w-full md:flex-row lg:flex-row justify-center gap-2 md:gap-10 lg:gap-10 mx-auto px-0 md:px-24 lg:px-24">
-          {communityOwners?.map((row, index) => (
+        <div className="flex flex-col w-full md:flex-row lg:flex-row justify-center gap-4 md:gap-6 lg:gap-8 mx-auto px-4 md:px-6 lg:px-8">
+        {communityOwners?.map((row, index) => (
             <div
               key={index}
               className="w-[350px] md:w-[380.88px] lg:w-[400.88px] h-[365px] md:h-[355.38px] lg:h-[355.38px] xl:w-[400.88px] 2xl:w-[400.88px] bg-[#070707] rounded-[20px] px-6 md:px-6 lg:px-6 pt-1 mb-12 md:mb-48 lg:mb-48 mx-auto"
@@ -277,48 +279,47 @@ export default function Home() {
               </p>
             </div>
           ))}
-          {/* second column */}
-          {kolsInfluencers?.map((row, index) => (
-            <div
-              key={index}
-              className="w-[350px] h-[314px] md:w-[400.88px] md:h-[355.38px]  lg:w-[400.88px] xl:w-[400.88px] 2xl:w-[400.88px] lg:h-[355.38px] xl:h-[355.38px] 2xl:h-[355.38px] bg-[#070707] rounded-[20px] px-4 md:px-6 lg:px-6  pt-1 mb-12 md:mb-36 lg:mb-36 mx-auto"
-            >
-              <Image
-                src={row.img}
-                width={340.93}
-                height={200.08}
-                alt="custom-img"
-                className="object-cover mx-auto text-center w-[340.93px] h-[171px] md:w-[342.93px] lg:w-[292px] md:h-[200.08px] lg:h-[200.08px] mb-6"
-              />
-              <h4 className="font-medium text-[20px] mb-3">{row.heading}</h4>
-              <p className="font-normal text-sm text-[#8A8A8A] w-[300px] md:w-[354px] lg:w-[354px] h-[36px] leading-[22.2px]">
-                {row.content}
-              </p>
-            </div>
-          ))}
+  {/* second column */}
+  {kolsInfluencers?.map((row, index) => (
+    <div
+      key={index}
+      className="w-full md:w-[400px] lg:w-[400px] h-[314px] md:h-[355px] lg:h-[355px] bg-[#070707] rounded-lg px-4 md:px-6 lg:px-6 py-4 md:py-6 lg:py-8 mb-6 md:mb-8 lg:mb-10 mx-auto"
+    >
+      <Image
+        src={row.img}
+        width={340}
+        height={200}
+        alt="custom-img"
+        className="object-cover w-full h-auto max-w-full mx-auto mb-4"
+      />
+      <h4 className="font-medium text-xl md:text-2xl lg:text-2xl mb-3">{row.heading}</h4>
+      <p className="font-normal text-sm text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed">
+        {row.content}
+      </p>
+    </div>
+  ))}
 
-          {/* third column */}
-          {customAgents?.map((row, index) => (
-            <div
-              key={index}
-              className=" 
-               w-[350px] md:w-[401.12px] lg:w-[401.12px] h-[336px] md:h-[355.38px] lg:h-[355.38px] xl:h-[355.38px] 2xl:h-[355.38px]
-              bg-[#070707] rounded-[20px] px-4 md:px-6 lg:px-6 pt-10 mb-12 md:mb-36 lg:mb-36 mx-auto"
-            >
-              <Image
-                src={row.img}
-                width={350}
-                height={173}
-                alt="custom-img"
-                className="object-cover mx-auto text-center mb-5 w-[305.4px] md:w-[350px] lg:w-[350px] h-[154.32px] md:h-[173px] lg:h-[173px]"
-              />
-              <h4 className="font-medium text-[20px] mb-3">{row.heading}</h4>
-              <p className="font-normal text-sm text-[#8A8A8A] w-[312px] md:w-[348px] lg:w-[348px] h-[54px] leading-[22.2px]">
-                {row.content}
-              </p>
-            </div>
-          ))}
-        </div>
+  {/* third column */}
+  {customAgents?.map((row, index) => (
+    <div
+      key={index}
+      className="w-full md:w-[400px] lg:w-[400px] h-[336px] md:h-[355px] lg:h-[355px] bg-[#070707] rounded-lg px-4 md:px-6 lg:px-6 py-4 md:py-6 lg:py-8 mb-6 md:mb-8 lg:mb-10 mx-auto"
+    >
+      <Image
+        src={row.img}
+        width={350}
+        height={173}
+        alt="custom-img"
+        className="object-cover w-full h-auto max-w-full mx-auto mb-4"
+      />
+      <h4 className="font-medium text-xl md:text-2xl lg:text-2xl mb-3">{row.heading}</h4>
+      <p className="font-normal text-sm text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed">
+        {row.content}
+      </p>
+    </div>
+  ))}
+</div>
+
         <div className="mx-auto px-4 md:px-32 lg:px-40 xl:px-40 2xl:px-48 text-center">
           <h5
             style={bgClipText}
@@ -360,238 +361,228 @@ export default function Home() {
           <h5 className="block md:hidden lg:hidden font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[27px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
             Empower Your Workflow with Cutting-Edge Features
           </h5>
-          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-base lg:text-base text-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20 pt-5">
+          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-sm lg:text-smtext-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20 pt-5">
             Explore the frontier of coding evolution with Glossy Unleashed. Our
             latest features redefine the boundaries of what&apos;s possible in
             coding tools.
           </p>
         </div>
         {integration?.map((row, index) => (
-          <div
-            key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center
-            mx-auto px-3 gap-0 md:gap-10 lg:gap-10 m md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-20"
-          >
-            <div className="w-1/2">
-              <Image
-                src={row.img}
-                width={45}
-                height={45}
-                alt="cable-icon"
-                className="mb-8"
-              />
-              <h5 className="font-medium text-[22px] md:text-[24px] lg:text-[29.91px] xl:text-[32px] 2xl:text-[36px] leading-[31.2px] w-[369px] h-auto md:h-auto lg:h-auto md:w-[498px] lg:w-[498px] px-1 text-left mb-5 md:mb-5 lg:mb-5 xl:mb-5 2xl:mb-5 md:leading-[38.88px] lg:leading-[38.88px]">
-                {row.title}
-              </h5>
+  <div
+    key={index}
+    className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20 gap-4 md:gap-6 lg:gap-8 mb-10 md:mb-20 lg:mb-20"
+  >
+    <div className="w-full md:w-1/2 px-2 md:px-4 lg:px-6">
+      <Image
+        src={row.img}
+        width={45}
+        height={45}
+        alt="cable-icon"
+        className="mb-4 md:mb-6"
+      />
+      <h5 className="font-medium text-[18px] md:text-[22px] lg:text-[24x] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6">
+        {row.title}
+      </h5>
+      <p className="font-normal text-[14px] md:text-[16px] lg:text-[14px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
+        {row.description}
+      </p>
+      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
+        <Image
+          src={row.img2}
+          width={25}
+          height={25}
+          alt="content-tag"
+        />
+        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
+          {row.name}
+        </p>
+      </div>
+      <div className="flex gap-2 items-center">
+        <Image
+          src={row.img3}
+          width={25}
+          height={25}
+          alt="query"
+        />
+        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
+          {row.name2}
+        </p>
+      </div>
+    </div>
+    {/* background-img */}
+    <div className="hidden md:block lg:block w-full md:w-1/2 relative">
+      <div
+        className="bg-background-image w-full h-auto bg-center bg-no-repeat bg-cover"
+      >
+        <Image
+          src={row.integration}
+          width={600}
+          height={532}
+          alt="bg-img"
+          className="object-cover w-full h-auto"
+        />
+      </div>
+    </div>
 
-              <p className="font-normal text-sm md:text-base lg:text-base xl:text-[18px] 2xl:text-[20px] text-[#BDBDBD] mb-14 md:mb-10 lg:mb-10 w-[361px] md:w-[498px] lg:w-[498px] h-[54px] md:h-[63px] lg:h-[63px] leading-[20.8px] ">
-                {row.description}
-              </p>
-              <div className="flex gap-2 w-[500px] justify-start">
-                <Image
-                  src={row.img2}
-                  width={25}
-                  height={25}
-                  alt="content-tag"
-                  className="mb-5"
-                />
-                <p className="font-normal text-[13.96px] text-[#BDBDBD]">
-                  {row.name}
-                </p>
-              </div>
-              <div className="flex w-[500px] gap-2 justify-start">
-                <Image
-                  src={row.img3}
-                  width={25}
-                  height={25}
-                  alt="query"
-                  className="mb-10"
-                />
-                <p className="font-normal text-[13.96px] text-[#BDBDBD]">
-                  {row.name2}
-                </p>
-              </div>
-            </div>
-            {/* background-img */}
-            <div className="w-1/2 relative hidden md:block lg:block">
-              <div
-                className="bg-background-image 
-           w-[613.43px] h-[586px] bg-center bg-no-repeat bg-contain ml-0 md:ml-5 lg:ml-5"
-              >
-                <Image
-                  src={row.integration}
-                  width={552}
-                  height={532}
-                  alt="bg-img"
-                  className="pt-16 pl-16 object-cover h-auto max-h-full w-[100%]"
-                />
-              </div>
-            </div>
+    {/* mobile */}
+    <div className="block md:hidden lg:hidden w-full mb-6">
+      <Image
+        src={row.mobileImg}
+        width={386}
+        height={376}
+        alt="bg-img"
+        className="object-cover w-full h-auto"
+      />
+    </div>
+  </div>
+))}
 
-            {/* mobile */}
-            <div className="w-full mb-10">
-              <Image
-                src={row.mobileImg}
-                width={386}
-                height={376.16}
-                alt="bg-img"
-                className="block md:hidden lg:hidden object-cover h-auto max-h-full w-[100%]"
-              />
-            </div>
-          </div>
-        ))}
+{/* content section */}
+{content?.map((row, index) => (
+  <div
+    key={index}
+    className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20 gap-4 md:gap-6 lg:gap-8 mb-10 md:mb-20 lg:mb-20"
+  >
+    <div className="w-full md:w-1/2 px-2 md:px-4 lg:px-6">
+      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
+        <Image
+          src={row.img}
+          width={25}
+          height={25}
+          alt="cable-tag"
+        />
+        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
+          {row.name}
+        </p>
+      </div>
+      <Image
+        src={row.img2}
+        width={45}
+        height={45}
+        alt="content-tag"
+        className="mb-4 md:mb-6 lg:mb-6"
+      />
+      <h5
+        className="font-medium text-[18px] md:text-[22px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6"
+      >
+        {row.title}
+      </h5>
+      <p className="font-normal text-[14px] md:text-[16px] lg:text-[14px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
+        {row.description}
+      </p>
+      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
+        <Image
+          src={row.img3}
+          width={25}
+          height={25}
+          alt="query"
+        />
+        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
+          {row.name2}
+        </p>
+      </div>
+    </div>
+    {/* background-img */}
+    <div className="hidden md:block lg:block w-full md:w-1/2 relative">
+      <div
+        className="bg-background-image w-full h-auto bg-center bg-no-repeat bg-cover"
+      >
+        <Image
+          src={row.integration}
+          width={600}
+          height={532}
+          alt="bg-img"
+          className="object-cover w-full h-auto"
+        />
+      </div>
+    </div>
 
-        {/* content section */}
-        {content?.map((row, index) => (
-          <div
-            key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-20"
-          >
-            <div className="w-1/2">
-              <div className="flex gap-2 justify-start w-[500px]">
-                <Image
-                  src={row.img}
-                  width={25}
-                  height={25}
-                  alt="cable-tag"
-                  className="mb-5"
-                />
-                <p className="font-normal text-[13.96px] text-[#BDBDBD]">
-                  {row.name}
-                </p>
-              </div>
-              <Image
-                src={row.img2}
-                width={45}
-                height={45}
-                alt="content-tag"
-                className="mb-8"
-              />
-              <h5
-                className="font-medium text-[22px] md:text-[24px] lg:text-[29.91px] xl:text-[32px] 2xl:text-[36px]
-               leading-[31.2px] md:leading-[28.88px] lg:w-leading-[28.88px] w-[369px] h-[39px] md:w-full lg:w-full md:h-auto lg:h-auto text-left mb:2 md:mb-5 lg:mb-5 xl:mb-5 2xl:mb-5 "
-              >
-                {row.title}
-              </h5>
-              <p className="font-normal text-sm md:text-base lg:text-base xl:text-[18px] 2xl:text-[20px] text-[#BDBDBD] mb-8 w-[376px] h-auto md:w-[498px] lg:w-[498px] leading-[18.2px] md:leading-[20.8px] lg:leading-[20.8px] px-0">
-                {row.description}
-              </p>
+    {/* mobile img */}
+    <div className="block md:hidden lg:hidden w-full mb-6">
+      <Image
+        src={row.mobileImg}
+        width={386}
+        height={379}
+        alt="bg-img"
+        className="object-cover w-full h-auto"
+      />
+    </div>
+  </div>
+))}
 
-              <div className="flex gap-2 justify-start w-[500px]">
-                <Image
-                  src={row.img3}
-                  width={25}
-                  height={25}
-                  alt="query"
-                  className="mb-8"
-                />
-                <p className="font-normal text-[13.96px] text-[#BDBDBD]">
-                  {row.name2}
-                </p>
-              </div>
-            </div>
-            {/* background-img */}
-            <div className="w-1/2 relative hidden md:block lg:block">
-              <div
-                className="bg-background-image
-           w-[613.43px] h-[586px] bg-center bg-no-repeat bg-contain"
-              >
-                <Image
-                  src={row.integration}
-                  width={600}
-                  height={532}
-                  alt="bg-img"
-                  className="pt-20 pl-16 object-cover w-full h-auto"
-                />
-              </div>
-            </div>
+{/* sorting section */}
+{sorting?.map((row, index) => (
+  <div
+    key={index}
+    className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20 gap-4 md:gap-6 lg:gap-8 mb-10 md:mb-20 lg:mb-20"
+  >
+    <div className="w-full md:w-1/2 px-2 md:px-4 lg:px-6">
+      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
+        <Image
+          src={row.img}
+          width={25}
+          height={25}
+          alt="cable-tag"
+        />
+        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
+          {row.name}
+        </p>
+      </div>
+      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
+        <Image
+          src={row.img2}
+          width={25}
+          height={25}
+          alt="content-tag"
+        />
+        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
+          {row.name2}
+        </p>
+      </div>
+      <Image
+        src={row.img3}
+        width={45}
+        height={45}
+        alt="query"
+        className="mb-4 md:mb-6 lg:mb-6"
+      />
+      <h5
+        className="font-medium text-[18px] md:text-[22px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6"
+      >
+        {row.title}
+      </h5>
+      <p className="font-normal text-[14px] md:text-[16px] lg:text-[14px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
+        {row.description}
+      </p>
+    </div>
+    {/* background-img */}
+    <div className="hidden md:block lg:block w-full md:w-1/2 relative">
+      <div
+        className="bg-background-image w-full h-auto bg-center bg-no-repeat bg-cover"
+      >
+        <Image
+          src={row.integration}
+          width={600}
+          height={532}
+          alt="bg-img"
+          className="object-cover w-full h-auto"
+        />
+      </div>
+    </div>
 
-            {/* mobile img */}
-            <Image
-              src={row.mobileImg}
-              width={386}
-              height={379.16}
-              alt="bg-img"
-              className="block md:hidden lg:hidden object-cover h-auto max-h-full w-[100%]"
-            />
-          </div>
-        ))}
+    {/* mobile img */}
+    <div className="block md:hidden lg:hidden w-full mb-6">
+      <Image
+        src={row.mobileImg}
+        width={386}
+        height={379}
+        alt="bg-img"
+        className="object-cover w-full h-auto"
+      />
+    </div>
+  </div>
+))}
 
-        {/* sorting section */}
-        {sorting?.map((row, index) => (
-          <div
-            key={index}
-            className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-3 gap-0 md:gap-10 lg:gap-10 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-40"
-          >
-            <div className="w-1/2">
-              <div className="flex gap-2 justify-start w-[500px]">
-                <Image
-                  src={row.img}
-                  width={25}
-                  height={25}
-                  alt="cable-tag"
-                  className="mb-5"
-                />
-                <p className="font-normal text-[13.96px] text-[#BDBDBD]">
-                  {row.name}
-                </p>
-              </div>
-              <div className="flex gap-2 justify-start w-[500px]">
-                <Image
-                  src={row.img2}
-                  width={25}
-                  height={25}
-                  alt="content-tag"
-                  className="mb-5"
-                />
-                <p className="font-normal text-[13.96px] text-[#BDBDBD]">
-                  {row.name2}
-                </p>
-              </div>
-              <Image
-                src={row.img3}
-                width={45}
-                height={45}
-                alt="query"
-                className="mb-8"
-              />
-
-              <h5
-                className="font-medium text-[22px] md:text-[24px] lg:text-[29.91px] xl:text-[32px] 2xl:text-[36px] leading-[31.2px]
-               md:leading-[28.88px] lg:leading-[34.88px] w-[386px] md:w-[454px] lg:w-[500px] h-[39px] md:h-[48px] lg:h-[48px] text-left mb-2 md:mb-5 lg:mb-10 xl:mb-5 2xl:mb-5"
-              >
-                {row.title}
-              </h5>
-              <p className="pt-0 md:pt-5 lg: xl:pt-5 2xl:pt-5 font-normal text-sm md:text-base lg:text-base xl:text-[18px] 2xl:text-[20px] text-[#BDBDBD] w-[361px] h-auto md:w-[498px] lg:w-[498px] leading-[18.2px] md:leading-[20.8px] lg:leading-[20.8px] md-px-0 lg:px-0 mb-7 md:mb-0 lg:mb-0">
-                {row.description}
-              </p>
-            </div>
-            {/* background-img */}
-            <div className="w-1/2 relative hidden md:block lg:block">
-              <div
-                className="bg-background-image
-           w-[613.43px] h-[586px] bg-center bg-no-repeat bg-contain"
-              >
-                <Image
-                  src={row.integration}
-                  width={600}
-                  height={532}
-                  alt="bg-img"
-                  className="pl-16 pt-12 object-cover w-full h-auto rounded-[5%]"
-                />
-              </div>
-            </div>
-
-            {/* mobile img 3 */}
-            <Image
-              src={row.mobileImg}
-              width={386}
-              height={379.16}
-              alt="bg-img"
-              className="block md:hidden lg:hidden object-cover h-auto max-h-full w-[100%]"
-            />
-          </div>
-        ))}
 
         {/* Advantages Section */}
         <div className="text center mx-auto px-0 md:px-40 lg:px-40 mb-10 md:mb-16 lg:mb-16">
@@ -611,33 +602,29 @@ export default function Home() {
         {/* grid section */}
 
         <div
-          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 
-      gap-16 md:gap-24 lg:gap-24 pb-6 md:pb-40 lg:pb-32 px-2 md:px-0 lg:px-0 bg-transparent md:border-b lg:border-b  md:border-[#272727] lg:border-[#272727] w-full md:w-full lg:w-[85%] mx-0 md:mx-auto lg:mx-auto  "
-        >
-          {advantages?.map((row, index) => (
-            <div key={index} className="">
-              <Image
-                src={row.img}
-                width={47.85}
-                height={47.85}
-                alt="icon"
-                className="mb-5"
-              />
-
-              <h5 className="font-medium text-[20px] leading-[29.91px] mb-3 w-[382.79px]">
-                {row.title}
-              </h5>
-              <p
-                className="font-normal text-[14px] md:text-base lg:text-base w-[100%] md:w-[382.79px] lg:w-[382.79px]
-               h-auto text-[#BDBDBD] opacity-[45%]"
-              >
-                {row.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
+  className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 
+  gap-8 md:gap-12 lg:gap-16 pb-6 md:pb-12 lg:pb-12 px-4 md:px-6 lg:px-8 bg-transparent 
+  md:border-b lg:border-b md:border-[#272727] lg:border-[#272727] w-full mx-auto"
+>
+  {advantages?.map((row, index) => (
+    <div key={index} className="flex flex-col items-center text-center">
+      <Image
+        src={row.img}
+        width={48} // Use relative units or appropriate sizes
+        height={48}
+        alt="icon"
+        className="mb-4"
+      />
+      <h5 className="font-medium text-lg md:text-xl lg:text-2xl mb-3">
+        {row.title}
+      </h5>
+      <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] opacity-[45%]">
+        {row.description}
+      </p>
+    </div>
+  ))}
+</div>
+</div>
       {/* testimonials section */}
       <div className="text center mx-auto px-0 md:px-40 lg:px-40 mb-16 md:mb-36 lg:mb-36 mt-20">
         <h5 className="font-medium text-[23px] md:text-[36px] lg:text-[36px] md:leading-[58.15px] leading-[38.77px] mt-10 mb-5 text-center mx-auto">
