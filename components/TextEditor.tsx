@@ -1,18 +1,12 @@
 "use client";
-import React, { useEffect } from "react";
-import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
-import { Quill } from "react-quill";
-import {
-  FaBold,
-  FaItalic,
-  FaUnderline,
-  FaImage,
-  FaSmile,
-} from "react-icons/fa";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { FaBold, FaItalic, FaUnderline, FaImage } from "react-icons/fa";
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+interface TextEditorProps {
+  editorContent: string;
+  setEditorContent: (content: string) => void;
+  setCharCount: (count: number) => void;
+}
 
 const CustomToolbar = () => (
   <div id="toolbar">
@@ -31,36 +25,22 @@ const CustomToolbar = () => (
   </div>
 );
 
-const modules = {
-  toolbar: {
-    container: "#toolbar",
-    handlers: {},
-  },
-};
-
-const formats = ["bold", "italic", "underline", "image"];
-// function for the props
-interface TextEditorProps {
-  content: string;
-  setContent: (content: string) => void;
-  setCharCount: (count: number) => void;
-}
-
 const TextEditor: React.FC<TextEditorProps> = ({
-  content,
-  setContent,
+  editorContent,
+  setEditorContent,
   setCharCount,
 }) => {
-  const [value, setValue] = useState(content);
+  const [content, setContent] = useState<string>("");
 
   useEffect(() => {
-    setValue(content);
-  }, [content]);
+    setContent(editorContent);
+  }, [editorContent]);
 
-  const handleChange = (value: string) => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = event.target.value;
     if (value.length <= 500) {
-      setValue(value);
       setContent(value);
+      setEditorContent(value);
       setCharCount(value.length);
     } else {
       alert(`Character limit exceeded: ${value.length}`);
@@ -70,12 +50,12 @@ const TextEditor: React.FC<TextEditorProps> = ({
   return (
     <div className="text-editor text-[#f9f9f9]">
       <CustomToolbar />
-      <ReactQuill
-        value={value}
+      <textarea
+        value={content}
         onChange={handleChange}
-        modules={modules}
-        formats={formats}
         placeholder="Write something awesome..."
+        className="w-full h-48 p-2 mt-2 border rounded-md bg-[#1D1D1D] text-white text-xs scrollbar-hide"
+        maxLength={500}
       />
     </div>
   );

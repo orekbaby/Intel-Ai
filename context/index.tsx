@@ -1,3 +1,5 @@
+//context/index.tsx
+
 "use client";
 
 import React, { ReactNode } from "react";
@@ -16,10 +18,10 @@ if (!projectId) throw new Error("Project ID is not defined");
 
 // Create modal
 createWeb3Modal({
-  wagmiConfig: config,
+  wagmiConfig: config, 
   projectId,
-  enableAnalytics: true, // Optional - defaults to your Cloud configuration
-  enableOnramp: true, // Optional - false as default
+  enableAnalytics: true,
+  enableOnramp: true,
 });
 
 export default function Web3ModalProvider({

@@ -21,6 +21,8 @@ const Page: React.FC = () => {
   const router = useRouter();
   const [connect, setConnect] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [relayConnected, setRelayConnected] = useState<boolean | null>(null); // null = unknown, false = failed, true = success
+  const [errorMessage, setErrorMessage] = useState<string | null>(null); // Store specific error messages
 
   const { open } = useWeb3Modal();
   const { isConnected, address: publicAddress } = useAccount();
@@ -29,11 +31,34 @@ const Page: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const connectedAddress = useSelector((state: RootState) => state.auth.publicAddress);
 
+  const checkWalletConnectRelay = async () => {
+    try {
+      const ws = new WebSocket('wss://relay.walletconnect.com');
+      ws.onopen = () => {
+        console.log('Connected to WalletConnect relay server');
+        setRelayConnected(true);
+      };
+      ws.onerror = (error) => {
+        console.error('WalletConnect relay server connection failed', error);
+        setRelayConnected(false);
+      };
+    } catch (error) {
+      console.error('An error occurred while trying to connect', error);
+      setRelayConnected(false);
+    }
+  };
+
+  useEffect(() => {
+    checkWalletConnectRelay();
+  }, []);
+
   useEffect(() => {
     if (isConnected && publicAddress && connect) {
       setConnect(true);
       dispatch(connectWallet(publicAddress));
       router.push("/user");
+    } else if (connect && !isConnected) {
+      setErrorMessage("Failed to connect wallet. Please try again.");
     }
   }, [isConnected, publicAddress, connect, router, dispatch]);
 
@@ -41,11 +66,13 @@ const Page: React.FC = () => {
     event.preventDefault();
     if (loading) return; // Prevent multiple clicks
     setLoading(true);
+    setErrorMessage(null); // Clear previous error messages
     try {
       await open({ view: "Connect" });
       setConnect(true);
     } catch (error) {
       console.error(error);
+      setErrorMessage("An error occurred during wallet connection. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -81,6 +108,8 @@ const Page: React.FC = () => {
               </button>
             </Link>
           </div>
+          <w3m-button />
+
 
           <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
             <div className="w-[270px] h-[311px] bg-[#131313] mx-auto rounded-[16px] mt-40 md:mt-0 lg:mt-0">
@@ -103,6 +132,24 @@ const Page: React.FC = () => {
                   )}
                 </Button>
               </div>
+              {/* WalletConnect Relay Status */}
+              <div className="mt-4 text-center">
+                {relayConnected === false && (
+                  <p className="text-red-500">Failed to connect to WalletConnect relay server.</p>
+                )}
+                {relayConnected === true && (
+                  <p className="text-green-500">Connected to WalletConnect relay server.</p>
+                )}
+                {relayConnected === null && (
+                  <p className="text-yellow-500">Checking WalletConnect relay server connection...</p>
+                )}
+              </div>
+              {/* Display specific error messages */}
+              {errorMessage && (
+                <div className="mt-4 text-center">a
+                  <p className="text-red-500">{errorMessage}</p>
+                </div>
+              )}
             </div>
           </div>
         </section>

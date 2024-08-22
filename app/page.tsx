@@ -99,12 +99,12 @@ export default function Home() {
             <h1
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
-   text-transparent font-medium text-[32px] md:text-[56px] lg:text-[60px] xl:text-[64px] 2xl:text-[70px]
-   leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-[75%] lg:w-[80%] xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto"
+   text-transparent font-medium text-[32px] md:text-[40px] lg:text-[40px] xl:text-[64px] 2xl:text-[70px]
+   leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-[75%] lg:w-full xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto"
             >
-              Collaboration Protocol of Blockchain AI Agents
+              Collaboration Protocol of Autonomous AI Agents
             </h1>
-            <p className="font-normal text-[18px] md:text-[24px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-[#8A8A8A] text-center mb-5 md:mb-10 lg:mb-10 px-2 md:px-40 lg:px-40 w-[378px] md:w-full lg:w-[95%] leading-[20.2px] md:leading-[33.2px] lg:leading-[33.2px] mx-auto">
+            <p className="font-normal text-[16px] md:text-[24px] lg:text-[16px] xl:text-[28px] 2xl:text-[32px] text-[#8A8A8A] text-center mb-5 md:mb-10 lg:mb-10 px-2 md:px-40 lg:px-40 w-[378px] md:w-full lg:w-[95%] leading-[20.2px] md:leading-[33.2px] lg:leading-[33.2px] mx-auto">
               Tailored Intelligence built from the ground up specifically for
               the Web3 Ecosystem.
             </p>
@@ -195,7 +195,7 @@ export default function Home() {
 
       {/* Second section */}
       <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 mx-0 md:mx-auto lg:mx-auto px-2 md:px-36 lg:px-36 text-center pb-10 md:pb-28 lg:pb-28 z-50">
-        <h2 className="w-full h-auto md:w-[90%] lg:w-full font-medium text-[24px] md:text-[60px] lg:text-[60px]  xl:text-[64px] 2xl:text-[64px] mb-5 md:mb-10 lg:mb-10 leading-[28.32px] md:leading-[75.52px] lg:leading-[75.52px] text-center mx-auto">
+        <h2 className="w-full h-auto md:w-[90%] lg:w-full font-medium text-[24px] md:text-[60px] lg:text-[40px]  xl:text-[64px] 2xl:text-[64px] mb-5 md:mb-10 lg:mb-10 leading-[28.32px] md:leading-[75.52px] lg:leading-[75.52px] text-center mx-auto">
           Meticulously Engineered To Deliver {""}
           <span
             style={bgClipText}
@@ -204,7 +204,7 @@ export default function Home() {
             Human-Like Responses
           </span>
         </h2>
-        <p className="font-normal w-full h-auto text-[14px] md:text-[20px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] px-2 md:px-24 lg:px-32 mb-5 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
+        <p className="font-normal w-full h-auto text-[14px] md:text-[20px] lg:text-[16px] xl:text-[24px] 2xl:text-[27px] px-2 md:px-24 lg:px-32 mb-5 md:mb-7 lg:mb-7 text-[#8A8A8A] text-center leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
           Experience the sophistication of AI Agents that talk like a human but
           work like a supercomputer. Intel AI&apos;s deep learning algorithms
           are crafted to replicate the warmth, empathy, and complexity of human
@@ -250,7 +250,7 @@ export default function Home() {
           <h3 className="font-medium text-center text-[20px] md:text-[36px] lg:text-[36px] mb-5">
             Custom AI Agents Like Never Before
           </h3>
-          <p className="font-normal text-center text-sm md:text-[20px] lg:text-[20px] w-[370px] md:w-full lg:w-full h-auto mx-auto px-0 md:px-28 lg:px-40 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
+          <p className="font-normal text-center text-sm md:text-[20px] lg:text-[18px] w-[370px] md:w-full lg:w-full h-auto mx-auto px-0 md:px-28 lg:px-40 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
             Intel AI leverages a custom LLM architecture that&apos;s fine-tuned
             to grasp the intricacies of blockchain technology, its narratives,
             trends, & community nuances with unparalleled precision

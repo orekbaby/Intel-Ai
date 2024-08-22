@@ -10,6 +10,7 @@ import { IoCopyOutline } from "react-icons/io5";
 import { ToastContainer, toast, ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { HiOutlineArrowPath } from "react-icons/hi2";
 
 interface Thread {
   content: string;
@@ -77,25 +78,7 @@ const Threads: React.FC<ThreadsProps> = ({
       reader.readAsDataURL(file);
     }
   };
-  const handleCopyContent = (content: string) => {
-    navigator.clipboard
-      .writeText(content)
-      .then(() => {
-        setMessage("Text copied to clipboard.");
-        setMessageType("success");
-        setTimeout(() => {
-          setMessage(null);
-        }, 3000); // Hide message after 3 seconds
-      })
-      .catch((error) => {
-        console.error("Failed to copy text: ", error);
-        setMessage("Failed to copy text.");
-        setMessageType("error");
-        setTimeout(() => {
-          setMessage(null);
-        }, 3000); // Hide message after 3 seconds
-      });
-  };
+  
 
   const closeModal = () => {
     setOpenModal(false);
@@ -206,11 +189,9 @@ const Threads: React.FC<ThreadsProps> = ({
                       />
                     </div>
                     <div className="flex justify-center items-center bg-[#434343] rounded-md w-[25px] h-[25px]">
-                      <IoCopyOutline
-                        className="w-[13px] h-[13px] cursor-pointer"
-                        onClick={() => handleCopyContent(row.content)}
-                      />
-                      <ToastContainer />
+                    <HiOutlineArrowPath className="w-[13px] h-[13px]" />
+                      
+                      
                     </div>
                     {message && (
                       <div
