@@ -4,7 +4,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Compose from "./Compose";
 import Drafts from "./Drafts";
 
-const ContentStudio: React.FC = () => {
+interface ContentStudioProps {
+  addEditorContent: (date: string, time: string, content: string) => void;
+}
+
+const ContentStudio: React.FC<ContentStudioProps> = ({addEditorContent}) => {
   const [draftCount, setDraftCount] = useState(0);
   const handleAddToDraft = () => {
     setDraftCount((prevCount) => prevCount + 1);
@@ -26,7 +30,10 @@ const ContentStudio: React.FC = () => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="Compose">
-        <Compose onAddToDraft={handleAddToDraft} />
+        <Compose
+         onAddToDraft={handleAddToDraft}
+         addEditorContent={addEditorContent} 
+         />
       </TabsContent>
       <TabsContent value="Drafts">
         <Drafts />

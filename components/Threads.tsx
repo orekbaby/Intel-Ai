@@ -11,7 +11,7 @@ import { ToastContainer, toast, ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { HiOutlineArrowPath } from "react-icons/hi2";
-
+import Cookies from "js-cookie";
 interface Thread {
   content: string;
   count: number;
@@ -83,7 +83,40 @@ const Threads: React.FC<ThreadsProps> = ({
   const closeModal = () => {
     setOpenModal(false);
   };
+const addPostedContent = (content:string) => {
+    let currentContent = Cookies.get('postedContents');
+    let contentArray = currentContent ? JSON.parse(currentContent) : [];
 
+    contentArray.push({
+      content: content,
+    });
+
+    let updatedContent = JSON.stringify(contentArray);
+    Cookies.set('postedContents', updatedContent, {
+      expires: 7,
+      path: '/x-Agents',
+      secure: true,
+    });
+  };
+
+  const handlePostSave = () => {
+    if (!threadsText) {
+      console.log('Textarea content is empty');
+      return;
+    }
+
+    addPostedContent(threadsText);
+    // Set progress to 25% and start updating prsetProgress(25);
+    setTimeout(() => {
+      setProgress(100);
+    }, 1000);
+  };
+
+    
+    
+
+
+  
   return (
     <>
       <div className="pt-5">
@@ -109,7 +142,7 @@ const Threads: React.FC<ThreadsProps> = ({
               <Dialog open={openModal} onOpenChange={setOpenModal}>
                 <DialogTrigger className="cursor-pointer" asChild>
                   <Button
-                    className="w-[114px] h-[35px] p-[10px] border-[#575757] border rounded-[50px] font-medium text-xs leading-[12.48px]"
+                    className="font-normal text-[15px] leading-[15.6px] text-[#A4A4A4]"
                     onClick={() => setOpenModal(true)}
                   >
                     Schedule
@@ -126,19 +159,15 @@ const Threads: React.FC<ThreadsProps> = ({
                   </div>
                 </DialogContent>
               </Dialog>
-              <Button className="font-normal text-[15px] leading-[15.6px] text-[#A4A4A4]">
-                Schedule
-              </Button>
               <Button
                 className="w-[119px] h-[35px] rounded-[50px] font-medium text-sm bg-white leading-[14.56px] text-[#0D0D0D]"
-                onClick={handleSave}
+                onClick={handlePostSave}
               >
                 Post Now
               </Button>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-6 pt-5 px-3 w-full h-auto">
+              </div>
+              </div>
+         <div className="flex flex-col gap-6 pt-5 px-3 w-full h-auto">
             {threadsContent?.map((row, index) => (
               <div key={index}>
                 <p className="font-normal text-sm leading-[14.56px]">

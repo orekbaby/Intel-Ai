@@ -22,12 +22,12 @@ const ContentPosted: React.FC = () => {
             <ContentPostedCard
               key={index}
               content={row.content}
-              comment={""}
-              commentSpan={""}
-              likes={""}
-              likesSpan={""}
-              retweet={""}
-              retweetSpan={""} // comment={row.comment}
+              comment="10"
+              commentSpan="comments"
+              likes="150"
+              likesSpan="likes"
+              retweet="20"
+              retweetSpan="retweets" // comment={row.comment}
               // commentSpan={row.commentSpan}
               // likes={row.likes}
               // likesSpan={row.likesSpan}

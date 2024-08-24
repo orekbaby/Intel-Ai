@@ -5,11 +5,12 @@ import Navigation from "@/components/layout/Navigation";
 import SideBar from "@/components/layout/SideBar";
 import FooterNav from "@/components/layout/FooterNav";
 import { headers } from "next/headers";
-import { cookieToInitialState } from 'wagmi';
-import { config } from '@/config';
 import { Toaster } from "@/components/ui/toaster";
-import Web3ModalProvider from '@/context'; 
 import ClientProviders from "@/components/ClientProviders";
+import { cookieToInitialState } from 'wagmi'
+
+import { config } from '@/config'
+import AppKitProvider from '@/context'
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,13 +22,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const initialState = cookieToInitialState(config, headers().get('cookie'));
+  const initialState = cookieToInitialState(config, headers().get('cookie'))
 
   return (
     <html lang="en">
       <body className="font-guaruja">
-        <Web3ModalProvider initialState={initialState}>
-        <ClientProviders >
+        <ClientProviders>
+          <AppKitProvider initialState={initialState}>
             <div className="flex w-full h-auto relative">
               <SideBar />
               <div className="relative w-full h-auto">
@@ -38,9 +39,8 @@ export default function RootLayout({
                 <FooterNav />
               </div>
             </div>
-            </ClientProviders>
-          
-        </Web3ModalProvider>
+          </AppKitProvider>
+        </ClientProviders>
         <Toaster />
       </body>
     </html>

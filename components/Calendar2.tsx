@@ -7,10 +7,13 @@ import React, { useEffect, FC, useState } from "react";
 interface CalendarProps {
   className?: string;
   showOutsideDays?: boolean;
+  index: number;  
   editorContent: string;
   setProgress: (progress: number) => void; // Adjusted to accept a number parameter
+  generatedResponses: { [key: number]: { response: string } }; 
   onSave: () => void;
   onCloseModal: () => void;
+  addEditorContent: (date: string, time: string, content: string) => void;
 }
 
 const Calendar2: FC<CalendarProps> = ({
@@ -20,6 +23,9 @@ const Calendar2: FC<CalendarProps> = ({
   onSave,
   setProgress,
   onCloseModal,
+  generatedResponses,
+  addEditorContent,
+  index,
   ...props
 }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -81,64 +87,57 @@ const Calendar2: FC<CalendarProps> = ({
     setCurrentYear(month.getFullYear());
   };
 
-  const addEditorContent = (date: string, time: string, content: string) => {
-    // Retrieve the current value of the cookie
-    let currentContent = Cookies.get("tweetContents");
-    console.log("Current Cookie Content:", currentContent);
-
-    // Parse the current value into an array, or initialize a new array if the cookie does not exist
-    let contentArray = currentContent ? JSON.parse(currentContent) : [];
-
-    // Add the new editorContent object to the array
-    contentArray.push({
-      content: content,
-      time: time,
-      date: date,
-    });
-
-    // Convert the array back to a string
-    let updatedContent = JSON.stringify(contentArray);
-
-    // Save the updated array back to the cookie
-    Cookies.set("tweetContents", updatedContent, {
-      expires: 7,
-      path: "/x-Agents",
-      secure: true,
-    });
-    // console.log("Updated Cookie Content:", updatedContent);
-  };
-
-  const handleSave = () => {
+  const handleSave = (content?: string, time?: string, date?: string) => {
     setIsScheduling(true); // Set the mode to scheduling
-
-    const formattedDate = new Date().toDateString();
-    const currentTime = new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-
-    if (!editorContent) {
-      console.log("Editor content is empty");
+  
+    const finalContent = content || editorContent;
+    
+    if (!finalContent) {
+      console.log("No content to post");
       return;
     }
-
-    addEditorContent(formattedDate, currentTime, editorContent);
-    const tweetContents = [...customContents];
-    setCustomContents(tweetContents);
-    Cookies.set("tweetContents", JSON.stringify(tweetContents));
-    console.log("Custom Contents Cookie:", JSON.stringify(tweetContents));
-
+  
+    addEditorContent(date || "", time || "", finalContent);
+  
     // Close the modal immediately after saving
     onSave();
     onCloseModal();
-
+  
     // Set progress to 25% and start updating progress
     setProgress(25);
     setTimeout(() => {
       setProgress(100); // Update progress to 100%
     }, 1000);
   };
+  
+  const handleScheduleClick = (index: number | null) => {
+    if (index === null) {
+      console.error("No card selected to post.");
+      return;
+    }
+  
+    // Get the selected response
+    const selectedResponse = generatedResponses[index]?.response || "";
+  
+    // Capture the current date and time dynamically
+    const currentDate = new Date().toLocaleDateString();
+    const currentTime = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  
+    // Pass the selected response, current time, and current date to handleSave
+    handleSave(selectedResponse, currentTime, currentDate); 
+  };
+  
+  
+  const handleScheduleSave = (index: number) => {
+    handleScheduleClick(index);
+  };
+  
+
+
 
   return (
     <>
@@ -184,12 +183,13 @@ const Calendar2: FC<CalendarProps> = ({
             />
           </div>
           <div className="flex justify-center gap-8 items-center">
-            <button
-              onClick={handleSave}
-              className="bg-white flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-black transition ease-in-out delay-150 duration-300 h-[40px] md:h-[33px] lg:h-[33px] w-[125px] md:w-[95px] lg:w-[95px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
-            >
-              Save
-            </button>
+          <button
+  onClick={() => handleScheduleSave(index)} // Assuming 'index' is defined in your scope
+  className="bg-white flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-black transition ease-in-out delay-150 duration-300 h-[40px] md:h-[33px] lg:h-[33px] w-[125px] md:w-[95px] lg:w-[95px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
+>
+  Save
+</button>
+
 
             <button className="bg-[#292929] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary transition ease-in-out delay-150 duration-300 h-[40px] md:h-[33px] lg:h-[33px] w-[125px] md:w-[95px] lg:w-[95px] rounded-[200px] hover:bg-[#0B0F16] text-xs text-white">
               Cancel

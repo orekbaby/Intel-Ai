@@ -1,7 +1,31 @@
+"use client";
 import React from "react";
+import Cookies from "js-cookie";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ContentStudio from "@/components/ContentStudio";
 const page = () => {
+
+  const addEditorContent = (date: string, time: string, content: string) => {
+    let currentContent = Cookies.get("tweetContents");
+    console.log("Current Cookie Content:", currentContent);
+  
+    let contentArray = currentContent ? JSON.parse(currentContent) : [];
+  
+    contentArray.push({
+      content: content,
+      time: time,
+      date: date,
+    });
+  
+    let updatedContent = JSON.stringify(contentArray);
+  
+    Cookies.set("tweetContents", updatedContent, {
+      expires: 7,
+      path: "/x-Agents",
+      secure: true,
+    });
+  };
+
   return (
     <>
       <div className="pl-0 md:pl-16 lg:pl-20 xl:pl-20 2xl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
@@ -41,7 +65,9 @@ const page = () => {
                   className="w-full h-full pt-5 md:pt-0 lg:pt-0 overflow-x-hidden"
                   value="ContentStudio"
                 >
-                  <ContentStudio />
+                  <ContentStudio 
+                  addEditorContent={addEditorContent}
+                  />
                 </TabsContent>
 
                 <TabsContent

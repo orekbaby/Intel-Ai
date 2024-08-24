@@ -22,8 +22,8 @@ interface CardProps {
   handlePostClick:() => void;
   selectedCardIndex: number | null; 
   handlePostDirectly: (index: number | null) => void;
-
-
+  generatedResponses: { [key: number]: { response: string } }; 
+  addEditorContent: (date: string, time: string, content: string) => void;
   onAddToDraft: (title: string, response: string) => void; 
   savedSuccessfully: boolean;
   openModal: boolean;
@@ -41,7 +41,7 @@ interface CardProps {
 
 
 
-const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handleCardClick, editorContent, setEditorContent, isDialogOpen,
+const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handleCardClick, addEditorContent, editorContent, setEditorContent, isDialogOpen,
   setIsDialogOpen,
   handleEditSave,
   handleCancel,
@@ -54,6 +54,7 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
   selectedCardIndex,
   handlePostDirectly,
   handlePostClick,
+  generatedResponses
  
   }) => {
   const [charCount, setCharCount] = useState<number>(0);
@@ -134,7 +135,10 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
                         <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
                           <Calendar2
                             editorContent={editorContent}
+                            addEditorContent={addEditorContent}
+                            generatedResponses={generatedResponses}
                             setProgress={setProgress}
+                            index={index}
                             onSave={handleSave}
                             onCloseModal={closeModal}
                             />
@@ -146,7 +150,7 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
 
         <div className="flex item-center justify-center">
         <Button
-  className="w-full h-[35px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] text-white rounded-[50px] border-none font-medium text-xs leading-[12.48px] text-black"
+  className="w-full h-[35px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[50px] border-none font-medium text-xs leading-[12.48px] text-black"
   onClick={handlePostClick}
 
 

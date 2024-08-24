@@ -56,9 +56,11 @@ const response: Response[] = [
 
 
 interface ComposeProps {
+  addEditorContent: (date: string, time: string, content: string) => void;
+
   onAddToDraft: (title: string, response: string) => void; // Update prop type
 }
-const Compose: React.FC<ComposeProps> = ({ onAddToDraft }) => {
+const Compose: React.FC<ComposeProps> = ({ onAddToDraft, addEditorContent }) => {
   const handleAddToDraft = (title: string, response: string) => {
     // Add draft logic here
     onAddToDraft(title, response);
@@ -238,71 +240,52 @@ const Compose: React.FC<ComposeProps> = ({ onAddToDraft }) => {
   // posted content function
   // AddPostedContent function remains the same
 
-const addPostedContent = (content: string) => {
-  const serializedResponse = JSON.stringify(response);
-
-  // Step 2: Store the serialized data in a cookie
-  Cookies.set('userResponses', serializedResponse, { expires: 7 }); 
+  const addPostedContent = (content: string) => {
+    let currentContent = Cookies.get("postedContents");
+    console.log("Current Cookie Content:", currentContent);
   
-  // Retrieve the current value of the cookie
-  let currentContent = Cookies.get("postedContents");
-  console.log("Current Cookie Content:", currentContent);
-
-  // Parse the current value into an array, or initialize a new array if the cookie does not exist
-  let contentArray = currentContent ? JSON.parse(currentContent) : [];
-
-  // Add the new editorContent object to the array
-  contentArray.push({ content });
-
-  // Convert the array back to a string
-  let updatedContent = JSON.stringify(contentArray);
-
-  // Save the updated array back to the cookie
-  Cookies.set("postedContents", updatedContent, {
-    expires: 7,
-    path: "/x-Agents",
-    secure: true,
-  });
-};
-
-const handleSave = (content?: string) => {
-  setIsScheduling(false); // Set the mode to posting
+    let contentArray = currentContent ? JSON.parse(currentContent) : [];
+    contentArray.push({ content });
   
-  // Use content passed in, or fall back to editorContent
-  const finalContent = content || editorContent;
-
-  if (!finalContent) {
-    console.log("No content to post");
-    return;
-  }
-
-  setEditorContent(""); // Clear editor content
-  addPostedContent(finalContent); // Add the content (whether from editor or directly passed in)
-
-  const postedContents = [...customContents];
-  setCustomContents(postedContents);
-  Cookies.set("postedContents", JSON.stringify(postedContents));
-  console.log("Custom Contents Cookie:", JSON.stringify(postedContents));
-
-  setProgress(25); // Set progress to 25%
-  setTimeout(() => {
-    setProgress(100); // Update progress to 100%
+    let updatedContent = JSON.stringify(contentArray);
+    Cookies.set("postedContents", updatedContent, {
+      expires: 7,
+      path: "/x-Agents",
+      secure: true,
+    });
+  };
+  
+  const handleSave = (content?: string) => {
+    const finalContent = content || editorContent;
+  
+    if (!finalContent) {
+      console.log("No content to post");
+      return;
+    }
+  
+    addPostedContent(finalContent); // Add the content (whether from editor or directly passed in)
+  
+    setProgress(25);
     setTimeout(() => {
-      setShowSuccessMessage(true);
-      setTimeout(() => setShowSuccessMessage(false), 3000);
-    }, 300);
-  }, 3000);
-};
+      setProgress(100);
+      setTimeout(() => {
+        setShowSuccessMessage(true);
+        setTimeout(() => setShowSuccessMessage(false), 3000);
+      }, 300);
+    }, 3000);
+  };
+  
 
-const handleCardClick = (index: number) => {
-  setSelectedCardIndex(index); // Set the selected card index
-  const selectedResponse = generatedResponses[index]?.response || "";
-  setEditorContent(selectedResponse);
-  setCharCount(selectedResponse.length);
-  setIsDialogOpen(true);
-
-  console.log("select-response:", selectedResponse);
-};
+  const handleCardClick = (index: number) => {
+    setSelectedCardIndex(index); // Set the selected card index
+    const selectedResponse = generatedResponses[index]?.response || "";
+    setEditorContent(selectedResponse);
+    setCharCount(selectedResponse.length);
+    setIsDialogOpen(true);
+  
+    console.log("select-response:", selectedResponse);
+  };
+  
 
 
 // New function to post directly from the card without using the editor
@@ -316,9 +299,14 @@ const handlePostDirectly = (index: number | null) => {
   handleSave(selectedResponse); // Directly post the selected response
 };
 
-const handlePostClick = () => {
-  handlePostDirectly(selectedCardIndex);
+const handlePostClick = (index: number) => {
+  handlePostDirectly(index);
 };
+
+
+
+
+
 
 
 const handleEditSave = (index: number) => {
@@ -352,6 +340,23 @@ useEffect(() => {
 
 
 
+// useEffect remains the same
+
+useEffect(() => {
+  const savedResponses = localStorage.getItem('typedResponses');
+  if (savedResponses) {
+    setTypedResponses(JSON.parse(savedResponses));
+  }
+}, []);
+
+const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const inputValue = e.target.value;
+  setUserInput(inputValue); // This will keep your original functionality
+  setThreadsText(inputValue); // This will handle the new functionality
+};
+
+
+
 return (
     <>
       <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
@@ -366,13 +371,16 @@ return (
               {/* Text area */}
               <div className="pt-5 flex justify-center items-center">
                 <div className="relative w-[607px] h-[213px] bg-[#1D1D1D] rounded-[12px] border border-[#323232]">
-                  <textarea
-                    className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#f9f9f9] font-normal italic text-xs mb-t"
-                    placeholder=""
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
-                    content={threadsText}
-                  />
+                <textarea
+  className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#f9f9f9] font-normal italic text-xs mb-t"
+  placeholder=""
+  value={userInput} // Keep the original value
+  onChange={handleInputChange} // Use the combined handler
+  content={threadsText}
+
+/>
+
+
                   <div className="absolute bottom-[30%] right-5 flex justify-end">
                     <button
                       className="flex justify-center items-center w-[27px] h-[27px] rounded-full bg-[#03ffa3]"
@@ -450,30 +458,32 @@ return (
                     onClick={()=> setActiveIndex(index)}
                   >
                     <div className="bg-[#252525] rounded-[16px]">
-<Card
-          key={index}
-          index={index}
-          title={row.title}
-          response={typedResponses[index] || ""}
-          handleCardClick={() => handleCardClick(index)}
-          setEditorContent={setEditorContent}
-          editorContent={editorContent}
-          isDialogOpen={isDialogOpen}
-          setIsDialogOpen={setIsDialogOpen} 
-          handlePostDirectly={handlePostDirectly}
-          selectedCardIndex={selectedCardIndex} 
-          onAddToDraft={onAddToDraft} 
-          handleEditSave={() => handleEditSave(index)} 
-          handleCancel={handleCancel}
-          savedSuccessfully={savedSuccessfully}
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          setProgress={setProgress}
-          handleSave={handleSave}
-          closeModal={closeModal}
-handlePostClick={handlePostClick}
-          
-        />
+                    <Card
+  key={index}
+  index={index}
+  title={row.title}
+  response={typedResponses[index] || ""}
+  handleCardClick={() => handleCardClick(index)} // For editing
+  setEditorContent={setEditorContent}
+  editorContent={editorContent}
+  isDialogOpen={isDialogOpen}
+  setIsDialogOpen={setIsDialogOpen} 
+  handlePostDirectly={handlePostDirectly} // Now directly posts the response
+  selectedCardIndex={selectedCardIndex} 
+  onAddToDraft={onAddToDraft} 
+  handleEditSave={() => handleEditSave(index)} 
+  handleCancel={handleCancel}
+  savedSuccessfully={savedSuccessfully}
+  openModal={openModal}
+  setOpenModal={setOpenModal}
+  generatedResponses={generatedResponses}
+  setProgress={setProgress}
+  handleSave={handleSave}
+  closeModal={closeModal}
+  addEditorContent={addEditorContent}
+  handlePostClick={() => handlePostClick(index)} // Pass index directly
+/>
+
 
                     </div>
                   </div>
