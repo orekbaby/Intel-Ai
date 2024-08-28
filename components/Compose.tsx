@@ -42,16 +42,8 @@ const response: Response[] = [
       "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
     
   },
-  {
-    id: 3,
-    title: "response3",
-    response:
-      "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
-    
-  },
 
-  
-];
+  ];
 
 
 
@@ -446,11 +438,11 @@ return (
 
             {/* Conditional rendering based on mode */}
             {isTweetMode ? (
-              <div className="flex justify-between pt-10  pb-20 px-2">
+              <div className="flex justify-between pt-10 gap-2  pb-20 px-2">
                 {generatedResponses?.map((row, index) => (
                   <div
                     key={index}
-                        className={`cursor-pointer p-[2px] rounded-[16px] ${
+                        className={`cursor-pointer p-[2px] rounded-[16px] h-full ${
                       activeIndex === index
                         ? "bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]"
                         : ""
@@ -546,6 +538,7 @@ return (
               </div>
             </div>
           </div>
+          {/* ends here */}
         </div>
       </div>
     </>

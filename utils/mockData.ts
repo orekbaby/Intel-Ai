@@ -1243,3 +1243,21 @@ export const hookModal = [
     content: "Mystery Hook",
   },
 ];
+
+export const strategies = [
+  {
+    strategy: "Our goal for this week is to promote our upcoming product launch by releasing teaser content and engaging with members through polls and AMAs."
+  },
+
+  {
+    strategy: "Our goal for this week is to increase community interaction by hosting a series of themed challenges and spotlighting user-generated content, encouraging active participation and recognition within the community."
+  },
+
+  {
+    strategy: "My aim for this week is to enhance product visibility by collaborating with influencers and sharing behind-the-scenes content on social media."
+  },
+
+  {
+    strategy: "The focus for this month is to strengthen community connections by organizing virtual meetups and launching a member spotlight series."
+  },
+  ]

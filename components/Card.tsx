@@ -32,14 +32,7 @@ interface CardProps {
   handleSave: () => void;
   closeModal: () => void;
   
-  
-
-
 }
-
-
-
-
 
 const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handleCardClick, addEditorContent, editorContent, setEditorContent, isDialogOpen,
   setIsDialogOpen,
@@ -61,7 +54,7 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
   const [charLimitExceeded, setCharLimitExceeded] = useState<boolean>(false);
   // console.log("editorContent data", editorContent)
   return (
-    <div className="w-[242px] h-auto pb-4 rounded-[16px] bg-[#252525] px-3">
+    <div className="w-[350px] h-auto pb-4 rounded-[16px] bg-[#252525] px-3 ">
       <div className="px-3 py-3 h-[34px] border-b border-[#3D3D3D] mb-5">
         <h5 className="font-medium text-sm leading-[14.56px]">{title}</h5>
       </div>
@@ -116,16 +109,11 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
       </div>
       <div className="border-[#303030] border-t h-auto">
         <div className="w-full h-auto gap-4 flex justify-between items-center mb-5 pt-2">
-          <Button
-            className="w-1/2 h-[33px] p-[10px] bg-[#0D0D0D] rounded-[50px] font-medium text-xs leading-[14.56px]"
-            onClick={() => onAddToDraft(title, response)} // Pass title and response
-          >
-            Add to draft
-          </Button>
+          
           <Dialog open={openModal} onOpenChange={setOpenModal}>
                       <DialogTrigger className="cursor-pointer" asChild>
                         <Button
-                          className="w-[114px] h-[35px] p-[10px] border-[#575757] border rounded-[50px] font-medium text-xs leading-[12.48px]"
+                          className="w-[153px] h-[35px] p-[10px] border-[#575757] border rounded-[50px] font-medium text-xs leading-[12.48px]"
                           onClick={() => setOpenModal(true)}
                         >
             Schedule Tweet
@@ -145,12 +133,9 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
                         </div>
                       </DialogContent>
                     </Dialog>
-        </div>
-        
-
-        <div className="flex item-center justify-center">
+                    <div className="flex item-center justify-center">
         <Button
-  className="w-full h-[35px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[50px] border-none font-medium text-xs leading-[12.48px] text-black"
+  className="className= w-[153px] h-[35px] p-[10px] bg-[#0D0D0D] rounded-[50px] font-medium text-xs leading-[14.56px]"
   onClick={handlePostClick}
 
 
@@ -159,6 +144,10 @@ const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handl
 </Button>
 
           </div>
+        </div>
+        
+
+        
 
       </div>
     </div>

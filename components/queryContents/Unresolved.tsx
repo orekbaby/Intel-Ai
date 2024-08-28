@@ -24,23 +24,21 @@ const Unresolved: React.FC<UnresolvedProps> = ({
   updateUserData,
 }) => {
   return (
-    <div className="w-full">
-      <Table className="overflow-x-hidden w-full">
+    <div className="w-full overflow-x-auto">
+      <Table className="min-w-full">
         <TableHeader>
-          <TableRow className="border-[#373737] h-[40px] border-b bg-[#1D1D1D]">
-            <TableHead className="w-[100px] font-medium text-base leading-[16px]">
-              #
+          <TableRow className="border-[#373737] h-[35px] border-b bg-[#1D1D1D]">
+            <TableHead className="w-[50px] font-medium text-sm">#</TableHead>
+            <TableHead className="font-normal text-[11px] text-[#898989]">
+              <div className="w-[100px]">MONITORED GROUPS</div>
             </TableHead>
-            <TableHead className="font-normal text-[12px] text-[#898989] leading-[12.48px]">
-              <div className="w-[130px]"> MONITORED GROUPS</div>
-            </TableHead>
-            <TableHead className="font-normal text-[12px] text-[#898989] leading-[12.48px]">
+            <TableHead className="font-normal text-[11px] text-[#898989]">
               PLATFORM
             </TableHead>
-            <TableHead className="font-normal text-[12px] text-[#898989] leading-[12.48px]">
+            <TableHead className="font-normal text-[11px] text-[#898989]">
               QUERY
             </TableHead>
-            <TableHead className="text-center font-normal text-[12px] text-[#898989] leading-[12.48px]">
+            <TableHead className="text-center font-normal text-[11px] text-[#898989]">
               TIME
             </TableHead>
             <TableHead className="text-right"></TableHead>
@@ -54,18 +52,16 @@ const Unresolved: React.FC<UnresolvedProps> = ({
                 index % 2 === 0 ? "bg-[#0A0908]" : "bg-[#1D1D1D]"
               }`}
             >
-              <TableCell className="font-medium text-base leading-[16px]">
-                {row.number}
-              </TableCell>
+              <TableCell className="font-medium text-sm">{row.number}</TableCell>
               <TableCell>
-                <div className="w-[100px] flex items-center gap-1">
+                <div className="w-[80px] flex items-center gap-1">
                   <Image
                     src={row.img}
                     alt={row.altText}
-                    width={25}
-                    height={25}
+                    width={20}
+                    height={20}
                   />
-                  <p className="font-medium text-[9px] md:text-sm lg:text-sm leading-[14.56px]">
+                  <p className="font-medium text-[10px] leading-[12px]">
                     {row.name}
                   </p>
                 </div>
@@ -75,27 +71,27 @@ const Unresolved: React.FC<UnresolvedProps> = ({
                   <Image
                     src={row.platform}
                     alt={row.altText}
-                    width={25}
-                    height={25}
+                    width={20}
+                    height={20}
                   />
-                  <p className="font-medium text-[9px] md:text-sm lg:text-sm leading-[14.56px]">
+                  <p className="font-medium text-[10px] leading-[12px]">
                     {row.social}
                   </p>
                 </div>
               </TableCell>
               <TableCell className="text-left">
-                <div className="w-[250px]">
-                  <p className="font-medium text-[9px] md:text-sm lg:text-sm leading-[14.56px]">
+                <div className="w-[180px]">
+                  <p className="font-medium text-[10px] leading-[12px]">
                     {row.query}
                   </p>
                 </div>
               </TableCell>
-              <TableCell className="text-right font-medium text-[9px] md:text-sm lg:text-sm leading-[14.56px]">
-                <div className="w-[100px] pr-2">{row.time}</div>
+              <TableCell className="text-right font-medium text-[10px] leading-[12px]">
+                <div className="w-[80px] pr-2">{row.time}</div>
               </TableCell>
-              <TableCell className="text-left font-normal text-[9px] md:text-[10px] lg:text-xs leading-[12.48px]">
+              <TableCell className="text-left font-normal text-[10px] leading-[12px]">
                 <Button
-                  className="w-[66px] flex justify-center gap-1 items-center h-[25px] bg-[#03FFA3] rounded-[66px] text-center text-[#0D0D0D]"
+                  className="w-[60px] flex justify-center gap-1 items-center h-[25px] bg-[#03FFA3] rounded-full text-[#0D0D0D]"
                   onClick={() => {
                     updateUserData();
                     addQuery(row.query);

@@ -283,3 +283,62 @@ input {
 		width: 336px;
 	}
 }
+
+//scss for dropdown menu startegic planning
+.custom-dropdown {
+	appearance: none; // To remove the default arrow
+	padding: 0 10px; // Optional padding
+	border: none; // Remove border if needed
+	 // Start with opacity 0, adjust this based on the functionality you want
+  
+	&:hover,
+	&:focus {
+	  opacity: 1; // Show the dropdown on hover/focus
+	}
+  
+	option {
+	  background-color: #121212;
+	}
+  
+	&:hover option {
+	  background-color: #1d1d1d; // Change background color on hover
+	}
+  
+	option:hover {
+	  background-color: #1d1d1d; // Change hover color for each option
+	}
+  }
+  
+//   text area for strategy
+// styles.scss
+
+.custom-textarea {
+	.input-area {
+	  border: 1px solid #2B2B2B;
+	  border-radius: 8px;
+	  width: 620px;
+	  height: 34px;
+	  background-color: #1F1F1F;
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	  padding: 0 10px;
+  
+	  input {
+		flex: 1;
+		background: transparent;
+		border: none;
+		outline: none;
+		color: white;
+		
+		&::placeholder {
+		  color: #03ffa3;
+		}
+		
+		&:focus {
+		  outline: none;
+		}
+	  }
+	}  
+  
+}

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { FaTelegramPlane, FaDiscord } from 'react-icons/fa';
 const Navigation = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -15,7 +16,7 @@ const Navigation = () => {
 
   // toggle button
 
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
 
   const handleToggle = () => {
     setIsChecked(!isChecked);
@@ -58,12 +59,12 @@ const Navigation = () => {
     pathName === "/category" ||
     pathName === "/user";
 
-  const train = pathName === "/trainAi" || pathName === "/querySolving";
+  const train = pathName === "/trainAi" || pathName === "/x-Agents";
   const inline = pathName === "/workspace";
   const userSelect = Cookies.get("user");
   // console.log("select user - ", userSelect);
 
-  const agents = pathName === "/x-Agents";
+  // const agents = pathName === "/x-Agents";
 
   return (
     <>
@@ -247,7 +248,7 @@ const Navigation = () => {
 
       {/* x-agents navigation */}
 
-      {agents && (
+      {/* {agents && (
         <header className="absolute z-40 top-0 left-0 flex justify-end h-[60px] md:h-[72px] lg:h-auto px-3 md:px-20 lg:px-12 py-4 w-full bg-[#0D0D0D] gap-4">
           <p className="text-[18px] leading-[18.72px] font-medium"></p>
           <p className="font-medium text-[20px]">Co-pilot</p>
@@ -260,7 +261,7 @@ const Navigation = () => {
           </div>
 
           {/* Menu Contents */}
-          {menuOpen && (
+          {/* {menuOpen && (
             <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
               <div className="flex flex-col justify-center gap-6 text-sm font-normal">
                 <Link href="/communityManager">
@@ -294,92 +295,94 @@ const Navigation = () => {
             </p>
           </div>
         </header>
-      )}
+      )}  */}
 
       {/* TrainAi navigation  */}
 
       {train && (
-        <header className="hidden md:flex lg:flex w-full absolute z-40 top-0 left-[1px] justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
-          <div
-            ref={menuRef}
-            className=" block text-white ml-0 md:ml-6 lg:ml-6 text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
-            onClick={toggleMenu}
-          >
-            <FiMenu />
-          </div>
+  <header className="hidden md:flex lg:flex w-full absolute z-40 top-0 left-[1px] justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-2">
+    <div
+      ref={menuRef}
+      className="block text-white ml-0 md:ml-6 lg:ml-6 text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
+      onClick={toggleMenu}
+    >
+      <FiMenu />
+    </div>
 
-          {/* Menu Contents */}
-          {menuOpen && (
-            <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
-              <div className="flex flex-col justify-center gap-6 text-sm font-normal">
-                <Link href="/communityManager">
-                  <MenuItem label="community Manager" />
-                </Link>
-                <Link href="/kolInfluencer">
-                  <MenuItem label="Kol Influencer" />
-                </Link>
+    {/* Menu Contents */}
+    {menuOpen && (
+      <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
+        <div className="flex flex-col justify-center gap-6 text-sm font-normal">
+          <Link href="/communityManager">
+            <MenuItem label="Community Manager" />
+          </Link>
+          <Link href="/kolInfluencer">
+            <MenuItem label="Kol Influencer" />
+          </Link>
+        </div>
+      </div>
+    )}
+
+    <div className="flex items-center justify-between w-full">
+      {/* Centered Links */}
+      <div className="flex items-center justify-center gap-4 mx-auto pl-[20rem]" >
+        <Link href="/trainAi">
+          <div className={`w-auto h-[37px] rounded-[24px] px-2 py-2 flex items-center gap-2 text-[14px] leading-[14.3px] font-medium ${
+            pathname === "/trainAi" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
+          }`}>
+            <div className="flex items-center gap-1">
+              <div className="flex items-center justify-center border-2 border-[#0d0d0d] rounded-full w-[17px] h-[17px]">
+                <FaDiscord className="text-[#0d0d0d] w-[14px] h-[14px]" />
+              </div>
+              <div className="flex items-center justify-center bg-[#0d0d0d] rounded-full w-[17px] h-[17px]">
+                <FaTelegramPlane className="text-[#03FFA3] w-[14px] h-[14px]" />
               </div>
             </div>
-          )}
-
-<div className="hidden md:flex lg:flex items-center justify-between gap-6 w-full">
-  {/* Adjusted Padding for Centering */}
-  <div className="flex justify-center items-center gap-6 ml-10 md:ml-[20rem]lg:ml-[25rem] xl:ml-[30rem]">
-    <Link href="/trainAi">
-      <p
-        className={`text-[13.75px] leading-[14.3px] font-medium ${
-          pathname === "/trainAi" ? "text-white" : "text-[#6A6A6A]"
-        }`}
-      >
-        AI Training
-      </p>
-    </Link>
-    <Link href="/querySolving">
-      <p
-        className={`text-[13.75px] leading-[14.3px] font-medium ${
-          pathname === "/querySolving"
-            ? "text-white"
-            : "text-[#6A6A6A]"
-        }`}
-      >
-        Query Escalation Protocol
-      </p>
-    </Link>
-  </div>
-
-  {/* Co-pilot and Toggle Button at the Far Right */}
-  <div className="flex items-center gap-6 pr-4 md:pr-8 lg:pr-12 xl:pr-16">
-    <p className="font-medium text-[20px] leading-[20.8px]">
-      Co-pilot
-    </p>
-    <div className="flex items-center justify-center gap-1">
-      <div
-        className="relative inline-block w-7 h-4 transition duration-200 ease-linear rounded-full cursor-pointer bg-[#545454]"
-        onClick={handleToggle}
-      >
-        <input
-          type="checkbox"
-          checked={isChecked}
-          onChange={handleToggle}
-          className="absolute opacity-0 w-full h-full cursor-pointer bg-[#545454]"
-        />
-        <span
-          className={`absolute left-0 inline-block w-3.5 h-3.5 transition duration-200 ease-linear transform rounded-full shadow ${
-            isChecked ? "translate-x-3 bg-green-400" : "bg-white"
-          }`}
-        ></span>
+            Community Training
+          </div>
+        </Link>
+        <Link href="/x-Agents">
+          <div className={`w-auto h-[37px] rounded-[24px] px-2 py-2 flex items-center text-[14px] leading-[14.3px] font-medium ${
+            pathname === "/x-Agents" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
+          }`}>
+            X Content Studio
+          </div>
+        </Link>
       </div>
-      <p className="font-medium text-sm leading-[14.56px] text-[#6B6B6B]">
-        {isChecked ? "ON" : "OFF"}
-      </p>
+
+      {/* Co-pilot and Toggle Button at the Far Right */}
+      <div className="flex items-center gap-6 pr-4 md:pr-8 lg:pr-0 xl:pr-16">
+        <p className="font-medium text-[20px] leading-[20.8px]">
+          Co-pilot
+        </p>
+        <div className="flex items-center justify-center gap-1">
+          <div
+            className="relative inline-block w-7 h-4 transition duration-200 ease-linear rounded-full cursor-pointer bg-[#545454]"
+            onClick={handleToggle}
+          >
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleToggle}
+              className="absolute opacity-0 w-full h-full cursor-pointer bg-[#545454]"
+            />
+            <span
+              className={`absolute left-0 inline-block w-3.5 h-3.5 transition duration-200 ease-linear transform rounded-full shadow ${
+                isChecked ? "translate-x-3 bg-green-400" : "bg-white"
+              }`}
+            ></span>
+          </div>
+          <p className="font-medium text-sm leading-[14.56px] text-[#6B6B6B]">
+            {isChecked ? "ON" : "OFF"}
+          </p>
+        </div>
+      </div>
+      
+
     </div>
-  </div>
-</div>
-
-        </header>
-      )}
-
-      {/* login navigation */}
+  </header>
+)}
+ {/* login navigation */}
 
       {visible && (
         <header className="absolute z-40 top-0 left-0 flex justify-end h-[60px] md:h-[70px] lg:h-auto px-3 md:px-20 lg:px-10 py-4 border-[#363636] w-[95%] border-b ">
