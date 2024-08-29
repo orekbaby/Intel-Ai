@@ -26,6 +26,24 @@ const page = () => {
     });
   };
 
+  const addStrategyContent = (date: string, time: string, content: string) => {
+    let currentContent = Cookies.get('strategyContents');
+    let contentArray = currentContent ? JSON.parse(currentContent) : [];
+
+    contentArray.push({
+      content: content,
+      time: time,
+      date: date,
+    });
+
+    let updatedContent = JSON.stringify(contentArray);
+    Cookies.set('strategyContents', updatedContent, {
+      expires: 7,
+      path: '/x-Agents',
+      secure: true,
+    });
+  };
+
   return (
     <>
       <div className="pl-0 md:pl-16 lg:pl-20 xl:pl-20 2xl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
@@ -52,6 +70,8 @@ const page = () => {
                 >
                   <ContentStudio 
                   addEditorContent={addEditorContent}
+                  addStrategyContent={addStrategyContent}
+                
                   />
                 </TabsContent>
 

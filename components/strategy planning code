@@ -1,7 +1,7 @@
 "use client"
 import { FaChevronDown, FaChevronUp, FaRegClock } from "react-icons/fa";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import React, { useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { FaArrowUp, FaCheck } from 'react-icons/fa';
 import PostedContents from './PostedContents';
 import ScheduledPosts from './ScheduledPosts';
@@ -17,62 +17,24 @@ import Calendar4 from "./Calendar4";
 import Cookies from "js-cookie";
 
 
-const accordionData: AccordionData[] = [
-  {
-    id: 1,
-    title: "Teaser Post",
-    text: "Exciting news is on the horizon! 🚀 Stay tuned this week as we reveal something game-changing.Can you guess what it is? Drop your thoughts below! #TeaserTuesday #ComingSoon",
-  button: "my name is folakemi",
-  },
-  {
-    id: 2,
-    title: "Poll",
-    text: "We’re working on something special! Which aspect of [Your Product] are you most excited about?",
-    button: "my name is folakemi",
-  },
 
-  {
-    id: 3,
-    title: "Teaser",
-    text: "We’re working on something special! Which aspect of [Your Product] are you most excited about?",
-    button: "my name is folakemi",
-  },
-
-  {
-    id: 4,
-    title: "Poll",
-    text: "We’re working on something special! Which aspect of [Your Product] are you most excited about?",
-    button: "my name is folakemi",
-  },
-];
-
-interface Strategy {
-  strategy: string;
-  content: string;
-}
-
-interface AccordionData {
-  id: number;
-  title: string;
-  text: string;
-  button: string;
-}
 
 interface StrategyPlanningProps {
-  
+  onCloseModal: () => void;
   handleSave: () => void;
-  addStrategyContent: (date: string, time: string, content: string) => void;
-  // Add any other props you need to pass here, such as:
-  strategies: Strategy[]; // Example prop if you're passing an array of strategies
+  
+
+  // Add any other props you need to pass here
 }
 
-const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strategies, addStrategyContent }) => {
+
+const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ onCloseModal, handleSave }) => {
 
   const [isReadMoreStatic, setIsReadMoreStatic] = useState<boolean>(false);
   const [isReadMore, setIsReadMore] = useState<Record<number, boolean>>({});
   const [text, setText] = useState<string>('');
   const [request, setRequest] = useState<string[]>([]);
-
+  
   const [tempRequest, setTempRequest] = useState<string[]>([]); 
   const [response, setResponse] = useState<string | null>(null);
   const [isQuickStrategyClicked, setIsQuickStrategyClicked] = useState<boolean>(false);
@@ -83,8 +45,12 @@ const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strateg
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [hasRequested, setHasRequested] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [finalizedStrategies, setFinalizedStrategies] = useState<{ strategy: string; content: React.ReactNode }[]>([]);
+  const [activeStrategyIndex, setActiveStrategyIndex] = useState<number | null>(null);
 
+  
 
+  
 
 
 //request and response functionallity
@@ -123,7 +89,7 @@ const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strateg
     setIsInputVisible(true);
     setIsQuickStrategyClicked(false);  // Reset the button state to "Quick Strategy"
   };
-
+  
   const delayResponse = () => {
     return new Promise<void>((resolve) => {
       setTimeout(() => {
@@ -142,17 +108,24 @@ const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strateg
     await delayResponse();
     setResponse("I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?");
   };
-  
-  const [finalizedStrategies, setFinalizedStrategies] = useState<Strategy[]>([]);
+
+  useEffect(() => {
+    const storedStrategies = localStorage.getItem('finalizedStrategies');
+    if (storedStrategies) {
+      setFinalizedStrategies(JSON.parse(storedStrategies));
+    }
+  }, []);
+
+  const handleStrategySelect = (index: number) => {
+    setActiveStrategyIndex(index);
+  };
 
   const handleFinalizeStrategyClick = () => {
   if (request.length > 0) {
-    const newStrategies: Strategy[] = request.map(req => ({
-      strategy: req,          // Use the string as the strategy
-      content: "Default content", // Or provide a default value for content
-    }));
-
-    setFinalizedStrategies(prevStrategies => [...prevStrategies, ...newStrategies]);
+    // Ensure request is of the correct type
+    const validRequest: { strategy: string; content: ReactNode; }[] = request.filter(item => typeof item === 'object');
+    setFinalizedStrategies(prevStrategies => [...prevStrategies, ...validRequest]);
+    localStorage.setItem('finalizedStrategies', JSON.stringify([...finalizedStrategies, ...validRequest]));
     setShowContent(true);
     setRequest([]); // Clear the request after finalizing
     setResponse(null);
@@ -161,14 +134,14 @@ const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strateg
     setIsDialogOpen(false);
   }
 };
+
+  const handleDeleteStrategy = (index: number) => {
+    const updatedStrategies = finalizedStrategies.filter((_, i) => i !== index);
+    setFinalizedStrategies(updatedStrategies);
+    localStorage.setItem('finalizedStrategies', JSON.stringify(updatedStrategies));
+  };
+
   
-const handleDeleteStrategy = (strategyToDelete: string) => {
-  setFinalizedStrategies(prevStrategies =>
-    prevStrategies.filter(strategy => strategy.strategy !== strategyToDelete)
-  );
-};
-
-
 
 
   const handleCopy = (text: string) => {
@@ -187,16 +160,11 @@ const handleDeleteStrategy = (strategyToDelete: string) => {
       [index]: !prevState[index],
     }));
   };
+  
 
+    
 
-    useEffect(() => {
-    // Save each item's text to cookies
-    accordionData.forEach((item, index) => {
-      Cookies.set(`accordionText_${item.id}`, item.text);
-    });
-  }, []);
-
-
+  
   const renderText = (text: string, index: number) => {
     const displayText = isReadMore[index] ? text : text.slice(0, 150) + "...";
      return (
@@ -205,7 +173,7 @@ const handleDeleteStrategy = (strategyToDelete: string) => {
           {displayText}
         </p>
         <button
-          className="text-green-500 border-b border-green-500 font-medium text-sm leading-[14.56px]  ml-1 inline"
+          className="text-green-500 border-b border-green-500 font-medium text-sm leading-[14.56px] text-[#DEDEDE] ml-1 inline"
           onClick={() => handleReadMore(index)}
         >
           {isReadMore[index] ? "Show less" : "Read more"}
@@ -214,12 +182,111 @@ const handleDeleteStrategy = (strategyToDelete: string) => {
     );
   };
 
+  // 
+//   const generateContentForStrategy = (strategy: string): React.ReactNode => {
+//     // Generate content based on the strategy. This is a placeholder function.
+//     // Replace with your actual content generation logic.
+//     return (
+//       <div className="space-y-4 pb-40 pt-16">
+//       <h5 className="font-medium text-base leading-[16.64px] pb-2">Actionable Recommendations</h5>
 
+//       {/* First row */}
+//       <div className="bg-[#131313] p-4 rounded-md border border-[#262626]">
+//         <div className="flex justify-start items-center gap-1 ">
+//           <IoBulbOutline className="text-[#03FFA3]" />
+//           <h3 className="text-white font-medium text-base leading-[16.64px] ">Rationale:</h3>
+//         </div>
+
+//         <div className="text-[#DEDEDE] mt-2 font-[300] text-sm leading-[14.56px] text-[#DEDEDE]">
+//           {renderTextStatic(
+//             "To effectively build anticipation for the upcoming product launch, it's crucial to create a sense of excitement and community involvement. By strategically releasing teaser content and actively engaging with your community through polls and AMAs, you can generate buzz and gather valuable feedback that may help refine your launch approach."
+//           )}
+//         </div>
+//       </div>
+
+//       {/* Mapped Rows */}
+//       {accordionData.map((item, index) => (
+//         <div
+//           key={item.id}
+//           className={`${
+//             index === 0
+//               ? "bg-[#0d0d0d] border border-[#262626]"
+//               : index === 2
+//               ? "bg-[#0d0d0d] border border-[#262626]"
+//               : "bg-[#151515] border border-[#262626]"
+//           } p-4 rounded-md`}
+//         >
+//           <div>
+//             <h3 className="text-white text-sm leading-[14.56px] font-semibold pb-3">
+//               {item.title}
+//             </h3>
+//             <h5 className="text-[13px] font-medium leading-[20.28px] text-left">
+//               Content Suggestion:
+//             </h5>
+//             <div className="text-[#DEDEDE] font-normal text-[13px] leading-[20.8px] text-left inline">
+//               {renderText(item.text, index)}
+//             </div>
+//           </div>
+
+//           {isReadMore[index] && (
+//             <div>
+//               <div className="flex justify-start gap-1 items-center pt-2">
+//                 <span className="font-medium text-xs leading-[12.48px] text-[#BDBDBD]">
+//                   Recommended Post Time
+//                 </span>
+//                 <div className="flex gap-1 w-[91px] items-center h-auto bg-[#131313] p-[3px] rounded-[12px] mr-4">
+//                   <FaRegClock className="w-[6px] h-[6px]" />
+//                   <p className="font-[300] text-[8px] leading-[12px] text-[#858585]">
+//                     19/09/2024{" "}
+//                     <span className="font-normal text-[8px] leading-[12px] text-white">
+//                       10:00PM
+//                     </span>
+//                   </p>
+//                 </div>
+//               </div>
+//               <div className="pt-3 flex items-center gap-2">
+//               <Dialog open={openModal} onOpenChange={setOpenModal}>
+//               <DialogTrigger className="cursor-pointer" asChild>
+//                 <button
+//                   className="w-[187px] h-[29px] font-semibold text-xs leading-[12.48px] px-3 rounded-[24px] bg-white text-[#0d0d0d] border-[#E5E5E5] border"
+//                 >
+//                   Add to content calendar
+//                 </button>
+//                 </DialogTrigger>
+//                   <DialogContent className="absolute top-[48%] right-[-80%] -translate-x-1/2 max-w-auto border-none outline-none px-6 md:px-4 lg:px-4 rounded-[20px]">
+//                     <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+//                       <Calendar4 
+//                      index={index}
+//                      onSave={handleSave}
+// onCloseModal={closeModal}
+//                      accordionData={accordionData}
+
+//                       />
+//                     </div>
+//                   </DialogContent>
+//                 </Dialog>
+//                 <div
+//                   className="flex justify-center items-center bg-[#434343] rounded-md w-[25px] h-[25px]"
+//                   onClick={() => handleCopy(item.text)}
+//                 >
+//                   <MdOutlineContentCopy className="w-[13px] h-[13px]" />
+//                 </div>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//       ))}
+//     </div>
+//     );
+//   };
+  
+  
+  
 //read more functionality for rationale
   const handleReadMoreStatic = () => {
     setIsReadMoreStatic(!isReadMoreStatic);
   };
-
+  
   const renderTextStatic = (text: string) => {
     const displayText = isReadMoreStatic ? text : text.slice(0, 150) + "...";
     return (
@@ -228,7 +295,7 @@ const handleDeleteStrategy = (strategyToDelete: string) => {
           {displayText}
         </p>
         <button
-          className="text-green-500 border-b border-green-500 font-medium text-sm leading-[14.56px]  ml-1 inline"
+          className="text-green-500 border-b border-green-500 font-medium text-sm leading-[14.56px] text-[#DEDEDE] ml-1 inline"
           onClick={handleReadMoreStatic}
         >
           {isReadMoreStatic ? "Show less" : "Read more"}
@@ -236,13 +303,13 @@ const handleDeleteStrategy = (strategyToDelete: string) => {
       </div>
     );
   };
-
+  
   const closeModal = () => {
     setOpenModal(false);
   };
-
-
-
+  
+  
+  
   return (
     <>
     <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color pb-40">
@@ -311,7 +378,7 @@ const handleDeleteStrategy = (strategyToDelete: string) => {
             </div>
           </button>
         </DialogTrigger>
-        <DialogContent className="px-8 py-4 md:w-full lg:w-full border-none  max-w-auto w-[390px] h-[325px] bg-[#181818] rounded-[66px]">
+        <DialogContent className="px-8 py-4 md:w-full lg:w-full border-none rounded-lg max-w-auto w-[390px] h-[325px] bg-[#181818] rounded-[66px]">
           <div className="mx-auto">
             <Image
               width={120}
@@ -324,7 +391,7 @@ const handleDeleteStrategy = (strategyToDelete: string) => {
               Great Job!
             </h3>
             <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] leading-[16.8px] mb-5">
-              Now, click on &quot;Finalize Strategy&quot; button to get results
+              Now, click on "Finalize Strategy" button to get results
             </p>
             {/* Finalize Strategy button */}
             <button
@@ -398,109 +465,20 @@ const handleDeleteStrategy = (strategyToDelete: string) => {
 </div>
 
 {/* accordion content */}
-{showContent && (
-        <div className="space-y-4 pb-40 pt-16">
-          <h5 className="font-medium text-base leading-[16.64px] pb-2">Actionable Recommendations</h5>
-
-          {/* First row */}
-          <div className="bg-[#131313] p-4 rounded-md border border-[#262626]">
-            <div className="flex justify-start items-center gap-1 ">
-              <IoBulbOutline className="text-[#03FFA3]" />
-              <h3 className="text-white font-medium text-base leading-[16.64px] ">Rationale:</h3>
-            </div>
-
-            <div className="text-[#DEDEDE] mt-2 font-[300] text-sm leading-[14.56px]">
-              {renderTextStatic(
-                "To effectively build anticipation for the upcoming product launch, it's crucial to create a sense of excitement and community involvement. By strategically releasing teaser content and actively engaging with your community through polls and AMAs, you can generate buzz and gather valuable feedback that may help refine your launch approach."
-              )}
-            </div>
-          </div>
-
-          {/* Mapped Rows */}
-          {accordionData.map((item, index) => (
-            <div
-              key={item.id}
-              className={`${
-                index === 0
-                  ? "bg-[#0d0d0d] border border-[#262626]"
-                  : index === 2
-                  ? "bg-[#0d0d0d] border border-[#262626]"
-                  : "bg-[#151515] border border-[#262626]"
-              } p-4 rounded-md`}
-            >
-              <div>
-                <h3 className="text-white text-sm leading-[14.56px] font-semibold pb-3">
-                  {item.title}
-                </h3>
-                <h5 className="text-[13px] font-medium leading-[20.28px] text-left">
-                  Content Suggestion:
-                </h5>
-                <div className="text-[#DEDEDE] font-normal text-[13px] leading-[20.8px] text-left inline">
-                  {renderText(item.text, index)}
-                </div>
-              </div>
-
-              {isReadMore[index] && (
-                <div>
-                  <div className="flex justify-start gap-1 items-center pt-2">
-                    <span className="font-medium text-xs leading-[12.48px] text-[#BDBDBD]">
-                      Recommended Post Time
-                    </span>
-                    <div className="flex gap-1 w-[91px] items-center h-auto bg-[#131313] p-[3px] rounded-[12px] mr-4">
-                      <FaRegClock className="w-[6px] h-[6px]" />
-                      <p className="font-[300] text-[8px] leading-[12px] text-[#858585]">
-                        19/09/2024{" "}
-                        <span className="font-normal text-[8px] leading-[12px] text-white">
-                          10:00PM
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="pt-3 flex items-center gap-2">
-                  <Dialog open={openModal} onOpenChange={setOpenModal}>
-                  <DialogTrigger className="cursor-pointer" asChild>
-                    <button
-                      className="w-[187px] h-[29px] font-semibold text-xs leading-[12.48px] px-3 rounded-[24px] bg-white text-[#0d0d0d] border-[#E5E5E5] border"
-                    >
-                      Add to content calendar
-                    </button>
-                    </DialogTrigger>
-                      <DialogContent className="absolute top-[48%] right-[-80%] -translate-x-1/2 max-w-auto border-none outline-none px-6 md:px-4 lg:px-4 rounded-[20px]">
-                        <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
-                          <Calendar4 
-                         index={index}
-                         addStrategyContent={addStrategyContent}
-                         onSave={handleSave}
-onCloseModal={closeModal}
-                         accordionData={accordionData}
-
-                          />
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                    <div
-                      className="flex justify-center items-center bg-[#434343] rounded-md w-[25px] h-[25px]"
-                      onClick={() => handleCopy(item.text)}
-                    >
-                      <MdOutlineContentCopy className="w-[13px] h-[13px]" />
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {showCopyMessage && copiedContent && (
-        <div className="w-fit absolute bottom-[80%] right-[80%] bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)] h-auto p-[1px] rounded-lg">
-        <div
-          className=" w-full bg-[#0d0d0d] text-white rounded-md shadow-lg h-full py-2 px-2"
-        >
-          Message copied
-        </div>
-        </div>
-      )}
+<StrategyResponse
+            showContent={showContent}
+            renderTextStatic={renderTextStatic}
+            renderText={renderText}
+            isReadMore={isReadMore}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            showCopyMessage={showCopyMessage}
+            copiedContent={copiedContent}
+            handleSave={handleSave}
+            handleCopy={handleCopy}
+            closeModal={closeModal}
+          
+        />
 
 
 
@@ -511,7 +489,7 @@ onCloseModal={closeModal}
        <div className="w-[40%] pb-6 ml-2 h-auto rounded-[10px]">
             <div className="w-[408px]">
               <div className="bg-[#131313] h-auto w-full px-2">
-
+               
                 {/* put your content here */}
                 <div className="px-2">
                    {/* content posted tabs section */}
@@ -519,8 +497,8 @@ onCloseModal={closeModal}
                     defaultValue="AllStrategies"
                     className="w-full overflow-x-hidden"
                   >
-
-
+                    
+                    
                     <TabsList className="flex mt-0 mb-0 items-center justify-center md:justify-start lg:justify-start gap-2 md:gap-4 lg:gap-3 px-0 w-full border-b border-[#363636]">
                     <TabsTrigger
                         className="w-fit data-[state=active]:text-white 
@@ -529,7 +507,7 @@ onCloseModal={closeModal}
                          All Strategies
                       </TabsTrigger>
                       <TabsTrigger
-
+                     
                      className="w-fit data-[state=active]:text-white 
                     text-[#4D4D4D] text-xs font-medium leading-[12.8px]"
                         value="ScheduledPosts"
@@ -549,9 +527,10 @@ onCloseModal={closeModal}
                       value="AllStrategies"
                     >
 <AllStrategies 
-  strategies={finalizedStrategies.map(strategy => strategy.strategy)} 
-  onDeleteStrategy={handleDeleteStrategy}
-/>
+      strategies={finalizedStrategies} 
+      onSelect={handleStrategySelect}
+      // Pass the delete function as a prop
+    />
 
                     </TabsContent>
                     <TabsContent

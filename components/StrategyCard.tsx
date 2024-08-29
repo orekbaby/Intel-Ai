@@ -1,4 +1,3 @@
-import React from "react";
 import { FaRegClock } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 
@@ -6,9 +5,10 @@ interface CardProps {
   strategy: string;
   isActive: boolean;
   onClick: () => void;
+  onDelete: () => void; // Add the onDelete prop
 }
 
-const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick }) => {
+const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDelete }) => {
   return (
     <div
       className={`relative w-[363px] h-auto rounded-[24px] p-[2px] cursor-pointer ${
@@ -22,11 +22,17 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick }) => {
         <div className="flex justify-between items-center">
           <div>
             <h5 className="font-medium text-xs leading-[12.48px] pb-2 pt-1">Strategy Created</h5>
-            <p className="font-normal  w-[90%] text-xs leading-[16px] text-white">
+            <p className="font-normal  w-full text-xs leading-[16px] text-white">
               {strategy}
             </p>
           </div>
-          <div className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px]">
+          <div
+            className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px] cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent click event from bubbling up
+              onDelete(); // Call the delete handler
+            }}
+          >
             <MdDeleteOutline className="w-[16px] h-[16px]" />
           </div>
         </div>

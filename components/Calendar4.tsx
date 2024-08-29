@@ -16,7 +16,7 @@ interface CalendarProps {
   className?: string;
   index:number;
   showOutsideDays?: boolean;
-  
+  addStrategyContent: (date: string, time: string, content: string) => void;
   onSave: (date: string, time: string, content: string) => void;
   onCloseModal: () => void;
   accordionData: AccordionData[];
@@ -28,7 +28,7 @@ const Calendar3: FC<CalendarProps> = ({
   className,
   showOutsideDays = true,
    onSave,
-  
+   addStrategyContent,
   onCloseModal,
   index,
   accordionData,
@@ -88,23 +88,7 @@ const Calendar3: FC<CalendarProps> = ({
   };
 
   
- const addStrategyContent = (date: string, time: string, content: string) => {
-    let currentContent = Cookies.get('strategyContents');
-    let contentArray = currentContent ? JSON.parse(currentContent) : [];
-
-    contentArray.push({
-      content: content,
-      time: time,
-      date: date,
-    });
-
-    let updatedContent = JSON.stringify(contentArray);
-    Cookies.set('strategyContents', updatedContent, {
-      expires: 7,
-      path: '/x-Agents',
-      secure: true,
-    });
-  };
+ 
 
   const handleSave = (index: number) => {
     const formattedDate = new Date().toDateString();
