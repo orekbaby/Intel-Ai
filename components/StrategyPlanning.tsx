@@ -167,6 +167,59 @@ const [tempRequest, setTempRequest] = useState<string[]>([]);
     }
 };
   
+const handleKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+  if (event.key === 'Enter') {
+      // Prevent default Enter key behavior
+      event.preventDefault();
+
+      if (text.trim()) {
+          const currentDate = new Date();
+          const formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          const formattedTime = currentDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+          const newChat: Chat = {
+              request: text.trim(),
+              response: "",
+              timestamp: { date: formattedDate, time: formattedTime }
+          };
+
+          setChats((prevChats) => [...prevChats, newChat]);
+
+          // Make input invisible and change Quick Strategy button to Clear
+          setIsInputVisible(false);
+          setIsQuickStrategyClicked(true);
+
+          setHasRequested(true);
+
+          await delayResponse();
+
+          const updatedResponse = "I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?";
+
+          setChats((prevChats) =>
+              prevChats.map((chat, index) =>
+                  index === prevChats.length - 1
+                      ? { ...chat, response: updatedResponse }
+                      : chat
+              )
+          );
+
+          const storedStrategies = JSON.parse(localStorage.getItem('strategies') || '[]');
+          const newStrategy = { ...newChat, response: updatedResponse };
+
+          if (newStrategy.response) {
+              storedStrategies.push(newStrategy);
+              localStorage.setItem('strategies', JSON.stringify(storedStrategies));
+          }
+
+          scrollToBottom();
+          setText('');
+      }
+  }
+};
+
+
+
+
 const handleQuickStrategyClick = async () => {
   const quickRequest = "Our goal for this week is to promote our upcoming product launch by releasing teaser content and engaging with members through polls and AMAs.";
   const currentDate = new Date();
@@ -533,6 +586,7 @@ const handleContinueChatting = async () => {
             placeholder="What is on your mind?"
             value={text}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
             className="flex-1 input-area bg-transparent border-none outline-none font-normal text-xs italic text-white placeholder-[#707070]"
           />
           <div className="absolute bottom-5 right-7">
