@@ -18,6 +18,9 @@ import {
 } from "@/utils/mockData";
 import SocialMenu from "../SocialMenu";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const DialogData: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null); // State to track active button index
@@ -25,6 +28,9 @@ const DialogData: React.FC = () => {
   const [promptCount, setPromptCount] = useState<number>(0); // State to track prompt count
   const [inputValue, setInputValue] = useState<string>(""); // State to track input value
   const latestMessageRef = useRef<HTMLDivElement>(null); // Ref to track latest message
+  const [hasPerformedAction, setHasPerformedAction] = useState(false);
+
+  
 
   useEffect(() => {
     if (latestMessageRef.current) {
@@ -34,7 +40,7 @@ const DialogData: React.FC = () => {
 
   const handleButtonClick = (index: number) => {
     if (promptCount < 15) {
-      let newUserPrompts: any[] = []; // Explicitly define newUserPrompts as an array of any
+      let newUserPrompts: any[] = [];
       if (index === 0) {
         newUserPrompts = userInput;
       } else if (index === 1) {
@@ -42,18 +48,21 @@ const DialogData: React.FC = () => {
       } else if (index === 2) {
         newUserPrompts = userInput3;
       }
-
+  
       const newConversation = [
         ...conversation,
         ...newUserPrompts.map((prompt: any) => ({
           user: prompt,
-          ai: aiResponse[0], // Assuming aiResponse array has corresponding responses
+          ai: aiResponse[0],
         })),
       ];
-
+  
       setConversation(newConversation);
       setPromptCount(newConversation.length);
-      setActiveIndex(index === activeIndex ? null : index); // Toggle active state
+      setActiveIndex(index === activeIndex ? null : index);
+      
+      // Set the flag to true when the button is clicked
+      setHasPerformedAction(true);
     }
   };
 
@@ -76,15 +85,18 @@ const DialogData: React.FC = () => {
         name: " Intel",
         span: "ai",
       };
-
+  
       const newConversation = [
         ...conversation,
         { user: newUserPrompt, ai: newAiResponse },
       ];
-
+  
       setConversation(newConversation);
       setPromptCount(promptCount + 1);
       setInputValue("");
+  
+      // Set the flag to true when the prompt is sent
+      setHasPerformedAction(true);
     }
   };
 
@@ -101,7 +113,7 @@ const DialogData: React.FC = () => {
   // Handler function to dispatch the completeTrain action and navigate
   const handleNavigation = () => {
     dispatch(completeTrain());
-    router.push('/communityManager');
+    router.push('/trainAi');
   };
 
   return (
@@ -128,7 +140,7 @@ const DialogData: React.FC = () => {
             {chipsButton?.map((row, index) => (
               <div
                 key={index}
-                className={`relative w-fit rounded-[8px] p-1 ${
+                className={`relative w-fit rounded-[8px] p-[1px] ${
                   activeIndex === index
                     ? "bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]"
                     : ""
@@ -241,9 +253,21 @@ const DialogData: React.FC = () => {
                 <DialogTrigger>
                   <div className="flex justify-center items-center pt-1">
                     <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] w-fit rounded-[66px] py-[2px] px-[2px] shadow-drop">
-                      <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[177px] rounded-[66px] hover:bg-[#0B0F16] font-normal text-xs">
+                      <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950
+                       dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[177px] rounded-[66px] hover:bg-[#0B0F16] font-normal text-xs"
+                       onClick={(e) => {
+                        if (!hasPerformedAction) {
+                          e.preventDefault();
+                          toast.warning("Please complete a simulation or send a prompt before proceeding.");
+                        }
+                      }}
+                       >
                         Complete Simulation
                       </button>
+                      <ToastContainer
+                      position="top-center"
+                      style={{ top: '80px' }}
+                      />
                     </div>
                   </div>
                 </DialogTrigger>

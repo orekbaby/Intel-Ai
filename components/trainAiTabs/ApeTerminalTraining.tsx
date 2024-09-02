@@ -23,7 +23,7 @@ const ApeTerminalTraining = () => {
 
   return (
     <div className="w-full h-auto mx-auto px-0 md:px-10 lg:px-10">
-      <h2 className="font-medium text-[30px] md:text-[36px] lg:text-[36px] leading-[33.28px] md:leading-[37.44px] lg:leading-[37.44px] pt-0 md:pt-10 lg:pt-10 mb-7 text-center px-0 md:px-0 lg:px-0 w-[100%] md:w-full lg:w-full">
+      <h2 className="font-medium text-[30px] md:text-[36px] lg:text-[36px] leading-[33.28px] md:leading-[37.44px] lg:leading-[37.44px] pt-0 md:pt-10 lg:pt-2 mb-7 text-center px-0 md:px-0 lg:px-0 w-[100%] md:w-full lg:w-full">
         What’s happening in your Community?
       </h2>
       <div className="flex flex-col md:flex-row lg:flex-row justify-center items-center gap-6 md:gap-8 lg:gap-8 mb-10">
@@ -33,7 +33,7 @@ const ApeTerminalTraining = () => {
               Upcoming Announcements
             </div>
           </DialogTrigger>
-          <DialogContent className="absolute top-[48%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
+          <DialogContent className="absolute top-[48%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B]  rounded-[20px]">
             <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <AnnouncementModal />
             </div>

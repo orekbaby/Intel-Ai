@@ -25,7 +25,7 @@ const Page = () => {
   const cards = [
     {
       imgSrc: "/manager.png",
-      title: "Community Manager",
+      title: "Community Owner/Manager",
       description:
         "Select a dedicated community manager to help nurture and grow your online community, ensuring a vibrant and engaged environment.",
       onClick: () => handleSelectUser("communityManager"),
@@ -33,9 +33,9 @@ const Page = () => {
     },
     {
       imgSrc: "/influencer.png",
-      title: "KOL/Influencer",
+      title: "Smart Contract Engineer",
       description:
-        "Pick an influencer to amplify your brand’s message, connect with your target audience, and boost your visibility on social media",
+        " Audit, optimize, and enhance your smart contracts with tailored insights and automated tools designed to make you a 10x engineer.",
       onClick: () => handleSelectUser(""),
       isClickable: false,
     },
@@ -68,7 +68,7 @@ const Page = () => {
             className="text-sm text-[16.8px] text-white
               leading-[36.28px] md:leading-[64px] lg:leading-[64px] text-center mb-5"
           >
-            Are you a
+           Select the persona that best describes you
           </h2>
           <div className="flex justify-center items-center gap-4">
             {cards.map((card, index) => (

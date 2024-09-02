@@ -4,6 +4,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { informationModal } from "@/utils/mockData";
 import Image from "next/image";
 
+
+
 interface ModalState {
   newContent: string;
   showSaveMessage: boolean;
@@ -29,7 +31,12 @@ const OtherInformationModal: React.FC = () => {
 
   const handleSave = (index: number) => {
     const newModalStates = [...modalStates];
-    newModalStates[index].showSaveMessage = true;
+
+    // Check if the input box (newContent) is empty
+    if (newModalStates[index].newContent.trim() === '') {
+      // If the input is empty, do not proceed with saving
+      return;
+    }
 
     // Save the entered content to local storage
     localStorage.setItem(
@@ -37,16 +44,28 @@ const OtherInformationModal: React.FC = () => {
       newModalStates[index].newContent
     );
 
+    // Show the save message
+    newModalStates[index].showSaveMessage = true;
     setModalStates(newModalStates);
+
+    // Clear the input area
+    newModalStates[index].newContent = '';
+    setModalStates(newModalStates);
+
+    // Delay closing the modal by 2 seconds
     setTimeout(() => {
-      const newModalStatesAfterTimeout = [...newModalStates];
-      newModalStatesAfterTimeout[index].showSaveMessage = false;
-      setModalStates(newModalStatesAfterTimeout);
       setOpenModals((prev) => {
         const newOpenModals = [...prev];
         newOpenModals[index] = false;
         return newOpenModals;
       });
+    }, 2000);
+
+    // Hide the save message after 2 seconds
+    setTimeout(() => {
+      const newModalStatesAfterTimeout = [...newModalStates];
+      newModalStatesAfterTimeout[index].showSaveMessage = false;
+      setModalStates(newModalStatesAfterTimeout);
     }, 2000);
   };
 
@@ -76,8 +95,8 @@ const OtherInformationModal: React.FC = () => {
                 })
               }
             >
-              <div className="flex flex-col mb-5 pb-5 border-[rgb(30,30,30)] border-b text-left">
-                <div className="bg-[#101010] px-4 py-2 flex border-[#181818] items-center mb-10">
+              <div className="flex flex-col mb-5 pb-5 border-[rgb(30,30,30)] border-b text-left hover:bg-[#1d1d1d]">
+                <div className="bg-[#101010] px-4 py-1 flex border-[#181818] items-center mb-10">
                   <h5 className="font-medium text-sm leading-[14.56px] mb-2">
                     {row.title}
                   </h5>
@@ -150,9 +169,9 @@ const OtherInformationModal: React.FC = () => {
                     Save
                   </button>
                 </div>
-                <div className="absolute top-[40%] left-[33%] text-center mt-2 text-green-500">
+                <div className="absolute top-[10%] left-[33%] text-center mt-2 text-green-500">
                   {modalStates[index].showSaveMessage && (
-                    <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                    <div className="bg-white w-[200px] h-auto p-2 rounded-[20px] ">
                       <p className="text-sm font-normal">
                         {" "}
                         Saved successfully!

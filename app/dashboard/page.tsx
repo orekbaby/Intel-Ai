@@ -24,15 +24,16 @@ const DashboardPage: React.FC = () => {
         <section className="dashboard-color relative w-full h-[100vh] rounded-tl-[20px] overflow-y-auto scrollbar-hide">
           <div className="w-full px-0 md:px-0 lg:px-2 relative mb-0 md:mb-10 lg:mb-10 h-full ml-0 md:ml-10 lg:ml-10">
             <h1 className="leading-[37.44px] text-[36px] mb-5 md:mb-7 lg:mb-7 font-[200] pt-10 md:pt-8 lg:pt-8">
-              Hello, Username{" "}
+              You&apos;re Welcome!
               <span className="leading-[24.96px] md:leading-[37.44px] lg:leading-[37.44px] text-[24px] md:text-[36px] lg:text-[36px] font-normal">
                 👋
               </span>{" "}
             </h1>
 
             <p className="leading-[18.8px] font-normal text-sm w-[359px] h-auto text-[#A9A9A9] mb-5 md:mb-10 lg:mb-10">
-              To get started on the Intel AI Platform, here are a few important
-              tasks to carry out
+            To get started,
+Train IntelAI with your community data to test & simulate its capabilities. <Link className="text-green-500 border-b border-b-green-500" rel="stylesheet" href="/workspace">Click here to begin.</Link>
+
             </p>
 
             <div

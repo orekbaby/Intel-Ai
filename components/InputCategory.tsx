@@ -41,8 +41,8 @@ const InputCategory: React.FC<InputCategoryProps> = ({ value, onChange }) => {
           >
             <option value="" disabled>Select a category</option>
             <option value="launchpad">Launchpad</option>
-            <option value="Marketing">Token Project</option>
-            <option value="Development">Memecoin Project</option>
+            <option value="Token Project">Token Project</option>
+            <option value="Memecoin Project">Memecoin Project</option>
           </select>
           {/* Custom Arrow Icon */}
           <svg

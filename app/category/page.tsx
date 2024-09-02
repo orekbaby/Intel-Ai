@@ -1,21 +1,22 @@
+// Page.tsx
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { description } from "@/utils/mockData";
 import { FaArrowLeft } from "react-icons/fa";
-
-type DescriptionItem = {
-  name: string;
-  description: string;
-};
+import { useSelectedName } from "@/SelectedNameContext";
+ // Import the context
 
 const Page = () => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const { setSelectedName } = useSelectedName(); // Get the setSelectedName function from context
   const router = useRouter();
 
   const handleOptionClick = (index: number) => {
+    setSelectedOption(index);
+    setSelectedName(description[index].name); // Update selectedName with the clicked row's name
+
     if (index === 0) {
-      setSelectedOption(index);
       router.push("/onboard");
     }
   };
@@ -31,14 +32,9 @@ const Page = () => {
     filter: "blur(50px)",
   };
 
-  const bgClipText: React.CSSProperties = {
-    WebkitBackgroundClip: "text",
-    backgroundClip: "text",
-  };
-
   return (
     <>
-      <main className="mt-4 md:mt-20 lg:mt-16 mx-auto">
+      <div className="mt-4 md:mt-20 lg:mt-16 mx-auto">
         <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-48 ">
           <div className="w-full px-2 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
             {/* top gradient */}
@@ -59,7 +55,6 @@ const Page = () => {
                 className="flex items-center text-[#707070]"
               >
                 <FaArrowLeft className="mr-2 text-[#707070]" />
-               
               </button>
             </div>
             <div className="">
@@ -73,20 +68,20 @@ const Page = () => {
                 {description.map((row, index) => (
                   <div
                     key={index}
-                    className={`border-b border-[#1E1E1E] mt-5 ${
-                      selectedOption === index ? "border-gradient" : ""
+                    className={`border-b border-[#1E1E1E] mt-5 hover:bg-[#1d1d1d] p-2 ${
+                      selectedOption === index ? "border-gradient" : "disabled"
                     }`}
                   >
                     <div
                       onClick={() => handleOptionClick(index)}
-                      className={`cursor-pointer  ${
-                        index !== 0 ? "opacity-20 cursor-not-allowed" : ""
+                      className={`cursor-pointer ${
+                        index !== 0 ? "opacity-80 cursor-not-allowed" : "disabled"
                       }`}
                     >
                       <h4 className="font-semibold text-sm mb-2 w-[90%] text-white">
                         {row.name}
                       </h4>
-                      <p className="leading-[16.8px] mb-4 font-normal w-full md:w-[447px] lg:w-[447px] text-sm text-[#4D4D4D] ">
+                      <p className="leading-[16.8px] mb-4 font-normal w-full md:w-[447px] lg:w-[447px] text-sm text-[#4D4D4D]">
                         {row.description}
                       </p>
                     </div>
@@ -96,7 +91,7 @@ const Page = () => {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 };

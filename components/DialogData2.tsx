@@ -117,7 +117,7 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
             {chipsButton?.map((row, index) => (
               <div
                 key={index}
-                className={`relative w-fit rounded-[8px] p-1 ${
+                className={`relative w-fit rounded-[8px] p-[1px] ${
                   activeIndex === index
                     ? "bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]"
                     : ""

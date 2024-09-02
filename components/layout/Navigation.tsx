@@ -142,7 +142,7 @@ const Navigation = () => {
                     : "text-[#6D6D6D]"
                 }`}
               >
-                Community Manager
+                Community Owner/Manager
               </p>
 
               <p
@@ -152,7 +152,7 @@ const Navigation = () => {
                     : "text-[#6D6D6D] cursor-not-allowed"
                 }`}
               >
-                KOL Influencer
+              Smart Contract Engineer
               </p>
             </div>
             <div className="flex items-center justify-end gap-6 px-4 md:px-12 lg:px-24 xl:px-72">

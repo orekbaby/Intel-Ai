@@ -2,7 +2,9 @@
 import React from "react";
 import Cookies from "js-cookie";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ContentStudio from "@/components/ContentStudio";
+
+import StrategyPlanning from "@/components/StrategyPlanning";
+import Compose from "@/components/Compose";
 const page = () => {
 
   const addEditorContent = (date: string, time: string, content: string) => {
@@ -46,41 +48,46 @@ const page = () => {
 
   return (
     <>
-      <div className="pl-0 md:pl-16 lg:pl-20 xl:pl-20 2xl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
+     <div className="pl-0 md:pl-16 lg:pl-20 xl:pl-20 2xl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
         <section className="relative w-full h-[100vh] overflow-y-auto scrollbar-hide pb-5 dashboard-color">
-          <div className="w-full pl-0 md:pl-8 lg:pl-10 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
+         <div className="w-full pl-0 md:pl-8 lg:pl-10 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
             <div className="pt-5">
-              <Tabs
-                defaultValue="ContentStudio"
-                className="w-full pl-0 pt-5 md:pt-0 lg:pt-0 "
-              >
-                <TabsList className="flex mt-0 mb-0 items-center justify-center md:justify-start lg:justify-start gap-2 md:gap-4 lg:gap-3 px-0 w-fit">
-                  <TabsTrigger
-                    className="w-fit  md:w-[148px] pl-6 lg:w-[179px] h-[37px] shadow-sm rounded-[24x] px-[10px] md:px-[10px]  data-[state=active]:text-white
-                     data-[state=active]:bg-[#1B1B1B]
-                     md:data-[state=active]:bg-[#181818] lg:data-[state=active]:bg-transparent text-[#4D4D4D] text-sm gap-2 font-medium leading-[14.56px]"
-                    value="ContentStudio"
-                  >
-                    Content Studio (Co-pilot)
-                  </TabsTrigger>
-                   </TabsList>
-                <TabsContent
-                  className="w-full h-full pt-5 md:pt-0 lg:pt-0 overflow-x-hidden"
-                  value="ContentStudio"
-                >
-                  <ContentStudio 
-                  addEditorContent={addEditorContent}
-                  addStrategyContent={addStrategyContent}
-                
-                  />
-                </TabsContent>
+      
+      <Tabs defaultValue="StrategyPlanning" className="w-full h-auto px-4 pt-2 pb-5 fixed">
+          <TabsList className=" w-[256px] border-[#272727] rounded-[50px] gap-4 flex justify-end border items-center">
+                <TabsTrigger
+          className="w-[128px] h-[35px] p-[10px] data-[state=active]:text-black data-[state=active]:bg-[#03FFA3] text-white rounded-[50px] bg-[#1B1B1B] font-medium text-sm"
+          value="StrategyPlanning"
+        >
+          Strategy Planning
+        </TabsTrigger>
 
-               
-              </Tabs>
-            </div>
-          </div>
-        </section>
-      </div>
+        <TabsTrigger
+          className="w-[128px] h-[35px] font-medium text-sm leading-[14.56px] data-[state=active]:text-black data-[state=active]:bg-[#03FFA3] text-white rounded-[50px] bg-[#1B1B1B] p-[10px]"
+          value="PostNow"
+        >
+          Post Now
+        </TabsTrigger>
+                   </TabsList>
+                   <TabsContent className="bg-[#181818]" value="StrategyPlanning">
+        <StrategyPlanning
+
+          addStrategyContent={addStrategyContent} 
+          handleSave={function (): void {
+            throw new Error("Function not implemented.");
+          } } strategies={[]}         />
+      </TabsContent>
+      <TabsContent value="PostNow">
+      <Compose
+        
+         addEditorContent={addEditorContent} 
+         />
+      </TabsContent>
+                </Tabs>
+                  </div>
+              </div>
+              </section>
+              </div>
     </>
   );
 };

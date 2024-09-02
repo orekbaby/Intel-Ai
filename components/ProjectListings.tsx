@@ -2,6 +2,9 @@
 import React, { useRef, useState } from "react";
 import { FaCaretDown, FaCheck, FaCircle, FaTimes } from "react-icons/fa";
 import { launchpadData } from "@/utils/mockData";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 interface ProjectListingsProps {
   onClose: () => void;
@@ -76,18 +79,39 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
   };
 
   const handleSave = () => {
+    // Check if both inputValue is not empty and a file has been uploaded
+    if (inputValue.trim() === "" || !uploadedFileName) {
+      toast.error("Please enter a project name and upload a document before saving.");
+      return;
+    }
+  
+    // Save the project name to localStorage
     localStorage.setItem("projectName", inputValue);
+  
+    // Clear the input field and uploaded file
+    setInputValue("");
+    setUploadedFileName(null);
+  
+    // Show success message
     setShowSuccessMessage(true);
+  
+    // Close the dialog after 2 seconds
     setTimeout(() => {
       setShowSuccessMessage(false);
-      onClose();
+      onClose(); // Assuming onClose is a function to close the dialog
     }, 2000);
+  
+    // Show a success toast notification
+    // Comment out this line if you don't want a success toast notification
+  1
   };
-
+  
   return (
     <>
       {launchpadData?.map((row, index) => (
+        
         <div key={index}>
+           
           <div className="flex flex-col mb-5 pb-1 border-[#1E1E1E] border-b text-left px-2 md:px-0 lg:px-0">
             <h5 className="font-medium cursor-pointer text-[13px] md:text-sm lg:text-sm leading-[14.56px] pb-2">
               Upcoming Project Listings
@@ -227,7 +251,7 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
                 )}
               </div>
               {/* Ends here */}
-
+              <ToastContainer />
               {/* Save button */}
               <div className="flex justify-center pt-5 mx-auto items-center">
                 <button
@@ -239,8 +263,8 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
               </div>
               {/* pop up message */}
               {showSuccessMessage && (
-                <div className="absolute top-[50%] left-[25%] text-center mt-2 text-green-500">
-                  <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                <div className="absolute top-[10%] left-[25%] text-center mt-2 text-green-500">
+                  <div className="bg-white w-[200px] h-auto p-2 rounded-[20px] ">
                     <p className="text-sm font-normal">Saved successfully!</p>
                   </div>
                 </div>

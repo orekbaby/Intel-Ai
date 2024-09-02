@@ -7,6 +7,9 @@ import {
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import AccordionComponent from "./AccordionComponent";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 interface ModalState {
   newBullet: string;
   bullets: string[];
@@ -16,17 +19,12 @@ interface ModalState {
 const PreviouslyListed: React.FC = () => {
   const initialModalStates = previousListings.map((row) => ({
     newBullet: "",
-    bullets: [row.bullet1, row.bullet2, row.bullet3, row.bullet4].filter(
-      Boolean
-    ),
+    bullets: [row.bullet1, row.bullet2, row.bullet3, row.bullet4].filter(Boolean),
     showSaveMessage: false,
   }));
 
-  const [modalStates, setModalStates] =
-    useState<ModalState[]>(initialModalStates);
-  const [openModals, setOpenModals] = useState<boolean[]>(
-    Array(previousListings.length).fill(false)
-  );
+  const [modalStates, setModalStates] = useState<ModalState[]>(initialModalStates);
+  const [openModals, setOpenModals] = useState<boolean[]>(Array(previousListings.length).fill(false));
 
   useEffect(() => {
     const savedData = localStorage.getItem("modalStates");
@@ -46,21 +44,41 @@ const PreviouslyListed: React.FC = () => {
   };
 
   const handleSave = (index: number) => {
+    if (!modalStates[index].newBullet || modalStates[index].newBullet.trim() === "") {
+      toast.error("Please enter some content before saving.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
     const newModalStates = [...modalStates];
     newModalStates[index].showSaveMessage = true;
-    setModalStates(newModalStates);
     localStorage.setItem("modalStates", JSON.stringify(newModalStates));
+
+    newModalStates[index].newBullet = "";
+    setModalStates(newModalStates);
+
     setTimeout(() => {
-      const newModalStatesAfterTimeout = [...newModalStates];
-      newModalStatesAfterTimeout[index].showSaveMessage = false;
-      setModalStates(newModalStatesAfterTimeout);
       setOpenModals((prev) => {
         const newOpenModals = [...prev];
         newOpenModals[index] = false;
         return newOpenModals;
       });
-    }, 2000);
+
+      const newModalStatesAfterTimeout = [...newModalStates];
+      newModalStatesAfterTimeout[index].showSaveMessage = false;
+      setModalStates(newModalStatesAfterTimeout);
+    }, 3000);
   };
+
+  // Array of hover colors
+  const hoverColors = ["#0d0d0d", "#131313", "#1a1a1a", "#1f1f1f"];
 
   return (
     <>
@@ -79,9 +97,7 @@ const PreviouslyListed: React.FC = () => {
           >
             <DialogTrigger className="cursor-pointer" asChild>
               <div
-                className={`flex flex-col text-left gap-2 w-[486px] p-4 ${
-                  index === 1 ? "bg-[#0d0d0d]" : "bg-[#131313]"
-                } border-b border-[#131313]`}
+                className="flex flex-col text-left gap-2 w-[486px] p-4 border-b border-[#131313] hover:bg-black"
               >
                 <div className="">
                   <h5 className="font-medium text-[14px] leading-[14.56px] mb-2">
@@ -103,7 +119,7 @@ const PreviouslyListed: React.FC = () => {
                 <p className="font-[300] italic text-sm leading-[14.56px] pb-3 px-3">
                   {row.instructions}
                 </p>
-
+                <ToastContainer />
                 {/* Render accordion content dynamically */}
                 <AccordionComponent
                   index={index}

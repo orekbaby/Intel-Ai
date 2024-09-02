@@ -24,7 +24,7 @@ interface CardProps {
   handlePostDirectly: (index: number | null) => void;
   generatedResponses: { [key: number]: { response: string } }; 
   addEditorContent: (date: string, time: string, content: string) => void;
-  onAddToDraft: (title: string, response: string) => void; 
+  
   savedSuccessfully: boolean;
   openModal: boolean;
   setOpenModal:(open: boolean) => void;
@@ -34,7 +34,7 @@ interface CardProps {
   
 }
 
-const Card: React.FC<CardProps> = ({ index, title, response, onAddToDraft, handleCardClick, addEditorContent, editorContent, setEditorContent, isDialogOpen,
+const Card: React.FC<CardProps> = ({ index, title, response, handleCardClick, addEditorContent, editorContent, setEditorContent, isDialogOpen,
   setIsDialogOpen,
   handleEditSave,
   handleCancel,

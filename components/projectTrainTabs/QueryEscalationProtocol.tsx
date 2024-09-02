@@ -119,7 +119,7 @@ const Page = () => {
         ]);
         setShowResolveButton(true);
       }
-    }, 30);
+    }, 10);
   };
 
   const handleSendQuery = () => {

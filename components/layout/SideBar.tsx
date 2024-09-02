@@ -14,6 +14,7 @@ import { FaPlus } from "react-icons/fa6";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { GoPeople } from "react-icons/go";
 
 interface SidebarItem {
   id: number;
@@ -38,45 +39,44 @@ const SideBar = () => {
     },
     {
       id: 1,
-      img: MdOutlineSignalCellularAlt,
-      name: "AI Community Workspace",
+      img: GoPeople,
+      name: "Community Workspace",
       alt: "workspace-img",
       link: "/trainAi",
     },
-    {
-      id: 2,
-      img: "/X.png",
-      name: "X Agents",
-      alt: "x-img",
-      link: "/x-Agents",
-    },
-    {
-      id: 3,
-      img: "/tag.png",
-      name: "",
-      alt: "wallet-img",
-      link: "",
-    },
-    {
-      id: 4,
-      img: CgProfile,
-      name: "Profile",
-      alt: "copy-img",
-      link: "",
-    },
+    // {
+    //   id: 2,
+    //   img: "/X.png",
+    //   name: "X Agents",
+    //   alt: "x-img",
+    //   link: "/x-Agents",
+    // },
+  //   {
+  //     id: 3,
+  //     img: "/tag.png",
+  //     name: "",
+  //     alt: "wallet-img",
+  //     link: "",
+  //   },
+  //   {
+  //     id: 4,
+  //     img: CgProfile,
+  //     name: "Profile",
+  //     alt: "copy-img",
+  //     link: "",
+  //   },
   ];
 
   const pathName = usePathname();
   const show =
     pathName === "/dashboard" ||
-    pathName === "/communityManager" ||
-    pathName === "/trainAi";
-
+    pathName === "/communityManager" 
+   
   // workspace sidebar
   const block =
     pathName === "/workspace" ||
     pathName === "/workspaceData" ||
-    pathName === "/querySolving" ||
+    pathName === "/trainAi" ||
     pathName === "/x-Agents";
   //  pathName === "/communityManager" ||
   //  pathName === "/trainAi";
@@ -170,27 +170,21 @@ const SideBar = () => {
                           <DialogTrigger className="cursor-pointer flex items-center gap-3">
                             {typeof data.img !== "string" && (
                               <data.img
-                                size={14}
+                                size={20}
                                 style={{
                                   color: "#707070",
-                                  borderColor: "#707070",
-                                  borderWidth: "1px",
-                                  borderStyle: "solid",
-                                }}
+                                 }}
                               />
                             )}
                             {typeof data.img === "string" && (
                               <Image
                                 src={data.img}
                                 alt={data.alt}
-                                width={14}
-                                height={14}
+                                width={20}
+                                height={20}
                                 style={{
                                   color: "#707070",
-                                  borderColor: "#707070",
-                                  borderWidth: "1px",
-                                  borderStyle: "solid",
-                                }}
+                                 }}
                               />
                             )}
                             <p
@@ -264,7 +258,7 @@ const SideBar = () => {
                             />
                           )}
                           {/* Render image if it's a string */}
-                          {typeof data.img === "string" && (
+                          {/* {typeof data.img === "string" && (
                             <Image
                               src={data.img}
                               alt={data.alt}
@@ -281,7 +275,7 @@ const SideBar = () => {
                                   : {}
                               }
                             />
-                          )}
+                          )} */}
                           <h2
                             className={`font-medium text-sm text-[#707070] ${
                               !isHovered && "hidden"
@@ -294,13 +288,13 @@ const SideBar = () => {
                     </div>
                   ))}
               </div>
-              <h3
+              {/* <h3
                 className={`mb-3 text-center text-xs ${
-                  !isHovered && "hidden"
+                  // !isHovered && "hidden"
                 } text-[#3F3F3F]`}
               >
                 SETTINGS
-              </h3>
+              </h3> */}
               <div className="w-full h-auto flex flex-col py-5">
                 {sideBar
                   .filter((data) => data.id === 3 || data.id === 4)
@@ -346,7 +340,7 @@ const SideBar = () => {
 
             {/* bottom wallet */}
 
-            <div className="mt-28 flex justify-center items-center w-[53px] h-[40px]  border border-[#131313] bg-[#141414] rounded-[10px] ">
+            <div className="mt-60 flex justify-center items-center w-[53px] h-[40px]  border border-[#131313] bg-[#141414] rounded-[10px] ">
               <div className="flex gap-1 justify-start items-center py-2 px-2">
                 <div>
                   <Image
@@ -391,13 +385,14 @@ const SideBar = () => {
           </Link>
 
           <div className="flex gap-2 mb-10">
-            <div className="w-[14px] h-[14px] border flex justify-center text-center items-center border-[#707070] rounded-[2px]">
-              <MdOutlineSignalCellularAlt className="w-[10.5px] h-[10.5px] text-[#707070]" />
+            <div className="w-[14px] h-[14px] flex justify-center text-center items-center ">
+              <GoPeople className="w-[20px] h-[20px] text-[#707070]"
+               />
             </div>
-            <Dialog>
+            <Dialog> 
               <DialogTrigger className="cursor-pointer">
                 <p className="font-normal text-sm leading-[14px] text-[#707070]">
-                  AI Community Workspace
+                  Community Workspace
                 </p>
               </DialogTrigger>
 
@@ -445,19 +440,19 @@ const SideBar = () => {
             </Dialog>
           </div>
 
-          <div className="flex justify-between mb-10">
-            <div className="flex gap-2 items-center">
+          {/* <div className="flex justify-between mb-10"> */}
+            {/* <div className="flex gap-2 items-center">
               <div>
                 <Image src="/X.png" width={11} height={11} alt="twitter" />
               </div>
               <p className="font-normal text-sm leading-[14px] text-[#707070]">
                 X Agents
               </p>
-            </div>
-            <div className="w-[22px] h-[22px] flex text-center items-center justify-center rounded-full bg-[#03FFA3] text-[#131313]">
+            </div> */}
+            {/* <div className="w-[22px] h-[22px] flex text-center items-center justify-center rounded-full bg-[#03FFA3] text-[#131313]">
               3
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
 
           <div className="flex items-center gap-2 mb-52">
             <p className="font-normal text-sm leading-[14px] text-[#707070]">

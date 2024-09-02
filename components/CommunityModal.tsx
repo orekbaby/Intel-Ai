@@ -52,19 +52,33 @@ const CommunityModal: FC = () => {
 
   const handleSave = (index: number) => {
     const newModalStates = [...modalStates];
-    newModalStates[index].showSaveMessage = true;
-
+  
+    // Check if the input box (textAreaContent) is empty
+    if (newModalStates[index].textAreaContent.trim() === '') {
+      // If the input is empty, do not proceed with saving
+      return;
+    }
+  
     // Save the entered content to local storage
     localStorage.setItem(
       `modalText_${index}`,
       newModalStates[index].textAreaContent
     );
-
+  
+    // Clear the input area
+    newModalStates[index].textAreaContent = '';
+  
+    // Show the save message
+    newModalStates[index].showSaveMessage = true;
     setModalStates(newModalStates);
+  
+    // Hide the save message and close the modal after 2 seconds
     setTimeout(() => {
       const newModalStatesAfterTimeout = [...newModalStates];
       newModalStatesAfterTimeout[index].showSaveMessage = false;
       setModalStates(newModalStatesAfterTimeout);
+  
+      // Close the modal
       setOpenModals((prev) => {
         const newOpenModals = [...prev];
         newOpenModals[index] = false;
@@ -89,7 +103,7 @@ const CommunityModal: FC = () => {
         >
           <DialogTrigger asChild>
             <div
-              className="flex flex-col mb-5 pb-5 border-[#1E1E1E] border-b text-left cursor-pointer"
+              className="flex flex-col mb-5 pb-5 border-[#1E1E1E] border-b text-left cursor-pointer hover:bg-[#1d1d1d] gap-3"
               onClick={() =>
                 setOpenModals((prev) => {
                   const newOpenModals = [...prev];
@@ -234,10 +248,10 @@ const CommunityModal: FC = () => {
                 </button>
               </div>
 
-              <div className="absolute top-[50%] left-[35%] text-center mt-2 text-green-500">
-                <div className="absolute top-[50%] left-[32%] md:left-[35%] lg:left-[35% text-center mt-2 text-green-500">
+              <div className="absolute top-[10%] left-[35%] text-center mt-2 text-green-500">
+                <div className="absolute top-[50%] left-[32%] md:left-[35%] lg:left-[32%] text-center mt-2 text-green-500">
                   {modalStates[index].showSaveMessage && (
-                    <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                    <div className="bg-white w-[200px] h-auto p-2 rounded-[20px] ">
                       <p className="text-[14px] font-normal">
                         {" "}
                         Saved successfully!

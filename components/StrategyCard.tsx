@@ -5,10 +5,11 @@ interface CardProps {
   strategy: string;
   isActive: boolean;
   onClick: () => void;
-  onDelete: () => void; // Add the onDelete prop
+  onDelete: () => void;
+  timestamp: { date: string, time: string }; // Include timestamp in props
 }
 
-const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDelete }) => {
+const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDelete, timestamp }) => {
   return (
     <div
       className={`relative w-[363px] h-auto rounded-[24px] p-[2px] cursor-pointer ${
@@ -40,9 +41,9 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDele
           <div className="flex items-center gap-1 bg-[#131313] p-2 rounded-[12px]">
             <FaRegClock className="w-[10px] h-[10px]" />
             <p className="font-[300] text-[8px] leading-[12px] text-[#858585]">
-              Jan 5, 2024{" "}
+              {timestamp.date}{" "}
               <span className="font-normal text-[8px] leading-[12px] text-white">
-                12:15pm
+                {timestamp.time}
               </span>
             </p>
           </div>
@@ -51,5 +52,6 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDele
     </div>
   );
 };
+
 
 export default StrategyCard;

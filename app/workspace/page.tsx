@@ -40,8 +40,8 @@ const Page: React.FC = () => {
       const urlObj = new URL(value);
       const hasValidProtocol =
         urlObj.protocol === "http:" || urlObj.protocol === "https:";
-      const hasWWW = value.includes("www.");
-      return hasValidProtocol && hasWWW;
+      
+      return hasValidProtocol;
     } catch (_) {
       return false;
     }
@@ -90,7 +90,7 @@ const Page: React.FC = () => {
                   <form className="space-y-4" onSubmit={handleSubmit}>
                     <InputField
                       label="What is the name of your project?"
-                      placeholder="Metadapp"
+                      placeholder="Write the name of your project"
                       value={inputField}
                       onChange={handleInputChange}
                     />

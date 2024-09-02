@@ -203,52 +203,56 @@ const Page = () => {
 
                     {/* button */}
                     <Dialog>
-                      <div className="mb-20 flex justify-center pt-6 ">
-                        {" "}
-                        <DialogTrigger className="relative">
-                          <button className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[42px] w-[222px] rounded-[21px] hover:bg-[#0B0F16]">
-                            <div className="w-[14px] h-[14px] rounded-full bg-[#2B6AFF] flex justify-center items-center">
-                              <FaTelegramPlane className="w-[10px] h-[10px]" />
-                            </div>
-                            Simulate on Telegram
-                          </button>
-                        </DialogTrigger>
-                      </div>
-                      <DialogContent className="hidden px-8 md:w-full lg:w-full border-none rounded-lg max-w-auto w-[540px] h-[401px] bg-[#181818]">
-                        <div className="mx-auto">
-                          <Image
-                            width={48}
-                            height={48}
-                            src="/loader.png"
-                            className="mx-auto mb-5 pt-10 bg-[#181818]"
-                            alt=""
-                          />
-                          <h3 className="font-medium text-center text-[20px] leading-[26px] w-[80%] mx-auto mb-4">
-                            Creating your simulation workspace
-                          </h3>
-                          <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-[383px] mb-5">
-                            Please wait while your AI generates the test
-                            environment for your results.
-                          </p>
-                          {/* button */}
-                          <Link href="/communityManager">
-                            <button
-                              className="bg-white items-center flex justify-center text-center 
-                                  text-xs font-normal ring-offset-white focus-visible:outline-none
-                                  text-[#0D0D0D] h-10 w-[199px] rounded-[66px] mx-auto shadow-drop2"
-                            >
-                              Integrate your community now
-                            </button>
-                          </Link>
-                        </div>
-                      </DialogContent>
-                      <DialogContent
-                        className="absolute top-[54%] left-[50%] md:left-[80%] lg:left-[80%] -translate-x-1/2 w-full px-0 md:px-4 lg:px-4 md:w-full lg:w-full
-                     bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
-                      >
-                        <DialogData />
-                      </DialogContent>
-                    </Dialog>
+  <div className="mb-20 flex justify-center pt-6">
+    <DialogTrigger className="relative">
+      <button className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center text-sm ring-offset-white focus-visible:outline-none 
+      focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal 
+      focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 
+      dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[42px] w-[222px] rounded-[21px] hover:bg-[#0B0F16]">
+        <div className="w-[14px] h-[14px] rounded-full bg-[#2B6AFF] flex justify-center items-center">
+          <FaTelegramPlane className="w-[10px] h-[10px]" />
+        </div>
+        Simulate on Telegram
+      </button>
+    </DialogTrigger>
+  </div>
+
+  {/* First DialogContent */}
+  {/* <DialogContent className="px-8 md:w-full lg:w-full border-none rounded-lg max-w-auto w-[540px] h-[401px] bg-[#181818]">
+    <div className="mx-auto">
+      <Image
+        width={48}
+        height={48}
+        src="/loader.png"
+        className="mx-auto mb-5 pt-10 bg-[#181818]"
+        alt=""
+      />
+      <h3 className="font-medium text-center text-[20px] leading-[26px] w-[80%] mx-auto mb-4">
+        Creating your simulation workspace
+      </h3>
+      <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-[383px] mb-5">
+        Please wait while your AI generates the test environment for your results.
+      </p>
+      {/* Button */}
+      {/* <Link href="/communityManager">
+        <button
+          className="bg-white items-center flex justify-center text-center text-xs font-normal ring-offset-white focus-visible:outline-none text-[#0D0D0D] h-10 w-[199px] rounded-[66px] mx-auto shadow-drop2"
+        >
+          Integrate your community now
+        </button>
+      </Link>
+    </div>
+  </DialogContent> */} 
+
+  {/* Second DialogContent */}
+  <DialogContent 
+    className="absolute top-[54%] left-[50%] md:left-[80%] lg:left-[80%] -translate-x-1/2 w-full px-0 md:px-4 lg:px-4 bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
+    style={{ backdropFilter: "none" }} // Ensure no blur is applied
+  >
+    <DialogData />
+  </DialogContent>
+</Dialog>
+
                   </div>
                 </div>
               </div>

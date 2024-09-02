@@ -50,12 +50,12 @@ const response: Response[] = [
 interface ComposeProps {
   addEditorContent: (date: string, time: string, content: string) => void;
 
-  onAddToDraft: (title: string, response: string) => void; // Update prop type
+  
 }
-const Compose: React.FC<ComposeProps> = ({ onAddToDraft, addEditorContent }) => {
+const Compose: React.FC<ComposeProps> = ({ addEditorContent }) => {
   const handleAddToDraft = (title: string, response: string) => {
     // Add draft logic here
-    onAddToDraft(title, response);
+   
   };
 
   const [isTweetMode, setIsTweetMode] = useState<boolean>(true);
@@ -462,7 +462,7 @@ return (
   setIsDialogOpen={setIsDialogOpen} 
   handlePostDirectly={handlePostDirectly} // Now directly posts the response
   selectedCardIndex={selectedCardIndex} 
-  onAddToDraft={onAddToDraft} 
+  
   handleEditSave={() => handleEditSave(index)} 
   handleCancel={handleCancel}
   savedSuccessfully={savedSuccessfully}
@@ -505,7 +505,8 @@ return (
                     defaultValue="ScheduledTweet"
                     className="w-full overflow-x-hidden"
                   >
-                    <TabsList className="flex mt-0 mb-0 items-center justify-center md:justify-start lg:justify-start gap-2 md:gap-4 lg:gap-3 px-0 w-full border-b border-[#363636]">
+                    <TabsList className="flex mt-0 mb-0 items-center justify-center md:justify-start lg:justify-start gap-2 md:gap-4 lg:gap-3 
+                    px-0 w-full border-b border-[#363636]">
                       <TabsTrigger
                         className="w-fit data-[state=active]:text-white 
                     text-[#4D4D4D] text-xs font-medium leading-[12.8px]"
@@ -522,13 +523,13 @@ return (
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[250px] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[450px] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
                       value="ScheduledTweet"
                     >
                       <ScheduleTweet />
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 o h-[250px] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 o h-[450px] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
                       value="PostedContent"
                     >
                       <ContentPosted />

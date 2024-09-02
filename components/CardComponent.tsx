@@ -23,7 +23,7 @@ const CardComponent: React.FC<CardProps> = ({
                     w-fit rounded-[40px] ${
                       isClickable
                         ? "cursor-pointer"
-                        : "cursor-not-allowed opacity-50"
+                        : "cursor-not-allowed"
                     }`}
         onClick={isClickable ? onClick : undefined}
       >

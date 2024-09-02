@@ -1,4 +1,3 @@
-// layout/RootLayout.tsx
 import type { Metadata } from "next";
 import "./globals.scss";
 import Navigation from "@/components/layout/Navigation";
@@ -11,6 +10,7 @@ import { cookieToInitialState } from 'wagmi'
 
 import { config } from '@/config'
 import AppKitProvider from '@/context'
+import { SelectedNameProvider } from "@/SelectedNameContext" // Import the context provider
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,16 +29,18 @@ export default function RootLayout({
       <body className="font-guaruja">
         <ClientProviders>
           <AppKitProvider initialState={initialState}>
-            <div className="flex w-full h-auto relative">
-              <SideBar />
-              <div className="relative w-full h-auto">
-                <Navigation />
-                <div className="scrollbar-hide overflow-y-auto h-[100vh] w-full overflow-x-hidden pt-20">
-                  {children}
+            <SelectedNameProvider> {/* Wrap with SelectedNameProvider */}
+              <div className="flex w-full h-auto relative">
+                <SideBar />
+                <div className="relative w-full h-auto">
+                  <Navigation />
+                  <div className="scrollbar-hide overflow-y-auto h-[100vh] w-full overflow-x-hidden pt-20">
+                    {children}
+                  </div>
+                  <FooterNav />
                 </div>
-                <FooterNav />
               </div>
-            </div>
+            </SelectedNameProvider>
           </AppKitProvider>
         </ClientProviders>
         <Toaster />

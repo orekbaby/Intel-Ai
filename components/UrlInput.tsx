@@ -17,8 +17,8 @@ const UrlInput: React.FC<UrlInputProps> = ({ value, onChange }) => {
       const urlObj = new URL(value);
       const hasValidProtocol =
         urlObj.protocol === "http:" || urlObj.protocol === "https:";
-      const hasWWW = value.includes("www.");
-      return hasValidProtocol && hasWWW;
+     
+      return hasValidProtocol
     } catch (_) {
       return false;
     }
@@ -30,7 +30,7 @@ const UrlInput: React.FC<UrlInputProps> = ({ value, onChange }) => {
       setError("");
       setIsEditing(false);
     } else {
-      setError("Please input a valid URL link (e.g., https://www.example.com)");
+      setError("Please input a valid URL link (e.g., https://example.com)");
       setIsValid(false);
     }
   };
@@ -59,7 +59,7 @@ const UrlInput: React.FC<UrlInputProps> = ({ value, onChange }) => {
             <input
               type="text"
               id="inputField4"
-              className="custom-input mt-2 font-[300px] text-sm leading-[22.68px] w-full pr-10 bg-transparent"
+              className="custom-input mt-2 font-[300px] text-sm leading-[22.68px] w-full pr-10 bg-transparent border border-[#363636]]"
               placeholder=""
               value={value}
               onChange={onChange}

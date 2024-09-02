@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Guaruja+Neue:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&display=swap");
 
 :root {
   --font-guaruja: "Guaruja Neue", sans-serif;
+  --font-helvetica: "Helvetica Neue", sans-serif;
 }
 
 $color_1: #fff;
@@ -50,6 +52,10 @@ body {
 	max-width: 100%;
 	overflow-x: hidden;
 }
+
+.helvetica-font {
+	font-family: var(--font-helvetica);
+  }
 
 .border-gradient {
 	border: 2px solid;

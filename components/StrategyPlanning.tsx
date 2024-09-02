@@ -1,7 +1,7 @@
 "use client"
 import { FaChevronDown, FaChevronUp, FaRegClock } from "react-icons/fa";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaArrowUp, FaCheck } from 'react-icons/fa';
 import PostedContents from './PostedContents';
 import ScheduledPosts from './ScheduledPosts';
@@ -49,7 +49,26 @@ const accordionData: AccordionData[] = [
 interface Strategy {
   strategy: string;
   content: string;
-}
+   timestamp: { date: string; time: string };
+  }
+
+  interface Strategy {
+    strategy: string;
+    timestamp: { date: string; time: string };
+    // Add any other properties if needed
+  }
+
+  interface Timestamp {
+    date: string;
+    time: string;
+  }
+  
+  interface Chat {
+    request: string;
+    response: string;
+    timestamp: Timestamp; // Add the timestamp property
+  }
+  
 
 interface AccordionData {
   id: number;
@@ -72,8 +91,7 @@ const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strateg
   const [isReadMore, setIsReadMore] = useState<Record<number, boolean>>({});
   const [text, setText] = useState<string>('');
   const [request, setRequest] = useState<string[]>([]);
-
-  const [tempRequest, setTempRequest] = useState<string[]>([]); 
+const [tempRequest, setTempRequest] = useState<string[]>([]); 
   const [response, setResponse] = useState<string | null>(null);
   const [isQuickStrategyClicked, setIsQuickStrategyClicked] = useState<boolean>(false);
   const [isInputVisible, setIsInputVisible] = useState<boolean>(true);
@@ -83,8 +101,23 @@ const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strateg
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [hasRequested, setHasRequested] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [chats, setChats] = useState<Chat[]>([]);
+  const chatContainerRef = useRef<HTMLDivElement | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string>('');
 
+  useEffect(() => {
+    const savedOption = Cookies.get('selectedOption');
+    if (savedOption) {
+      setSelectedOption(savedOption);
+    }
+  }, []);
 
+  // Handle option change
+  const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+    Cookies.set('selectedOption', value, { expires: 7 }); // Save to cookies with a 7-day expiry
+  };
 
 
 //request and response functionallity
@@ -94,37 +127,104 @@ const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strateg
 
   const handleSendButtonClick = async () => {
     if (text.trim()) {
-      setRequest((prevRequest) => [text.trim(), ...prevRequest]);
-      setIsInputVisible(false);
-      setHasRequested(true); 
-      setIsQuickStrategyClicked(true);
-      await delayResponse();
-      setResponse("I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?");
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        const formattedTime = currentDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+        const newChat: Chat = {
+            request: text.trim(),
+            response: "",
+            timestamp: { date: formattedDate, time: formattedTime }
+        };
+
+        setChats((prevChats) => [...prevChats, newChat]);
+        setIsInputVisible(false);
+        setHasRequested(true);
+        setIsQuickStrategyClicked(true);
+
+        await delayResponse();
+
+        const updatedResponse = "I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?";
+
+        setChats((prevChats) =>
+            prevChats.map((chat, index) =>
+                index === prevChats.length - 1
+                    ? { ...chat, response: updatedResponse }
+                    : chat
+            )
+        );
+
+        const storedStrategies = JSON.parse(localStorage.getItem('strategies') || '[]');
+        const newStrategy = { ...newChat, response: updatedResponse };
+
+        if (newStrategy.response) {
+            storedStrategies.push(newStrategy);
+            localStorage.setItem('strategies', JSON.stringify(storedStrategies));
+        }
+
+        scrollToBottom();
+        setText('');
+    }
+};
+  
+const handleQuickStrategyClick = async () => {
+  const quickRequest = "Our goal for this week is to promote our upcoming product launch by releasing teaser content and engaging with members through polls and AMAs.";
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  const formattedTime = currentDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+  const newChat: Chat = {
+    request: quickRequest,
+    response: "",
+    timestamp: { date: formattedDate, time: formattedTime } // Include the timestamp
+  };
+
+  setChats((prevChats) => [...prevChats, newChat]);
+  setIsInputVisible(false);
+  setHasRequested(true);
+  setIsQuickStrategyClicked(true);
+
+  await delayResponse();
+
+  const updatedResponse = "I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?";
+
+  setChats((prevChats) =>
+    prevChats.map((chat, index) =>
+      index === prevChats.length - 1
+        ? { ...chat, response: updatedResponse }
+        : chat
+    )
+  );
+
+  // Save to local storage
+  const storedStrategies = JSON.parse(localStorage.getItem('strategies') || '[]');
+  storedStrategies.push({
+    strategy: quickRequest,
+    content: updatedResponse,
+    timestamp: { date: formattedDate, time: formattedTime } // Store both strategy and timestamp
+  });
+  localStorage.setItem('strategies', JSON.stringify(storedStrategies));
+
+  scrollToBottom();
+};
+
+  
+
+  const handleClearChat = () => {
+    setChats([]); // Clear the chat history
+    setText('');
+    setIsInputVisible(true);
+    setHasRequested(false);
+    setIsQuickStrategyClicked(false); // Reset the button state to "Quick Strategy"
+  };
+
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   };
 
-
-  const handleQuickStrategyClick = async () => {
-    const quickRequest = "Our goal for this week is to promote our upcoming product launch by releasing teaser content and engaging with members through polls and AMAs.";
-    setRequest((prevRequest) => [quickRequest, ...prevRequest]);
-    setIsInputVisible(false);
-    setHasRequested(true); 
-    setIsQuickStrategyClicked(true);
-
-    await delayResponse();
-    setResponse("I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?");
-  };
-
-
-  const handleClearChat = () => {
-    setRequest([]);  // Clear the requests
-    setResponse(null);
-    setText('');
-    setIsInputVisible(true);
-    setIsQuickStrategyClicked(false);  // Reset the button state to "Quick Strategy"
-  };
-
-  const delayResponse = () => {
+  const delayResponse = (): Promise<void> => {
     return new Promise<void>((resolve) => {
       setTimeout(() => {
         resolve();
@@ -133,40 +233,85 @@ const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strateg
   };
 
 //contunue chatting functionality
-  const handleContinueChatting =  async() => {
-    setRequest((prevRequest) => [text.trim(), ...prevRequest]);
-    setIsInputVisible(true);
-    setHasRequested(true); 
-    setIsQuickStrategyClicked(true);
-    setText('');
+const handleContinueChatting = async () => {
+  setIsInputVisible(true);
+  if (text.trim()) {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    const formattedTime = currentDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+    const newChat: Chat = {
+      request: text.trim(),
+      response: "",
+      timestamp: { date: formattedDate, time: formattedTime } // Include timestamp
+    };
+
+    setChats(prevChats => [...prevChats, newChat]);
+    setHasRequested(true);
+
     await delayResponse();
-    setResponse("I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?");
-  };
+
+    const updatedResponse = "I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?";
+
+    setChats(prevChats =>
+      prevChats.map((chat, index) =>
+        index === prevChats.length - 1
+          ? { ...chat, response: updatedResponse }
+          : chat
+      )
+    );
+
+    // Save to local storage
+    const storedStrategies = JSON.parse(localStorage.getItem('strategies') || '[]');
+    storedStrategies.push(newChat);
+    localStorage.setItem('strategies', JSON.stringify(storedStrategies));
+
+    scrollToBottom();
+    setText('');
+  }
+};
+
   
   const [finalizedStrategies, setFinalizedStrategies] = useState<Strategy[]>([]);
 
   const handleFinalizeStrategyClick = () => {
-  if (request.length > 0) {
-    const newStrategies: Strategy[] = request.map(req => ({
-      strategy: req,          // Use the string as the strategy
-      content: "Default content", // Or provide a default value for content
-    }));
-
-    setFinalizedStrategies(prevStrategies => [...prevStrategies, ...newStrategies]);
-    setShowContent(true);
-    setRequest([]); // Clear the request after finalizing
-    setResponse(null);
-    setText('');
-    setIsInputVisible(true);
-    setIsDialogOpen(false);
-  }
-};
+    if (chats.length > 0) {
+      // Filter out empty or duplicate strategies
+      const newStrategies: Strategy[] = chats
+        .filter(chat => chat.request.trim() !== '' && chat.response.trim() !== '')
+        .map(chat => ({
+          strategy: chat.request, // Use the request string as the strategy
+          content: chat.response || "Default content", // Use the response as content or provide a default value
+          timestamp: chat.timestamp // Include the timestamp from the chat
+        }));
   
-const handleDeleteStrategy = (strategyToDelete: string) => {
-  setFinalizedStrategies(prevStrategies =>
-    prevStrategies.filter(strategy => strategy.strategy !== strategyToDelete)
-  );
-};
+      if (newStrategies.length > 0) {
+        // Update the finalized strategies state with the new strategies
+        setFinalizedStrategies(prevStrategies => [...prevStrategies, ...newStrategies]);
+  
+        // Save finalized strategies to local storage
+        const storedFinalizedStrategies = JSON.parse(localStorage.getItem('finalizedStrategies') || '[]');
+        const updatedStrategies = [...storedFinalizedStrategies, ...newStrategies];
+        localStorage.setItem('finalizedStrategies', JSON.stringify(updatedStrategies));
+  
+        setShowContent(true);
+        setChats([]); // Clear the chat history after finalizing
+        setText('');
+        setIsInputVisible(true);
+        setIsDialogOpen(false);
+      }
+    }
+  };
+  
+  
+  const handleDeleteStrategy = (strategyToDelete: string) => {
+    setFinalizedStrategies(prevStrategies => {
+      const updatedStrategies = prevStrategies.filter(strategy => strategy.strategy !== strategyToDelete);
+      localStorage.setItem('finalizedStrategies', JSON.stringify(updatedStrategies));
+      return updatedStrategies;
+    });
+  };
+  
 
 
 
@@ -247,70 +392,77 @@ const handleDeleteStrategy = (strategyToDelete: string) => {
     <>
     <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color pb-40">
         <div className="w-full flex justify-between">
-         <div className="w-[60%]  h-[781px] overflow-y-auto scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px] pb-40">
+         <div className="w-[60%]  h-[781px] overflow-y-auto scrollbar-hide pt-5 border-r border-[#252525] rounded-[20px] pb-40">
          <div className="flex flex-col gap-4 justify-center items-center">
           <h3 className='text-[32px] font-medium leading-[33.38px] text-center'> Welcome To Co-Pilot</h3>
                 <p className="font-normal text-[14px] leading-[14.56px]">
                 Create a tailored strategy for your community or project.
                 </p>
-       <div className="relative inline-block text-left">
-      <select className="custom-dropdown block w-[150px] h-[32px] bg-[#121212] text-white">
-        <option className='font-normal text-base leading-[16.64px]'>This Week</option>
-        <option className='font-normal text-base leading-[16.64px]'> Next Week</option>
-        <option className='font-normal text-base leading-[16.64px]'>This Month</option>
+                <div className="relative inline-block text-left">
+      <select
+        className="custom-dropdown block w-[150px] h-[32px] bg-[#121212] text-white"
+        value={selectedOption}
+        onChange={handleOptionChange}
+      >
+        <option value="This Week" className="font-normal text-base leading-[16.64px]">This Week</option>
+        <option value="Next Week" className="font-normal text-base leading-[16.64px]">Next Week</option>
+        <option value="This Month" className="font-normal text-base leading-[16.64px]">This Month</option>
       </select>
       <ChevronDownIcon className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white pointer-events-none" />
-</div>
+    </div>
 </div>
 
 <div className="flex justify-center items-center pt-10">
-<div className="custom-textarea bg-[#1F1F1F] w-[610px] h-auto pb-5 relative rounded-[16px]">
+<div className="custom-textarea bg-[#1F1F1F] w-[610px] h-auto pb-5 mb-10  relative rounded-[16px]">
       {/* Top part displaying the typed text */}
-      <div className="bg-[#1F1F1F] border-b border-[#2B2B2B] p-4" style={{ height: '220px' }}>
-      <div className="min-h-[170px]"> 
-              {request && (
-
+      <div className="bg-[#1F1F1F] border-b border-[#2B2B2B] p-2 h-auto">
+     
+      <div className="min-h-[170px] overflow-y-auto" ref={chatContainerRef}>
+  {chats.map((chat, index) => (
+    <div key={index}>
+      {chat.request && (
         <div className="flex justify-end items-end">
-        <div className="w-[325px] h-auto p-[10px] rounded-lg bg-[#252525] border-[#292929] border">
-        <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]
-">{request}
-</p>
+          <div className="w-[325px] h-auto p-[10px] rounded-lg bg-[#252525] border-[#292929] border">
+            <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
+              {chat.request}
+            </p>
+          </div>
         </div>
+      )}
+
+      {chat.response && (
+        <div className="pt-5 w-[366px] h-auto py-1 px-[10px] rounded-lg flex items-end justify-end mb-5">
+          <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
+            {chat.response}
+          </p>
         </div>
-        )}
-
-{response && (
-
-<div className="pt-5 w-[366px] h-auto py-1 px-[10px] rounded-lg flex items-end justify-end mb-5">
-<p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]
-">{response}</p>
+      )}
+    </div>
+  ))}
 </div>
-)}
 
-</div>
 
 <div>
       {/* Fixed button container */}
-      <div className="flex justify-between items-center mb-5">
+      <div className="flex justify-between items-center">
         {/* Left-aligned Buttons */}
         <div className="flex space-x-4">
           {/* First button with check icon */}
-          <Dialog open={isDialogOpen}>
-
-        <DialogTrigger>
-          <button
-            className={`flex items-center justify-center w-[77px] h-[27px] bg-[#0d0d0d] text-white font-medium text-xs leading-[12.48px] rounded-[24px] py-[10px] px-3 ${!hasRequested ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={!hasRequested}
-            onClick={() => setIsDialogOpen(true)}
-          >
-            <div className="flex items-center">
-              <div className="w-[14px] h-[14px] bg-green-500 rounded-[4px] flex justify-center items-center mr-2">
-                <IoMdCheckmark className="text-white w-[12px] h-[12px]" />
-              </div>
-              <span>Approve</span>
-            </div>
-          </button>
-        </DialogTrigger>
+          <Dialog open={isDialogOpen} onOpenChange={(isOpen) => setIsDialogOpen(isOpen)}>
+  <DialogTrigger>
+    <button
+      className={`flex items-center justify-center w-[77px] h-[27px] text-[#0d0d0d] bg-white font-medium text-xs leading-[12.48px] rounded-[24px] py-[10px] px-3 ${!hasRequested ? 'opacity-50 cursor-not-allowed' : ''}`}
+      disabled={!hasRequested}
+      onClick={() => setIsDialogOpen(true)}
+    >
+      <div className="flex items-center">
+        <div className="w-[14px] h-[14px] bg-green-500 rounded-[4px] flex justify-center items-center mr-2">
+          <IoMdCheckmark className="text-white w-[12px] h-[12px]" />
+        </div>
+        <span>Approve</span>
+      </div>
+    </button>
+  </DialogTrigger>
         <DialogContent className="px-8 py-4 md:w-full lg:w-full border-none  max-w-auto w-[390px] h-[325px] bg-[#181818] rounded-[66px]">
           <div className="mx-auto">
             <Image
@@ -549,9 +701,10 @@ onCloseModal={closeModal}
                       value="AllStrategies"
                     >
 <AllStrategies 
-  strategies={finalizedStrategies.map(strategy => strategy.strategy)} 
+  strategies={finalizedStrategies}  // Pass the entire array of strategies
   onDeleteStrategy={handleDeleteStrategy}
 />
+
 
                     </TabsContent>
                     <TabsContent
@@ -577,7 +730,7 @@ onCloseModal={closeModal}
           {/* ends here */}
       </div>
       </>
-  )
+  );
 }
 
 export default StrategyPlanning

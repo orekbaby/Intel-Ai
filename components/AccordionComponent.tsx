@@ -101,9 +101,9 @@ const AccordionComponent: React.FC<AccordionProps> = ({
             >
               Save
             </button>
-            <div className="absolute top-[50%] left-[30%] md:left-[35%] lg:left-[35%] text-center mt-2 text-green-500">
+            <div className="absolute top-[10%] left-[30%] md:left-[35%] lg:left-[35%] text-center mt-2 text-green-500">
               {modalStates[index].showSaveMessage && (
-                <div className="bg-white w-[200px] h-auto p-4 rounded-[20px] ">
+                <div className="bg-white w-[200px] h-auto p-2 rounded-[20px] ">
                   <p className="text-sm font-normal"> Saved successfully!</p>
                 </div>
               )}
