@@ -94,11 +94,13 @@ export default function Home() {
 
   const handleUpload = async () => {
     if (!file) return;
-
+  
     setUploading(true);
     const formData = new FormData();
     formData.append('file', file);
-
+  
+    console.log('Form data:', formData.get('file'));
+  
     try {
       const response = await fetch('/api/uploadVideo', {
         method: 'POST',

@@ -2,6 +2,7 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import multer from 'multer';
+import { IncomingForm } from 'formidable';
 import cloudinary from 'cloudinary';
 import stream from 'stream';
 
@@ -26,9 +27,9 @@ const bufferToStream = (buffer: Buffer) => {
 
 const uploadHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    // Use multer to handle file buffer
     upload.single('file')(req as any, res as any, async (err) => {
       if (err) {
-        console.error('Multer error:', err.message);
         return res.status(500).json({ error: err.message });
       }
 
@@ -37,24 +38,18 @@ const uploadHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(400).json({ message: 'No file uploaded.' });
       }
 
-      console.log('Received file:', file.originalname);
-
       const uploadStream = cloudinary.v2.uploader.upload_stream(
         { resource_type: 'video' },
         (error, result) => {
-          if (error) {
-            console.error('Cloudinary upload error:', error);
-            return res.status(500).json({ error });
-          }
-          console.log('Cloudinary upload result:', result);
+          if (error) return res.status(500).json({ error });
           return res.status(200).json(result);
         }
       );
 
+      // Convert buffer to stream and pipe to Cloudinary
       bufferToStream(file.buffer).pipe(uploadStream);
     });
   } catch (error) {
-    console.error('API route error:', error);
     res.status(500).json({ error });
   }
 };
