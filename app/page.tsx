@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   advantages,
   communityOwners,
@@ -81,39 +81,7 @@ export default function Home() {
     filter: "blur(50px)",
   };
 
-  const [file, setFile] = useState<File | null>(null);
-  const [uploading, setUploading] = useState(false);
-  const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setFile(event.target.files[0]);
-      console.log('Selected file:', event.target.files[0]);
-    }
-  };
-
-  const handleUpload = async () => {
-    if (!file) return;
-  
-    setUploading(true);
-    const formData = new FormData();
-    formData.append('file', file);
-  
-    console.log('Form data:', formData.get('file'));
-  
-    try {
-      const response = await fetch('/api/uploadVideo', {
-        method: 'POST',
-        body: formData,
-      });
-      const result = await response.json();
-      setUploadedUrl(result.secure_url);
-    } catch (error) {
-      console.error('Upload failed:', error);
-    } finally {
-      setUploading(false);
-    }
-  };
+  const videoUrl = "https://res.cloudinary.com/dy9f5rcat/video/upload/v1725477344/shcwnfht8qob3juvwzds.mp4";
 
   return (
     <main className="mt-4 md:mt-20 lg:mt-20">
@@ -170,23 +138,20 @@ export default function Home() {
             {/* mobile picture */}
 
             <div className="mx-auto block md:hidden lg:hidden h-auto w-[354.47px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)]  border border-white border-opacity-[25%] rounded-[20px] ">
-            <div>
-      <input type="file" accept="video/*" onChange={handleFileChange} />
-      <button onClick={handleUpload} disabled={uploading}>
-        {uploading ? 'Uploading...' : 'Upload Video'}
-      </button>
-      {uploadedUrl && (
-        <video
+            <div className="p-1">
+     
+     <video   
           width={368}
-          height={141}
-          src={uploadedUrl}
-          className="object-cover h-auto text-center z-20 p-2"
-          loop
-          autoPlay
-          muted
-          playsInline
-        />
-      )}
+        height={141}
+        className="object-cover h-auto rounded-[20px] text-center z-20 p-2 block md:hidden lg:hidden"
+        loop
+        autoPlay
+        muted
+        playsInline
+      >
+        <source src={videoUrl} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
             </div>
             <Link href="logIn">
@@ -218,18 +183,22 @@ export default function Home() {
             <div className="pb-0 md:pb-10 lg:pb-10 px-12">
               <div
                 className="bg-gradient-to-r from-[rgba(3,255,163,.9)]
- to-[rgba(127,86,217,.9)] rounded-[20px] py-[2px] px-[2px] w-fit"
+ to-[rgba(127,86,217,.9)] rounded-[20px] py-[2px] px-[2px] w-fit hidden md:block lg:block"
               >
-                <video
-                  src="/Intel AI.mp4"
-                  width={1088}
-                  height={721}
-                  className="hidden md:block lg:block object-cover p-2 w-[100%] h-auto text-center z-[1] rounded-[20px]"
-                  loop
-                  autoPlay
-                  muted
-                  playsInline
-                />
+                <div className="p-1">
+           <video
+        width={1088}
+        height={721}
+        className="object-cover h-auto rounded-[20px]"
+        loop
+        autoPlay
+        muted
+        playsInline
+      >
+        <source src={videoUrl} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+            </div>
               </div>
             </div>
           </div>

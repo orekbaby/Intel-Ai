@@ -107,34 +107,43 @@ const SideBar = () => {
   };
   
   const [userSelect, setUserSelect] = useState<string | undefined>(undefined);
-  const isSmartContractEngineer = userSelect === "smartContractEngineer";
-  const isCommunityManager = userSelect === "communityManager";
+  
   // const IconComponent = isSmartContractEngineer ? RiCodeSSlashFill : GoPeople;
 
+  const currentPath = usePathname();
+
+
+  const isSmartContractEngineer = userSelect === "smartContractEngineer";
+  const isCommunityManager = userSelect === "communityManager";
 
   const displayName = isSmartContractEngineer
-  ? "Smart Contract Engineer"
-  : isCommunityManager
-  ? "Community Workspace"
-  : "Unknown Persona"; // Fallback name in case neither is selected
+    ? "Smart Contract Engineer"
+    : isCommunityManager
+    ? "Community Workspace"
+    : "Unknown Persona"; // Fallback name
 
-const route = isSmartContractEngineer
-  ? "/smartContractEngineer"
-  : isCommunityManager
-  ? "/trainAi"
-  : "/"; // Fallback route in case neither is selected
+  const route = isSmartContractEngineer
+    ? "/smartContractEngineer"
+    : isCommunityManager
+    ? "/trainAi"
+    : "/trainAi"; // Fallback route
 
-const IconComponent = isSmartContractEngineer
-  ? RiCodeSSlashFill
-  : isCommunityManager
-  ? GoPeople
-  : null; // Fallback to null in case neither is selected
+  const IconComponent = isSmartContractEngineer
+    ? RiCodeSSlashFill
+    : isCommunityManager
+    ? GoPeople
+    : null; // Fallback to null
 
-useEffect(() => {
-  const selectedUser = Cookies.get("user");
-  console.log("Sidebar Cookie Value:", selectedUser); // This should log the correct value
-  setUserSelect(selectedUser);
-}, []);
+  useEffect(() => {
+    const selectedUser = Cookies.get("user");
+
+    // Check if the current route is "/smartContractManager"
+    if (currentPath === "/smartContractManager") {
+      setUserSelect("smartContractEngineer");
+    } else {
+      setUserSelect(selectedUser);
+    }
+  }, [currentPath]);
 
   return (
     <>
@@ -201,95 +210,104 @@ useEffect(() => {
       
       return (
         <div key={data.id} className="flex items-center gap-3 p-2">
-          {data.id === 1 ? (
-            <Dialog>
-              <DialogTrigger className="cursor-pointer flex items-center gap-3">
-                <div className="flex gap-2">
+              {data.id === 1 ? (
+                <Dialog>
+                  <DialogTrigger className="cursor-pointer flex items-center gap-3">
+                    <div className="flex gap-2">
+                      {IconComponent && (
+                        <IconComponent
+                          className="w-[20px] h-[20px] text-[#707070]"
+                          size={20}
+                          style={{ color: "#707070" }}
+                        />
+                      )}
+                      <p
+                        className={`font-normal text-sm leading-[14px] text-[#707070] ${
+                          !isHovered && "hidden"
+                        }`}
+                      >
+                        {displayName}
+                      </p>
+                    </div>
+                  </DialogTrigger>
+
+                  <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
+                    {isSmartContractEngineer ? (
+                      <div className="mx-auto pt-8">
+                        <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                          Smart Contract Engineer
+                        </h3>
+                        <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                          Welcome to the Smart Contract Engineer workspace. Here, you can manage, develop, and deploy smart contracts efficiently.
+                        </p>
+                        <button
+                          onClick={() => router.push(route)} // Dynamic routing
+                          className="bg-white items-center flex justify-center text-center 
+                          text-xs font-normal ring-offset-white focus-visible:outline-none
+                          text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+                        >
+                          Get Started
+                        </button>
+                      </div>
+                    ) : isCommunityManager ? (
+                      <div className="mx-auto pt-8">
+                        <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                          Welcome to Your Community Workspace
+                        </h3>
+                        <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                          With your workspace, you can easily create announcements, engage with your community, update projects, and simulate actions seamlessly.
+                        </p>
+                        <button
+                          onClick={() => router.push(route)} // Dynamic routing
+                          className="bg-white items-center flex justify-center text-center 
+                          text-xs font-normal ring-offset-white focus-visible:outline-none
+                          text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+                        >
+                          Get Started
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="mx-auto pt-8">
+                        <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                          Persona Not Selected
+                        </h3>
+                        <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                          Please select a persona to continue.
+                        </p>
+                      </div>
+                    )}
+                  </DialogContent>
+                </Dialog>
+              ) : (
+                <Link
+                  href={data.link}
+                  prefetch={false}
+                  className="flex items-center gap-3"
+                >
                   {IconComponent && (
                     <IconComponent
-                      className="w-[20px] h-[20px] text-[#707070]"
-                      size={20}
-                      style={{ color: "#707070" }}
+                      size={14}
+                      style={{
+                        color: "#707070",
+                        borderColor: "#707070",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                      }}
                     />
                   )}
-                  <p
-                    className={`font-normal text-sm leading-[14px] text-[#707070] ${
+                  <h2
+                    className={`font-medium text-sm text-[#707070] ${
                       !isHovered && "hidden"
                     }`}
                   >
-                    {displayName}
-                  </p>
-                </div>
-              </DialogTrigger>
-
-              <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
-                {isSmartContractEngineer ? (
-                  <div className="mx-auto pt-8">
-                    <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-                      Smart Contract Engineer
-                    </h3>
-                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-                      Welcome to the Smart Contract Engineer workspace. Here, you can manage, develop, and deploy smart contracts efficiently.
-                    </p>
-                    <button
-                      onClick={() => router.push(route)} // Dynamic routing
-                      className="bg-white items-center flex justify-center text-center 
-                      text-xs font-normal ring-offset-white focus-visible:outline-none
-                      text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-                    >
-                      Get Started
-                    </button>
-                  </div>
-                ) : (
-                  <div className="mx-auto pt-8">
-                    <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-                      Welcome to Your Community Workspace
-                    </h3>
-                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-                      With your workspace, you can easily create announcements, engage with your community, update projects, and simulate actions seamlessly.
-                    </p>
-                    <button
-                      onClick={() => router.push(route)} // Dynamic routing
-                      className="bg-white items-center flex justify-center text-center 
-                      text-xs font-normal ring-offset-white focus-visible:outline-none
-                      text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-                    >
-                      Get Started
-                    </button>
-                  </div>
-                )}
-              </DialogContent>
-            </Dialog>
-          ) : (
-            <Link
-              href={data.link}
-              prefetch={false}
-              className="flex items-center gap-3"
-            >
-              {IconComponent && (
-                <IconComponent
-                  size={14}
-                  style={{
-                    color: "#707070",
-                    borderColor: "#707070",
-                    borderWidth: "1px",
-                    borderStyle: "solid",
-                  }}
-                />
+                    {data.name}
+                  </h2>
+                </Link>
               )}
-              <h2
-                className={`font-medium text-sm text-[#707070] ${
-                  !isHovered && "hidden"
-                }`}
-              >
-                {data.name}
-              </h2>
-            </Link>
-          )}
-        </div>
-      );
-    })}
-</div>
+            </div>
+          );
+        })}
+    </div>
 
 
         
@@ -381,7 +399,7 @@ useEffect(() => {
       <Dialog>
         <DialogTrigger className="cursor-pointer">
           <p className="font-normal text-sm leading-[14px] text-[#707070]">
-            {displayName} {/* Dynamic display name based on user selection */}
+            {displayName} {/* Dynamic display name */}
           </p>
         </DialogTrigger>
 
@@ -397,7 +415,7 @@ useEffect(() => {
                 manage, develop, and deploy smart contracts efficiently.
               </p>
               <button
-                onClick={() => router.push(route)} // Dynamic routing for Smart Contract Engineer
+                onClick={() => router.push(route)} // Dynamic routing
                 className="bg-white items-center flex justify-center text-center 
                 text-xs font-normal ring-offset-white focus-visible:outline-none
                 text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
@@ -417,7 +435,7 @@ useEffect(() => {
                 seamlessly.
               </p>
               <button
-                onClick={() => router.push(route)} // Dynamic routing for Community Workspace
+                onClick={() => router.push(route)} // Dynamic routing
                 className="bg-white items-center flex justify-center text-center 
                 text-xs font-normal ring-offset-white focus-visible:outline-none
                 text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
