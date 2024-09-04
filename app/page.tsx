@@ -81,26 +81,36 @@ export default function Home() {
     filter: "blur(50px)",
   };
 
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [uploading, setUploading] = useState<boolean>(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
 
-  const handleVideoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setFile(event.target.files[0]);
+      console.log('Selected file:', event.target.files[0]);
+    }
+  };
+
+  const handleUpload = async () => {
     if (!file) return;
 
     setUploading(true);
-
     const formData = new FormData();
-    formData.append('video', file);
+    formData.append('file', file);
 
-    const response = await fetch('/api/uploadVideo', {
-      method: 'POST',
-      body: formData,
-    });
-
-    const data = await response.json();
-    setVideoUrl(data.url);
-    setUploading(false);
+    try {
+      const response = await fetch('/api/uploadVideo', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+      setUploadedUrl(result.secure_url);
+    } catch (error) {
+      console.error('Upload failed:', error);
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -159,13 +169,15 @@ export default function Home() {
 
             <div className="mx-auto block md:hidden lg:hidden h-auto w-[354.47px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)]  border border-white border-opacity-[25%] rounded-[20px] ">
             <div>
-      <input type="file" accept="video/*" onChange={handleVideoUpload} />
-      {uploading && <p>Uploading...</p>}
-      {videoUrl && (
+      <input type="file" accept="video/*" onChange={handleFileChange} />
+      <button onClick={handleUpload} disabled={uploading}>
+        {uploading ? 'Uploading...' : 'Upload Video'}
+      </button>
+      {uploadedUrl && (
         <video
           width={368}
           height={141}
-          src={videoUrl}
+          src={uploadedUrl}
           className="object-cover h-auto text-center z-20 p-2"
           loop
           autoPlay
@@ -389,7 +401,7 @@ export default function Home() {
           <h5 className="block md:hidden lg:hidden font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[27px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
             Empower Your Workflow with Cutting-Edge Features
           </h5>
-          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-sm lg:text-smtext-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20">
+          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-sm lg:text-smtext-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20 pt-5">
             Explore the frontier of coding evolution with Glossy Unleashed. Our
             latest features redefine the boundaries of what&apos;s possible in
             coding tools.

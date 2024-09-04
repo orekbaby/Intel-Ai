@@ -108,13 +108,31 @@ const SideBar = () => {
   
   const [userSelect, setUserSelect] = useState<string | undefined>(undefined);
   const isSmartContractEngineer = userSelect === "smartContractEngineer";
-const displayName = isSmartContractEngineer ? "Smart Contract Engineer" : "Community Workspace";
-const route = isSmartContractEngineer ? "/smartContractEngineer" : "/trainAi";
-const IconComponent = isSmartContractEngineer ? RiCodeSSlashFill : GoPeople;
+  const isCommunityManager = userSelect === "communityManager";
+  // const IconComponent = isSmartContractEngineer ? RiCodeSSlashFill : GoPeople;
+
+
+  const displayName = isSmartContractEngineer
+  ? "Smart Contract Engineer"
+  : isCommunityManager
+  ? "Community Workspace"
+  : "Unknown Persona"; // Fallback name in case neither is selected
+
+const route = isSmartContractEngineer
+  ? "/smartContractEngineer"
+  : isCommunityManager
+  ? "/trainAi"
+  : "/"; // Fallback route in case neither is selected
+
+const IconComponent = isSmartContractEngineer
+  ? RiCodeSSlashFill
+  : isCommunityManager
+  ? GoPeople
+  : null; // Fallback to null in case neither is selected
 
 useEffect(() => {
   const selectedUser = Cookies.get("user");
-  console.log('Sidebar Cookie Value:', selectedUser); // This should log the correct value
+  console.log("Sidebar Cookie Value:", selectedUser); // This should log the correct value
   setUserSelect(selectedUser);
 }, []);
 
@@ -175,98 +193,106 @@ useEffect(() => {
 
         {/* 1st and 2nd together icon */}
         <div className="w-full h-auto flex flex-col py-5 border-b-2 border-[#212E40]">
-          {sideBar
-            .filter((data) => data.id === 1 || data.id === 2)
-            .map((data, index) => (
-              <div key={data.id} className="flex items-center gap-3 p-2">
-                {data.id === 1 ? (
-                  <Dialog>
-                    <DialogTrigger className="cursor-pointer flex items-center gap-3">
-                      {/* Dynamic Icon and Name for index 1 */}
-                      <div className="flex gap-2">
-                        <IconComponent
-                          className="w-[20px] h-[20px] text-[#707070]"
-                          size={20}
-                          style={{ color: "#707070" }}
-                        />
-                        <p
-                          className={`font-normal text-sm leading-[14px] text-[#707070] ${
-                            !isHovered && "hidden"
-                          }`}
-                        >
-                          {displayName}
-                        </p>
-                      </div>
-                    </DialogTrigger>
-
-                    <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
-                      {isSmartContractEngineer ? (
-                        <div className="mx-auto pt-8">
-                          <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-                            Smart Contract Engineer
-                          </h3>
-                          <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-                            Welcome to the Smart Contract Engineer workspace. Here, you can manage, develop, and deploy smart contracts efficiently.
-                          </p>
-                          <button
-                            onClick={() => router.push(route)} // Dynamic routing
-                            className="bg-white items-center flex justify-center text-center 
-                            text-xs font-normal ring-offset-white focus-visible:outline-none
-                            text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-                          >
-                            Get Started
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="mx-auto pt-8">
-                          <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-                            Welcome to Your Workspace
-                          </h3>
-                          <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-                            With your workspace, you can easily create announcements, engage with your community, update projects, and simulate actions seamlessly.
-                          </p>
-                          <button
-                            onClick={() => router.push(route)} // Dynamic routing
-                            className="bg-white items-center flex justify-center text-center 
-                            text-xs font-normal ring-offset-white focus-visible:outline-none
-                            text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-                          >
-                            Get Started
-                          </button>
-                        </div>
-                      )}
-                    </DialogContent>
-                  </Dialog>
-                ) : (
-                  <Link
-                    href={data.link}
-                    prefetch={false}
-                    className="flex items-center gap-3"
+  {sideBar
+    .filter((data) => data.id === 1 || data.id === 2)
+    .map((data) => {
+      // Safely get the IconComponent
+      const IconComponent = data.img || null;
+      
+      return (
+        <div key={data.id} className="flex items-center gap-3 p-2">
+          {data.id === 1 ? (
+            <Dialog>
+              <DialogTrigger className="cursor-pointer flex items-center gap-3">
+                <div className="flex gap-2">
+                  {IconComponent && (
+                    <IconComponent
+                      className="w-[20px] h-[20px] text-[#707070]"
+                      size={20}
+                      style={{ color: "#707070" }}
+                    />
+                  )}
+                  <p
+                    className={`font-normal text-sm leading-[14px] text-[#707070] ${
+                      !isHovered && "hidden"
+                    }`}
                   >
-                    {/* Render the icon directly if it's a React icon */}
-                    {typeof data.img !== "string" && (
-                      <data.img
-                        size={14}
-                        style={{
-                          color: "#707070",
-                          borderColor: "#707070",
-                          borderWidth: "1px",
-                          borderStyle: "solid",
-                        }}
-                      />
-                    )}
-                    <h2
-                      className={`font-medium text-sm text-[#707070] ${
-                        !isHovered && "hidden"
-                      }`}
+                    {displayName}
+                  </p>
+                </div>
+              </DialogTrigger>
+
+              <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
+                {isSmartContractEngineer ? (
+                  <div className="mx-auto pt-8">
+                    <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                      Smart Contract Engineer
+                    </h3>
+                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                      Welcome to the Smart Contract Engineer workspace. Here, you can manage, develop, and deploy smart contracts efficiently.
+                    </p>
+                    <button
+                      onClick={() => router.push(route)} // Dynamic routing
+                      className="bg-white items-center flex justify-center text-center 
+                      text-xs font-normal ring-offset-white focus-visible:outline-none
+                      text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
                     >
-                      {data.name}
-                    </h2>
-                  </Link>
+                      Get Started
+                    </button>
+                  </div>
+                ) : (
+                  <div className="mx-auto pt-8">
+                    <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                      Welcome to Your Community Workspace
+                    </h3>
+                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                      With your workspace, you can easily create announcements, engage with your community, update projects, and simulate actions seamlessly.
+                    </p>
+                    <button
+                      onClick={() => router.push(route)} // Dynamic routing
+                      className="bg-white items-center flex justify-center text-center 
+                      text-xs font-normal ring-offset-white focus-visible:outline-none
+                      text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+                    >
+                      Get Started
+                    </button>
+                  </div>
                 )}
-              </div>
-            ))}
+              </DialogContent>
+            </Dialog>
+          ) : (
+            <Link
+              href={data.link}
+              prefetch={false}
+              className="flex items-center gap-3"
+            >
+              {IconComponent && (
+                <IconComponent
+                  size={14}
+                  style={{
+                    color: "#707070",
+                    borderColor: "#707070",
+                    borderWidth: "1px",
+                    borderStyle: "solid",
+                  }}
+                />
+              )}
+              <h2
+                className={`font-medium text-sm text-[#707070] ${
+                  !isHovered && "hidden"
+                }`}
+              >
+                {data.name}
+              </h2>
+            </Link>
+          )}
         </div>
+      );
+    })}
+</div>
+
+
+        
         <div className="w-full h-auto flex flex-col py-5">
           {sideBar
             .filter((data) => data.id === 3 || data.id === 4)
@@ -347,57 +373,72 @@ useEffect(() => {
           </Link>
 
           <div className="flex gap-2 mb-10">
-  <div className="w-[14px] h-[14px] flex justify-center text-center items-center">
-    <IconComponent className="w-[20px] h-[20px] text-[#707070]" /> {/* Dynamic icon */}
-  </div>
-  <Dialog>
-    <DialogTrigger className="cursor-pointer">
-      <p className="font-normal text-sm leading-[14px] text-[#707070]">
-        {displayName} {/* Dynamic display name based on user selection */}
-      </p>
-    </DialogTrigger>
+      <div className="w-[14px] h-[14px] flex justify-center text-center items-center">
+        {IconComponent && (
+          <IconComponent className="w-[20px] h-[20px] text-[#707070]" /> // Dynamic icon
+        )}
+      </div>
+      <Dialog>
+        <DialogTrigger className="cursor-pointer">
+          <p className="font-normal text-sm leading-[14px] text-[#707070]">
+            {displayName} {/* Dynamic display name based on user selection */}
+          </p>
+        </DialogTrigger>
 
-    <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
-      {isSmartContractEngineer ? (
-        // Smart Contract Engineer specific content
-        <div className="mx-auto pt-8">
-          <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-            Smart Contract Engineer
-          </h3>
-          <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-            Welcome to the Smart Contract Engineer workspace. Here, you can manage, develop, and deploy smart contracts efficiently.
-          </p>
-          <button
-            onClick={() => router.push(route)} // Dynamic routing for Smart Contract Engineer
-            className="bg-white items-center flex justify-center text-center 
-            text-xs font-normal ring-offset-white focus-visible:outline-none
-            text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-          >
-            Get Started
-          </button>
-        </div>
-      ) : (
-        // Community Workspace specific content
-        <div className="mx-auto pt-8">
-          <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-            Welcome to Your Workspace
-          </h3>
-          <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-            With your workspace, you can easily create announcements, engage with your community, update projects, and simulate actions seamlessly.
-          </p>
-          <button
-            onClick={() => router.push(route)} // Dynamic routing for Community Workspace
-            className="bg-white items-center flex justify-center text-center 
-            text-xs font-normal ring-offset-white focus-visible:outline-none
-            text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-          >
-            Get Started
-          </button>
-        </div>
-      )}
-    </DialogContent>
-  </Dialog>
-</div>
+        <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
+          {isSmartContractEngineer ? (
+            // Smart Contract Engineer specific content
+            <div className="mx-auto pt-8">
+              <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                Smart Contract Engineer
+              </h3>
+              <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                Welcome to the Smart Contract Engineer workspace. Here, you can
+                manage, develop, and deploy smart contracts efficiently.
+              </p>
+              <button
+                onClick={() => router.push(route)} // Dynamic routing for Smart Contract Engineer
+                className="bg-white items-center flex justify-center text-center 
+                text-xs font-normal ring-offset-white focus-visible:outline-none
+                text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+              >
+                Get Started
+              </button>
+            </div>
+          ) : isCommunityManager ? (
+            // Community Workspace specific content
+            <div className="mx-auto pt-8">
+              <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                Welcome to Your Community Workspace
+              </h3>
+              <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                With your workspace, you can easily create announcements, engage
+                with your community, update projects, and simulate actions
+                seamlessly.
+              </p>
+              <button
+                onClick={() => router.push(route)} // Dynamic routing for Community Workspace
+                className="bg-white items-center flex justify-center text-center 
+                text-xs font-normal ring-offset-white focus-visible:outline-none
+                text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+              >
+                Get Started
+              </button>
+            </div>
+          ) : (
+            // Fallback content if neither persona is selected
+            <div className="mx-auto pt-8">
+              <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                Persona Not Selected
+              </h3>
+              <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                Please select a persona to continue.
+              </p>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
 
           {/* <div className="flex justify-between mb-10"> */}
             {/* <div className="flex gap-2 items-center">
