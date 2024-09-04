@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { FaTimes, FaCheck } from "react-icons/fa";
+import { useToast } from "@/components/ui/use-toast"
 
 
 interface UploadFileProps {
@@ -36,7 +37,10 @@ const UploadFile: React.FC<UploadFileProps> = ({ value, onChange }) => {
 
         if (words.length > 5000) {
           truncatedContent = words.slice(0, 5000).join(' ');
-          alert('The document exceeded 5000 words and has been truncated.');
+          toast({
+            description: "this file is more than the 5000 words upload limit.",
+          })
+        
         }
 
         // Create a new file with the truncated content
@@ -57,6 +61,8 @@ const UploadFile: React.FC<UploadFileProps> = ({ value, onChange }) => {
       reader.readAsText(file);
     }
   };
+
+  const { toast } = useToast()
 
 
   return (

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import UrlInput from "@/components/UrlInput";
 import InputField from "@/components/InputField";
@@ -8,19 +8,29 @@ import InputCategory from "@/components/InputCategory";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelectedCategory } from "@/context/SelectedCategoryContext"; 
+import { useUserInput } from "@/context//UserInputContext";
 
 const Page: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+ const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [url, setUrl] = useState<string>("");
+  const { projectName, setProjectName } = useUserInput();
   const [inputField, setInputField] = useState<string>("");
 
   const router = useRouter();
+  const { selectedCategory, setSelectedCategory } = useSelectedCategory();
+  const [category, setCategory] = useState<string>("");
+  
+  useEffect(() => {
+    if (selectedCategory) {
+      setCategory(selectedCategory);
+    }
+  }, [selectedCategory]);
 
-  const handleCategoryChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setSelectedCategory(event.target.value);
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newCategory = event.target.value;
+    setCategory(newCategory);
+    setSelectedCategory(newCategory); // Update context state as well
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,9 +42,12 @@ const Page: React.FC = () => {
     setUrl(event.target.value);
   };
 
+  
+
   const handleInputChange = (value: string) => {
-    setInputField(value);
+    setProjectName(value); // Store the input in the context
   };
+
   const validateUrl = (value: string) => {
     try {
       const urlObj = new URL(value);
@@ -50,7 +63,7 @@ const Page: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (selectedCategory && uploadedFile && url && inputField) {
+    if (uploadedFile && url ) {
       if (validateUrl(url)) {
         router.push("/workspaceData");
       } else {
@@ -88,19 +101,19 @@ const Page: React.FC = () => {
                 </h4>
                 <div className="px-4 md:px-6 lg-px-6">
                   <form className="space-y-4" onSubmit={handleSubmit}>
-                    <InputField
-                      label="What is the name of your project?"
-                      placeholder="Write the name of your project"
-                      value={inputField}
-                      onChange={handleInputChange}
-                    />
-
-                    <InputCategory
-                      value={selectedCategory}
+                  <InputCategory
+                      value={category}
                       onChange={handleCategoryChange}
                     />
 
-                    <UrlInput value={url} onChange={handleUrlChange} />
+                    <InputField
+                      label="What is the name of your project?"
+                      placeholder="Write the name of your project"
+                      value={projectName}
+                      onChange={handleInputChange}
+                    />
+
+        <UrlInput value={url} onChange={handleUrlChange} />
 
                     <UploadFile
                       value={uploadedFile}

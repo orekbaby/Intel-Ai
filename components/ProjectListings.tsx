@@ -2,9 +2,9 @@
 import React, { useRef, useState } from "react";
 import { FaCaretDown, FaCheck, FaCircle, FaTimes } from "react-icons/fa";
 import { launchpadData } from "@/utils/mockData";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { toast, useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 interface ProjectListingsProps {
   onClose: () => void;
@@ -81,7 +81,13 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
   const handleSave = () => {
     // Check if both inputValue is not empty and a file has been uploaded
     if (inputValue.trim() === "" || !uploadedFileName) {
-      toast.error("Please enter a project name and upload a document before saving.");
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please enter a project name and upload a document before saving.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
+     
       return;
     }
   
@@ -251,7 +257,6 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
                 )}
               </div>
               {/* Ends here */}
-              <ToastContainer />
               {/* Save button */}
               <div className="flex justify-center pt-5 mx-auto items-center">
                 <button

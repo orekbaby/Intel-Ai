@@ -364,7 +364,7 @@ return (
               <div className="pt-5 flex justify-center items-center">
                 <div className="relative w-[607px] h-[213px] bg-[#1D1D1D] rounded-[12px] border border-[#323232]">
                 <textarea
-  className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#f9f9f9] font-normal italic text-xs mb-t"
+  className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#f9f9f9] font-normal italic text-xs mb-t helvetica-font"
   placeholder=""
   value={userInput} // Keep the original value
   onChange={handleInputChange} // Use the combined handler

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { informationModal } from "@/utils/mockData";
 import Image from "next/image";
+import { toast, useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 
 
@@ -34,7 +36,12 @@ const OtherInformationModal: React.FC = () => {
 
     // Check if the input box (newContent) is empty
     if (newModalStates[index].newContent.trim() === '') {
-      // If the input is empty, do not proceed with saving
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "please enter some content before saving.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
       return;
     }
 

@@ -16,12 +16,15 @@ const Page = () => {
 
   const [selectUser, setSelectUser] = useState<string>("");
   const router = useRouter();
+
   const handleSelectUser = (selectedOption: string) => {
     setSelectUser(selectedOption);
-    Cookies.set("user", selectedOption);
+    Cookies.set("user", selectedOption, { expires: 7, path: '/' }); // expires in 7 days
+
+    console.log('Cookie set:', Cookies.get("user")); // This should log the correct value
     router.push("/category");
   };
-
+  
   const cards = [
     {
       imgSrc: "/manager.png",
@@ -36,8 +39,8 @@ const Page = () => {
       title: "Smart Contract Engineer",
       description:
         " Audit, optimize, and enhance your smart contracts with tailored insights and automated tools designed to make you a 10x engineer.",
-      onClick: () => handleSelectUser(""),
-      isClickable: false,
+      onClick: () => handleSelectUser("smartContractEngineer"),
+      isClickable: true,
     },
   ];
 

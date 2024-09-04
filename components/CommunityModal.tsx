@@ -5,6 +5,8 @@ import { communityModals } from "@/utils/mockData";
 import { FaCircle } from "react-icons/fa";
 import Image from "next/image";
 import Calendar from "@/components/Calendar";
+import { toast, useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 interface ModalState {
   textAreaContent: string;
@@ -55,7 +57,12 @@ const CommunityModal: FC = () => {
   
     // Check if the input box (textAreaContent) is empty
     if (newModalStates[index].textAreaContent.trim() === '') {
-      // If the input is empty, do not proceed with saving
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "please enter some content before saving.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
       return;
     }
   

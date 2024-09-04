@@ -10,7 +10,8 @@ import { cookieToInitialState } from 'wagmi'
 
 import { config } from '@/config'
 import AppKitProvider from '@/context'
-import { SelectedNameProvider } from "@/SelectedNameContext" // Import the context provider
+import { SelectedCategoryProvider } from "@/context/SelectedCategoryContext";
+import { UserInputProvider } from "@/context/UserInputContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,7 +30,8 @@ export default function RootLayout({
       <body className="font-guaruja">
         <ClientProviders>
           <AppKitProvider initialState={initialState}>
-            <SelectedNameProvider> {/* Wrap with SelectedNameProvider */}
+           <SelectedCategoryProvider>
+            <UserInputProvider>
               <div className="flex w-full h-auto relative">
                 <SideBar />
                 <div className="relative w-full h-auto">
@@ -40,10 +42,11 @@ export default function RootLayout({
                   <FooterNav />
                 </div>
               </div>
-            </SelectedNameProvider>
-          </AppKitProvider>
-        </ClientProviders>
-        <Toaster />
+              </UserInputProvider>
+              </SelectedCategoryProvider>
+             </AppKitProvider>
+          </ClientProviders>
+         <Toaster /> 
       </body>
     </html>
   );

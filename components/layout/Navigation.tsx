@@ -36,7 +36,7 @@ const Navigation = () => {
     };
   }, []);
 
-  const toggleMenu = () => {
+  const toggleMenu: any = () => {
     setMenuOpen(!menuOpen);
   };
 
@@ -48,12 +48,12 @@ const Navigation = () => {
     return <div className="text-white text-sm font-semibold">{label}</div>;
   };
 
-  const pathName = usePathname();
-  const show =
+    const pathName = usePathname();
+    const show =
     pathName === "/dashboard" ||
     pathName === "/communityManager" ||
     pathName === "/trainAi";
-  const visible =
+    const visible =
     pathName === "/logIn" ||
     pathName === "/connectWeb3" ||
     pathName === "/category" ||
@@ -61,7 +61,9 @@ const Navigation = () => {
 
   const train = pathName === "/trainAi" || pathName === "/x-Agents";
   const inline = pathName === "/workspace";
+  const smartContract = pathName === "/smartContractEngineer";
   const userSelect = Cookies.get("user");
+
   // console.log("select user - ", userSelect);
 
   // const agents = pathName === "/x-Agents";
@@ -147,7 +149,7 @@ const Navigation = () => {
 
               <p
                 className={`text-base font-medium ${
-                  userSelect === "kolInfluencer"
+                  userSelect === "smartContractEngineer"
                     ? "text-white"
                     : "text-[#6D6D6D] cursor-not-allowed"
                 }`}
@@ -245,6 +247,67 @@ const Navigation = () => {
           </div>
         </header>
       )}
+
+      {/* smartContractEngineer navigation */}
+      {smartContract && (
+  <header className="absolute z-40 top-0 left-0 flex justify-between h-[60px] md:h-[72px] lg:h-auto px-3 md:px-20 lg:px-12 py-4 w-full bg-[#0D0D0D] gap-4 items-center">
+    {/* Left Side: Smart Contract Engineer */}
+    <div className="flex items-center pl-20">
+      <Link href="/smartContractEngineer">
+        <p className="font-medium text-[20px] text-white">Smart Contract Engineer</p>
+      </Link>
+    </div>
+
+    {/* Right Side: Co-pilot and Toggle Button */}
+    <div className="flex items-center justify-end gap-4 pr-4">
+      <p className="font-medium text-[20px] text-white">Co-pilot</p>
+      <div
+        ref={menuRef}
+        className="block text-white text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
+        onClick={toggleMenu}
+      >
+        <FiMenu />
+      </div>
+
+      {/* Menu Contents */}
+      {menuOpen && (
+        <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
+          <div className="flex flex-col justify-center gap-6 text-sm font-normal">
+            <Link href="/communityManager">
+              <MenuItem label="community Manager" />
+            </Link>
+            <Link href="/kolInfluencer">
+              <MenuItem label="Kol Influencer" />
+            </Link>
+          </div>
+        </div>
+      )}
+
+      <div className="flex items-center justify-center gap-2">
+        <div
+          className="relative inline-block w-7 h-4 transition duration-200 ease-linear rounded-full cursor-pointer bg-[#545454]"
+          onClick={handleToggle}
+        >
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleToggle}
+            className="absolute opacity-0 w-full h-full cursor-pointer bg-[#545454]"
+          />
+          <span
+            className={`absolute left-0 inline-block w-3.5 h-3.5 transition duration-200 ease-linear transform rounded-full shadow ${
+              isChecked ? "translate-x-3 bg-green-400" : "bg-white"
+            }`}
+          ></span>
+        </div>
+        <p className="font-medium text-[14px] leading-[14.56px] text-[#6B6B6B]">
+          {isChecked ? "ON" : "OFF"}
+        </p>
+      </div>
+    </div>
+  </header>
+)}
+
 
       {/* x-agents navigation */}
 

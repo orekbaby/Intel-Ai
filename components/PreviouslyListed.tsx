@@ -7,8 +7,8 @@ import {
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import AccordionComponent from "./AccordionComponent";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 interface ModalState {
   newBullet: string;
@@ -45,14 +45,12 @@ const PreviouslyListed: React.FC = () => {
 
   const handleSave = (index: number) => {
     if (!modalStates[index].newBullet || modalStates[index].newBullet.trim() === "") {
-      toast.error("Please enter some content before saving.", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+      
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please enter some content before saving.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
       return;
     }
@@ -97,7 +95,7 @@ const PreviouslyListed: React.FC = () => {
           >
             <DialogTrigger className="cursor-pointer" asChild>
               <div
-                className="flex flex-col text-left gap-2 w-[486px] p-4 border-b border-[#131313] hover:bg-black"
+                className="flex flex-col text-left gap-2 w-[486px] p-4 border-b border-[#131313] hover:bg-[#0d0d0d]"
               >
                 <div className="">
                   <h5 className="font-medium text-[14px] leading-[14.56px] mb-2">
@@ -119,7 +117,7 @@ const PreviouslyListed: React.FC = () => {
                 <p className="font-[300] italic text-sm leading-[14.56px] pb-3 px-3">
                   {row.instructions}
                 </p>
-                <ToastContainer />
+                
                 {/* Render accordion content dynamically */}
                 <AccordionComponent
                   index={index}

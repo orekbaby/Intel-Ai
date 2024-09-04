@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   advantages,
   communityOwners,
@@ -81,6 +81,28 @@ export default function Home() {
     filter: "blur(50px)",
   };
 
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [uploading, setUploading] = useState<boolean>(false);
+
+  const handleVideoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+
+    const formData = new FormData();
+    formData.append('video', file);
+
+    const response = await fetch('/api/uploadVideo', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const data = await response.json();
+    setVideoUrl(data.url);
+    setUploading(false);
+  };
+
   return (
     <main className="mt-4 md:mt-20 lg:mt-20">
       {/* hero-section */}
@@ -100,11 +122,11 @@ export default function Home() {
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
    text-transparent font-medium text-[32px] md:text-[40px] lg:text-[40px] xl:text-[64px] 2xl:text-[70px]
-   leading-[36.28px] md:leading-[66.56px] lg:leading-[72.56px] text-center w-[378px] md:w-[75%] lg:w-[100%] xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto"
+   leading-[36.28px] md:leading-[66.56px] lg:leading-[62.56px] text-center w-[378px] md:w-[75%] lg:w-[100%] xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto"
             >
               Collaboration Protocol of Autonomous AI Agents
             </h1>
-            <p className="font-normal text-[16px] md:text-[18px] lg:text-[24px] xl:text-[24px] 2xl:text-[24px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-12 w-full max-w-[900px] leading-[24px] md:leading-[26px] lg:leading-[28px] xl:leading-[30px] mx-auto w-[80%]">
+            <p className="font-normal text-[16px] md:text-[18px] lg:text-[24px] xl:text-[24px] 2xl:text-[24px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-12 max-w-[900px] leading-[24px] md:leading-[26px] lg:leading-[28px] xl:leading-[30px] mx-auto w-[80%]">
   Tailored Intelligence built from the ground up specifically for
   the Web3 Ecosystem.
 </p>
@@ -136,16 +158,22 @@ export default function Home() {
             {/* mobile picture */}
 
             <div className="mx-auto block md:hidden lg:hidden h-auto w-[354.47px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)]  border border-white border-opacity-[25%] rounded-[20px] ">
-              <video
-                width={368}
-                height={141}
-                src="/Intel AI.mp4"
-                className="object-cover h-auto text-center z-20 p-2"
-                loop
-                autoPlay
-                muted
-                playsInline
-              />
+            <div>
+      <input type="file" accept="video/*" onChange={handleVideoUpload} />
+      {uploading && <p>Uploading...</p>}
+      {videoUrl && (
+        <video
+          width={368}
+          height={141}
+          src={videoUrl}
+          className="object-cover h-auto text-center z-20 p-2"
+          loop
+          autoPlay
+          muted
+          playsInline
+        />
+      )}
+    </div>
             </div>
             <Link href="logIn">
               <div
@@ -196,7 +224,7 @@ export default function Home() {
 
       {/* Second section */}
       <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 px-4 md:px-24 lg:px-36 text-center pb-10 md:pb-20 lg:pb-20 mx-auto">
-  <h2 className="font-medium text-[24px] md:text-[36px] lg:text-[48px] xl:text-[60px] 2xl:text-[64px] mb-4 md:mb-8 lg:mb-8 leading-[28px] md:leading-[40px] lg:leading-[72px] text-center">
+  <h2 className="font-medium text-[24px] md:text-[36px] lg:text-[48px] xl:text-[60px] 2xl:text-[64px] mb-4 md:mb-8 lg:mb-8 leading-[28px] md:leading-[40px] lg:leading-[62.5px] text-center">
     Meticulously Engineered To Deliver {""}
     <span
       style={bgClipText}
@@ -361,7 +389,7 @@ export default function Home() {
           <h5 className="block md:hidden lg:hidden font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[27px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
             Empower Your Workflow with Cutting-Edge Features
           </h5>
-          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-sm lg:text-smtext-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20 pt-5">
+          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-sm lg:text-smtext-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20">
             Explore the frontier of coding evolution with Glossy Unleashed. Our
             latest features redefine the boundaries of what&apos;s possible in
             coding tools.

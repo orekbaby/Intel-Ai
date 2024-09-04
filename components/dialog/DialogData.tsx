@@ -20,6 +20,8 @@ import SocialMenu from "../SocialMenu";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 
 const DialogData: React.FC = () => {
@@ -60,12 +62,12 @@ const DialogData: React.FC = () => {
       setConversation(newConversation);
       setPromptCount(newConversation.length);
       setActiveIndex(index === activeIndex ? null : index);
-      
+  
       // Set the flag to true when the button is clicked
       setHasPerformedAction(true);
     }
   };
-
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
@@ -116,6 +118,7 @@ const DialogData: React.FC = () => {
     router.push('/trainAi');
   };
 
+  const { toast } = useToast()
   return (
     <>
       <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto scrollbar-hide outline-0 mb-5 pt-20 pb-20">
@@ -258,7 +261,12 @@ const DialogData: React.FC = () => {
                        onClick={(e) => {
                         if (!hasPerformedAction) {
                           e.preventDefault();
-                          toast.warning("Please complete a simulation or send a prompt before proceeding.");
+                          toast({
+                            variant: "destructive",
+                            title: "Uh oh! Something went wrong.",
+                            description: "Please complete a simulation or send a prompt before proceeding.",
+                            action: <ToastAction altText="Try again">Try again</ToastAction>,
+                          });
                         }
                       }}
                        >

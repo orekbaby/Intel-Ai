@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/combinedStore'; // Adjust import paths as needed
 import Image from "next/image";
@@ -15,6 +15,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { GoPeople } from "react-icons/go";
+import { RiCodeSSlashFill } from "react-icons/ri";
+
 
 interface SidebarItem {
   id: number;
@@ -77,7 +79,9 @@ const SideBar = () => {
     pathName === "/workspace" ||
     pathName === "/workspaceData" ||
     pathName === "/trainAi" ||
-    pathName === "/x-Agents";
+    pathName === "/x-Agents" || pathName === "/smartContractEngineer";
+    
+
   //  pathName === "/communityManager" ||
   //  pathName === "/trainAi";
 
@@ -101,265 +105,223 @@ const SideBar = () => {
         // Handle error if necessary
       });
   };
+  
+  const [userSelect, setUserSelect] = useState<string | undefined>(undefined);
+  const isSmartContractEngineer = userSelect === "smartContractEngineer";
+const displayName = isSmartContractEngineer ? "Smart Contract Engineer" : "Community Workspace";
+const route = isSmartContractEngineer ? "/smartContractEngineer" : "/trainAi";
+const IconComponent = isSmartContractEngineer ? RiCodeSSlashFill : GoPeople;
+
+useEffect(() => {
+  const selectedUser = Cookies.get("user");
+  console.log('Sidebar Cookie Value:', selectedUser); // This should log the correct value
+  setUserSelect(selectedUser);
+}, []);
 
   return (
     <>
       {/* sidebar for Workspace */}
       {block && (
-        <div className="z-50 hidden md:block lg:block fixed">
-          <div
-            className={`absolute z-1 top-0 left-0 min-h-screen bg-[#0D0D0D] py-3 border-r border-[#363636] transition-width duration-1000 px-4 bg shadow-md ${
-              isHovered ? "w-72" : "w-[100px]"
-            }`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            {/* Logo */}
+  <div className="z-50 hidden md:block lg:block fixed">
+    <div
+      className={`absolute z-1 top-0 left-0 min-h-screen bg-[#0D0D0D] py-3 border-r border-[#363636] transition-width duration-1000 px-4 bg shadow-md ${
+        isHovered ? "w-72" : "w-[100px]"
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Logo */}
+      <Image
+        src="/setings.png"
+        alt="Default Logo"
+        width={28}
+        height={28}
+        className="mb-10 items-center"
+      />
 
-            <Image
-              src="/setings.png"
-              alt="Default Logo"
-              width={28}
-              height={28}
-              className="mb-10 items-center"
-            />
-
-            <div
-              className={`hidden md:flex lg:flex flex-col gap-10
-         items-start border-[#101720] w-full `}
+      <div
+        className={`hidden md:flex lg:flex flex-col gap-10 items-start border-[#101720] w-full`}
+      >
+        {/* first icon */}
+        {sideBar
+          .filter((data) => data.id === 0)
+          .map((data) => (
+            <Link
+              className="flex items-center gap-3 p-2"
+              href={data.link}
+              prefetch={false}
+              key={data.id}
             >
-              {/* first icon */}
-              {sideBar
-                .filter((data) => data.id === 0)
-                .map((data) => (
+              {/* Render the icon directly if it's a React icon */}
+              {typeof data.img !== "string" && <data.img size={14} />}
+              {/* Render image if it's a string */}
+              {typeof data.img === "string" && (
+                <Image
+                  src={data.img}
+                  alt={data.alt}
+                  width={14}
+                  height={14}
+                />
+              )}
+              <h2
+                className={`font-medium text-sm ${
+                  !isHovered && "hidden"
+                }`}
+              >
+                {data.name}
+              </h2>
+            </Link>
+          ))}
+
+        {/* 1st and 2nd together icon */}
+        <div className="w-full h-auto flex flex-col py-5 border-b-2 border-[#212E40]">
+          {sideBar
+            .filter((data) => data.id === 1 || data.id === 2)
+            .map((data, index) => (
+              <div key={data.id} className="flex items-center gap-3 p-2">
+                {data.id === 1 ? (
+                  <Dialog>
+                    <DialogTrigger className="cursor-pointer flex items-center gap-3">
+                      {/* Dynamic Icon and Name for index 1 */}
+                      <div className="flex gap-2">
+                        <IconComponent
+                          className="w-[20px] h-[20px] text-[#707070]"
+                          size={20}
+                          style={{ color: "#707070" }}
+                        />
+                        <p
+                          className={`font-normal text-sm leading-[14px] text-[#707070] ${
+                            !isHovered && "hidden"
+                          }`}
+                        >
+                          {displayName}
+                        </p>
+                      </div>
+                    </DialogTrigger>
+
+                    <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
+                      {isSmartContractEngineer ? (
+                        <div className="mx-auto pt-8">
+                          <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                            Smart Contract Engineer
+                          </h3>
+                          <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                            Welcome to the Smart Contract Engineer workspace. Here, you can manage, develop, and deploy smart contracts efficiently.
+                          </p>
+                          <button
+                            onClick={() => router.push(route)} // Dynamic routing
+                            className="bg-white items-center flex justify-center text-center 
+                            text-xs font-normal ring-offset-white focus-visible:outline-none
+                            text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+                          >
+                            Get Started
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="mx-auto pt-8">
+                          <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+                            Welcome to Your Workspace
+                          </h3>
+                          <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+                            With your workspace, you can easily create announcements, engage with your community, update projects, and simulate actions seamlessly.
+                          </p>
+                          <button
+                            onClick={() => router.push(route)} // Dynamic routing
+                            className="bg-white items-center flex justify-center text-center 
+                            text-xs font-normal ring-offset-white focus-visible:outline-none
+                            text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
+                          >
+                            Get Started
+                          </button>
+                        </div>
+                      )}
+                    </DialogContent>
+                  </Dialog>
+                ) : (
                   <Link
-                    className="flex items-center gap-3  p-2"
                     href={data.link}
                     prefetch={false}
-                    key={data.id}
+                    className="flex items-center gap-3"
                   >
                     {/* Render the icon directly if it's a React icon */}
-                    {typeof data.img !== "string" && <data.img size={14} />}
-                    {/* Render image if it's a string */}
-                    {typeof data.img === "string" && (
-                      <Image
-                        src={data.img}
-                        alt={data.alt}
-                        width={14}
-                        height={14}
+                    {typeof data.img !== "string" && (
+                      <data.img
+                        size={14}
+                        style={{
+                          color: "#707070",
+                          borderColor: "#707070",
+                          borderWidth: "1px",
+                          borderStyle: "solid",
+                        }}
                       />
                     )}
                     <h2
-                      className={`font-medium text-sm ${
+                      className={`font-medium text-sm text-[#707070] ${
                         !isHovered && "hidden"
                       }`}
                     >
                       {data.name}
                     </h2>
                   </Link>
-                ))}
-
-              {/* 1st and 2nd together icon */}
-              <div className="w-full h-auto flex flex-col py-5 border-b-2 border-[#212E40]">
-                {sideBar
-                  .filter((data) => data.id === 1 || data.id === 2)
-                  .map((data, index) => (
-                    <div key={data.id} className="flex items-center gap-3 p-2">
-                      {data.id === 1 ? (
-                        <Dialog>
-                          <DialogTrigger className="cursor-pointer flex items-center gap-3">
-                            {typeof data.img !== "string" && (
-                              <data.img
-                                size={20}
-                                style={{
-                                  color: "#707070",
-                                 }}
-                              />
-                            )}
-                            {typeof data.img === "string" && (
-                              <Image
-                                src={data.img}
-                                alt={data.alt}
-                                width={20}
-                                height={20}
-                                style={{
-                                  color: "#707070",
-                                 }}
-                              />
-                            )}
-                            <p
-                              className={`font-normal text-sm leading-[14px] text-[#707070] ${
-                                !isHovered && "hidden"
-                              }`}
-                            >
-                              {data.name}
-                            </p>
-                          </DialogTrigger>
-
-                          <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
-                            {aiTrainCompleted ? (
-                              <div className="mx-auto pt-8">
-                                <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-                                  Welcome to Your Workspace
-                                </h3>
-                                <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-                                  With your workspace, you can easily create
-                                  announcements, engage with your community,
-                                  update projects, and simulate actions
-                                  seamlessly.
-                                </p>
-                                <button
-                                  onClick={() => router.push("/trainAi")}
-                                  className="bg-white items-center flex justify-center text-center 
-                        text-xs font-normal ring-offset-white focus-visible:outline-none
-                        text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-                                >
-                                  Get Started
-                                </button>
-                              </div>
-                            ) : (
-                              <div className="mx-auto pt-8 text-center">
-                                <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-                                  Access Restricted
-                                </h3>
-                                <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-                                  Before you start using your community
-                                  workspace, it&apos;s important to train your
-                                  AI. Discover the benefits of AI training here.
-                                </p>
-                                <button
-                                  onClick={() => router.push("/workspace")}
-                                  className="bg-white items-center flex justify-center text-center 
-                        text-xs font-normal ring-offset-white focus-visible:outline-none
-                        text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-                                >
-                                  Train your AI now
-                                </button>
-                              </div>
-                            )}
-                          </DialogContent>
-                        </Dialog>
-                      ) : (
-                        <Link
-                          href={data.link}
-                          prefetch={false}
-                          className="flex items-center gap-3"
-                        >
-                          {/* Render the icon directly if it's a React icon */}
-                          {typeof data.img !== "string" && (
-                            <data.img
-                              size={14}
-                              style={{
-                                color: "#707070",
-                                borderColor: "#707070",
-                                borderWidth: "1px",
-                                borderStyle: "solid",
-                              }}
-                            />
-                          )}
-                          {/* Render image if it's a string */}
-                          {/* {typeof data.img === "string" && (
-                            <Image
-                              src={data.img}
-                              alt={data.alt}
-                              width={14}
-                              height={14}
-                              style={
-                                index === 0
-                                  ? {
-                                      color: "#707070",
-                                      borderColor: "#707070",
-                                      borderWidth: "1px",
-                                      borderStyle: "solid",
-                                    }
-                                  : {}
-                              }
-                            />
-                          )} */}
-                          <h2
-                            className={`font-medium text-sm text-[#707070] ${
-                              !isHovered && "hidden"
-                            }`}
-                          >
-                            {data.name}
-                          </h2>
-                        </Link>
-                      )}
-                    </div>
-                  ))}
+                )}
               </div>
-              {/* <h3
-                className={`mb-3 text-center text-xs ${
-                  // !isHovered && "hidden"
-                } text-[#3F3F3F]`}
-              >
-                SETTINGS
-              </h3> */}
-              <div className="w-full h-auto flex flex-col py-5">
-                {sideBar
-                  .filter((data) => data.id === 3 || data.id === 4)
-                  .map((data, index, arr) => (
-                    <Link
-                      className="flex items-center gap-3 mb-5 p-2"
-                      href={data.link}
-                      prefetch={false}
-                      key={data.id}
-                    >
-                      {/* Render the icon directly if it's a React icon */}
-                      {typeof data.img !== "string" && (
-                        <data.img
-                          size={14}
-                          style={
-                            index === arr.length - 1 ? { color: "#707070" } : {}
-                          }
-                        />
-                      )}
-                      {/* Render image if it's a string */}
-                      {typeof data.img === "string" && (
-                        <Image
-                          src={data.img}
-                          alt={data.alt}
-                          width={14}
-                          height={14}
-                          style={
-                            index === arr.length - 1 ? { color: "#707070" } : {}
-                          }
-                        />
-                      )}
-                      <h2
-                        className={`font-medium text-sm text-[#707070] ${
-                          !isHovered && "hidden"
-                        }`}
-                      >
-                        {data.name}
-                      </h2>
-                    </Link>
-                  ))}
-              </div>
-            </div>
-
-            {/* bottom wallet */}
-
-            <div className="mt-60 flex justify-center items-center w-[53px] h-[40px]  border border-[#131313] bg-[#141414] rounded-[10px] ">
-              <div className="flex gap-1 justify-start items-center py-2 px-2">
-                <div>
-                  <Image
-                    src="/profile.png"
-                    width={20}
-                    height={20}
-                    alt="profile"
-                    className=""
-                  />
-                </div>
-                <p className=" hidden font-normal text-sm leading">
-                  0x35b...a36b
-                </p>
-                <FaPlus className="w-[10px] h-[10px] text-[#C8C8C8]" />
-              </div>
-            </div>
-          </div>
+            ))}
         </div>
-      )}
+        <div className="w-full h-auto flex flex-col py-5">
+          {sideBar
+            .filter((data) => data.id === 3 || data.id === 4)
+            .map((data, index, arr) => (
+              <Link
+                className="flex items-center gap-3 mb-5 p-2"
+                href={data.link}
+                prefetch={false}
+                key={data.id}
+              >
+                {/* Render the icon directly if it's a React icon */}
+                {typeof data.img !== "string" && (
+                  <data.img
+                    size={14}
+                    style={
+                      index === arr.length - 1
+                        ? { color: "#707070" }
+                        : {}
+                    }
+                  />
+                )}
+                <h2
+                  className={`font-medium text-sm text-[#707070] ${
+                    !isHovered && "hidden"
+                  }`}
+                >
+                  {data.name}
+                </h2>
+              </Link>
+            ))}
+        </div>
+      </div>
+
+      {/* bottom wallet */}
+      <div className="mt-60 flex justify-center items-center w-[53px] h-[40px] border border-[#131313] bg-[#141414] rounded-[10px]">
+        <div className="flex gap-1 justify-start items-center py-2 px-2">
+          <div>
+            <Image
+              src="/profile.png"
+              width={20}
+              height={20}
+              alt="profile"
+              className=""
+            />
+          </div>
+          <p className="hidden font-normal text-sm leading">
+            0x35b...a36b
+          </p>
+          <FaPlus className="w-[10px] h-[10px] text-[#C8C8C8]" />
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
 
       {/* sidebar for dashboard */}
       {show && (
@@ -385,60 +347,57 @@ const SideBar = () => {
           </Link>
 
           <div className="flex gap-2 mb-10">
-            <div className="w-[14px] h-[14px] flex justify-center text-center items-center ">
-              <GoPeople className="w-[20px] h-[20px] text-[#707070]"
-               />
-            </div>
-            <Dialog> 
-              <DialogTrigger className="cursor-pointer">
-                <p className="font-normal text-sm leading-[14px] text-[#707070]">
-                  Community Workspace
-                </p>
-              </DialogTrigger>
+  <div className="w-[14px] h-[14px] flex justify-center text-center items-center">
+    <IconComponent className="w-[20px] h-[20px] text-[#707070]" /> {/* Dynamic icon */}
+  </div>
+  <Dialog>
+    <DialogTrigger className="cursor-pointer">
+      <p className="font-normal text-sm leading-[14px] text-[#707070]">
+        {displayName} {/* Dynamic display name based on user selection */}
+      </p>
+    </DialogTrigger>
 
-              <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
-                {aiTrainCompleted ? (
-                  <div className="mx-auto pt-8">
-                    <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-                      Welcome to Your Workspace
-                    </h3>
-                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-                      With your workspace, you can easily create announcements,
-                      engage with your community, update projects, and simulate
-                      actions seamlessly.
-                    </p>
-                    <button
-                      onClick={() => router.push("/trainAi")}
-                      className="bg-white items-center flex justify-center text-center 
+    <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
+      {isSmartContractEngineer ? (
+        // Smart Contract Engineer specific content
+        <div className="mx-auto pt-8">
+          <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+            Smart Contract Engineer
+          </h3>
+          <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+            Welcome to the Smart Contract Engineer workspace. Here, you can manage, develop, and deploy smart contracts efficiently.
+          </p>
+          <button
+            onClick={() => router.push(route)} // Dynamic routing for Smart Contract Engineer
+            className="bg-white items-center flex justify-center text-center 
             text-xs font-normal ring-offset-white focus-visible:outline-none
             text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-                    >
-                      Get Started
-                    </button>
-                  </div>
-                ) : (
-                  <div className="mx-auto pt-8 text-center">
-                    <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
-                      Access Restricted
-                    </h3>
-                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
-                      Before you start using your community workspace, it&apos;s
-                      important to train your AI. Discover the benefits of AI
-                      training here.
-                    </p>
-                    <button
-                      onClick={() => router.push("/workspace")}
-                      className="bg-white items-center flex justify-center text-center 
+          >
+            Get Started
+          </button>
+        </div>
+      ) : (
+        // Community Workspace specific content
+        <div className="mx-auto pt-8">
+          <h3 className="font-medium text-center text-[20px] leading-[24px] w-full mx-auto mb-4">
+            Welcome to Your Workspace
+          </h3>
+          <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-full mb-6">
+            With your workspace, you can easily create announcements, engage with your community, update projects, and simulate actions seamlessly.
+          </p>
+          <button
+            onClick={() => router.push(route)} // Dynamic routing for Community Workspace
+            className="bg-white items-center flex justify-center text-center 
             text-xs font-normal ring-offset-white focus-visible:outline-none
             text-[#0D0D0D] h-10 w-[153px] rounded-[66px] mx-auto shadow-drop2"
-                    >
-                      Train your AI now
-                    </button>
-                  </div>
-                )}
-              </DialogContent>
-            </Dialog>
-          </div>
+          >
+            Get Started
+          </button>
+        </div>
+      )}
+    </DialogContent>
+  </Dialog>
+</div>
 
           {/* <div className="flex justify-between mb-10"> */}
             {/* <div className="flex gap-2 items-center">

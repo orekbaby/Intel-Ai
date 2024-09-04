@@ -104,6 +104,9 @@ const [tempRequest, setTempRequest] = useState<string[]>([]);
   const [chats, setChats] = useState<Chat[]>([]);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const [selectedOption, setSelectedOption] = useState<string>('');
+  const [areButtonsVisible, setAreButtonsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
     const savedOption = Cookies.get('selectedOption');
@@ -141,6 +144,7 @@ const [tempRequest, setTempRequest] = useState<string[]>([]);
         setIsInputVisible(false);
         setHasRequested(true);
         setIsQuickStrategyClicked(true);
+        setAreButtonsVisible(true);
 
         await delayResponse();
 
@@ -188,8 +192,8 @@ const handleKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
           // Make input invisible and change Quick Strategy button to Clear
           setIsInputVisible(false);
           setIsQuickStrategyClicked(true);
-
-          setHasRequested(true);
+setHasRequested(true);
+          setAreButtonsVisible(true);
 
           await delayResponse();
 
@@ -236,6 +240,7 @@ const handleQuickStrategyClick = async () => {
   setIsInputVisible(false);
   setHasRequested(true);
   setIsQuickStrategyClicked(true);
+  setAreButtonsVisible(true);
 
   await delayResponse();
 
@@ -329,32 +334,40 @@ const handleContinueChatting = async () => {
 
   const handleFinalizeStrategyClick = () => {
     if (chats.length > 0) {
-      // Filter out empty or duplicate strategies
-      const newStrategies: Strategy[] = chats
-        .filter(chat => chat.request.trim() !== '' && chat.response.trim() !== '')
-        .map(chat => ({
-          strategy: chat.request, // Use the request string as the strategy
-          content: chat.response || "Default content", // Use the response as content or provide a default value
-          timestamp: chat.timestamp // Include the timestamp from the chat
-        }));
-  
-      if (newStrategies.length > 0) {
-        // Update the finalized strategies state with the new strategies
-        setFinalizedStrategies(prevStrategies => [...prevStrategies, ...newStrategies]);
-  
-        // Save finalized strategies to local storage
-        const storedFinalizedStrategies = JSON.parse(localStorage.getItem('finalizedStrategies') || '[]');
-        const updatedStrategies = [...storedFinalizedStrategies, ...newStrategies];
-        localStorage.setItem('finalizedStrategies', JSON.stringify(updatedStrategies));
-  
-        setShowContent(true);
-        setChats([]); // Clear the chat history after finalizing
-        setText('');
-        setIsInputVisible(true);
-        setIsDialogOpen(false);
-      }
+        // Filter out empty or duplicate strategies
+        const newStrategies: Strategy[] = chats
+            .filter(chat => chat.request.trim() !== '' && chat.response.trim() !== '')
+            .map(chat => ({
+                strategy: chat.request, // Use the request string as the strategy
+                content: chat.response || "Default content", // Use the response as content or provide a default value
+                timestamp: chat.timestamp // Include the timestamp from the chat
+            }));
+
+        if (newStrategies.length > 0) {
+            // Update the finalized strategies state with the new strategies
+            setFinalizedStrategies(prevStrategies => [...prevStrategies, ...newStrategies]);
+
+            // Save finalized strategies to local storage
+            const storedFinalizedStrategies = JSON.parse(localStorage.getItem('finalizedStrategies') || '[]');
+            const updatedStrategies = [...storedFinalizedStrategies, ...newStrategies];
+            localStorage.setItem('finalizedStrategies', JSON.stringify(updatedStrategies));
+
+            setIsDialogOpen(false); // Close the modal
+
+            // Show loading state
+            setIsLoading(true);
+
+            // After 3 seconds, perform the rest of the operations
+            setTimeout(() => {
+                setShowContent(true);
+                setChats([]); // Clear the chat history after finalizing
+                setText('');
+                setIsInputVisible(true);
+                setIsLoading(false); // Hide loading state
+            }, 3000); // 3 seconds delay
+        }
     }
-  };
+};
   
   
   const handleDeleteStrategy = (strategyToDelete: string) => {
@@ -445,7 +458,7 @@ const handleContinueChatting = async () => {
     <>
     <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color pb-40">
         <div className="w-full flex justify-between">
-         <div className="w-[60%]  h-[781px] overflow-y-auto scrollbar-hide pt-5 border-r border-[#252525] rounded-[20px] pb-40">
+         <div className="w-[60%] h-[781px] overflow-y-auto scrollbar-hide pt-5 border-r border-[#252525] rounded-[20px] pb-40">
          <div className="flex flex-col gap-4 justify-center items-center">
           <h3 className='text-[32px] font-medium leading-[33.38px] text-center'> Welcome To Co-Pilot</h3>
                 <p className="font-normal text-[14px] leading-[14.56px]">
@@ -464,124 +477,146 @@ const handleContinueChatting = async () => {
       <ChevronDownIcon className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white pointer-events-none" />
     </div>
 </div>
-
-<div className="flex justify-center items-center pt-10">
-<div className="custom-textarea bg-[#1F1F1F] w-[610px] h-auto pb-5 mb-10  relative rounded-[16px]">
-      {/* Top part displaying the typed text */}
-      <div className="bg-[#1F1F1F] border-b border-[#2B2B2B] p-2 h-auto">
-     
-      <div className="min-h-[170px] overflow-y-auto" ref={chatContainerRef}>
-  {chats.map((chat, index) => (
-    <div key={index}>
-      {chat.request && (
-        <div className="flex justify-end items-end">
-          <div className="w-[325px] h-auto p-[10px] rounded-lg bg-[#252525] border-[#292929] border">
-            <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
-              {chat.request}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {chat.response && (
-        <div className="pt-5 w-[366px] h-auto py-1 px-[10px] rounded-lg flex items-end justify-end mb-5">
-          <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
-            {chat.response}
+{isLoading ? (
+  <div className="flex justify-center items-center">
+      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+        <div className="mx-auto">
+          <Image
+            width={48}
+            height={48}
+            src="/loader.png"
+            className="mx-auto mb-5 pt-10 bg-[#181818]"
+            alt=""
+          />
+          <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+            Please wait.....
+          </h3>
+          <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+            Now creating your strategy
           </p>
         </div>
-      )}
-    </div>
-  ))}
-</div>
-
-
-<div>
-      {/* Fixed button container */}
-      <div className="flex justify-between items-center">
-        {/* Left-aligned Buttons */}
-        <div className="flex space-x-4">
-          {/* First button with check icon */}
-          <Dialog open={isDialogOpen} onOpenChange={(isOpen) => setIsDialogOpen(isOpen)}>
-  <DialogTrigger>
-    <button
-      className={`flex items-center justify-center w-[77px] h-[27px] text-[#0d0d0d] bg-white font-medium text-xs leading-[12.48px] rounded-[24px] py-[10px] px-3 ${!hasRequested ? 'opacity-50 cursor-not-allowed' : ''}`}
-      disabled={!hasRequested}
-      onClick={() => setIsDialogOpen(true)}
-    >
-      <div className="flex items-center">
-        <div className="w-[14px] h-[14px] bg-green-500 rounded-[4px] flex justify-center items-center mr-2">
-          <IoMdCheckmark className="text-white w-[12px] h-[12px]" />
-        </div>
-        <span>Approve</span>
       </div>
-    </button>
-  </DialogTrigger>
-        <DialogContent className="px-8 py-4 md:w-full lg:w-full border-none  max-w-auto w-[390px] h-[325px] bg-[#181818] rounded-[66px]">
-          <div className="mx-auto">
-            <Image
-              width={120}
-              height={120}
-              src="/onboard.png"
-              className="mx-auto mb-5 pt-5"
-              alt=""
-            />
-            <h3 className="font-medium text-center text-[20px] leading-[26px] w-full mx-auto mb-4">
-              Great Job!
-            </h3>
-            <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] leading-[16.8px] mb-5">
-              Now, click on &quot;Finalize Strategy&quot; button to get results
-            </p>
-            {/* Finalize Strategy button */}
-            <button
-              className="bg-white items-center flex justify-center text-center 
-                text-xs font-normal ring-offset-white focus-visible:outline-none
-                text-[#0D0D0D] h-10 w-[326px] rounded-[66px] mx-auto shadow-drop2"
-              onClick={handleFinalizeStrategyClick}
-            >
-              Finalize Strategy
-            </button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      </div>
+    ) : (
 
+<div className="flex justify-center items-center pt-10">
+<div className="custom-textarea bg-[#1F1F1F] w-[610px] h-[195px] overflow-auto scrollbar-hide relative rounded-[16px]">
+  {/* Top part displaying the typed text */}
 
-          {/* Second button */}
+  {/* loading state */}
+  
+  <>
+    
+
+   
+ 
+  <div className="bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[130px]">
+    <div className="flex flex-col-reverse space-y-4 space-y-reverse">
+      {chats.map((chat, index) => (
+        <div key={index} className="mb-4">
+          {chat.request && (
+            <div className="flex justify-end mb-5">
+              <div className="w-[325px] p-[10px] rounded-lg bg-[#252525] border-[#292929] border">
+                <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
+                  {chat.request}
+                </p>
+              </div>
+            </div>
+          )}
+          {chat.response && (
+            <div className="flex justify-start">
+              <div className="pt-5 w-[366px] py-1 px-[10px] rounded-lg bg-[#252525] border-[#292929] border">
+                <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
+                  {chat.response}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+   
+    </>
+
+  <div className="absolute bottom-0 w-full">
+    {/* Fixed button container */}
+    <div className="flex justify-between items-center bg-[#1F1F1F] p-2">
+      {/* Left-aligned Buttons */}
+      <div className="flex space-x-4">
+        {areButtonsVisible && (
+          <Dialog open={isDialogOpen} onOpenChange={(isOpen) => setIsDialogOpen(isOpen)}>
+            <DialogTrigger>
+              <button
+                className={`flex items-center justify-center w-[77px] h-[27px] text-[#0d0d0d] bg-white font-medium text-xs leading-[12.48px] rounded-[24px] py-[10px] px-3 ${!hasRequested ? 'opacity-50 cursor-not-allowed' : ''}`}
+                disabled={!hasRequested}
+                onClick={() => setIsDialogOpen(true)}
+              >
+                <div className="flex items-center">
+                  <div className="w-[14px] h-[14px] bg-green-500 rounded-[4px] flex justify-center items-center mr-2">
+                    <IoMdCheckmark className="text-white w-[12px] h-[12px]" />
+                  </div>
+                  <span>Approve</span>
+                </div>
+              </button>
+            </DialogTrigger>
+            <DialogContent className="px-8 py-4 md:w-full lg:w-full border-none max-w-auto w-[390px] h-[325px] bg-[#181818] rounded-[66px]">
+              <div className="mx-auto">
+                <Image
+                  width={120}
+                  height={120}
+                  src="/onboard.png"
+                  className="mx-auto mb-5 pt-5"
+                  alt=""
+                />
+                <h3 className="font-medium text-center text-[20px] leading-[26px] w-full mx-auto mb-4">
+                  Great Job!
+                </h3>
+                <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] leading-[16.8px] mb-5">
+                  Now, click on &quot;Finalize Strategy&quot; button to get results
+                </p>
+                <button
+                  className="bg-white items-center flex justify-center text-center 
+                    text-xs font-normal ring-offset-white focus-visible:outline-none
+                    text-[#0D0D0D] h-10 w-[326px] rounded-[66px] mx-auto shadow-drop2"
+                  onClick={handleFinalizeStrategyClick}
+                >
+                  Finalize Strategy
+                </button>
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
+        {areButtonsVisible && (
           <button className="w-auto h-[28px] flex justify-center items-center rounded-[24px] border border-[#707070] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4" onClick={handleContinueChatting}>
             Continue Chatting
           </button>
-        </div>
-
-        {/* Quick Strategy Button */}
-        <div>
-          {isQuickStrategyClicked ? (
-            <button
-              className="flex items-center justify-center w-[53px] h-[28px] rounded-[24px] bg-[#0D0D0D] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4"
-              onClick={handleClearChat}
-            >
-              Clear
-            </button>
-          ) : (
-            <button
-              className="flex items-center justify-center h-[28px] rounded-[24px] border border-[#3A3939] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4"
-              onClick={handleQuickStrategyClick}
-            >
-              Quick Strategy
-              <div className="flex items-center text-white text-l">
-                💡
-              </div>
-            </button>
-          )}
-        </div>
+        )}
       </div>
+      <div>
+        {isQuickStrategyClicked ? (
+          <button
+            className="flex items-center justify-center w-[53px] h-[28px] rounded-[24px] bg-[#0D0D0D] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4"
+            onClick={handleClearChat}
+          >
+            Clear
+          </button>
+        ) : (
+          <button
+            className="flex items-center justify-center h-[28px] rounded-[24px] border border-[#3A3939] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4"
+            onClick={handleQuickStrategyClick}
+          >
+            Quick Strategy
+            <div className="flex items-center text-white text-l">
+              💡
+            </div>
+          </button>
+        )}
       </div>
-
-    {/* ends here */}
-      </div>
-
-      {/* Bottom part for the text input */}
-      {isInputVisible && (
-        <div className="flex items-center justify-between w-full h-[34px] px-6 bg-[#1F1F1F] pt-2">
-          <input
+    </div>
+    {isInputVisible && (
+      <div className="flex items-center justify-between w-full h-[34px] px-6 bg-[#1F1F1F] border-t border-[#2B2B2B] pt-2">
+        <input
             type="text"
             placeholder="What is on your mind?"
             value={text}
@@ -589,22 +624,25 @@ const handleContinueChatting = async () => {
             onKeyDown={handleKeyDown}
             className="flex-1 input-area bg-transparent border-none outline-none font-normal text-xs italic text-white placeholder-[#707070]"
           />
-          <div className="absolute bottom-5 right-7">
-            <button
-              className="flex justify-center items-center w-[27px] h-[27px] rounded-full bg-[#03ffa3]"
-              onClick={handleSendButtonClick}
-            >
-              <FaArrowUp className="w-[16px] h-[14px] text-black" />
-            </button>
-          </div>
+        <div className="absolute bottom-0 right-7">
+          <button
+            className="flex justify-center items-center w-[27px] h-[27px] rounded-full bg-[#03ffa3]"
+            onClick={handleSendButtonClick}
+          >
+            <FaArrowUp className="w-[16px] h-[14px] text-black" />
+          </button>
         </div>
-      )}
- {/* input ends here */}
-    </div>
+      </div>
+    )}
+  </div>
 </div>
 
+ {/* stop */}
+</div>
+)}
+
 {/* accordion content */}
-{showContent && (
+  {showContent && (
         <div className="space-y-4 pb-40 pt-16">
           <h5 className="font-medium text-base leading-[16.64px] pb-2">Actionable Recommendations</h5>
 
@@ -707,13 +745,9 @@ onCloseModal={closeModal}
         </div>
         </div>
       )}
+    </div>
 
 
-
-{/* ends here */}
-
-
-       </div>
        <div className="w-[40%] pb-6 ml-2 h-auto rounded-[10px]">
             <div className="w-[408px]">
               <div className="bg-[#131313] h-auto w-full px-2">

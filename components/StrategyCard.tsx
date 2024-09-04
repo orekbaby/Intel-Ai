@@ -40,9 +40,9 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDele
         <div className="flex justify-end">
           <div className="flex items-center gap-1 bg-[#131313] p-2 rounded-[12px]">
             <FaRegClock className="w-[10px] h-[10px]" />
-            <p className="font-[300] text-[8px] leading-[12px] text-[#858585]">
+            <p className="font-[300] text-[8px] leading-[12px] text-[#858585] helvetica-font">
               {timestamp.date}{" "}
-              <span className="font-normal text-[8px] leading-[12px] text-white">
+              <span className="font-normal text-[8px] leading-[12px] text-white helvetica-font">
                 {timestamp.time}
               </span>
             </p>

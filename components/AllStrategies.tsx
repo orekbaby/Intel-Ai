@@ -25,7 +25,7 @@ const AllStrategies: React.FC<AllStrategiesProps> = ({ strategies, onDeleteStrat
 
   return (
     <div className="space-y-4">
-      <h2 className="text-white text-lg mb-4 px-2">Recent</h2>
+      <h2 className="text-white text-lg mb-4 px-2 helvetica-font">Recent</h2>
       <div className="space-y-4">
         {strategies.slice(0, 1).map((strategy, index) => (
           <StrategyCard
@@ -41,7 +41,7 @@ const AllStrategies: React.FC<AllStrategiesProps> = ({ strategies, onDeleteStrat
 
       {strategies.length > 1 && (
         <>
-          <h2 className="text-white text-lg mt-8 mb-4 px-2">Older</h2>
+          <h2 className="text-white text-lg mt-8 mb-4 px-2 helvetica-font">Older</h2>
           <div className="space-y-4">
             {strategies.slice(1).map((strategy, index) => (
               <StrategyCard

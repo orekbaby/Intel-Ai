@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCheck, FaCaretDown } from "react-icons/fa6";
 
 interface InputCategoryProps {
@@ -7,7 +7,14 @@ interface InputCategoryProps {
 }
 
 const InputCategory: React.FC<InputCategoryProps> = ({ value, onChange }) => {
-  const [isCategoryEditing, setIsCategoryEditing] = useState<boolean>(true); // Initially false
+  const [isCategoryEditing, setIsCategoryEditing] = useState<boolean>(true);
+
+  // Automatically select the category if value is provided
+  useEffect(() => {
+    if (value) {
+      setIsCategoryEditing(false);
+    }
+  }, [value]);
 
   const handleCategoryChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -31,38 +38,37 @@ const InputCategory: React.FC<InputCategoryProps> = ({ value, onChange }) => {
       <div className="flex items-center relative">
         {isCategoryEditing ? (
           <div className="relative flex items-center w-full">
-          <select
-            id="category"
-            value={value}
-            onChange={handleCategoryChange}
-            className="text-white bg-[#1A1A1A] border border-[#333] rounded-md p-2 pr-10 font-normal text-xs md:text-sm lg:text-sm leading-5 w-full appearance-none"
-            style={{ outline: "none" }}
-            required
-          >
-            <option value="" disabled>Select a category</option>
-            <option value="launchpad">Launchpad</option>
-            <option value="Token Project">Token Project</option>
-            <option value="Memecoin Project">Memecoin Project</option>
-          </select>
-          {/* Custom Arrow Icon */}
-          <svg
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
-            width="10"
-            height="6"
-            viewBox="0 0 10 6"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1 1L5 5L9 1"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-        
+            <select
+              id="category"
+              value={value}
+              onChange={handleCategoryChange}
+              className="text-white bg-[#1A1A1A] border border-[#333] rounded-md p-2 pr-10 font-normal text-xs md:text-sm lg:text-sm leading-5 w-full appearance-none"
+              style={{ outline: "none" }}
+              required
+            >
+              <option value="" disabled>Select a category</option>
+              <option value="launchpad">Launchpad</option>
+              <option value="Token Project">Token Project</option>
+              <option value="Memecoin Project">Memecoin Project</option>
+            </select>
+            {/* Custom Arrow Icon */}
+            <svg
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L5 5L9 1"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         ) : (
           <>
             {value && (
