@@ -1,5 +1,15 @@
 "use client";
 import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Carousel = dynamic(() => import("@/components/Carousel"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex-col justify-center items-center w-full h-24 hidden md:flex lg:flex xl:flex 2xl:flex">
+      <div className="text-[#18283f] h-20 w-20 animate-spin mb-5" />
+    </div>
+  ),
+});
 import {
   advantages,
   communityOwners,
@@ -23,8 +33,14 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { accordionData } from "@/utils/mockData";
-import Carousel from "@/components/Carousel";
-import Footer from "@/components/Footer";
+const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex-col justify-center items-center w-full h-24 hidden md:flex lg:flex xl:flex 2xl:flex">
+      <div className="text-[#18283f] h-20 w-20 animate-spin mb-5" />
+    </div>
+  ),
+});
 
 export default function Home() {
   const bgClipText: React.CSSProperties = {
