@@ -1292,6 +1292,28 @@ export const strategies = [
           content: "",
         },
       ]
+
+      // mockData.ts
+export const responsesData = [
+  {
+    id: 1,
+    title: "Incorrect Handling of State Updates in increaseCount",
+    problem:
+      "The increaseCount function logs the count before it's updated. React's setState is asynchronous, so the count logged might not reflect the new state immediately.",
+    fix: "Update the count inside the console.log after it has been set.",
+    why:
+      "Understanding that state updates in React are asynchronous is crucial. By using the previous state (prevCount), you ensure you're working with the most up-to-date value.",
+  
+  
+    
+    title2: "Incorrect Usage of the Link Component",
+    problem2:
+      "The Link component in Next.js should wrap a single child element, typically an anchor tag (a). The passHref prop is redundant in this context.",
+    fix2: "Simplify the usage of the Link component.",
+    why2: ""
+  }
+];
+
     
   
       
