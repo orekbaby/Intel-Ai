@@ -6,7 +6,7 @@ import { FaCircle } from "react-icons/fa";
 import { proDashboard, proUpgrade } from "@/config/mockData";
 import { CiCircleCheck } from "react-icons/ci";
 import Cookies from "js-cookie";
-import { BarChart, chart, DiscordBar, EngagementChart, LineChart, persona1, persona2, socials, StarCenter, StarImage, StarLeft, StarRight, TelegramBar, timer, TwitterBar } from "@/assets";
+import { BarChart, chart, DiscordBar, EngagementChart, LineChart, persona1, persona2, socials, StarCenter, StarImage, StarLeft, TelegramBar, timer, TwitterBar } from "@/assets";
 
 const Page = () => {
   const bgClipText: React.CSSProperties = {
@@ -59,7 +59,7 @@ const Page = () => {
                   {/* third */}
                   <div className="absolute bottom-[20%] right-[3%]">
                     <Image
-                      src={StarRight}
+                      src={StarLeft}
                       width={245.9}
                       height={59.25}
                       alt="icon"

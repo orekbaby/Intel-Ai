@@ -6,7 +6,7 @@ import Link from "next/link";
 import { integrationDashboard, proUpgrade } from "@/config/mockData";
 import { CiCircleCheck } from "react-icons/ci";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { DashboardIcon, StarCenter, StarRight } from "@/assets";
+import { DashboardIcon, StarCenter, StarLeft } from "@/assets";
 
 const Page: React.FC = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -56,7 +56,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
               {/* second star */}
               <div className="absolute bottom-[12%] left-[3%]">
                 <Image
-                  src="/star-left.png"
+                  src={StarLeft}
                   width={245.9}
                   height={59.25}
                   alt="icon"
@@ -67,7 +67,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
               {/* third */}
               <div className="absolute bottom-[20%] right-[3%]">
                 <Image
-                  src={StarRight}
+                  src={StarLeft}
                   width={245.9}
                   height={59.25}
                   alt="icon"
