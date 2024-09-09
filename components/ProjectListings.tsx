@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { FaCaretDown, FaCheck, FaCircle, FaTimes } from "react-icons/fa";
-import { launchpadData } from "@/utils/mockData";
+import { launchpadData } from "@/config/mockData";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"

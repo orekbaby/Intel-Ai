@@ -1,15 +1,15 @@
 export const communityOwners = [
   {
-    img: "/img-1.png",
+    img: Img1,
     heading: "Community Owners & Managers",
     content:
       "Intel AI Agents serve as a seamless extension of your team, providing high-quality feedback and engaging interactions that resonate with your community. ",
   },
 ];
-
+import {Ai, Alex, avatar, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, BackgroundImg, book, CableTag, community, ContentTag, DiscordLogo, EmilyChen, FeaturedIcon, GlowImg, Img1, Img2, Img3, MobileImg1, MobileImg2, MobileImg3, query, SarahThompson, StarImage, StarPro, TelegramIcon, Train1, Train2, Train3, TwitterMain, world} from "@/assets/images"
 export const kolsInfluencers = [
   {
-    img: "/img-2.png",
+    img: Img2,
     heading: "KOLs & Influencers",
     content:
       "Engage your social following and audience on twitter, reddit and others using Intelai",
@@ -18,132 +18,131 @@ export const kolsInfluencers = [
 
 export const customAgents = [
   {
-    img: "/img-3.png",
+    img: Img3,
     heading: "Build Custom AI Agents",
     content:
       "Explore our SDKs and APIs for versatile app development. Our Custom AI Agents Stack provides advanced tools to innovate projects.",
   },
 ];
 
+// Assuming you're using the baron import method for images
+import { CloudSvg, TraceSvg, VolumeSvg, RiseSvg, CluesSvg, CloudPng } from '@/assets/images'; 
+
+// Updated mock data using image imports
 export const sponsors = [
   {
-    img: "/cloud.svg",
+    img: CloudSvg,    // Using the correctly imported 'CloudSvg' variable
   },
-
   {
-    img: "/trace.svg",
+    img: TraceSvg,    // Using the correctly imported 'TraceSvg' variable
   },
-
   {
-    img: "/volume.svg",
+    img: VolumeSvg,   // Using the correctly imported 'VolumeSvg' variable
   },
-
   {
-    img: "/rise.svg",
+    img: RiseSvg,     // Using the correctly imported 'RiseSvg' variable
   },
-
   {
-    img: "/clues.svg",
+    img: CluesSvg,    // Using the correctly imported 'CluesSvg' variable
   },
-
   {
-    img: "/cloud.svg",
+    img: CloudSvg,    // Using the correctly imported 'CloudPng' variable
   },
-
   {
-    img: "/trace.svg",
+    img: TraceSvg,    // Reusing the 'TraceSvg' variable
   },
-
   {
-    img: "/volume.svg",
-  },
+    img: VolumeSvg,   // Reusing the 'VolumeSvg' variable
+  }
 ];
+
+
 
 export const integration = [
   {
-    img: "/cable-tag.png",
+    img: CableTag,
     title: "Train, Simulate, Update, Re-Train, Repeat!!!",
     description:
       "Intel AI learns from each interaction, continuously updating its knowledge base and response strategies to better serve your community. As your community evolves, so does Intel AI.",
-    img2: "/content-tag.png",
+    img2: ContentTag,
     name: "Content Strategy Setup",
-    img3: "/query.png",
+    img3: query,
     name2: "Query Escalation Protocol",
-    integration: "/train3.png",
-    mobileImg: "/mobile-img1.png",
+    integration: Train3,
+    mobileImg: MobileImg1,
   },
 ];
 
 export const content = [
   {
-    img: "/cable-tag.png",
+    img: CableTag,
     title: "Intelligent Automation on Steroids",
     description:
       "Introducing your personal social media strategist driven by AI, streamlining content planning, scheduling, and interaction on twitter and other platforms. Leveraging data to grasp your audience's behavior and preferences, we optimize your content strategy for unparalleled engagement.",
-    img2: "/content-tag.png",
+    img2: ContentTag,
     name: "Context-aware AI co-pilot",
-    img3: "/query.png",
+    img3: query,
     name2: "Query Escalation Protocol",
-    backgroundimg: "/background-img.png",
-    integration: "/train2.png",
-    mobileImg: "/mobile-img2.png",
+    backgroundimg: BackgroundImg,
+    integration: Train2,
+    mobileImg: MobileImg2,
   },
 ];
 
 export const sorting = [
   {
-    img: "/cable-tag.png",
+    img: CableTag,
     title: "Advanced Query Escalation Protocol",
     description:
       "Our  context aware smart engine  streamlines the handling of out of scope  user inquiries by automatically identifying, categorizing, and routing complex queries to the most suitable responder within your organization. Tailored to consider complexity, urgency, and subject matter, this protocol ensures  timely, informed, and contextually relevant responses, elevating user experience within your community.",
-    img2: "/content-tag.png",
+    img2: ContentTag,
     name: "Smart Escalation for Complex Queries",
-    img3: "/query.png",
+    img3: query,
     name2: "Content Strategy Setup",
-    backgroundimg: "/background-img.png",
-    integration: "/train-1.png",
-    mobileImg: "/mobile-img3.png",
+    backgroundimg: BackgroundImg,
+    integration: Train1,
+    mobileImg: MobileImg3,
   },
 ];
 
 export const advantages = [
   {
-    img: "/book.png",
+    img: book,
     title: "Smart Autocomplete",
     description:
       "Say goodbye to typos and endless typing! Our Smart Autocomplete feature predicts your next word accurately, saving you time and frustration.",
   },
 
   {
-    img: "/Featured icon.png",
+    img: FeaturedIcon,
     title: "Your Privacy is Our Priority.",
     description:
       "Your privacy and data security are paramount, especially in the crypto world. You have complete control over your data and can delete it from our systems at any time.",
   },
 
   {
-    img: "/ai.png",
+    img: Ai,
     title: "Train your Ai.",
     description:
       "Take control of your AI's learning process with Train Your AI, shaping it to become the perfect assistant for your unique tasks and requirements.",
   },
 
   {
-    img: "/community.png",
+    img: community,
     title: "Community and Audience Mangement.",
     description:
       "Our Community and Audience Management tools empower you to engage with your community effectively, fostering meaningful interactions and building lasting relationships.",
   },
 
   {
-    img: "/world.png",
+    img: world,
     title: "Ghost-Writer Content Generator",
     description:
       "Co-pilot Content Generator takes your content creation to new heights, providing inspiration and assistance every step of the way.",
   },
 
   {
-    img: "/cloud.png",
+    img: CloudPng,
     title: "Auto-response Engine",
     description:
       "Auto-response Engine automates your responses, ensuring prompt and consistent replies to inquiries and messages.",
@@ -154,7 +153,7 @@ export const emily = [
   {
     testimony:
       "Fast Theme Changes in Glossy have transformed the way I work. Switching between themes on-the-fly helps me align my coding environment with different project requirements swiftly. Glossy has truly streamlined my workflow.",
-    img: "/emily-chen.png",
+    img: EmilyChen,
     name: "Emily Chen",
     work: "Devops Specialist",
   },
@@ -164,7 +163,7 @@ export const sarah = [
   {
     testimony:
       "Glossy has redefined my coding experience. The Profile View feature allows me to seamlessly switch between different project setups, enhancing my efficiency. It's become an indispensable companion in my quest for coding perfection.",
-    img: "/sarah-thompson.png",
+    img: SarahThompson,
     name: "Sarah Thompson",
     work: "Senior Software Engineer",
   },
@@ -174,7 +173,7 @@ export const alex = [
   {
     testimony:
       "Editor Color Changes in Glossy let me curate a visually pleasing environment for coding. The diverse color themes not only boost my creativity but also contribute to a more enjoyable and less stressful coding experience.",
-    img: "/alex.png",
+    img: Alex,
     name: "Alex Rodriguez",
     work: "UX/UI Frontend Developer",
   },
@@ -625,8 +624,8 @@ export const chooseUser = [
 
 export const integrationDashboard = [
   {
-    img: "/cable-tag.png",
-    img2: "/star-img.png",
+    img: CableTag,
+    img2: StarImage,
     title: " More integrations coming soon",
     content:
       " We are adding more channels for integrations. Discord, Notion, Zapier, Slack and many more",
@@ -636,7 +635,7 @@ export const integrationDashboard = [
 
 export const proUpgrade = [
   {
-    img: "/star-pro.png",
+    img: StarPro,
     title: "Upgrade to Pro",
     content1: "How to use AI to create on-brand content",
     content2: "Showcase practical business use cases",
@@ -646,7 +645,7 @@ export const proUpgrade = [
 
 export const proDashboard = [
   {
-    img: "/star-pro.png",
+    img: StarPro,
     title: "Upgrade to Pro",
     content1: "How to use AI to create on-brand content",
     content2: "Showcase practical business use cases",
@@ -697,9 +696,9 @@ export const form = [
 export const unResolvedTable = [
   {
     number: "1.",
-    img: "/avatar1.png",
+    img: avatar1,
     name: "@Ann928",
-    platform: "/discord-logo.png",
+    platform: DiscordLogo,
     social: "Discord",
     query: "I encountered a bug while using the workspace. Can you help?",
     time: "10:15 am",
@@ -709,9 +708,9 @@ export const unResolvedTable = [
 
   {
     number: "2.",
-    img: "/avatar2.png",
+    img: avatar2,
     name: "@Roger20",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "Twitter",
     query: "I'm having trouble accessing certain features. Can you assist me?",
     time: "10:15 am",
@@ -721,9 +720,9 @@ export const unResolvedTable = [
 
   {
     number: "3.",
-    img: "/avatar3.png",
+    img: avatar3,
     name: "@Ahmad23",
-    platform: "/discord-logo.png",
+    platform: DiscordLogo,
     social: "Discord",
     query: "Can we get an update on the project's timeline?",
     time: "10:15 am",
@@ -733,9 +732,9 @@ export const unResolvedTable = [
 
   {
     number: "4.",
-    img: "/avatar4.png",
+    img: avatar4,
     name: "@Justin32",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "twitter",
     query: "There seems to be a conflict in our team. Can we discuss this?",
     time: "10:15 am",
@@ -745,9 +744,9 @@ export const unResolvedTable = [
 
   {
     number: "5.",
-    img: "/avatar4.png",
+    img: avatar5,
     name: "@Jordyn10",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "Twitter",
     query: "Can you clarify the guidelines for posting in the community?",
     time: "10:15 am",
@@ -757,9 +756,9 @@ export const unResolvedTable = [
 
   {
     number: "6.",
-    img: "/avatar4.png",
+    img: avatar6,
     name: "@Corey111",
-    platform: "/Telegram-icon.png",
+    platform: TelegramIcon,
     social: "Telegram",
     query:
       "'m not sure how to use the new tool that was introduced. Can someone explain?",
@@ -770,9 +769,9 @@ export const unResolvedTable = [
 
   {
     number: "7.",
-    img: "/avatar4.png",
+    img: avatar7,
     name: "@Jordyn10",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "Twitter",
     query:
       "I have a suggestion for improving the workspace. Who should I talk to?",
@@ -787,9 +786,9 @@ export const unResolvedTable = [
 export const resolvedTable = [
   {
     number: "1.",
-    img: "/avatar1.png",
+    img: avatar1,
     name: "@Ann928",
-    platform: "/discord-logo.png",
+    platform: DiscordLogo,
     social: "Discord",
     query: "I encountered a bug while using the workspace. Can you help?",
     time: "10:15 am",
@@ -799,9 +798,9 @@ export const resolvedTable = [
 
   {
     number: "2.",
-    img: "/avatar2.png",
+    img: avatar2,
     name: "@Roger20",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "Twitter",
     query: "I'm having trouble accessing certain features. Can you assist me?",
     time: "10:15 am",
@@ -811,9 +810,9 @@ export const resolvedTable = [
 
   {
     number: "3.",
-    img: "/avatar3.png",
+    img: avatar3,
     name: "@Ahmad23",
-    platform: "/discord-logo.png",
+    platform: DiscordLogo,
     social: "Discord",
     query: "Can we get an update on the project's timeline?",
     time: "10:15 am",
@@ -823,9 +822,9 @@ export const resolvedTable = [
 
   {
     number: "4.",
-    img: "/avatar4.png",
+    img: avatar4,
     name: "@Justin32",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "twitter",
     query: "There seems to be a conflict in our team. Can we discuss this?",
     time: "10:15 am",
@@ -835,9 +834,9 @@ export const resolvedTable = [
 
   {
     number: "5.",
-    img: "/avatar4.png",
+    img: avatar5,
     name: "@Jordyn10",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "Twitter",
     query: "Can you clarify the guidelines for posting in the community?",
     time: "10:15 am",
@@ -847,9 +846,9 @@ export const resolvedTable = [
 
   {
     number: "6.",
-    img: "/avatar4.png",
+    img: avatar6,
     name: "@Corey111",
-    platform: "/Telegram-icon.png",
+    platform: TelegramIcon,
     social: "Telegram",
     query:
       "'m not sure how to use the new tool that was introduced. Can someone explain?",
@@ -860,9 +859,9 @@ export const resolvedTable = [
 
   {
     number: "7.",
-    img: "/avatar4.png",
+    img: avatar7,
     name: "@Jordyn10",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "Twitter",
     query:
       "I have a suggestion for improving the workspace. Who should I talk to?",
@@ -877,9 +876,9 @@ export const resolvedTable = [
 export const allTable = [
   {
     number: "1.",
-    img: "/avatar1.png",
+    img: avatar1,
     name: "@Ann928",
-    platform: "/discord-logo.png",
+    platform: DiscordLogo,
     social: "Discord",
     query: "I encountered a bug while using the workspace. Can you help?",
     time: "10:15 am",
@@ -889,9 +888,9 @@ export const allTable = [
 
   {
     number: "2.",
-    img: "/avatar2.png",
+    img: avatar2,
     name: "@Roger20",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "Twitter",
     query: "I'm having trouble accessing certain features. Can you assist me?",
     time: "10:15 am",
@@ -901,9 +900,9 @@ export const allTable = [
 
   {
     number: "3.",
-    img: "/avatar3.png",
+    img: avatar3,
     name: "@Ahmad23",
-    platform: "/discord-logo.png",
+    platform: DiscordLogo,
     social: "Discord",
     query: "Can we get an update on the project's timeline?",
     time: "10:15 am",
@@ -913,9 +912,9 @@ export const allTable = [
 
   {
     number: "4.",
-    img: "/avatar4.png",
+    img: avatar4,
     name: "@Justin32",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "twitter",
     query: "There seems to be a conflict in our team. Can we discuss this?",
     time: "10:15 am",
@@ -925,9 +924,9 @@ export const allTable = [
 
   {
     number: "5.",
-    img: "/avatar4.png",
+    img: avatar5,
     name: "@Jordyn10",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "Twitter",
     query: "Can you clarify the guidelines for posting in the community?",
     time: "10:15 am",
@@ -937,9 +936,9 @@ export const allTable = [
 
   {
     number: "6.",
-    img: "/avatar4.png",
+    img: avatar6,
     name: "@Corey111",
-    platform: "/Telegram-icon.png",
+    platform: TelegramIcon,
     social: "Telegram",
     query:
       "'m not sure how to use the new tool that was introduced. Can someone explain?",
@@ -950,9 +949,9 @@ export const allTable = [
 
   {
     number: "7.",
-    img: "/avatar4.png",
+    img: avatar7,
     name: "@Jordyn10",
-    platform: "/twitter-main.png",
+    platform: TwitterMain,
     social: "Twitter",
     query:
       "I have a suggestion for improving the workspace. Who should I talk to?",
@@ -968,7 +967,7 @@ export const querySection = [
     query: "",
     time: "11:00 am",
     username: "Spockman2304",
-    img: "/avatar.png",
+    img: avatar,
   },
 ];
 
@@ -977,7 +976,7 @@ export const responseSection = [
     response:
       "**I'm sorry to hear you're experiencing a bug! Your issue has been escalated to our community manager, who will assist you shortly. In the meantime, could you please provide more details about the bug, such as what you were doing when it occurred and any error messages you received? This will help us resolve the issue more efficiently. Thank you for your patience!**",
     time: "11:00 am",
-    img: "/glow-img.png",
+    img: GlowImg,
     name: "Intel",
     span: "ai",
   },
@@ -1020,7 +1019,7 @@ export const userInput = [
     question: "What is Getequity",
     time: "11:00 am",
     user: "You",
-    image: "/avatar.png",
+    image: avatar,
   },
 ];
 export const userInput2 = [
@@ -1028,7 +1027,7 @@ export const userInput2 = [
     question: "When Private Sale?",
     time: "11:00 am",
     user: "You",
-    image: "/avatar.png",
+    image: avatar,
   },
 ];
 
@@ -1037,7 +1036,7 @@ export const userInput3 = [
     question: "Best features?",
     time: "11:00 am",
     user: "You",
-    image: "/avatar.png",
+    image: avatar,
   },
 ];
 
@@ -1045,7 +1044,7 @@ export const aiResponse = [
   {
     response:
       "With a commitment to providing tools for investment, asset organization, and management in one convenient platform, GetEquity ensures a safe and efficient investment experience for accredited investors, from high-net-worth individuals to industry veterans.",
-    aiImage: "/glow-img.png",
+    aiImage: GlowImg,
     name: " Intel",
     span: "ai",
   },
@@ -1083,7 +1082,7 @@ export const response = [
     title: "response1",
     response:
       "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
-    img: "/glow-img.png",
+    img: GlowImg,
     button1: "Add to draft",
     button2: "Tweet now",
   },
@@ -1092,7 +1091,7 @@ export const response = [
     title: "response2",
     response:
       "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
-    img: "/glow-img.png",
+    img: GlowImg,
     button1: "Add to draft",
     button2: "Tweet now",
   },
@@ -1101,7 +1100,7 @@ export const response = [
     title: "response3",
     response:
       "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
-    img: "/glow-img.png",
+    img: GlowImg,
     button1: "Add to draft",
     button2: "Tweet now",
   },
@@ -1314,6 +1313,23 @@ export const responsesData = [
   }
 ];
 
+import { GoPeople } from "react-icons/go";
+import { RiCodeSSlashFill } from "react-icons/ri";
+
+export const persona = [
+  {
+    name: "Community Workspace",
+    route: "train-ai",
+    icon: GoPeople,
+ },
+  
+ {
+  name: "Smart Contract Engineer",
+  route: "smart-contract-engineer",
+  icon: RiCodeSSlashFill,
+},
+
+]
     
   
       

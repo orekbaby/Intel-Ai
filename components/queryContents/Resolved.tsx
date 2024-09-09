@@ -8,7 +8,7 @@ import {
   TableRow,
   TableCell,
 } from "@/components/ui/table";
-import { resolvedTable } from "@/utils/mockData";
+import { resolvedTable } from "@/config/mockData";
 
 const Resolved = () => {
   return (

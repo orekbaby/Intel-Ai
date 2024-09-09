@@ -5,8 +5,9 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane, FaArrowLeft } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastAction } from "@/components/ui/toast"
+import { toast, useToast } from "@/components/ui/use-toast"
+
 
 const Page = () => {
   const [invitationCode, setInvitationCode] = useState("");
@@ -15,9 +16,15 @@ const Page = () => {
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (invitationCode.trim() === "") {
-      toast.error("Please enter your invitation code.");
+     
+      toast({
+        variant: "destructive",
+        title: "oops something is wrong",
+        description: "Please enter your invitation code.",
+        action: <ToastAction altText="Okay">Okay</ToastAction>,
+      });
     } else {
-      router.push("/connectWeb3");
+      router.push("/connect-web3");
     }
   };
 
@@ -36,7 +43,7 @@ const Page = () => {
   return (
     <>
       <main className="mt-0 md:mt-20 lg:mt-20 mx-auto">
-        <ToastContainer />
+        
         <section className="first-gradient section relative w-full h-[80vh] md:h-[100vh] lg:h-[100vh] z-10 mb-48 ">
           <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full">
             {/* top-gradient */}

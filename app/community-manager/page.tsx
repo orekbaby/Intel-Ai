@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import { FaCircle } from "react-icons/fa";
-import { proDashboard, proUpgrade } from "@/utils/mockData";
+import { proDashboard, proUpgrade } from "@/config/mockData";
 import { CiCircleCheck } from "react-icons/ci";
 import Cookies from "js-cookie";
+import { BarChart, chart, DiscordBar, EngagementChart, LineChart, persona1, persona2, socials, StarCenter, StarImage, StarLeft, StarRight, TelegramBar, timer, TwitterBar } from "@/assets";
 
 const Page = () => {
   const bgClipText: React.CSSProperties = {
@@ -38,7 +39,7 @@ const Page = () => {
                   {/* first star */}
                   <div className="absolute top-[12%] left-[40%] ">
                     <Image
-                      src="/star-center.png"
+                      src={StarCenter}
                       width={245.9}
                       height={59.25}
                       alt="icon"
@@ -48,7 +49,7 @@ const Page = () => {
                   {/* second star */}
                   <div className="absolute bottom-[12%] left-[3%]">
                     <Image
-                      src="/star-left.png"
+                      src={StarLeft}
                       width={245.9}
                       height={59.25}
                       alt="icon"
@@ -58,7 +59,7 @@ const Page = () => {
                   {/* third */}
                   <div className="absolute bottom-[20%] right-[3%]">
                     <Image
-                      src="/star-right.png"
+                      src={StarRight}
                       width={245.9}
                       height={59.25}
                       alt="icon"
@@ -97,7 +98,7 @@ const Page = () => {
                 <div className="w-full h-[187px] bg-[#181818] rounded-[20px] px-4 py-3">
                   <div className="w-full">
                     <Image
-                      src="/star-image.png"
+                      src={StarImage}
                       width={291}
                       height={105}
                       alt="star"
@@ -184,7 +185,7 @@ const Page = () => {
                 <div className="flex flex-1">
                   <div className="w-[530px] h-auto bg-[#1C1C1C] px-6 py-1">
                     <Image
-                      src="/bar-chart.png"
+                      src={BarChart}
                       alt="Descriptive alt text"
                       className="w-full h-auto object-cover"
                       layout="responsive"
@@ -239,7 +240,7 @@ const Page = () => {
                   <div className="flex flex-1">
                     <div className="w-[230px] h-auto bg-[#1C1C1C] px-1 py-1">
                       <Image
-                        src="/engagement-chart.png"
+                        src={EngagementChart}
                         alt="Descriptive alt text"
                         className="w-full h-auto object-cover"
                         layout="responsive"
@@ -292,7 +293,7 @@ const Page = () => {
                   <div className="flex flex-1">
                     <div className="w-[170px] h-auto bg-[#1C1C1C] px-1 py-1">
                       <Image
-                        src="/chart.png"
+                        src={chart}
                         alt="Descriptive alt text"
                         className="w-full h-auto object-cover"
                         layout="responsive"
@@ -313,7 +314,7 @@ const Page = () => {
                   </p>
                   {/* image */}
                   <Image
-                    src="/discord-bar.png"
+                    src={DiscordBar}
                     width={164}
                     height={18.17}
                     alt="icon"
@@ -321,7 +322,7 @@ const Page = () => {
                   />
 
                   <Image
-                    src="/twitter-bar.png"
+                    src={TwitterBar}
                     width={164}
                     height={18.17}
                     alt="icon"
@@ -329,7 +330,7 @@ const Page = () => {
                   />
 
                   <Image
-                    src="/telegram-bar.png"
+                    src={TelegramBar}
                     width={164}
                     height={18.17}
                     alt="icon"
@@ -342,7 +343,7 @@ const Page = () => {
                     RESOLUTION TURN AROUND TIME
                   </p>
                   <Image
-                    src="/timer.png"
+                    src={timer}
                     width={110.77}
                     height={120}
                     alt="icon"
@@ -359,7 +360,7 @@ const Page = () => {
                     7.0
                   </span>
                   <Image
-                    src="/line-chart.png"
+                    src={LineChart}
                     width={370}
                     height={110.5}
                     alt="icon"
@@ -379,8 +380,8 @@ const Page = () => {
         {/* first persona */}
         <div className="relative">
           {/* persona images */}
-          <Image src="/persona1.png" width={40} height={40} alt="female-persona" className="absolute top-0 left-2 z-10" />
-          <Image src="/persona2.png" width={40} height={40} alt="male-persona" className="absolute right-3 bottom-[-20%]" />
+          <Image src={persona1} width={40} height={40} alt="female-persona" className="absolute top-0 left-2 z-10" />
+          <Image src={persona2} width={40} height={40} alt="male-persona" className="absolute right-3 bottom-[-20%]" />
           
           <div className="w-full max-w-[186px] h-[44px] p-2 rounded-lg mx-auto mb-3">
             <div className="w-full max-w-[159px] h-[48px] border-[#181818] border px-2 py-2 rounded-[10px] z-20">
@@ -405,7 +406,7 @@ const Page = () => {
     {/* second box */}
     <div className="w-full max-w-[100%] h-auto rounded-[20px] bg-[#181818] p-4">
       <div className="w-full max-w-[250px] h-auto mx-auto rounded-[20px] bg-gradient-to-r from-[rgba(7,7,7,1)] to-[rgba(24,24,24,1)] mt-3">
-        <Image src="/socials.png" width={250} height={110} alt="icon" />
+        <Image src={socials} width={250} height={110} alt="icon" />
       </div>
       <p className="pt-5 font-medium text-base leading-[14.64px] mb-3">More integrations coming soon</p>
       <p className="text-[12px] font-normal leading-[16.64px] text-[#6D6D6D] w-full">We are adding more channels for integrations. Discord, Notion, Zapier, Slack, and many more.</p>

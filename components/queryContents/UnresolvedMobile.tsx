@@ -11,7 +11,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { unResolvedTable } from "@/utils/mockData";
+import { unResolvedTable } from "@/config/mockData";
 import { FaArrowUp } from "react-icons/fa6";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
@@ -27,7 +27,7 @@ const UnresolvedMobile: React.FC<UnresolvedProps> = ({
   const [openDialog, setOpenDialog] = useState<number | null>(null);
   const router = useRouter();
 
-  const handleButtonClick = (query: string, name: string, img: string) => {
+  const handleButtonClick = (query: string, name: string, img: any) => {
     localStorage.setItem("redirectQuery", query);
     localStorage.setItem("redirectName", name);
 

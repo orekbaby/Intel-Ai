@@ -6,7 +6,9 @@ import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import {book, IntelLogo, Logo, telegram, twitter} from "@/assets/images"
 import { FaTelegramPlane, FaDiscord } from 'react-icons/fa';
+
 const Navigation = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -51,17 +53,18 @@ const Navigation = () => {
     const pathName = usePathname();
     const show =
     pathName === "/dashboard" ||
-    pathName === "/communityManager" ||
-    pathName === "/trainAi";
+    pathName === "/community-manager" ||
+    pathName === "/train-ai";
+
     const visible =
-    pathName === "/logIn" ||
-    pathName === "/connectWeb3" ||
+    pathName === "/log-in" ||
+    pathName === "/connect-web3" ||
     pathName === "/category" ||
     pathName === "/user";
 
-  const train = pathName === "/trainAi" || pathName === "/x-Agents";
+  const train = pathName === "/train-ai" || pathName === "/x-agents";
   const inline = pathName === "/workspace";
-  const smartContract = pathName === "/smartContractEngineer";
+  const smartContract = pathName === "/smart-contract-engineer";
   const userSelect = Cookies.get("user");
 
   // console.log("select user - ", userSelect);
@@ -72,7 +75,7 @@ const Navigation = () => {
     <>
       {pathName === "/" && (
         <header className="w-full absolute top-0 left-0 z-40 flex items-center justify-between bg-[#0A0908] h-[60px] md:h-[70px] lg:h-[70px] px-3 md:px-20 lg:px-20">
-          <Image src="/Logo.png" width={99} height={40} alt="logo" />
+          <Image src={Logo} width={99} height={40} alt="logo" />
 
           {/* Menu Contents */}
           <div
@@ -85,7 +88,7 @@ const Navigation = () => {
           {menuOpen && (
             <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-3/6 bg-[#181818] py-8 px-4">
               <div className="flex flex-col justify-center gap-6 text-sm font-normal">
-                <Link href="/intelDocs">
+                <Link href="/intel-docs">
                   <MenuItem label="Docs" />
                 </Link>
                 <Link href="/advantages">
@@ -98,8 +101,8 @@ const Navigation = () => {
             </div>
           )}
 
-          <div className=" hidden md:flex lg:flex items-center gap-8">
-            <Link href="/intelDocs" className="">
+          <div className="hidden md:flex lg:flex items-center gap-8">
+            <Link href="/intel-docs" className="">
               <h3 className="text-base font-medium hover:underline hover:underline-offset-4">
                 Docs
               </h3>
@@ -111,16 +114,16 @@ const Navigation = () => {
             </Link>
             <div className="flex items-center gap-2 border border-[#181818] h-[40px] rounded-[88px] px-4">
               <p className="font-normal text-sm pr-1">Community</p>
-              <Image src="/X.png" width={13.59} height={13.59} alt="twitter" />
+              <Image src={twitter} width={13.59} height={13.59} alt="twitter" />
 
               <Image
-                src="/telegram.png"
+                src={telegram}
                 width={13.59}
                 height={13.59}
                 alt="Telegram"
               />
             </div>
-            <Link href="/logIn">
+            <Link href="/log-in">
               <div className=" hidden md:block lg:block bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10 mt-10 shadow-drop">
                 <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[66px] hover:bg-[#0B0F16]">
                   Request Access
@@ -189,15 +192,7 @@ const Navigation = () => {
         </header>
       )}
 
-      {/* login navigation */}
-
-      {visible && (
-        <header className="fixed z-50 top-0 left-0 flex justify-end h-[60px] bg-black opacity-[1%] md:h-[70px] lg:h-[70px] px-3 md:px-20 lg:px-10 py-4 border-[#363636] w-[95%] border-b ">
-          <div className="flex justify-start pr-10">
-            <Image src="/Logo.png" width={97} height={30} alt="logo" />
-          </div>
-        </header>
-      )}
+     
 
       {/* workspace navigation */}
       {inline && (
@@ -215,11 +210,11 @@ const Navigation = () => {
           {menuOpen && (
             <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
               <div className="flex flex-col justify-center gap-6 text-sm font-normal">
-                <Link href="/communityManager">
-                  <MenuItem label="community Manager" />
+                <Link href="/community-manager">
+                  <MenuItem label="Community Manager" />
                 </Link>
-                <Link href="/kolInfluencer">
-                  <MenuItem label="Kol Influencer" />
+                <Link href="/smart-contract-engineer">
+                  <MenuItem label="Smart Contract Manager" />
                 </Link>
               </div>
             </div>
@@ -253,7 +248,7 @@ const Navigation = () => {
   <header className="absolute z-40 top-0 left-0 flex justify-between h-[60px] md:h-[72px] lg:h-auto px-3 md:px-20 lg:px-12 py-4 w-full bg-[#0D0D0D] gap-4 items-center">
     {/* Left Side: Smart Contract Engineer */}
     <div className="flex items-center pl-20">
-      <Link href="/smartContractEngineer">
+      <Link href="/smart-contract-engineer">
         <p className="font-medium text-[20px] text-white">Smart Contract Engineer</p>
       </Link>
     </div>
@@ -273,11 +268,11 @@ const Navigation = () => {
       {menuOpen && (
         <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
           <div className="flex flex-col justify-center gap-6 text-sm font-normal">
-            <Link href="/communityManager">
+            <Link href="/community-manager">
               <MenuItem label="community Manager" />
             </Link>
-            <Link href="/kolInfluencer">
-              <MenuItem label="Kol Influencer" />
+            <Link href="/smart-contract-engineer">
+              <MenuItem label="Smart Contract Engineer" />
             </Link>
           </div>
         </div>
@@ -379,8 +374,8 @@ const Navigation = () => {
           <Link href="/communityManager">
             <MenuItem label="Community Manager" />
           </Link>
-          <Link href="/kolInfluencer">
-            <MenuItem label="Kol Influencer" />
+          <Link href="/smart-contract-engineer">
+            <MenuItem label="Smart contract Engineer" />
           </Link>
         </div>
       </div>
@@ -389,9 +384,9 @@ const Navigation = () => {
     <div className="flex items-center justify-between w-full">
       {/* Centered Links */}
       <div className="flex items-center justify-center gap-4 mx-auto pl-[20rem]" >
-        <Link href="/trainAi">
+        <Link href="/train-ai">
           <div className={`w-auto h-[37px] rounded-[24px] px-2 py-2 flex items-center gap-2 text-[14px] leading-[14.3px] font-medium ${
-            pathname === "/trainAi" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
+            pathname === "/train-ai" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
           }`}>
             <div className="flex items-center gap-1">
               <div className="flex items-center justify-center border-2 border-[#0d0d0d] rounded-full w-[17px] h-[17px]">
@@ -404,9 +399,9 @@ const Navigation = () => {
             Community Training
           </div>
         </Link>
-        <Link href="/x-Agents">
+        <Link href="/x-agents">
           <div className={`w-auto h-[37px] rounded-[24px] px-2 py-2 flex items-center text-[14px] leading-[14.3px] font-medium ${
-            pathname === "/x-Agents" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
+            pathname === "/x-agents" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
           }`}>
             X Content Studio
           </div>
@@ -450,18 +445,18 @@ const Navigation = () => {
       {visible && (
         <header className="absolute z-40 top-0 left-0 flex justify-end h-[60px] md:h-[70px] lg:h-auto px-3 md:px-20 lg:px-10 py-4 border-[#363636] w-[95%] border-b ">
           <div className="flex justify-end pr-10">
-            <Image src="/Logo.png" width={97} height={30} alt="logo" />
+            <Image src={Logo}width={97} height={30} alt="logo" />
           </div>
 
           {/* Menu Contents */}
           {menuOpen && (
             <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
               <div className="flex flex-col justify-center gap-6 text-sm font-normal">
-                <Link href="/communityManager">
+                <Link href="/community-manager">
                   <MenuItem label="community Manager" />
                 </Link>
-                <Link href="/kolInfluencer">
-                  <MenuItem label="Kol Influencer" />
+                <Link href="/smart-contract-engineer">
+                  <MenuItem label="Smart Contract Engineer" />
                 </Link>
               </div>
             </div>

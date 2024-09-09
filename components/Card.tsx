@@ -7,6 +7,7 @@ import { GoPencil } from "react-icons/go";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import TextEditor from "./TextEditor";
 import Calendar2 from "./Calendar2";
+import { GlowImg } from "@/assets";
 
 interface CardProps {
   index: number;  
@@ -60,7 +61,7 @@ const Card: React.FC<CardProps> = ({ index, title, response, handleCardClick, ad
       </div>
       <p className="font-normal text-sm leading-[14.56px] mb-2">{response}</p>
       <div className="flex justify-start items-center gap-2 mb-10">
-        <Image src= "/glow-img.png" width={24} height={24} alt="image" />
+        <Image src={GlowImg} width={24} height={24} alt="image" />
         <div className="w-[25px] flex justify-center items-center rounded-[4px] h-[25px] bg-[#1b1b1b]">
           <IoCopyOutline className="w-[16px] h-[16px]" />
         </div>
@@ -142,14 +143,9 @@ const Card: React.FC<CardProps> = ({ index, title, response, handleCardClick, ad
 >
   Tweet Now
 </Button>
-
-          </div>
+  </div>
         </div>
-        
-
-        
-
-      </div>
+        </div>
     </div>
   );
 };

@@ -11,9 +11,13 @@ import Image from "next/image";
 import { FaCircle } from "react-icons/fa";
 import { toast, useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
-import { responsesData } from "@/utils/mockData";
+import { responsesData } from "@/config/mockData";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { FiPlus, FiEdit2, FiTrash2 } from "react-icons/fi";
+import { code, settings } from "@/assets";
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '@/store/reducers/userSlice';
+import Cookies from 'js-cookie';
 
 interface UploadedFile {
   id: number;
@@ -57,6 +61,20 @@ const Page = () => {
   const responsesEndRef = useRef<HTMLDivElement | null>(null);
   const [promptCount, setPromptCount] = useState(0);
   const maxPrompts = 10;
+
+  const selectedUser = useSelector((state:any) => state.user.selectedUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!selectedUser || selectedUser !== 'smartContractEngineer') {
+      const userFromCookie = Cookies.get('user');
+      if (userFromCookie === 'smartContractEngineer') {
+        dispatch(setUser(userFromCookie));
+      } else {
+        // Redirect if the user doesn't have permission
+      }
+    }
+  }, [selectedUser, dispatch]);
 
   const handleEnterClick = () => {
     if (promptCount >= maxPrompts) {
@@ -546,7 +564,7 @@ const Page = () => {
         <Image 
           width={24}
           height={24}
-          src="/setings.png"
+          src={settings}
           alt=""
         />
       </div>
@@ -598,7 +616,7 @@ const Page = () => {
           <Image
             width={646}
             height={627}
-            src="/code.png"
+            src={code}
             alt="code" />
         </div>
         </>

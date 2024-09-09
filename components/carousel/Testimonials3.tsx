@@ -1,5 +1,5 @@
 import React from "react";
-import { alex } from "@/utils/mockData";
+import { alex } from "@/config/mockData";
 import Image from "next/image";
 const Testimonials3 = () => {
   return (

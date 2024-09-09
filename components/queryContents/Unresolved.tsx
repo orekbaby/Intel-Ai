@@ -9,7 +9,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { unResolvedTable } from "@/utils/mockData";
+import { unResolvedTable } from "@/config/mockData";
 import { FaArrowUp } from "react-icons/fa6";
 
 interface UnresolvedProps {

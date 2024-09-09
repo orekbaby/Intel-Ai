@@ -23,7 +23,7 @@ const Page = () => {
   };
 
   const handleBackClick = () => {
-    router.push("/logIn");
+    router.push("/log-in");
   };
 
   return (

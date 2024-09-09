@@ -1,4 +1,4 @@
-import { postedContent } from "@/utils/mockData";
+import { postedContent } from "@/config/mockData";
 import React from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import ContentPostedCard from "./ContentPostedCard";

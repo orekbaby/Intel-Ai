@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, FC } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { announcementsModal } from "@/utils/mockData";
+import { announcementsModal } from "@/config/mockData";
 import { FaCircle } from "react-icons/fa";
 import Image from "next/image";
 import Calendar from "@/components/Calendar";
 import { toast, useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
+import { ring } from "@/assets";
 
 interface ModalState {
   textAreaContent: string;
@@ -240,7 +241,7 @@ const AnnouncementModal: FC = () => {
                   />
                   <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                     <Image
-                      src="/ring.png"
+                      src={ring}
                       width={18}
                       height={18}
                       alt="textarea-icon"

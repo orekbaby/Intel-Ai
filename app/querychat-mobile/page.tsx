@@ -4,13 +4,14 @@ import { FaArrowUp } from "react-icons/fa";
 import { CiMenuKebab, CiPaperplane } from "react-icons/ci";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { GlowImg } from "@/assets";
 
 interface ChatItem {
   type: "query" | "response";
   content: string;
   time: string;
   username?: string;
-  img: string;
+  img: any;
   responderName?: string;
   responderSpan?: string;
 }
@@ -49,7 +50,7 @@ const Page = () => {
           content:
             "**I'm sorry to hear you're experiencing a bug! Your issue has been escalated to our community manager, who will assist you shortly. In the meantime, could you please provide more details about the bug, such as what you were doing when it occurred and any error messages you received? This will help us resolve the issue more efficiently. Thank you for your patience!**",
           time: "Now",
-          img: "/glow-img.png",
+          img: GlowImg,
           responderName: "Intel",
           responderSpan: "ai",
         };

@@ -3,7 +3,7 @@ import {
   metadappInfo,
   optionTriggers,
   previousListings,
-} from "@/utils/mockData";
+} from "@/config/mockData";
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import AccordionComponent from "./AccordionComponent";

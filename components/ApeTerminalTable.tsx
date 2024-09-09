@@ -8,7 +8,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 
-import { trainingHistory } from "@/utils/mockData";
+import { trainingHistory } from "@/config/mockData";
 const ApeTerminalTable = () => {
   return (
     <>

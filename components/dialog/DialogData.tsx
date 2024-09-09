@@ -1,7 +1,7 @@
 "use client";
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '@/redux/combinedStore'; // Adjust import paths as needed
-import { completeTrain } from '@/appSlice';
+import { RootState, AppDispatch } from '@/store/combinedStore'; // Adjust import paths as needed
+import { completeTrain } from '@/store/reducers/appSlice';
 import React, { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Image from "next/image";
@@ -15,16 +15,17 @@ import {
   userInput,
   userInput2,
   userInput3,
-} from "@/utils/mockData";
+} from "@/config/mockData";
 import SocialMenu from "../SocialMenu";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
+import { avatar, GlowImg, onboard } from '@/assets';
 
 
-const DialogData: React.FC = () => {
+  const DialogData: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null); // State to track active button index
   const [conversation, setConversation] = useState<any[]>([]); // State to track conversation
   const [promptCount, setPromptCount] = useState<number>(0); // State to track prompt count
@@ -78,12 +79,12 @@ const DialogData: React.FC = () => {
         question: inputValue,
         time: "Now",
         user: "You",
-        image: "/avatar.png",
+        image: avatar,
       };
       const newAiResponse = {
         response:
           "With a commitment to providing tools for investment, asset organization, and management in one convenient platform, GetEquity ensures a safe and efficient investment experience for accredited investors, from high-net-worth individuals to industry veterans.",
-        aiImage: "/glow-img.png",
+        aiImage: GlowImg,
         name: " Intel",
         span: "ai",
       };
@@ -115,7 +116,7 @@ const DialogData: React.FC = () => {
   // Handler function to dispatch the completeTrain action and navigate
   const handleNavigation = () => {
     dispatch(completeTrain());
-    router.push('/trainAi');
+    router.push('/train-ai');
   };
 
   const { toast } = useToast()
@@ -284,7 +285,7 @@ const DialogData: React.FC = () => {
                     <Image
                       width={120}
                       height={120}
-                      src="/onboard.png"
+                      src={onboard}
                       className="mx-auto mb-5 pt-10"
                       alt=""
                     />

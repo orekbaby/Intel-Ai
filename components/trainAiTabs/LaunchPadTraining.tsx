@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { FaTelegramPlane } from "react-icons/fa";
-import { trainingHistory } from "@/utils/mockData";
 import Link from "next/link";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import ApeTerminalTable from "../ApeTerminalTable";

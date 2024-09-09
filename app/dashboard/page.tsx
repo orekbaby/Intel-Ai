@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
-import { integrationDashboard, proUpgrade } from "@/utils/mockData";
+import { integrationDashboard, proUpgrade } from "@/config/mockData";
 import { CiCircleCheck } from "react-icons/ci";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { DashboardIcon, StarCenter, StarRight } from "@/assets";
 
-const DashboardPage: React.FC = () => {
+const Page: React.FC = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const handleCloseModal = () => {
@@ -44,7 +45,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
               {/* first star */}
               <div className="absolute top-[12%] left-[40%] ">
                 <Image
-                  src="/star-center.png"
+                  src={StarCenter}
                   width={245.9}
                   height={59.25}
                   alt="icon"
@@ -66,7 +67,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
               {/* third */}
               <div className="absolute bottom-[20%] right-[3%]">
                 <Image
-                  src="/star-right.png"
+                  src={StarRight}
                   width={245.9}
                   height={59.25}
                   alt="icon"
@@ -76,7 +77,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
 
               <div className="px-3 md:px-10 lg:px-10 py-10 md:py-7 lg:py-7">
                 <Image
-                  src="/dashboard-icon.png"
+                  src={DashboardIcon}
                   width={71}
                   height={71}
                   alt="icon"
@@ -222,4 +223,4 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
   );
 };
 
-export default DashboardPage;
+export default Page;

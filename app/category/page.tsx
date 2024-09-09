@@ -2,16 +2,34 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { description } from "@/utils/mockData";
+import { description } from "@/config/mockData";
 import { FaArrowLeft } from "react-icons/fa";
 import { useSelectedCategory } from "@/context/SelectedCategoryContext";
- // Import the context
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+
+
 
 const Page = () => {
+  const style2: React.CSSProperties = {
+    background:
+      "radial-gradient(circle, rgba(3, 255, 163, 0.3), rgba(16, 12, 14, 0.2))",
+    backgroundBlendMode: "darken",
+    filter: "blur(60px)",
+  };
+  
+  const selectedUser = useSelector((state:any) => state.user.selectedUser);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const { setSelectedCategory } = useSelectedCategory();
   // Get the setSelectedCategory function from context
   const router = useRouter();
+
+  useEffect(() => {
+    if (selectedUser === 'smartContractEngineer') {
+      router.push('/onboard');
+    }
+  }, [selectedUser, router]);
 
   const handleOptionClick = (index: number) => {
     setSelectedOption(index);
@@ -29,6 +47,16 @@ const Page = () => {
   return (
     <div className="mt-4 md:mt-20 lg:mt-16 mx-auto">
       <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-48">
+      <div
+          style={style2}
+          className="top-[-18%] left-[-20%] absolute w-[20%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
+        ></div>
+
+        {/* Bottom gradient styling */}
+        <div
+          style={style2}
+          className="bottom-[-70%] right-0 absolute w-[40%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
+        ></div> 
         {/* Back button */}
         <div className="mb-6 flex justify-start absolute top-[-8%] md:top-[-10%] left-15s md:left-10 lg:left-10">
           <button

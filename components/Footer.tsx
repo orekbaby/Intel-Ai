@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { IntelLogo, Logo } from "@/assets";
 
 const Footer = () => {
   const style4: React.CSSProperties = {
@@ -19,7 +20,7 @@ const Footer = () => {
           <div className="w-full md:w-1/2 lg:w-1/2 flex">
             <div className="block md:hidden lg:hidden">
               <Image
-                src="/Logo.png"
+                src={IntelLogo}
                 alt="Default Logo"
                 width={85.67}
                 height={24}
@@ -29,7 +30,7 @@ const Footer = () => {
 
             <div className="hidden md:block lg:block">
               <Image
-                src="/intel-logo.png"
+                src={IntelLogo}
                 alt="Default Logo"
                 width={215}
                 height={50}

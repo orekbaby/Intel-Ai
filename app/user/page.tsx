@@ -5,6 +5,9 @@ import { FaArrowLeft } from "react-icons/fa6";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import CardComponent from "@/components/CardComponent";
+import { influencer, manager } from "@/assets";
+import { useDispatch } from 'react-redux';
+import { setUser } from '@/store/reducers/userSlice';
 
 const Page = () => {
   const style2: React.CSSProperties = {
@@ -14,42 +17,42 @@ const Page = () => {
     filter: "blur(60px)",
   };
 
-  const [selectUser, setSelectUser] = useState<string>("");
+  const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSelectUser = (selectedOption: string) => {
-    setSelectUser(selectedOption);
-    Cookies.set("user", selectedOption, { expires: 7, path: '/' }); // expires in 7 days
-
-    console.log('Cookie set:', Cookies.get("user")); // This should log the correct value
-    router.push("/category");
+  const handleSelectUser = (selectedOption:string) => {
+    dispatch(setUser(selectedOption));
+    if (selectedOption === 'smartContractEngineer') {
+      router.push('/onboard');
+    } else {
+      router.push('/category');
+    }
   };
-  
+
   const cards = [
     {
-      imgSrc: "/manager.png",
+      imgSrc: manager,
       title: "Community Owner/Manager",
-      description:
-        "Select a dedicated community manager to help nurture and grow your online community, ensuring a vibrant and engaged environment.",
-      onClick: () => handleSelectUser("communityManager"),
+      description: "Select a dedicated community manager to help nurture and grow your online community, ensuring a vibrant and engaged environment.",
+      onClick: () => handleSelectUser('communityManager'),
       isClickable: true,
     },
     {
-      imgSrc: "/influencer.png",
+      imgSrc: influencer,
       title: "Smart Contract Engineer",
-      description:
-        " Audit, optimize, and enhance your smart contracts with tailored insights and automated tools designed to make you a 10x engineer.",
-      onClick: () => handleSelectUser("smartContractEngineer"),
+      description: "Audit, optimize, and enhance your smart contracts with tailored insights and automated tools designed to make you a 10x engineer.",
+      onClick: () => handleSelectUser('smartContractEngineer'),
       isClickable: true,
     },
   ];
+
 
   return (
     <main className="mt-4 md:mt-20 lg:mt-28 mx-auto">
       <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-60">
         {/* Back button */}
         <div className="mb-6 flex justify-start absolute top-[-40%] left-10">
-          <Link href="/connectWeb3">
+          <Link href="/connect-web3">
             <button className="flex items-center text-[#707070]">
               <FaArrowLeft className="mr-2 text-[#707070]" />
               Back

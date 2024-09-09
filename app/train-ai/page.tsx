@@ -1,12 +1,29 @@
-import React from "react";
-
+"use client"
+import React, { useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ApeTerminalTraining from "@/components/trainAiTabs/ApeTerminalTraining";
 import LaunchPadTraining from "@/components/trainAiTabs/LaunchPadTraining";
 import ProjectTraining from "@/components/projectTrainTabs/ProjectTraining";
 import QueryEscalationProtocol from "@/components/projectTrainTabs/QueryEscalationProtocol";
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '@/store/reducers/userSlice';
+import Cookies from 'js-cookie';
 
 const Page = () => {
+
+  const selectedUser = useSelector((state:any) => state.user.selectedUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!selectedUser || selectedUser !== 'communityManager') {
+      const userFromCookie = Cookies.get('user');
+      if (userFromCookie === 'communityManager') {
+        dispatch(setUser(userFromCookie));
+      } else {
+        // Redirect if the user doesn't have permission
+      }
+    }
+  }, [selectedUser, dispatch]);
   return (
     <>
       <div className="pl-2 md:pl-20 lg:pl-20 w-full h-[100vh]">

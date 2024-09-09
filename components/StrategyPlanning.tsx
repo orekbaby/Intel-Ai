@@ -15,6 +15,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Image from "next/image";
 import Calendar4 from "./Calendar4";
 import Cookies from "js-cookie";
+import { loader, onboard } from "@/assets";
 
 
 const accordionData: AccordionData[] = [
@@ -484,7 +485,7 @@ const handleContinueChatting = async () => {
           <Image
             width={48}
             height={48}
-            src="/loader.png"
+            src={loader}
             className="mx-auto mb-5 pt-10 bg-[#181818]"
             alt=""
           />
@@ -565,7 +566,7 @@ const handleContinueChatting = async () => {
                 <Image
                   width={120}
                   height={120}
-                  src="/onboard.png"
+                  src={onboard}
                   className="mx-auto mb-5 pt-5"
                   alt=""
                 />

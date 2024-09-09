@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaTelegramPlane } from "react-icons/fa";
 import DialogData from "@/components/dialog/DialogData";
-import { userDocInfo } from "@/utils/mockData";
+import { userDocInfo } from "@/config/mockData";
+import { IntelAi, loader } from "@/assets";
 
 const page = () => {
   return (
@@ -27,7 +28,7 @@ const page = () => {
         <Image
           width={49.34}
           height={10}
-          src="/intel-ai.png"
+          src={IntelAi}
           alt="logo"
           className="ml-10 mb-1"
         />
@@ -62,7 +63,7 @@ const page = () => {
               <Image
                 width={48}
                 height={48}
-                src="/loader.png"
+                src={loader}
                 className="mx-auto mb-5 pt-10 bg-[#181818]"
                 alt=""
               />

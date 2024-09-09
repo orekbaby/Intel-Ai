@@ -8,8 +8,9 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import DialogData from "@/components/dialog/DialogData";
 import Link from "next/link";
-import { userDocInfo } from "@/utils/mockData";
+import { userDocInfo } from "@/config/mockData";
 import { Button } from "@/components/ui/button";
+import { ContentInside, FileImg, IntelLogo } from "@/assets";
 
 const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +28,7 @@ const Page = () => {
       {isLoading ? (
         <div className="w-full ml-2 md:ml-10 lg:ml-10 xl:ml-10 2xl:ml-10 border-l-2 border-[#03FFA3] flex md:hidden lg:hidden xl:hidden 2xl:hidden h-screen bg-[#181818] ">
           <Image
-            src="/content-inside.png"
+            src={ContentInside}
             width={430}
             height={809}
             alt="content"
@@ -122,7 +123,7 @@ const Page = () => {
                           >
                             <div className="flex flex-col">
                               <Image
-                                src="/file-img.png"
+                                src={FileImg}
                                 width={36}
                                 height={36}
                                 alt="file-img"
@@ -185,7 +186,7 @@ const Page = () => {
                     <Image
                       width={49.34}
                       height={10}
-                      src="/intel-ai.png"
+                      src={IntelLogo}
                       alt="logo"
                       className="ml-10 mb-1"
                     />

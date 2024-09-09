@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelectedCategory } from "@/context/SelectedCategoryContext"; 
 import { useUserInput } from "@/context//UserInputContext";
+import { ContentInside } from "@/assets";
 
 const Page: React.FC = () => {
  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -65,7 +66,7 @@ const Page: React.FC = () => {
 
     if (uploadedFile && url ) {
       if (validateUrl(url)) {
-        router.push("/workspaceData");
+        router.push("/workspace-data");
       } else {
         toast.error("Please enter a valid URL.");
       }
@@ -133,7 +134,7 @@ const Page: React.FC = () => {
                       <button
                         type="submit"
                         className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300  w-[370px] h-[52px] md:h-10 lg:h-10 xl:h-[43px] 2xl:h-[52px] md:w-[153px] lg:w-[153px] rounded-[24px] hover:bg-[#0B0F16] text-xs"
-                        onClick={() => router.push("/workSpaceDataMobile")}
+                        onClick={() => router.push("/workSpace-data-mobile")}
                       >
                         Submit
                       </button>
@@ -144,7 +145,7 @@ const Page: React.FC = () => {
               {/* Image section */}
               <div className="hidden md:block lg:block w-[60%] bg-[#181818] rounded-[20px] h-[809px]">
                 <Image
-                  src="/content-inside.png"
+                  src={ContentInside}
                   width={878}
                   height={809}
                   alt="content"

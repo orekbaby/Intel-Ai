@@ -12,8 +12,9 @@ import {
   userInput,
   userInput2,
   userInput3,
-} from "@/utils/mockData";
+} from "@/config/mockData";
 import SocialMenu from "./SocialMenu";
+import { avatar, GlowImg } from "@/assets";
 interface DialogData2Props {
   onCompleteSimulation: () => void;
 }
@@ -66,12 +67,12 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
         question: inputValue,
         time: "Now",
         user: "You",
-        image: "/avatar.png",
+        image: avatar,
       };
       const newAiResponse = {
         response:
           "With a commitment to providing tools for investment, asset organization, and management in one convenient platform, GetEquity ensures a safe and efficient investment experience for accredited investors, from high-net-worth individuals to industry veterans.",
-        aiImage: "/glow-img.png",
+        aiImage: GlowImg,
         name: " Intel",
         span: "ai",
       };

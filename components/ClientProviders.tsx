@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { Provider } from 'react-redux';
-import { combinedStore } from '@/redux/combinedStore';
+import { combinedStore } from '@/store/combinedStore';
 
 
 interface ClientProvidersProps {

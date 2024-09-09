@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import appReducer from '@/appSlice';
+import appReducer from '@/store/reducers/appSlice';
+import userReducer from '@/store/reducers/userSlice';
 
 export const combinedStore = configureStore({
   reducer: {
     app: appReducer,
-    
+    user: userReducer,
   },
 });
 

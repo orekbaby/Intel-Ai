@@ -1,5 +1,5 @@
 import React from "react";
-import { hookModal } from "@/utils/mockData";
+import { hookModal } from "@/config/mockData";
 
 interface HookListProps {
   onSelect: (content: string) => void;

@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { informationModal } from "@/utils/mockData";
+import { informationModal } from "@/config/mockData";
 import Image from "next/image";
 import { toast, useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
+import { ring } from "@/assets";
 
 
 
@@ -130,7 +131,7 @@ const OtherInformationModal: React.FC = () => {
                   <input
                     type="text"
                     id="inputField"
-                    className="text-input3 mt-2 font-normal italic text-xs leading-[22.68px]"
+                    className="text-input3 mt-2 font-normal italic text-xs leading-[22.68px] text-white"
                     placeholder="What do you want to add?"
                   />
                   <hr className="border-b border-[#222222] pt-3" />
@@ -147,7 +148,7 @@ const OtherInformationModal: React.FC = () => {
                 <div className="pt-8 pb-3 px-4 md:px-2 lg:px-2 w-auto">
                   <div className="relative w-[360px] md:w-[420px] lg:w-[420px] h-[108px] bg-[#0D0D0D] rounded-[12px] border border-[#363636]">
                     <textarea
-                      className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#7B7B7B] font-normal italic text-xs"
+                      className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-white font-normal italic text-xs"
                       placeholder="Add more information"
                       value={modalStates[index].newContent}
                       onChange={(e) =>
@@ -156,7 +157,7 @@ const OtherInformationModal: React.FC = () => {
                     />
                     <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                       <Image
-                        src="/ring.png"
+                        src={ring}
                         width={18}
                         height={18}
                         alt="textarea-icon"

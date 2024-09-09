@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { FaCircle } from "react-icons/fa";
+import { ring } from "@/assets";
 
 interface ModalState {
   newBullet: string;
@@ -80,7 +81,7 @@ const AccordionComponent: React.FC<AccordionProps> = ({
               />
               <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                 <Image
-                  src="/ring.png"
+                  src={ring}
                   width={18}
                   height={18}
                   alt="textarea-icon"

@@ -2,7 +2,9 @@
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 
-const Carousel = dynamic(() => import("@/components/Carousel"), {
+
+
+  const Carousel = dynamic(() => import("@/components/Carousel"), {
   ssr: false,
   loading: () => (
     <div className="flex-col justify-center items-center w-full h-24 hidden md:flex lg:flex xl:flex 2xl:flex">
@@ -19,7 +21,7 @@ import {
   kolsInfluencers,
   sorting,
   sponsors,
-} from "@/utils/mockData";
+} from "@/config/mockData";
 import Marquee from "react-fast-marquee";
 
 import "../styles/fonts.css";
@@ -32,7 +34,8 @@ import {
 } from "@/components/ui/accordion";
 import Link from "next/link";
 import Image from "next/image";
-import { accordionData } from "@/utils/mockData";
+import { accordionData } from "@/config/mockData";
+import { AiImg, Ellipse3, VectorQuestion } from "@/assets";
 const Footer = dynamic(() => import("@/components/Footer"), {
   ssr: false,
   loading: () => (
@@ -240,7 +243,7 @@ export default function Home() {
     genuinely personal.
   </p>
   <Image
-    src="/ai-img.png"
+    src={AiImg}
     width={1002}
     height={361.55}
     alt="hero-img"
@@ -364,7 +367,8 @@ export default function Home() {
                   src={row.img}
                   width={122.85}
                   height={32.39}
-                  alt="sponsors-img w-[101.23px] h-[20.72px] md:h-[32.39px]
+                  alt={`sponsor-img-${index}`} 
+                  className="w-[101.23px] h-[20.72px] md:h-[32.39px]
                  lg:h-[32.39px] md:w-[122.85px] lg:w-[122.85px]"
                 />
               </div>
@@ -677,7 +681,7 @@ export default function Home() {
           ></div>
           {/* rainbow- style */}
           <Image
-            src="/ellipse3.png"
+            src={Ellipse3}
             width={562.86}
             height={100}
             alt="eclipse"
@@ -717,7 +721,7 @@ export default function Home() {
             <div className="w-fit relative h-auto md:h-[157px] lg:h-auto overflow-hidden md:w-[784px] lg:w-[784px] px-3 md:px-6 lg:px-8 pt-6 md:pt-4 lg:pt-10 pb-0 md:pb-4 lg:pb-4 rounded-[20px] mb-24 md:mb-28 lg:mb-10 mt-40 bg-gradient-to-r from-[rgba(189,254,28,.9)] via-[rgba(37,184,222,.9)] to-[rgba(70,13,255,.9)] mx-auto">
               <div className="absolute inset-0 bg-background-image w-full h-full bg-center bg-no-repeat bg-contain z-0">
                 <Image
-                  src="/vector-question.png"
+                  src={VectorQuestion}
                   width={350}
                   height={250}
                   alt="bg-img"

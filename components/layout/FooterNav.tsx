@@ -5,7 +5,7 @@ import { FaHome } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/combinedStore';
+import { RootState } from '@/store/combinedStore';
 import { SiBentobox } from "react-icons/si";
 import { MdOutlineSignalCellularAlt } from "react-icons/md";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";

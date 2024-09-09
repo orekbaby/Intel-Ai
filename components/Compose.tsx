@@ -109,6 +109,25 @@ const Compose: React.FC<ComposeProps> = ({ addEditorContent }) => {
     setEditorContent("");
   };
 
+const handleEditSave = (index: number) => {
+  const updatedResponses = [...typedResponses];
+  
+  // Strip HTML tags from the content
+  const plainTextContent = editorContent.replace(/<\/?[^>]+(>|$)/g, "");
+  
+  updatedResponses[index] = plainTextContent;
+  setTypedResponses(updatedResponses);
+
+  // Save to localStorage
+  localStorage.setItem('typedResponses', JSON.stringify(updatedResponses));
+
+  setSavedSuccessfully(true);
+  setTimeout(() => {
+      setSavedSuccessfully(false);
+      setIsDialogOpen(false);
+  }, 2000);
+};
+
   const handleGenerateResponses = () => {
     if (!userInput.trim()) return;
 
@@ -242,7 +261,7 @@ const Compose: React.FC<ComposeProps> = ({ addEditorContent }) => {
     let updatedContent = JSON.stringify(contentArray);
     Cookies.set("postedContents", updatedContent, {
       expires: 7,
-      path: "/x-Agents",
+      path: "/x-agents",
       secure: true,
     });
   };
@@ -301,24 +320,7 @@ const handlePostClick = (index: number) => {
 
 
 
-const handleEditSave = (index: number) => {
-  const updatedResponses = [...typedResponses];
-  
-  // Strip HTML tags from the content
-  const plainTextContent = editorContent.replace(/<\/?[^>]+(>|$)/g, "");
-  
-  updatedResponses[index] = plainTextContent;
-  setTypedResponses(updatedResponses);
 
-  // Save to localStorage
-  localStorage.setItem('typedResponses', JSON.stringify(updatedResponses));
-
-  setSavedSuccessfully(true);
-  setTimeout(() => {
-      setSavedSuccessfully(false);
-      setIsDialogOpen(false);
-  }, 2000);
-};
 
 // useEffect remains the same
 

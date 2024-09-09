@@ -9,7 +9,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { allTable } from "@/utils/mockData";
+import { allTable } from "@/config/mockData";
 import { FaArrowUp } from "react-icons/fa6";
 
 const All = () => {

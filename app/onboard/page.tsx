@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation"; // Ensure you have this import at t
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowLeft } from "react-icons/fa";
+import { onboard } from "@/assets";
 
 const Page = () => {
   const style2: React.CSSProperties = {
@@ -50,7 +51,7 @@ const Page = () => {
                 <Image
                   width={200}
                   height={200}
-                  src="/onboard-image.png"
+                  src={onboard}
                   className="mx-auto mb-5 w-[143px] h-[143px] md:w-[200px] lg:w-[200px] md:h-[200px] lg:h-[200px]"
                   alt=""
                 />
