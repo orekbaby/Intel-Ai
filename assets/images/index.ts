@@ -66,7 +66,6 @@ import persona2 from "./persona2.png";
 import portal from "./portal.png";
 import profile from "./profile.png";
 import query from "./query.png";
-import QuestionsPng from "./QuestionsPng.png";
 import ring from "./ring.png";
 import RiseSvg from "./RiseSvg.svg";
 import SarahThompson from "./SarahThompson.png";
@@ -80,7 +79,6 @@ import StarImage from "./StarImage.png";
 import StarImg from "./StarImg.png";
 import StarLeft from "./StarLeft.png";
 import StarPro from "./StarPro.png";
-import StarRight from "./StarRight.png";
 import tag from "./tag.png";
 import TelegramBar from "./TelegramBar.png";
 import TelegramIcon from "./TelegramIcon.png";
@@ -171,7 +169,6 @@ export {
   portal,
   profile,
   query,
-  QuestionsPng,
   ring,
   RiseSvg,
   SarahThompson,
@@ -185,8 +182,7 @@ export {
   StarImg,
   StarLeft,
   StarPro,
-  StarRight,
-  tag,
+   tag,
   TelegramBar,
   TelegramIcon,
   telegram,
