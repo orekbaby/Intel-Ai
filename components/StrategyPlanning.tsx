@@ -79,14 +79,14 @@ interface AccordionData {
 }
 
 interface StrategyPlanningProps {
-  
   handleSave: () => void;
   addStrategyContent: (date: string, time: string, content: string) => void;
-  // Add any other props you need to pass here, such as:
+  onCloseModal: () => void;  // Add onCloseModal to the props
   strategies: Strategy[]; // Example prop if you're passing an array of strategies
 }
 
-const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strategies, addStrategyContent }) => {
+
+const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strategies, onCloseModal, addStrategyContent }) => {
 
   const [isReadMoreStatic, setIsReadMoreStatic] = useState<boolean>(false);
   const [isReadMore, setIsReadMore] = useState<Record<number, boolean>>({});
