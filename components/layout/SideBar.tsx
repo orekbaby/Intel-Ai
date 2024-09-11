@@ -81,7 +81,7 @@ const SideBar = () => {
     pathName === "/workspace" ||
     pathName === "/workspace-data" ||
     pathName === "/train-ai" ||
-    pathName === "/x-agent" || pathName === "/smart-contract-engineer";
+    pathName === "/x-agents" || pathName === "/smart-contract-engineer";
     
 
   //  pathName === "/communityManager" ||

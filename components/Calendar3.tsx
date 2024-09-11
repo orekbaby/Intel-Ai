@@ -97,7 +97,7 @@ const Calendar3: FC<CalendarProps> = ({
     let updatedContent = JSON.stringify(contentArray);
     Cookies.set("tweetContents", updatedContent, {
       expires: 7,
-      path: "/x-agent",
+      path: "/x-agents",
       secure: true,
     });
   };
