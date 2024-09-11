@@ -4,6 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaArrowLeft } from "react-icons/fa";
 import { onboard } from "@/assets";
+import { useState } from "react";
+import { setOnBoard } from '@/store/reducers/userSlice';
+import { useDispatch, useSelector } from "react-redux";
 
 const Page = () => {
   const style2: React.CSSProperties = {
@@ -12,12 +15,20 @@ const Page = () => {
     backgroundBlendMode: "darken",
     filter: "blur(60px)",
   };
-  // Rename the component to start with an uppercase letter
+ 
+  const dispatch = useDispatch();
+  const onBoard = useSelector((state:any) => state.user.onBoard);
+
   const router = useRouter();
 
-  const handleOnboard = () => {
-    router.push("/dashboard");
+  
+  
+
+  const handleOnBoard = () => {
+    dispatch(setOnBoard(true));  // Set the onBoard state to true
+    router.push("/dashboard");  // Navigate to the dashboard
   };
+ 
 
   return (
     <>
@@ -68,7 +79,7 @@ const Page = () => {
                 className="bg-white items-center flex justify-center text-center 
                  text-xs font-normal ring-offset-white focus-visible:outline-none
                  text-[#0D0D0D]  w-[298px] h-[55px] md:h-10 lg:h-10 md:w-[153px] lg:w-[153px]  rounded-[66px] mx-auto shadow-drop2"
-                onClick={handleOnboard}
+                onClick={handleOnBoard}
               >
                 Go to dashboard
               </button>

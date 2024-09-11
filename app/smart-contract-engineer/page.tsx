@@ -18,6 +18,8 @@ import { code, settings } from "@/assets";
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '@/store/reducers/userSlice';
 import Cookies from 'js-cookie';
+import gsap from 'gsap';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
 interface UploadedFile {
   id: number;
@@ -53,14 +55,16 @@ const initialWorkspaceData: WorkspaceData = {
 };
 
 const Page = () => {
+
+  gsap.registerPlugin(ScrollToPlugin);
   
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [prompt, setPrompt] = useState<string>(""); // Current prompt input
   const [responses, setResponses] = useState<ResponseType[]>([]);
-  const responsesEndRef = useRef<HTMLDivElement | null>(null);
   const [promptCount, setPromptCount] = useState(0);
   const maxPrompts = 10;
+
 
   const selectedUser = useSelector((state:any) => state.user.selectedUser);
   const dispatch = useDispatch();
@@ -153,15 +157,7 @@ const Page = () => {
     setUploadedFiles(updatedFiles);
   };
 
-  const scrollToBottom = () => {
-    if (responsesEndRef.current) {
-      responsesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  useEffect(() => {
-    scrollToBottom(); // Auto-scroll when responses change
-  }, [responses]);
+  
 
   
 
@@ -273,23 +269,33 @@ const Page = () => {
   // Handle pressing Enter for adding or editing
   const handleKeyPress = (e: React.KeyboardEvent, id: number | null) => {
     if (e.key === "Enter") {
-      if (id === null) {
-        // Handle adding new workspace
-        if (newWorkspaceName.trim()) {
-          handleAddWorkspace();
-        }
-      } else {
-        // Handle editing an existing workspace
-        if (newWorkspaceName.trim()) {
-          handleEditWorkspace(id, newWorkspaceName);
-          setDialogOpen(false); // Close dialog
-          toast({
-            description: "Your workspace has been updated.",
-          });
-          setEditingWorkspaceId(null); // Exit edit mode
-        }
+      handleWorkspace(id);
+    }
+  };
+  
+  const handleWorkspace = (id: number | null) => {
+    if (id === null) {
+      // Handle adding new workspace
+      if (newWorkspaceName.trim()) {
+        handleAddWorkspace();
+      }
+    } else {
+      // Handle editing an existing workspace
+      if (newWorkspaceName.trim()) {
+        handleEditWorkspace(id, newWorkspaceName);
+        setDialogOpen(false); // Close dialog
+        toast({
+          description: "Your workspace has been updated.",
+        });
+        setEditingWorkspaceId(null); // Exit edit mode
       }
     }
+  };
+  
+  // For button click event
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    handleWorkspace(null); // Pass `null` for adding a new workspace
   };
   
   
@@ -305,7 +311,34 @@ const Page = () => {
       setCurrentWorkspace(0); // No workspaces left
     }
   };
+
+  useEffect(() => {
+    gsap.to(window, { duration: 0, scrollTo: { y: 0 }, ease: "none" }); // Ensures the page starts at the top with no scroll
+    document.body.style.overflow = "hidden"; // Prevent scrolling
+
+    return () => {
+      document.body.style.overflow = "auto"; // Reset overflow when the component unmounts
+    };
+  }, []);
   
+
+  // Function to scroll to the bottom of the responses smoothly using GSAP
+  const scrollableRef = useRef<HTMLDivElement>(null);
+  const responsesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (scrollableRef.current && responsesEndRef.current) {
+      gsap.to(scrollableRef.current, { // Target the scrollable container using ref
+        duration: 1,
+        scrollTo: { y: responsesEndRef.current.offsetTop, autoKill: false },
+        ease: "power2.out",
+      });
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom(); // Automatically scroll to the bottom when responses are updated
+  }, [responses]);
   
   return (
 <>
@@ -329,9 +362,12 @@ const Page = () => {
 
       {/* Right Side: Daily Usage Quota */}
       <div>
-      <div className="pr-4 text-white">
-        <button className="font-normal text-sm leading-[12px]" onClick={handleEnterClick}>| {promptCount} / {maxPrompts} daily usage quota</button>
-      </div>
+      <div className="fixed right-4 top-20 pr-4 text-white z-50">
+  <button className="font-normal text-sm leading-[12px]" onClick={handleEnterClick}>
+    | {promptCount} / {maxPrompts} daily usage quota
+  </button>
+</div>
+
       {/* Other JSX elements, including input and button for sending prompts */}
       
     </div>
@@ -342,14 +378,14 @@ const Page = () => {
       {/* Left Side: Two Rows */}
       <div className="flex flex-col w-1/2 gap-4">
         {/* Row 1: Task Type */}
-        <h3 className="font-semibold text-base leading-[28.9px]">Task Type</h3>
+        <h3 className="font-semibold text-sm leading-[28.9px]">Task Type</h3>
 
         {/* Row 2: Fix Bug with Dropdown */}
         <div className="relative flex items-center justify-between w-full h-[48px] p-[10px] bg-[#131313] text-white rounded-[12px]">
         <select className="appearance-none bg-transparent text-white outline-none w-full pr-8">
-          <option className="text-sm leading-[16.64px]" value="Fix Bug">Fix Bug</option> 
-             <option className="text-sm leading-[16.64px]" value="Unit Testing">Unit Testing</option>
-            <option className="text-sm leading-[16.64px]" value="Smart Contract Audit">Smart Contract Audit</option>
+          <option className="text-xs leading-[16.64px]" value="Fix Bug">Fix Bug</option> 
+             <option className="text-xs leading-[16.64px]" value="Unit Testing">Unit Testing</option>
+            <option className="text-xs leading-[16.64px]" value="Smart Contract Audit">Smart Contract Audit</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -362,14 +398,14 @@ const Page = () => {
       {/* Right Side: Two Rows */}
       <div className="flex flex-col w-1/2 gap-4">
         {/* Row 1: Developer Proficiency */}
-        <h3 className="font-semibold text-base leading-[28.9px]">Developer Proficiency</h3>
+        <h3 className="font-semibold text-sm leading-[28.9px]">Developer Proficiency</h3>
 
         {/* Row 2: Junior with Dropdown */}
         <div className="relative flex items-center justify-between w-full h-[48px] p-[10px] bg-[#131313] text-white rounded-[12px]">
   <select className="appearance-none bg-transparent text-white outline-none w-full pr-8">
-    <option className="text-sm leading-[16.64px]" value="option3">Junior</option> 
-    <option className="text-sm leading-[16.64px]" value="option1">Mid Level</option>
-    <option className="text-sm leading-[16.64px]" value="option2">Senior</option>
+    <option className="text-xs leading-[16.64px]" value="option3">Junior</option> 
+    <option className="text-xs leading-[16.64px]" value="option1">Mid Level</option>
+    <option className="text-xs leading-[16.64px]" value="option2">Senior</option>
   </select>
   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -379,8 +415,8 @@ const Page = () => {
   </div>
   </div>
     </div>
-    <div className="pt-10 pb-16">
-      <h3 className="font-semibold text-base leading-[28.9px] mb-5">Task Instruction (Raw Prompt)</h3>
+    <div className="pt-10 pb-5">
+      <h3 className="font-semibold text-sm leading-[28.9px] mb-5">Task Instruction (Raw Prompt)</h3>
       
       <div className="bg-[#131313] pb-3">
       <textarea 
@@ -390,7 +426,7 @@ const Page = () => {
     onChange={(e) => setPrompt(e.target.value)}
   />
   <div className="flex justify-end">
-    <button className="w-[80px] h-[38px] bg-[#03FFA3] font-normal text-base text-black rounded-[40px] px-[19px] pt-[3px] pb-[6px]" onClick={handleEnterClick} >
+    <button className="w-[80px] h-[38px] bg-[#03FFA3] font-normal text-sm text-black rounded-[40px] px-[19px] pt-[3px] pb-[6px]" onClick={handleEnterClick} >
       Enter
     </button>
   </div>
@@ -399,7 +435,7 @@ const Page = () => {
     </div>
 
     <div className="flex justify-between items-center pb-5">
-     <h4 className="font-semibold text-sm leading-[28.9px] mb-5 pt-5">
+     <h4 className="font-semibold text-xs leading-[28.9px] mb-5 pt-2">
       Code Context
       </h4>
        <div className="flex gap-3">
@@ -413,7 +449,7 @@ const Page = () => {
     onChange={handleSelectChange}
   >
     {workspaces.map((workspace) => (
-  <option className="mb-5 font-normal text-sm" key={workspace.id} value={workspace.id}>
+  <option className="mb-5 font-normal text-xs" key={workspace.id} value={workspace.id}>
     Workspace: {workspace.name}
   </option>
 ))}
@@ -435,7 +471,7 @@ const Page = () => {
 
   <DialogContent className="bg-[#131313] outline-0 w-[541px] border-none h-[auto] p-[21px_18px_105.5px_19px] rounded-[10px_0px_0px_0px]">
     <div className="flex justify-between items-center">
-      <h2 className="font-medium text-lg text-white">Workspace Manager</h2>
+      <h2 className="font-medium text-base text-white">Workspace Manager</h2>
 
       {/* Plus Icon for Adding a New Workspace */}
       {!showSecondInput && (
@@ -443,7 +479,7 @@ const Page = () => {
           <div className="bg-[#1d1d1d] w-[22px] h-[22px] p-[5.5px] rounded-[2.2px_0px_0px_0px]">
             <FiPlus className="w-[11px] h-[11px] text-white" />
           </div>
-          <span className="text-white font-normal text-base leading-[25.92px]">Add New</span>
+          <span className="text-white font-normal text-sm leading-[25.92px]">Add New</span>
         </div>
       )}
     </div>
@@ -459,7 +495,7 @@ const Page = () => {
             onChange={(e) => handleEditWorkspace(workspace.id, e.target.value)}
             onKeyDown={(e) => handleKeyPress(e, workspace.id)}
             placeholder="Workspace name"
-            className="w-[392px] h-[40px] p-[6px_23px] rounded-[66px] border border-[#363636] bg-[#131313] outline-none text-white"
+            className="w-[392px] h-[40px] p-[6px_23px] rounded-[66px] text-xs border border-[#363636] bg-[#131313] outline-none text-white"
             autoFocus={editingWorkspaceId === workspace.id}
           />
           {/* Edit and Delete Icons */}
@@ -488,10 +524,15 @@ const Page = () => {
         onChange={(e) => setNewWorkspaceName(e.target.value)}
         onKeyDown={(e) => handleKeyPress(e, null)}
         placeholder="New workspace name"
-        className="w-[392px] h-[40px] p-[6px_23px] rounded-[66px] border border-[#363636] bg-[#131313] outline-none text-white mt-4"
+        className="w-[392px] h-[40px] p-[6px_23px] text-xs rounded-[66px] border border-[#363636] bg-[#131313] outline-none text-white mt-4"
       />
       
     )}
+    <div className="pt-10 flex justify-center items-center">
+     <button className=" w-auto h-[38px] bg-[#03FFA3] font-normal text-sm text-black rounded-[40px] px-[19px] pt-[3px] pb-[6px]" onClick={handleButtonClick} >
+      Add to workspace
+    </button>
+    </div>
   </DialogContent>
 </Dialog>
 
@@ -502,7 +543,7 @@ const Page = () => {
     <div className="space-y-4 bg-[#131313] p-4">
     {uploadedFiles.map((file) => (
         <div key={file.id} className="flex justify-between items-center mt-4">
-          <span className="text-base font-normal leading-[29.16px]">{file.name}</span>
+          <span className="text-sm font-normal leading-[29.16px]">{file.name}</span>
           <div className="flex space-x-4">
             {/* Check/Uncheck functionality */}
             <div
@@ -527,10 +568,10 @@ const Page = () => {
         </div>
       ))}
 <div className="flex justify-center items-center pt-10">
-      <p className="font-normal text-sm text-center text-[#858585]">Drag and drop files or folders here (VS Code/IDE/Finder/File Explorer)</p>
+      <p className="font-normal text-xs text-center text-[#858585]">Drag and drop files or folders here (VS Code/IDE/Finder/File Explorer)</p>
       </div>
       <div className="flex justify-center items-center gap-2">
-      <span className="font-normal text-sm leading-[12px]">or</span> 
+      <span className="font-normal text-xs leading-[12px]">or</span> 
       <input
         type="file"
         ref={fileInputRef}
@@ -541,7 +582,7 @@ const Page = () => {
       {/* Label for triggering file input */}
       <label htmlFor="file-upload">
         <button
-          className="flex justify-center items-center w-[185px] h-[44px] rounded-md font-normal text-sm leading-[12px] bg-[#1D1D1D]"
+          className="flex justify-center items-center w-[185px] h-[44px] rounded-md font-normal text-xs leading-[12px] bg-[#1D1D1D]"
           onClick={() => fileInputRef.current?.click()} // Directly trigger the input click
         >
           Add File Manually
@@ -554,11 +595,11 @@ const Page = () => {
 
 {/* second section */}
 <div className="w-[55%] ml-4 h-[100vh]">
-  <h3 className="font-semibold text-base leading-[28.9px] mb-5">
+  <h3 className="font-semibold text-sm leading-[28.9px] mb-5">
     Code Breakdown (Explanation)
   </h3>
   
-  <div className="bg-[#131313] h-full overflow-y-auto scrollbar-hide w-full p-3 px-5 rounded-xl">
+  <div ref={scrollableRef} className="bg-[#131313] h-full overflow-y-auto scrollbar-hide w-full p-3 px-5 rounded-xl">
     <div className="flex gap-2">
       <div>
         <Image 
@@ -569,7 +610,7 @@ const Page = () => {
         />
       </div>
       
-      <h5 className="font-medium text-base leading-[29.07px] mb-2">
+      <h5 className="font-medium text-sm leading-[29.07px] mb-2">
         Issues and fixes
       </h5>
     </div>
@@ -582,29 +623,29 @@ const Page = () => {
         <div className="flex flex-col gap-2">
           <div className="flex items-start gap-1">
             <span className="font-bold">1.</span>
-            <h5 className="font-normal text-sm leading-6">{response.title}</h5>
+            <h5 className="font-normal text-xs leading-6">{response.title}</h5>
           </div>
           <div className="flex flex-col gap-1">
             <div className="flex items-start gap-2">
-              <p className="font-normal text-sm leading-6">{response.problem}</p>
+              <p className="font-normal text-xs leading-6">{response.problem}</p>
             </div>
             <div className="flex items-start gap-2">
-              <p className="font-normal text-sm leading-6">{response.fix}</p>
+              <p className="font-normal text-xs leading-6">{response.fix}</p>
             </div>
           </div>
-          <p className="pt-5 font-normal text-base leading-6">{response.why}</p>
+          <p className="pt-5 font-normal text-sm leading-6">{response.why}</p>
         </div>
         <div className="flex flex-col gap-2 pt-5">
           <div className="flex items-start gap-1">
             <span className="font-bold">2.</span>
-            <h5 className="font-normal text-sm leading-6">{response.title2}</h5>
+            <h5 className="font-normal text-xs leading-6">{response.title2}</h5>
           </div>
           <div className="flex flex-col gap-1">
             <div className="flex items-start gap-2">
-              <p className="font-normal text-sm leading-6">{response.problem2}</p>
+              <p className="font-normal text-xs leading-6">{response.problem2}</p>
             </div>
             <div className="flex items-start gap-2">
-              <p className="font-normal text-sm leading-6">{response.fix2}</p>
+              <p className="font-normal text-xs leading-6">{response.fix2}</p>
             </div>
           </div>
           </div>

@@ -3,14 +3,16 @@ import React, { useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { GoPencil } from "react-icons/go";
 import { FaRegClock } from "react-icons/fa";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 interface CardProps {
   tweet: string;
   date: string;
   time: string;
+  onDelete: () => void;
 }
 
-const TweetCard: React.FC<CardProps> = ({ tweet, date, time }) => {
+const TweetCard: React.FC<CardProps> = ({ tweet, date, onDelete, time }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Utility function to strip HTML tags
@@ -23,6 +25,8 @@ const TweetCard: React.FC<CardProps> = ({ tweet, date, time }) => {
     stripHtmlTags(tweet).length > 100
       ? `${stripHtmlTags(tweet).slice(0, 100)}...`
       : stripHtmlTags(tweet);
+
+      const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <div
@@ -37,9 +41,40 @@ const TweetCard: React.FC<CardProps> = ({ tweet, date, time }) => {
         </div>
         <div className="w-[25%] flex flex-col gap-2">
           <div className="flex gap-4">
-            <div className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px]">
-              <MdDeleteOutline className="w-[16px] h-[16px]" />
-            </div>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+            <div
+                  className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px] cursor-pointer"
+                  onClick={(e) => e.stopPropagation()} // Prevent click event from bubbling up
+                >
+                  <MdDeleteOutline className="w-[16px] h-[16px]" />
+                </div>
+            </DialogTrigger>
+
+            {/* Modal content */}
+            <DialogContent className="max-w-[300px] py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
+              <div className="text-[14px] font-normal text-white text-center mb-4">
+                Are you sure you want to delete your scheduled tweet?
+              </div>
+              <div className="flex justify-center gap-4">
+                <button
+                  className="w-[80px] px-4 rounded-[20px] text-sm h-10 py-2 bg-red-500 text-white font-medium"
+                  onClick={() => {
+                    onDelete(); // Call delete handler
+                    setIsDialogOpen(false); // Close modal
+                  }}
+                >
+                  Yes
+                </button>
+                <button
+                  className="py-2 w-[80px] px-4 rounded-[20px] text-sm h-10  text-white font-medium border border-neutral-500"
+                  onClick={() => setIsDialogOpen(false)} // Close modal without deleting
+                >
+                  No
+                </button>
+              </div>
+            </DialogContent>
+          </Dialog>
             <div className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px]">
               <GoPencil className="w-[16px] h-[16px]" />
             </div>

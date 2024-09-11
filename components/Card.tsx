@@ -120,8 +120,8 @@ const Card: React.FC<CardProps> = ({ index, title, response, handleCardClick, ad
             Schedule Tweet
           </Button>
           </DialogTrigger>
-                      <DialogContent className="absolute top-[48%] right-[-80%] -translate-x-1/2 max-w-auto border-none outline-none px-6 md:px-4 lg:px-4 rounded-[20px]">
-                        <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+          <DialogContent className="absolute top-[52%] right-[-80%] -translate-x-1/2 max-w-auto border-none outline-none px-6 md:px-4 lg:px-4 rounded-[20px]">
+          <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[95vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
                           <Calendar2
                             editorContent={editorContent}
                             addEditorContent={addEditorContent}

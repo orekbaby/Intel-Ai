@@ -285,19 +285,25 @@ export const description = [
     name: "Launchpad",
     description:
       "Projects focused on facilitating the launch of new tokens or crypto projects, offering early access to investors.",
-  },
+ link1: "/onboard",
+ link2: "/dashboard",
+    },
 
   {
     name: "Token Project",
     description:
       "Projects focused on facilitating the launch of new tokens or crypto projects, offering early access to investors.",
-  },
+      link1: "/onboard",
+      link2: "/dashboard",
+    },
 
   {
     name: "Memecoin Project",
     description:
       "Projects centered around cryptocurrencies that originated from internet memes or have a humorous or viral aspect.",
-  },
+      link1: "/onboard",
+      link2: "/dashboard",
+    },
 ];
 
 // communication protocol mock

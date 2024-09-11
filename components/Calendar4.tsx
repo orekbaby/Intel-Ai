@@ -3,6 +3,8 @@ import { DayPicker, SelectSingleEventHandler } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import Cookies from "js-cookie";
 import React, { useEffect, FC, useState } from "react";
+import moment from 'moment-timezone';
+import { toast, useToast } from "@/components/ui/use-toast"
 
 interface AccordionData {
   id: number;
@@ -29,18 +31,23 @@ const Calendar3: FC<CalendarProps> = ({
   showOutsideDays = true,
    onSave,
    addStrategyContent,
-  onCloseModal,
+   onCloseModal,
   index,
   accordionData,
   ...props
 }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [selectedTimeZone, setSelectedTimeZone] = useState<string>('UTC');
+  const [hours, setHours] = useState<number>(0);
+  const [minutes, setMinutes] = useState<number>(0);
+  const [seconds, setSeconds] = useState<number>(0);
   const [currentMonth, setCurrentMonth] = useState<number>(
     new Date().getMonth()
   );
   const [currentYear, setCurrentYear] = useState<number>(
     new Date().getFullYear()
   );
+  const timeZones = moment.tz.names();
 
   useEffect(() => {
     const newDate = new Date(currentYear, currentMonth, selectedDate.getDate());
@@ -91,37 +98,65 @@ const Calendar3: FC<CalendarProps> = ({
  
 
   const handleSave = (index: number) => {
-    const formattedDate = new Date().toDateString();
-    const currentTime = new Date().toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
+    // Get current time in selected time zone
+    const now = moment().tz(selectedTimeZone).startOf('minute');
+  
+    // Create a moment object for the selected date and time
+    const selectedDateTime = moment.tz(selectedDate, selectedTimeZone).set({
+      hour: hours,
+      minute: minutes,
+      second: seconds,
+      millisecond: 0
     });
-
+  
+    // Format selected time and date for saving
+    const selectedDay = selectedDateTime.format('YYYY-MM-DD'); // Format date
+    const selectedTime = selectedDateTime.format('hh:mm A'); // Format time
+  
+    // Debugging output to verify values
+    console.log(`Current Time: ${now.format()}`);
+    console.log(`Selected DateTime: ${selectedDateTime.format()}`);
+  
+    // Check if the selected date and time are in the past
+    if (selectedDateTime.isBefore(now)) {
+      toast({
+        title: "Invalid Date",
+        description: "Please select a date and time in the future.",
+        variant: "destructive",
+      });
+      return;
+    }
+  
     // Get the content from the selected index
     const selectedContent = accordionData[index];
     if (!selectedContent) {
       console.log('Selected content not found');
       return;
     }
-
+  
     const cookieData = Cookies.get(`accordionText_${selectedContent.id}`);
     if (cookieData) {
-      addStrategyContent(formattedDate, currentTime, cookieData);
-
+      addStrategyContent(selectedDay, selectedTime, cookieData);
+  
       // Pass the saved content to the parent component's onSave function
-      onSave(formattedDate, currentTime, cookieData);
-
+      onSave(selectedDay, selectedTime, cookieData);
+    
       // Close the modal after saving
       onCloseModal();
+        // Ensure this function sets the modal state to closed
     } else {
       console.log('No saved text in cookies');
     }
   };
-
-  const handleCancel = () => {
+  
+  
+ const handleCancel = () => {
     onCloseModal();
   };
+
+
+ 
+  
 
   
 
@@ -168,7 +203,66 @@ const Calendar3: FC<CalendarProps> = ({
             {...props}
           />
         </div>
-        <div className="flex justify-center gap-8 items-center">
+
+        <div className="flex flex-col justify-center px-4 items-center mt-2 w-full">
+          {/* Time Zone * */}
+           <div className="flex items-center mr-7 w-[250px] overflow-hidden">
+  <label className="text-white mr-1 whitespace-nowrap">Time Zone:</label>
+  <select
+    value={selectedTimeZone}
+    onChange={(e) => setSelectedTimeZone(e.target.value)}
+    className="text-white bg-transparent h-8 w-full overflow-hidden outline-none border border-gray-400 rounded px-2"
+  >
+    {timeZones.map((tz, idx) => (
+      <option className="bg-gray-800 text-white py-1" key={idx} value={tz}>
+        {tz}
+      </option>
+    ))}
+  </select>
+</div>
+
+
+          {/* Time Selection */}
+          <div className="flex items-center w-full">
+            <label className="text-white mr-2">Time:</label>
+            <select
+              value={hours}
+              onChange={(e) => setHours(parseInt(e.target.value))}
+              className="text-white bg-transparent border-none rounded-md p-2 h-10 overflow-auto scrollbar-hide"
+            >
+              {Array.from({ length: 24 }, (_, i) => (
+                <option key={i} value={i}>
+                  {i.toString().padStart(2, '0')}
+                </option>
+              ))}
+            </select>
+            <span className="text-white mx-2">:</span>
+            <select
+              value={minutes}
+              onChange={(e) => setMinutes(parseInt(e.target.value))}
+              className="text-white bg-transparent border-none rounded-md p-2 h-10 overflow-auto scrollbar-hide"
+            >
+              {Array.from({ length: 60 }, (_, i) => (
+                <option key={i} value={i}>
+                  {i.toString().padStart(2, '0')}
+                </option>
+              ))}
+            </select>
+            <span className="text-white mx-2">:</span>
+            <select
+              value={seconds}
+              onChange={(e) => setSeconds(parseInt(e.target.value))}
+              className="text-white bg-transparent border-none rounded-md p-2 h-10 overflow-auto scrollbar-hide"
+            >
+              {Array.from({ length: 60 }, (_, i) => (
+                <option key={i} value={i}>
+                  {i.toString().padStart(2, '0')}
+                </option>
+              ))}
+            </select>
+            </div>
+            </div>
+        <div className="flex justify-start px-4 gap-8 items-center">
           <button
            onClick={() => handleSave(index)}
             className="bg-white flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-black transition ease-in-out delay-150 duration-300 h-[40px] md:h-[33px] lg:h-[33px] w-[125px] md:w-[95px] lg:w-[95px] rounded-[200px] hover:bg-[#0B0F16] text-xs"

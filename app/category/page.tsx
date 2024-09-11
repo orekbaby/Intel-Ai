@@ -18,7 +18,7 @@ const Page = () => {
     backgroundBlendMode: "darken",
     filter: "blur(60px)",
   };
-  
+  const onBoard = useSelector((state:any) => state.user.onBoard);
   const selectedUser = useSelector((state:any) => state.user.selectedUser);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const { setSelectedCategory } = useSelectedCategory();
@@ -31,14 +31,20 @@ const Page = () => {
     }
   }, [selectedUser, router]);
 
-  const handleOptionClick = (index: number) => {
-    setSelectedOption(index);
-    setSelectedCategory(description[index].name); // Update selectedCategory with the clicked row's name
+  // Update selectedCategory with the clicked row's name
 
-    if (index === 0 || 1 || 2) {
-      router.push("/onboard");
-    }
-  };
+    const handleOptionClick = (index: number) => {
+      setSelectedOption(index);
+      setSelectedCategory(description[index].name);
+      if (index === 0 || index === 1 || index === 2) {
+        !onBoard ? router.push('/onboard') : router.push('/dashboard');
+      }
+    
+      if (selectedUser === 'smartContractEngineer') {
+        !onBoard ? router.push('/onboard') : router.push('/dashboard');
+      }
+    };
+    
 
   const handleBackClick = () => {
     router.push("/user");
@@ -67,9 +73,9 @@ const Page = () => {
           </button>
         </div>
         <div>
-          <h1 className="pt-16 font-medium text-[15px] md:text-[32px] lg:text-[32px] leading-[20.6px] md:leading-[64px] lg:leading-[64px] text-center w-[251px] md:w-full lg:w-full mb-6 mx-auto">
+          <h2 className="pt-16 font-medium text-[15px] md:text-[32px] lg:text-[27px] leading-[20.6px] md:leading-[64px] lg:leading-[64px] text-center w-[251px] md:w-full lg:w-full mb-6 mx-auto">
             Which Category Best Describes your community?
-          </h1>
+          </h2>
           <div className="w-[362px] md:w-[562px] lg:w-[562px] h-auto bg-[#0D0D0D] border border-[#1B1B1B] mb-10 md:mb-8 lg:mb-8 py-2 md:py-4 lg:py-4 mx-auto px-6 md:px-6 lg:px-6 rounded-[16px] md:rounded-[20px] lg:rounded-[20px]">
             {description.map((row, index) => (
               <div

@@ -155,7 +155,7 @@ const SideBar = () => {
         className="mb-10 items-center"
       />
 
-      <div className="hidden md:flex lg:flex flex-col gap-10 items-start border-[#101720] w-full">
+      <div className="hidden md:flex lg:flex flex-col gap-6 items-start border-[#101720] w-full">
         {/* first icon */}
         {sideBar
           .filter((data) => data.id === 0)
@@ -182,7 +182,7 @@ const SideBar = () => {
           ))}
 
         {/* 1st and 2nd together icon */}
-        <div className="w-full h-auto flex flex-col py-5 border-b-2 border-[#212E40]">
+        <div className="w-full h-auto flex flex-col py-[10px] border-b-2 border-[#212E40]">
           {sideBar
             .filter((data) => data.id === 1 || data.id === 2)
             .map((data, index) => (
@@ -190,7 +190,7 @@ const SideBar = () => {
                 {data.id === 1 ? (
                 <Dialog>
                 <DialogTrigger className="cursor-pointer flex items-center gap-3">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 text-[#707070]">
                     {typeof currentPersona.icon !== "string" && (
                       <currentPersona.icon size={20} />
                     )}
@@ -212,7 +212,7 @@ const SideBar = () => {
                   </div>
                 </DialogTrigger>
               
-                <DialogContent>
+                <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
                   <div className="mx-auto pt-8">
                     {currentPersona.name === "Community Workspace" && !aiTrainCompleted ? (
                       <div className="text-center">
@@ -282,13 +282,59 @@ const SideBar = () => {
                       {data.name}
                     </h2>
                   </Link>
+                  
                 )}
+                </div>
+                ))}
+
+      <div className="flex items-center gap-2 pt-10 px-2">
+            <p className="font-normal text-sm leading-[14px] text-[#707070]">
+              DEPIN
+            </p>
+            <Button className={`cursor-pointer font-normal text-xs bg-gradient-to-r from-[#03FFA3] to-[#7F56D9] w-[91px] h-[20px] text-center rounded-[20px] py-3 px-10 shadow-drop leading-[12px] ${!isHovered && "hidden"}`}>
+              Coming Soon
+            </Button>
+          </div>
+
+          <div
+  className={`mt-60 flex justify-center items-center ${
+    isHovered ? "w-[150px]" : "w-[53px]"
+  } h-[40px] border border-[#131313] bg-[#141414] rounded-[10px] transition-all duration-300`}
+>
+  <div className="flex gap-1 justify-center items-center py-2 px-2 w-full">
+    <div>
+      <Image
+        src={profile} // Ensure `profile` is defined and imported correctly
+        width={20}
+        height={20}
+        alt="profile"
+      />
+    </div>
+
+    {/* Conditionally render the wallet text based on hover state */}
+    <p className={`font-normal text-sm leading ${!isHovered && "hidden"}`}>
+      0x35b...a36b
+    </p>
+
+    {/* Plus icon */}
+    <FaPlus className="w-[10px] h-[10px] text-[#C8C8C8]" 
+     onClick={handleCopyClick}
+    />
+  </div>
+  {showPopup && (
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-white text-black text-xs px-2 py-1 rounded-[12px]">
+                Text copied!
               </div>
-            ))}
+            )}
+</div>
+
+   
+          </div>
+        </div>
         </div>
       </div>
-    </div>
-  </div>
+    
+  
 )}
 
       

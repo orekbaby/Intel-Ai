@@ -115,8 +115,10 @@ import { avatar, GlowImg, onboard } from '@/assets';
 
   // Handler function to dispatch the completeTrain action and navigate
   const handleNavigation = () => {
-    dispatch(completeTrain());
-    router.push('/train-ai');
+    if (!aiTrainCompleted) {
+      dispatch(completeTrain()); // Dispatch action only if not completed
+    }
+    router.push('/train-ai'); // Navigate to '/train-ai'
   };
 
   const { toast } = useToast()

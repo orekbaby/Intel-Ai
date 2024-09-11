@@ -6,6 +6,8 @@ import Cookies from "js-cookie";
 
 interface PostedContent {
   content: string;
+  date: string;
+  time: string;
 }
 
 const ContentPosted: React.FC = () => {
@@ -27,12 +29,10 @@ const ContentPosted: React.FC = () => {
               likes="150"
               likesSpan="likes"
               retweet="20"
-              retweetSpan="retweets" // comment={row.comment}
-              // commentSpan={row.commentSpan}
-              // likes={row.likes}
-              // likesSpan={row.likesSpan}
-              // retweet={row.retweet}
-              // retweetSpan={row.retweetSpan}
+              retweetSpan="retweets" 
+              date={row.date} 
+              time={row.time} 
+             
             />
           ))}
         </div>

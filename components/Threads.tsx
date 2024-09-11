@@ -83,34 +83,49 @@ const Threads: React.FC<ThreadsProps> = ({
   const closeModal = () => {
     setOpenModal(false);
   };
-const addPostedContent = (content:string) => {
+  const addPostedContent = (content: string, date: string, time: string) => {
     let currentContent = Cookies.get('postedContents');
     let contentArray = currentContent ? JSON.parse(currentContent) : [];
-
+  
+    // Push the new content along with the current date and time
     contentArray.push({
       content: content,
+      date: date,
+      time: time,
     });
-
+  
     let updatedContent = JSON.stringify(contentArray);
     Cookies.set('postedContents', updatedContent, {
       expires: 7,
-      path: '/x-Agents',
+      path: '/x-agents',
       secure: true,
     });
   };
-
+  
   const handlePostSave = () => {
     if (!threadsText) {
       console.log('Textarea content is empty');
       return;
     }
-
-    addPostedContent(threadsText);
-    // Set progress to 25% and start updating prsetProgress(25);
+  
+    // Get the current date and time at the moment of posting
+    const currentDate = new Date().toDateString(); // Format the date
+    const currentTime = new Date().toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    }); // Format the time in 12-hour format with AM/PM
+  
+    // Pass the content, date, and time to addPostedContent
+    addPostedContent(threadsText, currentDate, currentTime);
+  
+    // Set progress to 25% and start updating progress
+    setProgress(25);
     setTimeout(() => {
       setProgress(100);
     }, 1000);
   };
+  
 
     
     

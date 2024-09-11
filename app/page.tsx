@@ -117,15 +117,15 @@ export default function Home() {
               style={style6}
               className="bottom-0 -left-[50%] absolute w-[100%] md:w-[60%] lg:w-[30%] h-[130px] md:h-[360px] lg:h-[160px] -translate-x-1/2 z-[-1]"
             ></div>
-            <h1
+            <h2
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
    text-transparent font-medium text-[32px] md:text-[40px] lg:text-[40px] xl:text-[64px] 2xl:text-[70px]
-   leading-[36.28px] md:leading-[66.56px] lg:leading-[62.56px] text-center w-[378px] md:w-[75%] lg:w-[100%] xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto"
+   leading-[36.28px] md:leading-[66.56px] lg:leading-[62.56px] text-center w-[378px] md:w-[75%] lg:w-[100%] xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto guaruja-font"
             >
               Collaboration Protocol of Autonomous AI Agents
-            </h1>
-            <p className="font-normal text-[16px] md:text-[18px] lg:text-[24px] xl:text-[24px] 2xl:text-[24px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-12 max-w-[900px] leading-[24px] md:leading-[26px] lg:leading-[28px] xl:leading-[30px] mx-auto w-[80%]">
+            </h2>
+            <p className="font-normal text-[16px] md:text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[24px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-0  leading-[24px] md:leading-[26px] lg:leading-[28px] xl:leading-[30px] mx-auto w-[55%]">
   Tailored Intelligence built from the ground up specifically for
   the Web3 Ecosystem.
 </p>
@@ -225,8 +225,8 @@ export default function Home() {
       </section>
 
       {/* Second section */}
-      <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 px-4 md:px-24 lg:px-36 text-center pb-10 md:pb-20 lg:pb-20 mx-auto">
-  <h2 className="font-medium text-[24px] md:text-[36px] lg:text-[48px] xl:text-[60px] 2xl:text-[64px] mb-4 md:mb-8 lg:mb-8 leading-[28px] md:leading-[40px] lg:leading-[62.5px] text-center">
+      <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 px-4 md:px-24 lg:px-0 text-center pb-10 md:pb-20 lg:pb-20 mx-auto">
+  <h2 className="font-medium text-[24px] md:text-[36px] lg:text-[32px] xl:text-[60px] 2xl:text-[64px] mb-4 md:mb-8 lg:mb-8 leading-[28px] md:leading-[40px] lg:leading-[65.5px] text-center w-[70%] mx-auto">
     Meticulously Engineered To Deliver {""}
     <span
       style={bgClipText}
@@ -235,7 +235,7 @@ export default function Home() {
       Human-Like Responses
     </span>
   </h2>
-  <p className="font-normal text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] px-4 md:px-8 lg:px-12 mb-4 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[28px]">
+  <p className="font-normal text-[14px] md:text-[16px] lg:text-[20px] xl:text-[20px] 2xl:text-[22px] px-4 md:px-8 lg:px-12 mb-4 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[31.2px] mx-auto w-[65%]">
     Experience the sophistication of AI Agents that talk like a human but
     work like a supercomputer. Intel AI&apos;s deep learning algorithms
     are crafted to replicate the warmth, empathy, and complexity of human
@@ -279,10 +279,10 @@ export default function Home() {
         ></div>
 
         <div className="mx-auto px-0 md:px-28 lg:px-32 xl:px-40 2xl:px-48 text-center pt-16 md:pt-28 lg:pt-32 mb-7 md:mb-16 lg:mb-16">
-          <h3 className="font-medium text-center text-[20px] md:text-[36px] lg:text-[36px] mb-5">
+          <h3 className="font-medium text-center text-[20px] md:text-[36px] lg:text-[32px] mb-5">
             Custom AI Agents Like Never Before
           </h3>
-          <p className="font-normal text-center text-sm md:text-[14px] lg:text-[14px] w-[370px] md:w-full lg:w-full h-auto mx-auto px-0 md:px-28 lg:px-40 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[31.2px] lg:leading-[18.2px]">
+          <p className="font-normal text-center text-sm md:text-[14px] lg:text-[20px] w-full md:w-full lg:w-[90%] h-auto mx-auto px-0 md:px-28 lg:px-0 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[31.2px] lg:leading-[31.2px]">
             Intel AI leverages a custom LLM architecture that&apos;s fine-tuned
             to grasp the intricacies of blockchain technology, its narratives,
             trends, & community nuances with unparalleled precision
@@ -303,8 +303,8 @@ export default function Home() {
                 alt="custom-img"
                 className="object-cover w-[288px] h-[161px] md:w-[345px] lg:w-[345px] md:h-[184.91px] lg:h-[184.91px] mx-auto text-center mb-8"
               />
-              <h4 className="font-medium text-[20px] mb-3">{row.heading}</h4>
-              <p className="font-normal text-sm text-[#8A8A8A] w-[300px] h-[72px] md:w-[370px] md:h-[54px] lg:w-[370px] lg:h-[54px] leading-[22.2px]">
+              <h4 className="font-mediumt text-sm md:text-sm  lg:text-[18px] mb-3">{row.heading}</h4>
+              <p className="font-normal text-xs text-[#8A8A8A] w-[300px] h-[72px] md:w-[370px] md:h-[54px] lg:w-[370px] lg:h-[54px] leading-[22.2px]">
                 {row.content}
               </p>
             </div>
@@ -322,8 +322,8 @@ export default function Home() {
         alt="custom-img"
         className="object-cover w-full h-auto max-w-full mx-auto mb-4"
       />
-      <h4 className="font-medium text-xl md:text-2xl lg:text-2xl mb-3">{row.heading}</h4>
-      <p className="font-normal text-sm text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed">
+      <h4 className="font-medium text-sm md:text-sm lg:text-[18px] mb-3">{row.heading}</h4>
+      <p className="font-normal text-xs text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed">
         {row.content}
       </p>
     </div>
@@ -342,8 +342,8 @@ export default function Home() {
         alt="custom-img"
         className="object-cover w-full h-auto max-w-full mx-auto mb-4"
       />
-      <h4 className="font-medium text-xl md:text-2xl lg:text-2xl mb-3">{row.heading}</h4>
-      <p className="font-normal text-sm text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed">
+      <h4 className="font-medium text-sm md:text-sm lg:text-[18px] mb-3">{row.heading}</h4>
+      <p className="font-normal text-xs text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed">
         {row.content}
       </p>
     </div>
@@ -386,13 +386,13 @@ export default function Home() {
               Features
             </span>
           </div>
-          <h5 className=" hidden md:block lg:block font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[27px] lg:text-[36px] xl:text-[36px] 2xl:text-[40px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
-            Glossy Unleashed: Latest Innovations
+          <h5 className=" hidden md:block lg:block font-medium w-full h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[27px] lg:text-[32px] xl:text-[36px] 2xl:text-[40px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8  mx-auto">
+          Empower Your Workflow with Cutting-Edge Features
           </h5>
           <h5 className="block md:hidden lg:hidden font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[24px] md:text-[27px] lg:text-[36px] leading-[38.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
             Empower Your Workflow with Cutting-Edge Features
           </h5>
-          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-sm lg:text-smtext-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-32 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20 pt-5">
+          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-sm lg:text-sm leading-[23.92px] text-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-0 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20 pt-5">
             Explore the frontier of coding evolution with Glossy Unleashed. Our
             latest features redefine the boundaries of what&apos;s possible in
             coding tools.
@@ -411,10 +411,10 @@ export default function Home() {
         alt="cable-icon"
         className="mb-4 md:mb-6"
       />
-      <h5 className="font-medium text-[18px] md:text-[22px] lg:text-[24x] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6">
+      <h5 className="font-medium text-[18px] md:text-[22px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-[36px] mb-4 md:mb-6 lg:mb-6">
         {row.title}
       </h5>
-      <p className="font-normal text-[14px] md:text-[16px] lg:text-[14px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
+      <p className="font-normal text-[14px] md:text-[16px] lg:text-[10px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
         {row.description}
       </p>
       <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
@@ -494,11 +494,11 @@ export default function Home() {
         className="mb-4 md:mb-6 lg:mb-6"
       />
       <h5
-        className="font-medium text-[18px] md:text-[22px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6"
+        className="font-medium text-[18px] md:text-[22px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6"
       >
         {row.title}
       </h5>
-      <p className="font-normal text-[14px] md:text-[16px] lg:text-[14px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
+      <p className="font-normal text-[14px] md:text-[16px] lg:text-[10px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
         {row.description}
       </p>
       <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
@@ -578,11 +578,11 @@ export default function Home() {
         className="mb-4 md:mb-6 lg:mb-6"
       />
       <h5
-        className="font-medium text-[18px] md:text-[22px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6"
+        className="font-medium text-[18px] md:text-[22px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6"
       >
         {row.title}
       </h5>
-      <p className="font-normal text-[14px] md:text-[16px] lg:text-[14px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
+      <p className="font-normal text-[14px] md:text-[16px] lg:text-[10px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
         {row.description}
       </p>
     </div>
@@ -616,15 +616,15 @@ export default function Home() {
 
 
         {/* Advantages Section */}
-        <div className="text center mx-auto px-0 md:px-40 lg:px-40 mb-10 md:mb-16 lg:mb-16">
-          <h5 className="font-normal md:font-medium lg:font-medium text-[24px] md:text-[36px] lg:text-[36px] leading-[58.15px] mt-10 mb-3 text-center mx-auto">
+        <div className="text center mx-auto px-0 md:px-40 lg:px-40 mb-10 md:mb-10 lg:mb-16">
+          <h5 className="font-normal md:font-medium lg:font-medium text-[24px] md:text-[36px] lg:text-[32px] leading-[58.15px] mt-10 mb-3 text-center mx-auto">
             Advantages
           </h5>
 
           <p
-            className="font-normal text-sm md:text-base lg:text-base
-             text-[#BDBDBD] w-[333px] md:w-[95%] lg:w-[95%] 
-          h-[69px] mx-auto px-0 md:px-44 lg:px-44 mb-5 text-center leading-[22.68px] md:leading-[27.92px] lg:leading-[27.92px]"
+            className="font-normal text-sm md:text-base lg:text-sm
+             text-[#BDBDBD] w-[333px] md:w-[95%] lg:w-[55%] 
+          h-[69px] mx-auto px-0 md:px-0 lg:px-0 mb-5 text-center leading-[22.68px] md:leading-[27.92px] lg:leading-[24.92px]"
           >
             Discover a world of possibilities with Glossy&apos; exceptional
             features tailored to enhance your coding journey.
@@ -646,10 +646,10 @@ export default function Home() {
         alt="icon"
         className="mb-4"
       />
-      <h5 className="font-medium text-lg md:text-xl lg:text-2xl mb-3">
+      <h5 className="font-medium text-lg md:text-xl lg:text-[20px] mb-3">
         {row.title}
       </h5>
-      <p className="font-normal text-sm md:text-base lg:text-base text-[#BDBDBD] opacity-[45%]">
+      <p className="font-normal text-sm md:text-base lg:text-sm text-[#BDBDBD] opacity-[45%]">
         {row.description}
       </p>
     </div>
@@ -658,10 +658,10 @@ export default function Home() {
 </div>
       {/* testimonials section */}
       <div className="text center mx-auto px-0 md:px-40 lg:px-40 mb-16 md:mb-36 lg:mb-36 mt-20">
-        <h5 className="font-medium text-[23px] md:text-[36px] lg:text-[36px] md:leading-[58.15px] leading-[38.77px] mt-10 mb-5 text-center mx-auto">
+        <h5 className="font-medium text-[23px] md:text-[36px] lg:text-[32px]leading-[38px] md:leading-[58.15px] leading-[58.77px] mt-10 mb-5 text-center mx-auto">
           Voices of Innovation, Testimonials
         </h5>
-        <p className="font-normal text-sm leading-[22.68px] md:[27.68px] lg:leading-[27.68px] md:text-base lg:text-base text-[#BDBDBD] mx-auto px-2 md:px-44 lg:px-44 mb-5 text-center">
+        <p className="font-normal text-sm leading-[22.68px] md:[27.68px] lg:leading-[27.68px] md:text-base lg:text-sm text-[#BDBDBD] mx-auto px-2 md:px-44 lg:px-44 mb-5 text-center">
           Discover what the coding community is saying about Glossy in our
           Testimonials section. Immerse yourself in firsthand experiences as
           developers share.
@@ -695,10 +695,10 @@ export default function Home() {
             className="-bottom-[3%] left-[50%] absolute w-[60%] h-[500px] -translate-x-1/2"
           ></div> */}
           <div className="text center mx-auto px-0 md:px-40 lg:px-40 mb-5 md:mb-12 lg:mb-12">
-            <h5 className="font-medium text-[24px] md:text-[40px] lg:text-[40px] text-center mb-5 md:mb-10 lg:mb-10 w-[323px] md:w-full lg:w-full h-[39px] mx-auto">
+            <h5 className="font-medium text-[24px] md:text-[40px] lg:text-[36px] text-center mb-5 md:mb-10 lg:mb-10 w-[323px] md:w-full lg:w-full h-[39px] mx-auto">
               Frequently asked questions
             </h5>
-            <p className="font-normal text-sm md:text-base lg:text-base text-center text-[#8A8A8A]">
+            <p className="font-normal text-sm md:text-base lg:text-sm text-center text-[#8A8A8A]">
               Everything you need to know
             </p>
           </div>
@@ -707,10 +707,10 @@ export default function Home() {
               <div key={index} className="">
                 <Accordion className="" type="single" collapsible>
                   <AccordionItem className="border-none" value={row.value}>
-                    <AccordionTrigger1 className="font-normal text-base border-b leading-[25.92px] border-[#2B2B2B] text-left">
+                    <AccordionTrigger1 className="font-normal text-sm border-b leading-[25.92px] border-[#2B2B2B] text-left">
                       {row.trigger}
                     </AccordionTrigger1>
-                    <AccordionContent className="text-left text-[#8A8A8A] leading-[25.92px] font-normal text-base mt-3">
+                    <AccordionContent className="text-left text-[#8A8A8A] leading-[25.92px] font-normal text-sm mt-3">
                       {row.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -729,11 +729,11 @@ export default function Home() {
                 />
               </div>
               <div className="relative z-10">
-                <h5 className="font-medium text-[24px] text-[#E7F1FF] text-left">
+                <h5 className="font-medium text-[22px] text-[#E7F1FF] text-left">
                   Still have questions?
                 </h5>
                 <div className="flex flex-col md:flex-row lg:flex-row md:justify-between lg:justify-between items-center w-full h-full">
-                  <p className="font-normal text-sm md:text-[16px] lg:text-[16px] leading-[1.7rem] mt-0 md:mt-2 lg:mt-0 mb-3 md:mb-4 lg:mb-4 text-[#2A336D] h-auto w-full md:w-[387px] md:h-[42px] lg:w-[357px] lg:h-[42px]">
+                  <p className="font-normal text-sm md:text-[16px] lg:text-sm leading-[1.7rem] mt-0 md:mt-2 lg:mt-0 mb-3 md:mb-4 lg:mb-4 text-[#2A336D] h-auto w-full md:w-[387px] md:h-[42px] lg:w-[357px] lg:h-[42px]">
                     Can&apos;t find the answer you&apos;re looking for? Please
                     chat to our friendly team.
                   </p>

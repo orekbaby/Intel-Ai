@@ -61,4 +61,3 @@ const AllStrategies: React.FC<AllStrategiesProps> = ({ strategies, onDeleteStrat
 };
 
 export default AllStrategies;
-

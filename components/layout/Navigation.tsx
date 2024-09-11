@@ -8,10 +8,12 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import {book, IntelLogo, Logo, telegram, twitter} from "@/assets/images"
 import { FaTelegramPlane, FaDiscord } from 'react-icons/fa';
+import { setUser } from '@/store/reducers/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const Navigation = () => {
-  const router = useRouter();
-  const pathname = usePathname();
+ const pathname = usePathname();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -65,11 +67,15 @@ const Navigation = () => {
   const train = pathName === "/train-ai" || pathName === "/x-agents";
   const inline = pathName === "/workspace";
   const smartContract = pathName === "/smart-contract-engineer";
+
   const userSelect = Cookies.get("user");
+  const dispatch = useDispatch();
+  const router = useRouter();
 
-  // console.log("select user - ", userSelect);
-
-  // const agents = pathName === "/x-Agents";
+  const handlePersonaSwitch = (persona: string) => {
+    dispatch(setUser(persona));
+    router.push('/user');
+  };
 
   return (
     <>
@@ -139,27 +145,29 @@ const Navigation = () => {
       {show && (
         <header className="hidden w-full absolute z-40 top-0 left-[290px] md:flex lg:flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
           <div className="hidden md:flex lg:flex items-center gap-6 justify-between">
-            <div className="flex justify-center items-center gap-8">
-              <p
-                className={`text-base font-medium ${
-                  userSelect === "communityManager"
-                    ? "text-white"
-                    : "text-[#6D6D6D]"
-                }`}
-              >
-                Community Owner/Manager
-              </p>
+          <div className="flex justify-center items-center gap-8">
+      <p
+        onClick={() => handlePersonaSwitch('communityManager')}
+        className={`text-base font-medium cursor-pointer ${
+          userSelect === "communityManager"
+            ? "text-white"
+            : "text-[#6D6D6D]"
+        }`}
+      >
+        Community Owner/Manager
+      </p>
 
-              <p
-                className={`text-base font-medium ${
-                  userSelect === "smartContractEngineer"
-                    ? "text-white"
-                    : "text-[#6D6D6D] cursor-not-allowed"
-                }`}
-              >
-              Smart Contract Engineer
-              </p>
-            </div>
+      <p
+        onClick={() => handlePersonaSwitch('smartContractEngineer')}
+        className={`text-base font-medium cursor-pointer ${
+          userSelect === "smartContractEngineer"
+            ? "text-white"
+            : "text-[#6D6D6D] cursor-pointer"
+        }`}
+      >
+        Smart Contract Engineer
+      </p>
+    </div>
             <div className="flex items-center justify-end gap-6 px-4 md:px-12 lg:px-24 xl:px-72">
   <p className="font-medium text-[20px] leading-[20.8px]">
     Co-pilot

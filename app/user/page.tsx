@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import CardComponent from "@/components/CardComponent";
 import { influencer, manager } from "@/assets";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '@/store/reducers/userSlice';
 
 const Page = () => {
@@ -20,15 +20,19 @@ const Page = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSelectUser = (selectedOption:string) => {
-    dispatch(setUser(selectedOption));
-    if (selectedOption === 'smartContractEngineer') {
-      router.push('/onboard');
-    } else {
-      router.push('/category');
+  const selectedUser = useSelector((state:any) => state.user.selectedUser);  // Get the current selected persona from Redux
+  const onBoard = useSelector((state:any) => state.user.onBoard);
+  // Function to handle user persona selection
+  const handleSelectUser = (persona:any) => {
+    dispatch(setUser(persona));  // Update Redux state and set cookie
+
+    // Post-login persona handling logic
+    if (persona === 'communityManager') {
+      router.push('/category');  // Redirect to category page
+    } else if (persona === 'smartContractEngineer') {
+      !onBoard ? router.push('/onboard') : router.push('/dashboard');  // Redirect to dashboard for Smart Contract Engineer
     }
   };
-
   const cards = [
     {
       imgSrc: manager,

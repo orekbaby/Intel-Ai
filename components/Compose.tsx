@@ -251,12 +251,14 @@ const handleEditSave = (index: number) => {
   // posted content function
   // AddPostedContent function remains the same
 
-  const addPostedContent = (content: string) => {
+  const addPostedContent = (content: string, date: string, time: string) => {
     let currentContent = Cookies.get("postedContents");
     console.log("Current Cookie Content:", currentContent);
   
     let contentArray = currentContent ? JSON.parse(currentContent) : [];
-    contentArray.push({ content });
+    
+    // Add the new content along with the current date and time
+    contentArray.push({ content, date, time });
   
     let updatedContent = JSON.stringify(contentArray);
     Cookies.set("postedContents", updatedContent, {
@@ -274,7 +276,16 @@ const handleEditSave = (index: number) => {
       return;
     }
   
-    addPostedContent(finalContent); // Add the content (whether from editor or directly passed in)
+    // Get the current date and time when posting
+    const formattedDate = new Date().toDateString();
+    const currentTime = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  
+    // Call addPostedContent with the content, date, and time
+    addPostedContent(finalContent, formattedDate, currentTime);
   
     setProgress(25);
     setTimeout(() => {
@@ -286,6 +297,17 @@ const handleEditSave = (index: number) => {
     }, 3000);
   };
   
+  const handlePostDirectly = (index: number | null) => {
+    if (index === null) {
+      console.error("No card selected to post.");
+      return;
+    }
+  
+    const selectedResponse = generatedResponses[index]?.response || "";
+    handleSave(selectedResponse); // Directly post the selected response
+  };
+  
+  
 
   const handleCardClick = (index: number) => {
     setSelectedCardIndex(index); // Set the selected card index
@@ -296,19 +318,22 @@ const handleEditSave = (index: number) => {
   
     console.log("select-response:", selectedResponse);
   };
-  
 
+  //delete functionalitu
+const deleteTweet = (index: number) => {
+    const cookieData = Cookies.get("tweetContents");
+    const tweetContents = cookieData ? JSON.parse(cookieData) : [];
+
+    if (index > -1) {
+      tweetContents.splice(index, 1); // Remove the tweet at the specified index
+      Cookies.set("tweetContents", JSON.stringify(tweetContents)); // Update the cookie
+    }
+
+    console.log("Deleted tweet at index", index);
+  };
 
 // New function to post directly from the card without using the editor
-const handlePostDirectly = (index: number | null) => {
-  if (index === null) {
-    console.error("No card selected to post.");
-    return;
-  }
 
-  const selectedResponse = generatedResponses[index]?.response || "";
-  handleSave(selectedResponse); // Directly post the selected response
-};
 
 const handlePostClick = (index: number) => {
   handlePostDirectly(index);

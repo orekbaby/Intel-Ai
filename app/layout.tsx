@@ -27,7 +27,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="font-guaruja">
+      <body className="font-guaruja Neue">
         <ClientProviders>
           <AppKitProvider initialState={initialState}>
            <SelectedCategoryProvider>

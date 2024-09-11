@@ -370,7 +370,6 @@ const handleContinueChatting = async () => {
     }
 };
   
-  
   const handleDeleteStrategy = (strategyToDelete: string) => {
     setFinalizedStrategies(prevStrategies => {
       const updatedStrategies = prevStrategies.filter(strategy => strategy.strategy !== strategyToDelete);
@@ -379,9 +378,6 @@ const handleContinueChatting = async () => {
     });
   };
   
-
-
-
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -461,7 +457,7 @@ const handleContinueChatting = async () => {
         <div className="w-full flex justify-between">
          <div className="w-[60%] h-[781px] overflow-y-auto scrollbar-hide pt-5 border-r border-[#252525] rounded-[20px] pb-40">
          <div className="flex flex-col gap-4 justify-center items-center">
-          <h3 className='text-[32px] font-medium leading-[33.38px] text-center'> Welcome To Co-Pilot</h3>
+          <h3 className='text-[27px] font-medium leading-[33.38px] text-center'> Welcome To Co-Pilot</h3>
                 <p className="font-normal text-[14px] leading-[14.56px]">
                 Create a tailored strategy for your community or project.
                 </p>
@@ -511,7 +507,7 @@ const handleContinueChatting = async () => {
 
    
  
-  <div className="bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[130px]">
+  <div className="bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[170px]">
     <div className="flex flex-col-reverse space-y-4 space-y-reverse">
       {chats.map((chat, index) => (
         <div key={index} className="mb-4">
@@ -703,26 +699,27 @@ const handleContinueChatting = async () => {
                   </div>
                   <div className="pt-3 flex items-center gap-2">
                   <Dialog open={openModal} onOpenChange={setOpenModal}>
-                  <DialogTrigger className="cursor-pointer" asChild>
-                    <button
-                      className="w-[187px] h-[29px] font-semibold text-xs leading-[12.48px] px-3 rounded-[24px] bg-white text-[#0d0d0d] border-[#E5E5E5] border"
-                    >
-                      Add to content calendar
-                    </button>
-                    </DialogTrigger>
-                      <DialogContent className="absolute top-[48%] right-[-80%] -translate-x-1/2 max-w-auto border-none outline-none px-6 md:px-4 lg:px-4 rounded-[20px]">
-                        <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
-                          <Calendar4 
-                         index={index}
-                         addStrategyContent={addStrategyContent}
-                         onSave={handleSave}
-onCloseModal={closeModal}
-                         accordionData={accordionData}
+  <DialogTrigger className="cursor-pointer" asChild>
+    <button
+      className="w-[187px] h-[29px] font-semibold text-xs leading-[12.48px] px-3 rounded-[24px] bg-white text-[#0d0d0d] border-[#E5E5E5] border"
+    >
+      Add to content calendar
+    </button>
+  </DialogTrigger>
+  <DialogContent className="absolute top-[48%] right-[-80%] -translate-x-1/2 max-w-auto border-none outline-none px-6 md:px-4 lg:px-4 rounded-[20px]">
+    <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+      <Calendar4 
+        index={index}
+        addStrategyContent={addStrategyContent}
+        onSave={handleSave}
+        onCloseModal={closeModal} // Use the correct function name
+        accordionData={accordionData}
+      />
+    </div>
+  </DialogContent>
+</Dialog>
 
-                          />
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+
                     <div
                       className="flex justify-center items-center bg-[#434343] rounded-md w-[25px] h-[25px]"
                       onClick={() => handleCopy(item.text)}
@@ -797,13 +794,13 @@ onCloseModal={closeModal}
 
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[400px] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
                       value="ScheduledPosts"
                     >
                       <ScheduledPosts />
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 o h-[400px] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 o h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
                       value="PostedContents"
                     >
                       <PostedContents />

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaRegClock } from "react-icons/fa";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"; // Ensure this is the correct import
 
 interface CardProps {
   strategy: string;
@@ -12,6 +13,7 @@ interface CardProps {
 
 const ScheduleCard: React.FC<CardProps> = ({ strategy, date, time, onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const stripHtmlTags = (html: string) => {
     const doc = new DOMParser().parseFromString(html, "text/html");
@@ -37,15 +39,44 @@ const ScheduleCard: React.FC<CardProps> = ({ strategy, date, time, onDelete }) =
           </div>
           <div className="w-[25%] flex justify-end">
             <div className="flex flex-col gap-8 items-end">
-              <div
-                className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px]"
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent card click
-                  onDelete(); // Call onDelete when the delete icon is clicked
-                }}
-              >
-                <MdDeleteOutline className="w-[16px] h-[16px]" />
-              </div>
+              {/* Dialog Trigger and Content */}
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <div
+                    className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px]"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card click
+                      setIsDialogOpen(true); // Open dialog
+                    }}
+                  >
+                    <MdDeleteOutline className="w-[16px] h-[16px]" />
+                  </div>
+                </DialogTrigger>
+
+                {/* Modal content */}
+                <DialogContent className="max-w-[300px] py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
+                  <div className="text-[14px] font-normal text-white text-center mb-4">
+                    Are you sure you want to delete your scheduled strategy post?
+                  </div>
+                  <div className="flex justify-center gap-4">
+                    <button
+                      className="w-[80px] px-4 rounded-[20px] text-sm h-10 py-2 bg-red-500 text-white font-medium"
+                      onClick={() => {
+                        onDelete(); // Call delete handler
+                        setIsDialogOpen(false); // Close modal
+                      }}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      className="py-2 w-[80px] px-4 rounded-[20px] text-sm h-10  text-white font-medium border border-neutral-500"
+                      onClick={() => setIsDialogOpen(false)} // Close modal without deleting
+                    >
+                      No
+                    </button>
+                  </div>
+                </DialogContent>
+              </Dialog>
               <div className="flex items-center gap-1 bg-[#131313] p-[3px] rounded-[12px] whitespace-nowrap">
                 <FaRegClock className="w-[6px] h-[6px] text-[#858585]" />
                 <p className="font-[300] text-[8px] leading-[12px] text-[#858585]">

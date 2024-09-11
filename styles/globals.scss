@@ -57,6 +57,10 @@ body {
 	font-family: var(--font-helvetica);
   }
 
+
+  .guaruja-font {
+	font-family: var(--font-guaruja);
+  }
 .border-gradient {
 	border: 2px solid;
 	border-image: linear-gradient(to right, rgba(189, 254, 28, 0.9), rgba(37, 184, 222, 0.9));
