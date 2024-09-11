@@ -97,7 +97,7 @@ const Threads: React.FC<ThreadsProps> = ({
     let updatedContent = JSON.stringify(contentArray);
     Cookies.set('postedContents', updatedContent, {
       expires: 7,
-      path: '/x-agents',
+      path: '/x-agent',
       secure: true,
     });
   };

@@ -18,7 +18,7 @@ const ScheduledPosts: React.FC = () => {
   useEffect(() => {
     Cookies.set("strategyContents", JSON.stringify(strategyContents), {
       expires: 7,
-      path: "/x-agents",
+      path: "/x-agent",
       secure: true,
     });
   }, [strategyContents]);
@@ -33,7 +33,7 @@ const ScheduledPosts: React.FC = () => {
     // Update the cookie with the new array
     Cookies.set("strategyContents", JSON.stringify(updatedContents), {
       expires: 7,
-      path: "/x-agents",
+      path: "/x-agent",
       secure: true,
     });
   };

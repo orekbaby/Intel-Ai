@@ -64,7 +64,7 @@ const Navigation = () => {
     pathName === "/category" ||
     pathName === "/user";
 
-  const train = pathName === "/train-ai" || pathName === "/x-agents";
+  const train = pathName === "/train-ai" || pathName === "/x-agent";
   const inline = pathName === "/workspace";
   const smartContract = pathName === "/smart-contract-engineer";
 
@@ -407,9 +407,9 @@ const Navigation = () => {
             Community Training
           </div>
         </Link>
-        <Link href="/x-agents">
+        <Link href="/x-agent">
           <div className={`w-auto h-[37px] rounded-[24px] px-2 py-2 flex items-center text-[14px] leading-[14.3px] font-medium ${
-            pathname === "/x-agents" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
+            pathname === "/x-agent" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
           }`}>
             X Content Studio
           </div>

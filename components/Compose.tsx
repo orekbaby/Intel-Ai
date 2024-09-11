@@ -263,7 +263,7 @@ const handleEditSave = (index: number) => {
     let updatedContent = JSON.stringify(contentArray);
     Cookies.set("postedContents", updatedContent, {
       expires: 7,
-      path: "/x-agents",
+      path: "/x-agent",
       secure: true,
     });
   };
@@ -550,13 +550,13 @@ return (
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[450px] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
                       value="ScheduledTweet"
                     >
                       <ScheduleTweet />
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 o h-[450px] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 o h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
                       value="PostedContent"
                     >
                       <ContentPosted />

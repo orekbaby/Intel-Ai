@@ -23,7 +23,7 @@ const page = () => {
   
     Cookies.set("tweetContents", updatedContent, {
       expires: 7,
-      path: "/x-agents",
+      path: "/x-agent",
       secure: true,
     });
   };
@@ -41,7 +41,7 @@ const page = () => {
     let updatedContent = JSON.stringify(contentArray);
     Cookies.set('strategyContents', updatedContent, {
       expires: 7,
-      path: '/x-agents',
+      path: '/x-agent',
       secure: true,
     });
   };

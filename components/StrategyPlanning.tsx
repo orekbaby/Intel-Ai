@@ -783,7 +783,7 @@ const handleContinueChatting = async () => {
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[400px] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-30 scrollbar-hide"
                       value="AllStrategies"
                     >
 <AllStrategies 
@@ -794,13 +794,13 @@ const handleContinueChatting = async () => {
 
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-30 scrollbar-hide"
                       value="ScheduledPosts"
                     >
                       <ScheduledPosts />
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 o h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0  h-[90vh] overflow-y-auto bg-[#181818] pb-30 scrollbar-hide"
                       value="PostedContents"
                     >
                       <PostedContents />
