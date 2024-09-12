@@ -17,6 +17,15 @@ interface ModalState {
 }
 
 const PreviouslyListed: React.FC = () => {
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    setSelectedFile(file);
+  };
+
+
   const initialModalStates = previousListings.map((row) => ({
     newBullet: "",
     bullets: [row.bullet1, row.bullet2, row.bullet3, row.bullet4].filter(Boolean),
@@ -44,16 +53,20 @@ const PreviouslyListed: React.FC = () => {
   };
 
   const handleSave = (index: number) => {
-    if (!modalStates[index].newBullet || modalStates[index].newBullet.trim() === "") {
-      
+    if (
+      !modalStates[index].newBullet || 
+      modalStates[index].newBullet.trim() === "" ||
+      !selectedFile  // Check if the file is not uploaded
+    ) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "Please enter some content before saving.",
+        description: "Please enter some content and upload a file before saving.",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
       return;
     }
+    
 
     const newModalStates = [...modalStates];
     newModalStates[index].showSaveMessage = true;
@@ -75,8 +88,8 @@ const PreviouslyListed: React.FC = () => {
     }, 3000);
   };
 
-  // Array of hover colors
-  const hoverColors = ["#0d0d0d", "#131313", "#1a1a1a", "#1f1f1f"];
+  
+ 
 
   return (
     <>
@@ -126,6 +139,8 @@ const PreviouslyListed: React.FC = () => {
                   modalStates={modalStates}
                   handleTextareaChange={handleTextareaChange}
                   handleSave={handleSave}
+                  selectedFile={selectedFile}
+                  handleFileChange={handleFileChange}
                 />
                 <AccordionComponent
                   index={index}
@@ -134,6 +149,8 @@ const PreviouslyListed: React.FC = () => {
                   modalStates={modalStates}
                   handleTextareaChange={handleTextareaChange}
                   handleSave={handleSave}
+                  selectedFile={selectedFile}
+                  handleFileChange={handleFileChange}
                 />
                 <AccordionComponent
                   index={index}
@@ -142,6 +159,8 @@ const PreviouslyListed: React.FC = () => {
                   modalStates={modalStates}
                   handleTextareaChange={handleTextareaChange}
                   handleSave={handleSave}
+                  selectedFile={selectedFile}
+                  handleFileChange={handleFileChange}
                 />
                 <AccordionComponent
                   index={index}
@@ -150,6 +169,8 @@ const PreviouslyListed: React.FC = () => {
                   modalStates={modalStates}
                   handleTextareaChange={handleTextareaChange}
                   handleSave={handleSave}
+                  selectedFile={selectedFile}
+                  handleFileChange={handleFileChange}
                 />
               </div>
             </DialogContent>

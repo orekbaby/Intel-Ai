@@ -497,7 +497,7 @@ const handleContinueChatting = async () => {
     ) : (
 
 <div className="flex justify-center items-center pt-10">
-<div className="custom-textarea bg-[#1F1F1F] w-[610px] h-[195px] overflow-auto scrollbar-hide relative rounded-[16px]">
+<div className="custom-textarea bg-[#1F1F1F] w-[610px] h-[220px] overflow-auto scrollbar-hide relative rounded-[16px]">
   {/* Top part displaying the typed text */}
 
   {/* loading state */}
@@ -507,7 +507,7 @@ const handleContinueChatting = async () => {
 
    
  
-  <div className="bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[170px]">
+  <div className="bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[160px]">
     <div className="flex flex-col-reverse space-y-4 space-y-reverse">
       {chats.map((chat, index) => (
         <div key={index} className="mb-4">
@@ -612,7 +612,7 @@ const handleContinueChatting = async () => {
       </div>
     </div>
     {isInputVisible && (
-      <div className="flex items-center justify-between w-full h-[34px] px-6 bg-[#1F1F1F] border-t border-[#2B2B2B] pt-2">
+      <div className="flex items-center justify-between w-full h-[48px] px-6 bg-[#1F1F1F] border-t border-[#2B2B2B] pt-8 pb-8">
         <input
             type="text"
             placeholder="What is on your mind?"
@@ -621,7 +621,7 @@ const handleContinueChatting = async () => {
             onKeyDown={handleKeyDown}
             className="flex-1 input-area bg-transparent border-none outline-none font-normal text-xs italic text-white placeholder-[#707070]"
           />
-        <div className="absolute bottom-0 right-7">
+        <div className="absolute bottom-4 right-7">
           <button
             className="flex justify-center items-center w-[27px] h-[27px] rounded-full bg-[#03ffa3]"
             onClick={handleSendButtonClick}
@@ -800,7 +800,7 @@ const handleContinueChatting = async () => {
                       <ScheduledPosts />
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0  h-[90vh] overflow-y-auto bg-[#181818] pb-30 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-30 scrollbar-hide"
                       value="PostedContents"
                     >
                       <PostedContents />

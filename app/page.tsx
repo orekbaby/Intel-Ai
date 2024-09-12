@@ -32,6 +32,7 @@ import {
   AccordionTrigger1,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import LazyLoad from 'react-lazy-load'; 
 import Link from "next/link";
 import Image from "next/image";
 import { accordionData } from "@/config/mockData";
@@ -158,19 +159,30 @@ export default function Home() {
 
             <div className="mx-auto block md:hidden lg:hidden h-auto w-[354.47px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)]  border border-white border-opacity-[25%] rounded-[20px] ">
             <div className="p-1">
-     
-     <video   
-          width={368}
-        height={141}
-        className="object-cover h-auto rounded-[20px] text-center z-20 p-2 block md:hidden lg:hidden"
-        loop
-        autoPlay
-        muted
-        playsInline
-      >
-        <source src={videoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+            <LazyLoad>
+            <video
+  width={368}
+  height={141}
+  className="object-cover h-auto rounded-[20px] text-center z-20 p-2 block md:hidden lg:hidden"
+  loop
+  autoPlay
+  muted
+  playsInline
+  preload="auto" // Ensure video preloads to avoid delays
+  controls={false} // Optional: Remove controls if not needed
+  onCanPlayThrough={() => console.log("Mobile video ready to play smoothly")} // Ensure smooth playback on mobile
+  onError={() => console.error("Error loading mobile video")}
+>
+  <source 
+    src={videoUrl} 
+    type="video/mp4" // Ensure this is correct
+  />
+  Your browser does not support the video tag.
+</video>
+</LazyLoad>
+
+
+
     </div>
             </div>
             <Link href="logIn">
@@ -205,18 +217,26 @@ export default function Home() {
  to-[rgba(127,86,217,.9)] rounded-[20px] py-[2px] px-[2px] w-fit hidden md:block lg:block"
               >
                 <div className="p-1">
-           <video
-        width={1088}
-        height={721}
-        className="object-cover h-auto rounded-[20px]"
-        loop
-        autoPlay
-        muted
-        playsInline
-      >
-        <source src={videoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+                <LazyLoad>
+                <video
+  width={1088}
+  height={721}
+  className="object-cover h-auto rounded-[20px]"
+  loop
+  autoPlay
+  muted
+  playsInline
+  preload="auto" // Preload video to ensure smooth playback
+  onCanPlayThrough={() => console.log("Video ready to play smoothly")} // Check when the video can play through without buffering
+  onError={() => console.error("Error loading video")}
+>
+  <source src={videoUrl} type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+</LazyLoad>
+
+
             </div>
               </div>
             </div>

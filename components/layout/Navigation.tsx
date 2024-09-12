@@ -67,15 +67,18 @@ const Navigation = () => {
   const train = pathName === "/train-ai" || pathName === "/x-agents";
   const inline = pathName === "/workspace";
   const smartContract = pathName === "/smart-contract-engineer";
+  const selectedUser = useSelector((state: any) => state.user.selectedUser);
 
   const userSelect = Cookies.get("user");
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handlePersonaSwitch = (persona: string) => {
-    dispatch(setUser(persona));
-    router.push('/user');
-  };
+ // Update the handlePersonaSwitch function to route directly to /dashboard
+const handlePersonaSwitch = (persona: string) => {
+  dispatch(setUser(persona));
+  router.push('/dashboard');  // Directly route to dashboard after persona switch
+};
+
 
   return (
     <>
@@ -146,27 +149,27 @@ const Navigation = () => {
         <header className="hidden w-full absolute z-40 top-0 left-[290px] md:flex lg:flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
           <div className="hidden md:flex lg:flex items-center gap-6 justify-between">
           <div className="flex justify-center items-center gap-8">
-      <p
-        onClick={() => handlePersonaSwitch('communityManager')}
-        className={`text-base font-medium cursor-pointer ${
-          userSelect === "communityManager"
-            ? "text-white"
-            : "text-[#6D6D6D]"
-        }`}
-      >
-        Community Owner/Manager
-      </p>
+          <p
+            onClick={() => handlePersonaSwitch('communityManager')}
+            className={`text-base font-medium cursor-pointer ${
+              selectedUser === "communityManager"
+                ? "text-white" // Highlight active state
+                : "text-[#6D6D6D]"
+            }`}
+          >
+            Community Owner/Manager
+          </p>
 
-      <p
-        onClick={() => handlePersonaSwitch('smartContractEngineer')}
-        className={`text-base font-medium cursor-pointer ${
-          userSelect === "smartContractEngineer"
-            ? "text-white"
-            : "text-[#6D6D6D] cursor-pointer"
-        }`}
-      >
-        Smart Contract Engineer
-      </p>
+          <p
+            onClick={() => handlePersonaSwitch('smartContractEngineer')}
+            className={`text-base font-medium cursor-pointer ${
+              selectedUser === "smartContractEngineer"
+                ? "text-white" // Highlight active state
+                : "text-[#6D6D6D]"
+            }`}
+          >
+            Smart Contract Engineer
+          </p>
     </div>
             <div className="flex items-center justify-end gap-6 px-4 md:px-12 lg:px-24 xl:px-72">
   <p className="font-medium text-[20px] leading-[20.8px]">

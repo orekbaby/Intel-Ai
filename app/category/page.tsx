@@ -33,17 +33,19 @@ const Page = () => {
 
   // Update selectedCategory with the clicked row's name
 
-    const handleOptionClick = (index: number) => {
-      setSelectedOption(index);
-      setSelectedCategory(description[index].name);
-      if (index === 0 || index === 1 || index === 2) {
-        !onBoard ? router.push('/onboard') : router.push('/dashboard');
-      }
-    
-      if (selectedUser === 'smartContractEngineer') {
-        !onBoard ? router.push('/onboard') : router.push('/dashboard');
-      }
-    };
+  const handleOptionClick = (index: number) => {
+    setSelectedOption(index);
+    setSelectedCategory(description[index].name);
+  
+    if (selectedUser === 'communityManager') {
+      // Community Manager should go to /onboard first if not onboarded
+      !onBoard ? router.push('/onboard') : router.push('/dashboard');
+    } else if (selectedUser === 'smartContractEngineer') {
+      // Smart Contract Engineer goes directly to /dashboard
+      router.push('/dashboard');
+    }
+  };
+  
     
 
   const handleBackClick = () => {

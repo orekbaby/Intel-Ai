@@ -112,12 +112,12 @@ const SideBar = () => {
   // user persona functions
   const selectedUser = useSelector((state:any) => state.user.selectedUser);
 
-  const currentPersona = persona.find(p => 
-    p.route === selectedUser || 
+  const currentPersona = persona.find(p =>
+    p.route === selectedUser ||
     (selectedUser === 'smartContractEngineer' && p.name === 'Smart Contract Engineer') ||
     (selectedUser === 'communityManager' && p.name === 'Community Workspace')
   );
-  
+
   if (!currentPersona) return null;
 
   const handleButtonClick = () => {

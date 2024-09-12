@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { FaCircle } from "react-icons/fa";
 import { ring } from "@/assets";
+import UploadRing from "./UploadRing";
 
 interface ModalState {
   newBullet: string;
@@ -23,6 +24,8 @@ interface AccordionProps {
   modalStates: ModalState[];
   handleTextareaChange: (index: number, value: string) => void;
   handleSave: (index: number) => void;
+  selectedFile: File | null;
+  handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const AccordionComponent: React.FC<AccordionProps> = ({
@@ -32,7 +35,13 @@ const AccordionComponent: React.FC<AccordionProps> = ({
   modalStates,
   handleTextareaChange,
   handleSave,
+  selectedFile,
+  handleFileChange
 }) => {
+
+
+ 
+  
   return (
     <Accordion
       className="w-full md:w-[510px] lg:w-[510px]"
@@ -65,7 +74,7 @@ const AccordionComponent: React.FC<AccordionProps> = ({
                     type="text"
                     value={bullet}
                     readOnly
-                    className="bg-transparent border-none outline-none text-[#858585] text-sm italic w-full"
+                    className="bg-transparent border-none outline-none text-white text-sm italic w-full"
                   />
                 </div>
               ))}
@@ -74,19 +83,16 @@ const AccordionComponent: React.FC<AccordionProps> = ({
           <div className="pt-8 pb-3 px-2 w-auto">
             <div className="relative w-[360px] md:w-[420px] lg:w-[420px] h-[108px] bg-[#0D0D0D] rounded-[12px] border border-[#363636]">
               <textarea
-                className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#7B7B7B] font-normal italic text-xs"
+                className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-white font-normal italic text-xs"
                 placeholder="Add more information"
                 value={modalStates[index].newBullet}
                 onChange={(e) => handleTextareaChange(index, e.target.value)}
               />
               <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
-                <Image
-                  src={ring}
-                  width={18}
-                  height={18}
-                  alt="textarea-icon"
-                  className=""
-                />
+              <UploadRing
+    value={selectedFile}  // Pass the selected file or null
+    onChange={handleFileChange}  // Pass the handler function
+  />
               </div>
             </div>
           </div>

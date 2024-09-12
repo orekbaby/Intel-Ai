@@ -65,7 +65,7 @@ const Page = () => {
     <>
       <div className="pl-0 md:pl-16 lg:pl-20 xl:pl-20 2xl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
         <section className="relative w-full h-[100vh] overflow-y-auto scrollbar-hide pb-5 dashboard-color">
-          <div className="w-full pl-0 md:pl-8 lg:pl-10 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
+          <div className="w-full pl-0 md:pl-8 lg:pl-10 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-0 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
             <div className="pt-5">
               <Tabs defaultValue="StrategyPlanning" className="w-full h-auto px-4 pt-2 pb-5 fixed">
                 <TabsList className="w-[256px] border-[#272727] rounded-[50px] gap-4 flex justify-end border items-center">

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { toast, useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
 import { ring } from "@/assets";
+import UploadRing from "./UploadRing";
 
 
 
@@ -36,7 +37,7 @@ const OtherInformationModal: React.FC = () => {
     const newModalStates = [...modalStates];
 
     // Check if the input box (newContent) is empty
-    if (newModalStates[index].newContent.trim() === '') {
+    if (newModalStates[index].newContent.trim() === '' ||  !selectedFile) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
@@ -75,6 +76,13 @@ const OtherInformationModal: React.FC = () => {
       newModalStatesAfterTimeout[index].showSaveMessage = false;
       setModalStates(newModalStatesAfterTimeout);
     }, 2000);
+  };
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    setSelectedFile(file);
   };
 
   return (
@@ -156,13 +164,10 @@ const OtherInformationModal: React.FC = () => {
                       }
                     />
                     <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
-                      <Image
-                        src={ring}
-                        width={18}
-                        height={18}
-                        alt="textarea-icon"
-                        className=""
-                      />
+                    <UploadRing
+    value={selectedFile}  // Pass the selected file or null
+    onChange={handleFileChange}  // Pass the handler function
+  />
                     </div>
                   </div>
                 </div>

@@ -24,10 +24,12 @@ const Page = () => {
   
   
 
-  const handleOnBoard = () => {
-    dispatch(setOnBoard(true));  // Set the onBoard state to true
-    router.push("/dashboard");  // Navigate to the dashboard
-  };
+ // Onboarding logic for Smart Contract Engineer
+const handleOnBoard = () => {
+  dispatch(setOnBoard(true));  // Set the onBoard state to true
+  router.push("/dashboard");   // After onboarding, go to dashboard
+};
+
  
 
   return (

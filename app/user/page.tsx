@@ -28,9 +28,9 @@ const Page = () => {
 
     // Post-login persona handling logic
     if (persona === 'communityManager') {
-      router.push('/category');  // Redirect to category page
+      router.push('/category');  // Community Manager continues to /category
     } else if (persona === 'smartContractEngineer') {
-      !onBoard ? router.push('/onboard') : router.push('/dashboard');  // Redirect to dashboard for Smart Contract Engineer
+      !onBoard ? router.push('/onboard') : router.push('/dashboard');  // Smart Contract Engineer continues to /onboard or /dashboard
     }
   };
   const cards = [
