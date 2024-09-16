@@ -76,18 +76,18 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="pl-0 md:pl-16 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
+    <div className="pl-0 md:pl-4 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
       <section className="relative w-full h-[100vh] overflow-y-auto scrollbar-hide pb-5 dashboard-color">
-        <div className="w-full pl-0 md:pl-8 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
+        <div className="w-full pl-0 md:pl-2 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
           <ToastContainer />
           <div className="pt-5">
-            <p className="font-medium text-base md:text-[20px] lg:text-[20px] xl:[20px] 2xl:[24px] mb-4 pl-6">
+            <p className="font-medium text-base md:text-[20px] lg:text-[20px] xl:[20px] 2xl:[24px] mb-4 pl-6 md:pl-2 lg:pl-6">
               IntelAI Workspace
             </p>
             <div className="w-full flex flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row justify-between gap-4 h-full px-4">
               {/* Input section */}
-              <div className="w-full md:w-[40%] lg:w-[40%] xl:w-[40%] 2xl:w-[45%] bg-[#181818] h-auto rounded-[20px]">
-                <div className="w-full md:w-[490px] lg:w-fit h-auto bg-[#1B1B1B] rounded-[20px] p-4 mb-16">
+              <div className="w-full md:w-[50%] lg:w-[40%] xl:w-[40%] 2xl:w-[45%] bg-[#181818] h-auto rounded-[20px]">
+                <div className="w-full md:w-fit lg:w-fit h-auto bg-[#1B1B1B] rounded-[20px] p-4 mb-16">
                   <h3 className="font-medium text-sm text-[#f9f9f9] mb-4">
                     Provide Context
                   </h3>
@@ -143,7 +143,7 @@ const Page: React.FC = () => {
                 </div>
               </div>
               {/* Image section */}
-              <div className="hidden md:block lg:block w-[60%] bg-[#181818] rounded-[20px] h-[809px]">
+              <div className="hidden md:block lg:block w-full md:w-[50%] lg:w-[60%] bg-[#181818] rounded-[20px] h-[809px]">
                 <Image
                   src={ContentInside}
                   width={878}

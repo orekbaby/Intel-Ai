@@ -16,21 +16,21 @@ const Page = () => {
 
   return (
     <>
-      <section className="pl-[270px] w-full h-[100vh] mb-3 ">
-        <div className="flex w-full gap-2 dashboard-color h-[100vh] overflow-y-auto scrollbar-hide px-6">
+      <section className="pl-0 md:pl-2 lg:pl-[270px] w-full h-[100vh] mb-3 ">
+        <div className="flex flex-col md:flex-row lg:flex-row w-full gap-2 dashboard-color h-[100vh] overflow-y-auto scrollbar-hide px-0 md:px-6 lg:px-6">
           {/* Main section taking 70% of the width */}
-          <div className="w-[70%] gap-2 ml-10 border-r border-[#363636] pr-5">
+          <div className="w-full md:w-[70%] lg:w-[70%] gap-2 ml-2 md:ml-2 lg:ml-10 border-r border-[#363636] pr-0 md:pr-0 lg:pr-5">
             <h2 className="text-xs leading-[12.48px] font-normal mb-5 pt-5">
               Quick Actions
             </h2>
             {/* First row */}
-            <div className="w-full flex justify-between gap-5 mb-5">
-              <div className="w-[60%]">
+            <div className="w-full flex flex-col md:flex-row lg:flex-row justify-between gap-5 mb-5">
+              <div className="w-full md:w-[60%] lg:w-[60%]">
                 <div
                   className="relative h-[187px] bg-gradient-to-r from-[rgba(0,0,0,1)]
                  via-[rgba(24,24,24,0.8)] to-[rgba(3,255,163,0.4)] rounded-[20px]"
                 >
-                  <h1 className="leading-[14.56px] text-sm pt-6 px-6 font-normal text-[#5E5E5E] mb-5">
+                  <h1 className="leading-[14.56px] text-sm pt-6  px-4 md:px-6 lg:px-6 font-normal text-[#5E5E5E] mb-5">
                     Hello, Username{" "}
                     <span className="leading-[14.56px] text-sm font-normal">
                       👋
@@ -66,15 +66,15 @@ const Page = () => {
                     />
                   </div>
 
-                  <div className="px-6">
+                  <div className="px-4 md:px-2 lg:px-6">
                     <div className="flex flex-col justify-start">
                       <div className="w-full">
-                        <h3 className="font-[200px] text-[36px] leading-[37.44px] w-full">
+                        <h3 className="font-[200px] text-[24px] md:text-[36px] lg:text-[36px] leading-[37.44px] w-full">
                           Train, Update, Test & Simulate!
                         </h3>
                       </div>
                       <div className="flex justify-between items-center">
-                        <p className="font-normal text-[10px] leading-[12.8px] text-[#969696] w-[169px] h-[22px]">
+                        <p className="font-medium md:font-normal lg:font-normal text-[11px] md:text-[10px] lg:text-[10px] leading-[12.8px] text-[#969696] w-[169px] h-[22px]">
                           Train IntelAI to suit your tweets and requirements
                           seamlessly.
                         </p>
@@ -94,7 +94,7 @@ const Page = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-[40%]">
+              <div className="w-[95%] md:w-[40%] lg:w-[40%] px-1 md:px-0 lg:px-0">
                 <div className="w-full h-[187px] bg-[#181818] rounded-[20px] px-4 py-3">
                   <div className="w-full">
                     <Image
@@ -102,35 +102,39 @@ const Page = () => {
                       width={291}
                       height={105}
                       alt="star"
-                      className="mx-auto rounded-[20px] mb-2"
+                       className="mx-auto rounded-[20px] mb-2"
                     />
                   </div>
 
-                  <div className="flex justify-center items-center gap-6">
-                    <h3 className="font-normal text-[18px] leading-[24.96px] h-auto">
+                  <div className="flex justify-start md:justify-center lg:justify-center items-start md:items-center lg:items-center gap-6">
+                    <h3 className="font-normal w-full h-auto text-[24px] md:text-[18px] lg:text-[18px] leading-[27.96px] md:[24.96px] lg:[24.96px]">
                       Connect more communities
                     </h3>
-                    <div className="flex justify-center items-center pt-2">
-                      <div className="items-center flex border-b border-[#03FFA3] pt-5">
-                        <div className="flex">
-                          <p className="font-medium text-xs leading-[12.48px] w-[93px] text-[#03FFA3] ">
-                            Start Integrating
-                          </p>
-                          <MdArrowOutward className="text-[#03FFA3] text-[10px]" />
-                        </div>
-                      </div>
-                    </div>
+                    <div className="flex justify-end md:justify-center lg:justify-center w-full md:w-auto lg:w-auto items-center pb-10">
+        <div className="flex items-center border-b border-[#03FFA3] pt-7 md:pt-5 lg:pt-10">
+          <p className="font-medium text-xs leading-[12.48px] text-[#03FFA3]">
+            Start Integrating
+          </p>
+          <MdArrowOutward className="text-[#03FFA3] text-[10px] ml-2" />
+        </div>
+      </div>
                   </div>
                 </div>
               </div>
             </div>
             {/* Second row taking full width */}
             <div className="flex justify-between items-center w-full mb-3">
-              <div className="text-lg">Analytics</div>
+              <div className="font-medium yext-sm md:text-lg lg:text-lg">Analytics</div>
               <div className="relative">
                 <select className="h-9 w-32 border bg-[#181818] border-[#272727] rounded-[25px] px-4 py-1 text-[#828282] font-medium text-sm text-center appearance-none">
+                <option className="text-[#828282] font-medium text-sm text-left text-[14.96px]">
+                    Today Week
+                  </option>
                   <option className="text-[#828282] font-medium text-sm text-left text-[14.96px]">
                     This Week
+                  </option>
+                  <option className="text-[#828282] font-medium text-sm text-left text-[14.96px]">
+                    Next Week
                   </option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -144,12 +148,12 @@ const Page = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full h-[187px] bg-[#181818] rounded-[20px] mb-4 px-6 py-4">
+            <div className="w-full h-[187px] bg-[#181818] rounded-[20px] mb-4 px-2 md:px-6 lg:px-6 py-4">
               <div className="flex justify-between items-center ">
                 <p className="font-medium text-[10px] leading-[10.4px] text-[#969696]">
                   ACTIVITIES
                 </p>
-                <div className="flex justify-center items-center gap-2">
+                <div className="flex flex-col md:flex-row lg:flex-row justify-center items-center gap-2">
                   <div className="flex items-center gap-1">
                     <FaCircle className="text-[#0EA5E9] text-[8px]" />
                     <p className="font-medium text-[8px] leading-[10.4px] text-[#969696]">
@@ -183,7 +187,7 @@ const Page = () => {
                   </p>
                 </div>
                 <div className="flex flex-1">
-                  <div className="w-[530px] h-auto bg-[#1C1C1C] px-6 py-1">
+                  <div className="hidden md:block lg:block w-[530px] h-auto bg-[#1C1C1C] px-6 py-1">
                     <Image
                       src={BarChart}
                       alt="Descriptive alt text"
@@ -198,8 +202,8 @@ const Page = () => {
             </div>
 
             {/* Third row with two columns */}
-            <div className="w-full flex gap-4 mb-4">
-              <div className="w-[50%] h-[187px] bg-[#181818] rounded-[20px] flex flex-col px-6 py-4">
+            <div className="w-full flex flex-col md:flex-row lg:flex-row gap-4 mb-4">
+              <div className=" w-full md:w-[50%] lg:w-[50%] h-[187px] bg-[#181818] rounded-[20px] flex flex-col px-4 md:px-6 lg:px-6 py-4">
                 <div className="flex justify-between items-center ">
                   <p className="font-medium text-[10px] leading-[10.4px] text-[#969696]">
                     COMMUNITY ENGAGEMENT
@@ -252,7 +256,7 @@ const Page = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] h-[187px] bg-[#181818] rounded-[20px] flex flex-col  px-6 py-4">
+              <div className="w-full md:w-[50%] lg:w-[50%] h-[187px] bg-[#181818] rounded-[20px] flex flex-col  px-6 py-4">
                 <div className="flex justify-between items-center ">
                   <p className="font-medium text-[10px] leading-[10.4px] text-[#969696]">
                     % ESCALATION REPORTS
@@ -306,8 +310,8 @@ const Page = () => {
               </div>
             </div>
             {/* Fourth row with two columns */}
-            <div className="w-full flex gap-5">
-              <div className="w-[25%] h-[187px] bg-[#181818] rounded-[20px] px-4 py-4">
+            <div className="w-ful flex  flex-col md:flex-row lg:flex-row  gap-5">
+              <div className="w-[50%] md:w-[25%] lg:w-[25%] h-[187px] bg-[#181818] rounded-[20px] px-4 py-4">
                 <div className="">
                   <p className="font-medium text-[10px] leading-[10.4px] text-[#969696] mb-6">
                     PLATFORM ENGAGEMENTS
@@ -337,7 +341,7 @@ const Page = () => {
                   />
                 </div>
               </div>
-              <div className="w-[25%] h-[187px] bg-[#181818] rounded-[20px] px-4 py-4">
+              <div className="w-[50%] md:w-[25%] lg:w-[25%] h-[187px] bg-[#181818] rounded-[20px] px-4 py-4">
                 <div className="mx-auto">
                   <p className="font-medium text-[10px] leading-[10.4px] text-[#969696] mb-3 w-[80%]">
                     RESOLUTION TURN AROUND TIME
@@ -346,11 +350,12 @@ const Page = () => {
                     src={timer}
                     width={110.77}
                     height={120}
+                     className="max-w-[100%]"
                     alt="icon"
                   />
                 </div>
               </div>
-              <div className="w-[50%] h-[187px] bg-[#181818] rounded-[20px] py-4 px-5">
+              <div className="w-full md:w-[50%] lg:w-[50%] h-[187px] bg-[#181818] rounded-[20px] py-4 px-5">
                 <p className="font-medium text-[10px] leading-[10.4px] text-[#969696] mb-5">
                   INTEL AI ACTIVITY
                 </p>
@@ -363,6 +368,7 @@ const Page = () => {
                     src={LineChart}
                     width={370}
                     height={110.5}
+                    className="max-w-[100%]"
                     alt="icon"
                   />
                 </p>

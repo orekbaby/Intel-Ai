@@ -75,7 +75,7 @@ const page = () => {
                 your results.
               </p>
               {/* button */}
-              <Link href="/communityManager">
+              <Link href="/train-ai" prefetch={false}>
                 <button
                   className="bg-white items-center flex justify-center text-center 
                                   text-xs font-normal ring-offset-white focus-visible:outline-none

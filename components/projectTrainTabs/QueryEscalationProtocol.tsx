@@ -89,6 +89,8 @@ const Page = () => {
 
     setInputValue("");
     setShowResolveButton(false);
+    setShowUserData(true);
+    [userData.name, avatar,]
   };
 
   const simulateTyping = (response: ChatItem) => {
@@ -141,7 +143,7 @@ const Page = () => {
   };
   return (
     <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
-      <div className="w-full md:w-[70%] lg:w-[70%] h-full pt-5">
+      <div className="w-full md:w-full lg:w-[70%] h-full pt-5">
         <div className="">
           <div className="w-[150px] h-[35px] rounded-[25px] bg-[#1B1B1B] flex justify-center items-center mb-10">
             <p className="font-medium text-sm leading-[14.56px]">
@@ -149,11 +151,11 @@ const Page = () => {
             </p>
           </div>
           {/* desktop */}
-          <div className="hidden md:flex lg:flex justify-start gap-4 items-center">
+          <div className="hidden md:flex lg:flex justify-center md:justify-start lg:justify-start gap-4 items-center">
             {escalationReport?.map((row, index) => (
               <div key={index} className="">
-                <div className="w-[138px] h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
-                  <p className="font-medium text-xs leading-[12.48px] mb-5">
+                <div className="w-[189px] md:w-[138px] lg:w-[138px] h-[137px] md:h-[115px] lg:h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
+                  <p className="font-medium text-[13.2px] md:text-xs lg:text-xs leading-[12.48px] mb-5">
                     {row.title}
                   </p>
                   <p className="font-[300] text-[40px] leading-[41.6px]">
@@ -173,10 +175,10 @@ const Page = () => {
           </div>
 
           {/* mobile */}
-          <div className="grid grid-cols-2 gap-4 items-center md:hidden lg:hidden">
+          <div className="grid grid-cols-2 gap-6 items-center md:hidden lg:hidden">
             {escalationReport?.map((row, index) => (
               <div key={index} className="">
-                <div className="w-[138px] h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
+                <div className="w-[189px] h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
                   <p className="font-medium text-xs leading-[12.48px] mb-5">
                     {row.title}
                   </p>
@@ -198,7 +200,7 @@ const Page = () => {
 
           <Tabs
             defaultValue="Unresolved"
-            className="w-full pl-2 pr-3 md:pl-0 lg:pl-0 pt-5 md:pt-0 lg:pt-7 overflow-x-hidden"
+            className="w-full pl-2 pr-3 md:pl-0 lg:pl-0 pt-5 md:pt-7 lg:pt-7 overflow-x-hidden"
           >
             <TabsList className="flex mt-0 mb-0 items-center justify-between md:justify-start lg:justify-start gap-0 md:gap-2 lg:gap-1 px-2 md:px-0 lg:px-0 border w-fit rounded-[24px] border-[#1C1C1C]">
               <TabsTrigger
@@ -221,7 +223,7 @@ const Page = () => {
               </TabsTrigger>
             </TabsList>
             <TabsContent
-              className="hidden md:block lg:block w-full h-full pt-2 overflow-x-hidden"
+              className="hidden md:hidden lg:block w-full h-full pt-2 overflow-x-hidden"
               value="Unresolved"
             >
               <Unresolved
@@ -232,7 +234,7 @@ const Page = () => {
             </TabsContent>
 
             <TabsContent
-              className="block md:hidden lg:hidden w-full h-full pt-2 overflow-x-hidden"
+              className="block md:block lg:hidden w-full h-full pt-2 overflow-x-hidden"
               value="Unresolved"
             >
               <UnresolvedMobile
@@ -299,7 +301,7 @@ const Page = () => {
       </div>
       {/* desktop ends here */}
 
-      <div className="hidden md:block lg:block fixed top-10 right-0 h-[90vh] md:h-[100vh] lg:h-[100vh] w-full md:w-[30%] lg:w-[30%] pb-20 overflow-y-auto scrollbar-hide pt-10 md:pt-24 lg:pt-24">
+      <div className="hidden md:hidden lg:block fixed top-10 right-0 h-[90vh] md:h-[100vh] lg:h-[100vh] w-full md:w-[30%] lg:w-[30%] pb-20 overflow-y-auto scrollbar-hide pt-10 md:pt-24 lg:pt-24">
         <p className="font-normal text-base leading-[16.64px] mb-4">
           Query Sorting Portal
         </p>
@@ -308,7 +310,7 @@ const Page = () => {
             {showUserData && (
               <div className="flex items-center gap-1">
                 <Image
-                  src={userData.img}
+                  src={avatar}
                   alt="User Avatar"
                   width={25}
                   height={25}

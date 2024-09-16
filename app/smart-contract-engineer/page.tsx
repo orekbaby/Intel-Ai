@@ -342,7 +342,7 @@ const Page = () => {
   
   return (
 <>
-<div className="pl-28 w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide pb-20">
+<div className="pl-0 md:pl-2 lg:pl-28 w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide pb-20">
   <div className="dasboard-color">
 <div className="flex justify-between items-center w-full p-4">
       {/* Left Side: Buttons */}
@@ -378,7 +378,7 @@ const Page = () => {
       {/* Left Side: Two Rows */}
       <div className="flex flex-col w-1/2 gap-4">
         {/* Row 1: Task Type */}
-        <h3 className="font-semibold text-sm leading-[28.9px]">Task Type</h3>
+        <h3 className="font-medium md:font-medium lg:font-semibold text-xs md:text-xs lg:text-sm leading-[28.9px]">Task Type</h3>
 
         {/* Row 2: Fix Bug with Dropdown */}
         <div className="relative flex items-center justify-between w-full h-[48px] p-[10px] bg-[#131313] text-white rounded-[12px]">
@@ -398,7 +398,7 @@ const Page = () => {
       {/* Right Side: Two Rows */}
       <div className="flex flex-col w-1/2 gap-4">
         {/* Row 1: Developer Proficiency */}
-        <h3 className="font-semibold text-sm leading-[28.9px]">Developer Proficiency</h3>
+        <h3 className="ffont-medium md:font-medium lg:font-semibold text-xs md:text-xs lg:text-sm leading-[28.9px]">Developer Proficiency</h3>
 
         {/* Row 2: Junior with Dropdown */}
         <div className="relative flex items-center justify-between w-full h-[48px] p-[10px] bg-[#131313] text-white rounded-[12px]">
@@ -435,7 +435,7 @@ const Page = () => {
     </div>
 
     <div className="flex justify-between items-center pb-5">
-     <h4 className="font-semibold text-xs leading-[28.9px] mb-5 pt-2">
+     <h4 className="font-semibold text-xs md:text-[10px] lg:text-xs leading-[28.9px] mb-5 pt-2 md:pt-6 lg:pt-2">
       Code Context
       </h4>
        <div className="flex gap-3">
@@ -449,7 +449,7 @@ const Page = () => {
     onChange={handleSelectChange}
   >
     {workspaces.map((workspace) => (
-  <option className="mb-5 font-normal text-xs" key={workspace.id} value={workspace.id}>
+  <option className="mb-5 font-normal text-xs md:text-[10px] lg:text-xs" key={workspace.id} value={workspace.id}>
     Workspace: {workspace.name}
   </option>
 ))}

@@ -21,9 +21,9 @@ const Page: React.FC = () => {
 
   return (
     <>
-      <main className="pl-2 md:pl-[290px] lg:pl-[290px] w-full h-[80vh] md:h-[100vh] lg:h-[100vh]  pb-8 md:pb-5 lg:pb-5">
+      <main className="pl-2 md:pl-2 lg:pl-[290px] w-full h-[80vh] md:h-[100vh] lg:h-[100vh] overflow-hidden  pb-8 md:pb-5 lg:pb-5">
         <section className="dashboard-color relative w-full h-[100vh] rounded-tl-[20px] overflow-y-auto scrollbar-hide">
-          <div className="w-full px-0 md:px-0 lg:px-2 relative mb-0 md:mb-10 lg:mb-10 h-full ml-0 md:ml-10 lg:ml-10">
+          <div className="w-full px-0 md:px-0 lg:px-2 relative mb-0 md:mb-10 lg:mb-10 h-full ml-0 md:ml-2 lg:ml-10">
             <h2 className="leading-[37.44px] text-[27px] mb-5 md:mb-7 lg:mb-7 font-[200] pt-10 md:pt-8 lg:pt-8">
               You&apos;re Welcome!
               <span className="leading-[24.96px] md:leading-[37.44px] lg:leading-[37.44px] text-[24px] md:text-[36px] lg:text-[36px] font-normal">
@@ -33,13 +33,13 @@ const Page: React.FC = () => {
 
             <p className="leading-[18.8px] font-normal text-sm w-[359px] h-auto text-[#A9A9A9] mb-5 md:mb-10 lg:mb-10">
             To get started,
-Train IntelAI with your community data to test & simulate its capabilities. <Link className="text-green-500 border-b border-b-green-500" rel="stylesheet" href="/workspace">Click here to begin.</Link>
+Train IntelAI with your community data to test & simulate its capabilities. <Link className="text-green-500 border-b border-b-green-500" rel="stylesheet" href="/workspace" prefetch={false}>Click here to begin.</Link>
 
             </p>
 
             <div
               className="relative bg-gradient-to-r from-[rgba(0,0,0,1)]
-           via-[rgba(24,24,24,0.8)] to-[rgba(3,255,163,0.4)] w-[371px] h-[196px] md:w-[874px] md:h-[217px] 
+           via-[rgba(24,24,24,0.8)] to-[rgba(3,255,163,0.4)] w-[371px] h-[196px] md:w-[95%] md:h-[217px] 
            lg:w-[874px] lg:h-[217px] rounded-[16px] md:rounded-[20px] lg:rounded-[20px] mb-4 md:mb-5 lg:mb-5"
             >
               {/* first star */}
@@ -85,7 +85,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
                 />
                 <div className="flex flex-col md:flex-row lg:flex-row justify-start">
                   <div className="w-full md:w-1/2 lg:w-1/2">
-                    <h3 className="font-medium text-[20px] md:text-[36px] lg:text-[27px] leading-[20.8px] md:leading-[37.44px] lg:leading-[32.44px] w-full mb-5 md:mb-0 lg:mb-0">
+                    <h3 className="font-medium text-[20px] md:text-[24px] lg:text-[27px] leading-[20.8px] md:leading-[37.44px] lg:leading-[32.44px] w-full mb-5 md:mb-0 lg:mb-0">
                       Train your AI to suite your preference
                     </h3>
                   </div>
@@ -113,7 +113,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
 
             {/* bottom boxes first */}
 
-            <div className="w-full md:w-[874px] lg:w-[874px] h-auto flex flex-col md:flex-row lg:flex-row justify-between relative overflow-hidden gap-4">
+            <div className="w-full md:w-[95%] lg:w-[874px] h-auto flex flex-col md:flex-row lg:flex-row justify-between relative overflow-hidden gap-4">
               {integrationDashboard?.map((row, index) => (
                 <div
                   key={index}
@@ -158,7 +158,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
               {proUpgrade?.map((row, index) => (
                 <div key={index} className="pb-20">
                   <div
-                    className="w-[371px] md:w-[437px] lg:w-[437px] h-auto rounded-[20px] bg-gradient-to-r from-[rgba(189,254,28,1)]
+                    className="w-[371px] md:w-[98%] lg:w-[437px] h-auto rounded-[20px] bg-gradient-to-r from-[rgba(189,254,28,1)]
            via-[rgba(37,184,222,1)] to-[rgba(70,13,255,1)] px-6 py-5"
                   >
                     <div className="bg-[#505050] w-[53px] h-[53px] rounded-full flex items-center text-center justify-center mb-3">

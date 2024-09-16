@@ -55,8 +55,8 @@ const Navigation = () => {
     const pathName = usePathname();
     const show =
     pathName === "/dashboard" ||
-    pathName === "/community-manager" ||
-    pathName === "/train-ai";
+    pathName === "/community-manager" 
+    // || pathName === "/train-ai";
 
     const visible =
     pathName === "/log-in" ||
@@ -83,7 +83,7 @@ const handlePersonaSwitch = (persona: string) => {
   return (
     <>
       {pathName === "/" && (
-        <header className="w-full absolute top-0 left-0 z-40 flex items-center justify-between bg-[#0A0908] h-[60px] md:h-[70px] lg:h-[70px] px-3 md:px-20 lg:px-20">
+        <header className="w-full absolute top-0 left-0 z-40 flex items-center justify-between bg-[#0A0908] h-[60px] md:h-[70px] lg:h-[70px] px-3 md:px-6 lg:px-20">
           <Image src={Logo} width={99} height={40} alt="logo" />
 
           {/* Menu Contents */}
@@ -132,7 +132,7 @@ const handlePersonaSwitch = (persona: string) => {
                 alt="Telegram"
               />
             </div>
-            <Link href="/log-in">
+            <Link href="/log-in" prefetch={false}>
               <div className=" hidden md:block lg:block bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10 mt-10 shadow-drop">
                 <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[66px] hover:bg-[#0B0F16]">
                   Request Access
@@ -146,7 +146,7 @@ const handlePersonaSwitch = (persona: string) => {
       {/*  dashboard navigation  */}
 
       {show && (
-        <header className="hidden w-full absolute z-40 top-0 left-[290px] md:flex lg:flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-10">
+        <header className="hidden w-full absolute z-40 top-0 md:left-[48px] lg:left-[290px] md:flex lg:flex justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-4 lg:px-10">
           <div className="hidden md:flex lg:flex items-center gap-6 justify-between">
           <div className="flex justify-center items-center gap-8">
           <p
@@ -369,16 +369,16 @@ const handlePersonaSwitch = (persona: string) => {
       {/* TrainAi navigation  */}
 
       {train && (
-  <header className="hidden md:flex lg:flex w-full absolute z-40 top-0 left-[1px] justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-2">
+  <header className="flex md:flex lg:flex w-full absolute z-40 top-0 left-[1px] justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-2">
     <div
       ref={menuRef}
-      className="block text-white ml-0 md:ml-6 lg:ml-6 text-[24px] h-[24px] md:hidden lg:hidden cursor-pointer"
+      className="block text-white ml-0 md:ml-6 lg:ml-6 text-[24px] h-[24px] pt-5 md:hidden lg:hidden cursor-pointer"
       onClick={toggleMenu}
     >
       <FiMenu />
-    </div>
+    </div> 
 
-    {/* Menu Contents */}
+    {/* Menu Contents  */}
     {menuOpen && (
       <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
         <div className="flex flex-col justify-center gap-6 text-sm font-normal">
@@ -394,8 +394,10 @@ const handlePersonaSwitch = (persona: string) => {
 
     <div className="flex items-center justify-between w-full">
       {/* Centered Links */}
-      <div className="flex items-center justify-center gap-4 mx-auto pl-[20rem]" >
-        <Link href="/train-ai">
+      <div className="hidden md:flex lg:flex items-center justify-center pt-5 md:pt-0 lg:pt-0 gap-4 mx-auto pl-2 md:pl-[2rem] lg:pl-[20rem]" >
+        <Link href="/train-ai" prefetch={false}
+        
+        >
           <div className={`w-auto h-[37px] rounded-[24px] px-2 py-2 flex items-center gap-2 text-[14px] leading-[14.3px] font-medium ${
             pathname === "/train-ai" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
           }`}>
@@ -410,7 +412,8 @@ const handlePersonaSwitch = (persona: string) => {
             Community Training
           </div>
         </Link>
-        <Link href="/x-agents">
+        <Link href="/x-agents" prefetch={false}
+        >
           <div className={`w-auto h-[37px] rounded-[24px] px-2 py-2 flex items-center text-[14px] leading-[14.3px] font-medium ${
             pathname === "/x-agents" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
           }`}>
@@ -418,9 +421,10 @@ const handlePersonaSwitch = (persona: string) => {
           </div>
         </Link>
       </div>
+      {/* ends here */}
 
       {/* Co-pilot and Toggle Button at the Far Right */}
-      <div className="flex items-center gap-6 pr-4 md:pr-8 lg:pr-0 xl:pr-16">
+      <div className="hidden md:flex lg:flex items-center gap-6 pr-4 md:pr-2 lg:pr-0 xl:pr-16">
         <p className="font-medium text-[20px] leading-[20.8px]">
           Co-pilot
         </p>

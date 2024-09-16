@@ -75,7 +75,7 @@ const Page = () => {
           </button>
         </div>
         <div>
-          <h2 className="pt-16 font-medium text-[15px] md:text-[32px] lg:text-[27px] leading-[20.6px] md:leading-[64px] lg:leading-[64px] text-center w-[251px] md:w-full lg:w-full mb-6 mx-auto">
+          <h2 className="pt-16 font-medium text-[15px] md:text-[27px] lg:text-[27px] leading-[20.6px] md:leading-[45px] lg:leading-[64px] text-center w-[251px] md:w-[70%] lg:w-full mb-6 md:mb-16 lg:mb-6 mx-auto">
             Which Category Best Describes your community?
           </h2>
           <div className="w-[362px] md:w-[562px] lg:w-[562px] h-auto bg-[#0D0D0D] border border-[#1B1B1B] mb-10 md:mb-8 lg:mb-8 py-2 md:py-4 lg:py-4 mx-auto px-6 md:px-6 lg:px-6 rounded-[16px] md:rounded-[20px] lg:rounded-[20px]">

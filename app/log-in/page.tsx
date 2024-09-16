@@ -42,7 +42,7 @@ const Page = () => {
 
   return (
     <>
-      <main className="mt-0 md:mt-20 lg:mt-20 mx-auto">
+      <div className="mt-10 md:mt-20 lg:mt-20 mx-auto">
         
         <section className="first-gradient section relative w-full h-[80vh] md:h-[100vh] lg:h-[100vh] z-10 mb-48 ">
           <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full">
@@ -58,7 +58,7 @@ const Page = () => {
             ></div>
             {/* Back button */}
             <div className="mb-6 flex justify-start absolute top-[-8%] md:top-[-10%] left-15s md:left-10 lg:left-10">
-              <Link href="/">
+              <Link href="/" prefetch={false}>
                 <button className="flex items-center text-[#707070]">
                   <FaArrowLeft className="mr-2 text-[#707070]" />
                   Back
@@ -70,12 +70,12 @@ const Page = () => {
                 style={bgClipText}
                 className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
                 text-transparent font-medium text-[40px] md:text-[60px] lg:text-[36px] 
-                leading-[40px] md:leading-[64px] lg:leading-[64px] text-center w-[378px] md:w-full lg:w-full mb-6 mx-auto"
+                leading-[40px] md:leading-[64px] pt-0 md:pt-3 lg:pt-5 lg:leading-[64px] text-center w-[378px] md:w-full lg:w-full mb-6 mx-auto"
               >
                 Welcome to Intel AI
               </h1>
 
-              <p className="font-normal text-sm text-white text-center mb-20 md:mb-10 lg:mb-10 px-0 w-[332px] h-[36px] leading-[18.8px] md:w-full lg:w-[393px] md:h-full lg:h-[51px] mx-auto">
+              <p className="font-normal text-sm text-white text-center mb-20 md:mb-10 lg:mb-10 px-0 w-[332px] h-[36px] leading-[18.8px] md:w-[80%] lg:w-[393px] md:h-full lg:h-[51px] mx-auto">
                 Discover cutting-edge AI solutions designed to transform your
                 business and unlock new possibilities. Dive in and explore how{" "}
                 <span className="font-medium text-sm leading-[18.8px]">
@@ -141,7 +141,7 @@ const Page = () => {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 };

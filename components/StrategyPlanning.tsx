@@ -53,11 +53,7 @@ interface Strategy {
    timestamp: { date: string; time: string };
   }
 
-  interface Strategy {
-    strategy: string;
-    timestamp: { date: string; time: string };
-    // Add any other properties if needed
-  }
+  
 
   interface Timestamp {
     date: string;
@@ -69,8 +65,8 @@ interface Strategy {
     response: string;
     timestamp: Timestamp; // Add the timestamp property
   }
-  
 
+ 
 interface AccordionData {
   id: number;
   title: string;
@@ -452,12 +448,12 @@ const handleContinueChatting = async () => {
 
 
   return (
-    <>
+    
     <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color pb-40">
-        <div className="w-full flex justify-between">
-         <div className="w-[60%] h-[781px] overflow-y-auto scrollbar-hide pt-5 border-r border-[#252525] rounded-[20px] pb-40">
+        <div className="w-full flex flex-col md:flex-row lg:flex-row justify-between">
+         <div className="w-full md:w-[55%] lg:w-[60%] h-[781px] overflow-y-auto scrollbar-hide pt-5 border-r border-[#252525] rounded-[20px] pb-40">
          <div className="flex flex-col gap-4 justify-center items-center">
-          <h3 className='text-[27px] font-medium leading-[33.38px] text-center'> Welcome To Co-Pilot</h3>
+          <h3 className='text-[27px] font-medium leading-[33.38px] text-center pt-5 md:pt-2 lg:pt-0'> Welcome To Co-Pilot</h3>
                 <p className="font-normal text-[14px] leading-[14.56px]">
                 Create a tailored strategy for your community or project.
                 </p>
@@ -507,7 +503,7 @@ const handleContinueChatting = async () => {
 
    
  
-  <div className="bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[160px]">
+  <div className="bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[165px]">
     <div className="flex flex-col-reverse space-y-4 space-y-reverse">
       {chats.map((chat, index) => (
         <div key={index} className="mb-4">
@@ -522,7 +518,7 @@ const handleContinueChatting = async () => {
           )}
           {chat.response && (
             <div className="flex justify-start">
-              <div className="pt-5 w-[366px] py-1 px-[10px] rounded-lg bg-[#252525] border-[#292929] border">
+              <div className="pt-5 w-[366px] py-2 px-[10px] rounded-lg bg-[#252525] border-[#292929] border">
                 <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
                   {chat.response}
                 </p>
@@ -557,35 +553,36 @@ const handleContinueChatting = async () => {
                 </div>
               </button>
             </DialogTrigger>
-            <DialogContent className="px-8 py-4 md:w-full lg:w-full border-none max-w-auto w-[390px] h-[325px] bg-[#181818] rounded-[66px]">
-              <div className="mx-auto">
-                <Image
-                  width={120}
-                  height={120}
-                  src={onboard}
-                  className="mx-auto mb-5 pt-5"
-                  alt=""
-                />
-                <h3 className="font-medium text-center text-[20px] leading-[26px] w-full mx-auto mb-4">
-                  Great Job!
-                </h3>
-                <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] leading-[16.8px] mb-5">
-                  Now, click on &quot;Finalize Strategy&quot; button to get results
-                </p>
-                <button
-                  className="bg-white items-center flex justify-center text-center 
-                    text-xs font-normal ring-offset-white focus-visible:outline-none
-                    text-[#0D0D0D] h-10 w-[326px] rounded-[66px] mx-auto shadow-drop2"
-                  onClick={handleFinalizeStrategyClick}
-                >
-                  Finalize Strategy
-                </button>
-              </div>
-            </DialogContent>
+            <DialogContent className="px-4 py-4 w-[90%] sm:w-[80%] md:w-[75%] lg:w-[390px] max-w-full border-none h-auto md:h-[325px] bg-[#181818] rounded-[20px]">
+  <div className="mx-auto">
+    <Image
+      width={120}
+      height={120}
+      src={onboard}
+      className="mx-auto mb-5 pt-5"
+      alt=""
+    />
+    <h3 className="font-medium text-center text-[18px] sm:text-[20px] leading-[24px] sm:leading-[26px] w-full mx-auto mb-4">
+      Great Job!
+    </h3>
+    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] leading-[16.8px] mb-5">
+      Now, click on &quot;Finalize Strategy&quot; button to get results
+    </p>
+    <button
+      className="bg-white items-center flex justify-center text-center 
+        text-xs font-normal ring-offset-white focus-visible:outline-none
+        text-[#0D0D0D] h-10 w-full sm:w-[326px] rounded-[66px] mx-auto shadow-drop2"
+      onClick={handleFinalizeStrategyClick}
+    >
+      Finalize Strategy
+    </button>
+  </div>
+</DialogContent>
+
           </Dialog>
         )}
         {areButtonsVisible && (
-          <button className="w-auto h-[28px] flex justify-center items-center rounded-[24px] border border-[#707070] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4" onClick={handleContinueChatting}>
+          <button className="w-auto h-[28px] flex justify-center items-center rounded-[24px] bg-[#4C4C4C] border border-[#707070] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4" onClick={handleContinueChatting}>
             Continue Chatting
           </button>
         )}
@@ -640,7 +637,7 @@ const handleContinueChatting = async () => {
 
 {/* accordion content */}
   {showContent && (
-        <div className="space-y-4 pb-40 pt-16">
+        <div className="space-y-4 pb-40 pt-10 md:pt-16 lg:pt-16">
           <h5 className="font-medium text-base leading-[16.64px] pb-2">Actionable Recommendations</h5>
 
           {/* First row */}
@@ -746,12 +743,12 @@ const handleContinueChatting = async () => {
     </div>
 
 
-       <div className="w-[40%] pb-6 ml-2 h-auto rounded-[10px]">
-            <div className="w-[408px]">
-              <div className="bg-[#131313] h-auto w-full px-2">
+       <div className="w-full md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-3 lg:ml-2  h-auto rounded-[10px] overflow-hidden">
+            <div className="w-full">
+              <div className="bg-[#131313] h-auto w-full">
 
                 {/* put your content here */}
-                <div className="px-2">
+                <div className="">
                    {/* content posted tabs section */}
                   <Tabs
                     defaultValue="AllStrategies"
@@ -786,10 +783,10 @@ const handleContinueChatting = async () => {
                       className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-30 scrollbar-hide"
                       value="AllStrategies"
                     >
-<AllStrategies 
+    <AllStrategies 
   strategies={finalizedStrategies}  // Pass the entire array of strategies
   onDeleteStrategy={handleDeleteStrategy}
-/>
+    />
 
 
                     </TabsContent>
@@ -815,7 +812,7 @@ const handleContinueChatting = async () => {
 
           {/* ends here */}
       </div>
-      </>
+     
   );
 }
 

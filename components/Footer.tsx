@@ -16,8 +16,8 @@ const Footer = () => {
           style={style4}
           className="-bottom-[3%] left-[99%] absolute w-[65%] h-[200px] -translate-x-1/2"
         ></div>
-        <div className="flex flex-col md:flex-row lg:flex-row justify-between mx-auto px-3 md:px-32 lg:px-32  py-5 md:py-20 lg:py-20  pb-28 md:pb-16 lg:pb-16">
-          <div className="w-full md:w-1/2 lg:w-1/2 flex">
+        <div className="flex flex-col md:flex-col lg:flex-row justify-between mx-auto px-3 md:px-12 lg:px-32  py-5 md:py-20 lg:py-20  pb-28 md:pb-16 lg:pb-16">
+          <div className="w-full md:w-full lg:w-1/2 flex">
             <div className="block md:hidden lg:hidden">
               <Image
                 src={IntelLogo}
@@ -39,7 +39,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="md:w-1/2 lg:w-1/2">
+          <div className=" w-full md:w-full lg:w-1/2">
             <h5 className="font-medium hidden md:block lg:block text-sm md:text-base lg:text-base mb-0 w-[337px] h-[52px] md:w-full lg:w-full">
               Company
             </h5>

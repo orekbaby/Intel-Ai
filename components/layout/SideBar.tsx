@@ -79,9 +79,9 @@ const SideBar = () => {
   // workspace sidebar
   const block =
     pathName === "/workspace" ||
-    pathName === "/workspace-data" ||
-    pathName === "/train-ai" ||
-    pathName === "/x-agents" || pathName === "/smart-contract-engineer";
+    pathName === "/workspace-data" 
+    || pathName === "/train-ai" 
+    || pathName === "/x-agents" || pathName === "/smart-contract-engineer";
     
 
   //  pathName === "/communityManager" ||
@@ -138,7 +138,7 @@ const SideBar = () => {
     <>
       {/* sidebar for Workspace hover */}
       {block && (
-  <div className="z-50 hidden md:block lg:block fixed">
+  <div className="z-50 hidden md:hidden lg:block fixed">
     <div
       className={`absolute z-1 top-0 left-0 min-h-screen bg-[#0D0D0D] py-3 border-r border-[#363636] transition-width duration-1000 px-4 bg shadow-md ${
         isHovered ? "w-72" : "w-[100px]"
@@ -342,7 +342,7 @@ const SideBar = () => {
 
       {/* sidebar for dashboard */}
       {show && (
-        <div className="hidden md:block lg:block absolute top-0 left-0 w-[290px] h-[100vh] border-[#363636] border px-12 z-40">
+        <div className="hidden md:hidden lg:block absolute top-0 left-0 w-[290px] h-[100vh] border-[#363636] border px-12 z-40">
           <div className="flex justify-center items-center w-full h-auto mb-20 pb-5 border-b border-[#363636]">
             <Image
               src={Logo}
@@ -419,7 +419,7 @@ const SideBar = () => {
         </div>
     )}
   </div>
-              </DialogContent>
+      </DialogContent>
             </Dialog>
           </div>
 

@@ -380,7 +380,7 @@ return (
     <>
       <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
         <div className="w-full flex justify-between">
-          <div className="w-[60%] bg-[#181818] h-[781px] overflow-y-auto scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px] pb-40">
+          <div className="w-full md:w-[55%] lg:w-[60%] bg-[#181818] h-[781px] overflow-y-auto scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px] pb-40">
             <div>
               <div className="flex justify-center items-center">
                 <p className="font-medium text-[20px] leading-[20.8px]">
@@ -389,7 +389,7 @@ return (
               </div>
               {/* Text area */}
               <div className="pt-5 flex justify-center items-center">
-                <div className="relative w-[607px] h-[213px] bg-[#1D1D1D] rounded-[12px] border border-[#323232]">
+                <div className="relative w-[607px] md:w-[90%] lg:w-[607px] h-[213px] bg-[#1D1D1D] rounded-[12px] border border-[#323232]">
                 <textarea
   className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#f9f9f9] font-normal italic text-xs mb-t helvetica-font"
   placeholder=""
@@ -465,7 +465,7 @@ return (
 
             {/* Conditional rendering based on mode */}
             {isTweetMode ? (
-              <div className="flex justify-between pt-10 gap-2  pb-20 px-2">
+              <div className="flex flex-col md:flex-col lg:flex-row justify-between pt-10 gap-2 md:gap-4 lg:gap-2  pb-20 px-2">
                 {generatedResponses?.map((row, index) => (
                   <div
                     key={index}
@@ -521,7 +521,7 @@ return (
             )}
           </div>
 
-          <div className="w-[40%] pb-6 ml-2 h-auto rounded-[10px]">
+          <div className="w-[40%] md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-1 lg:ml-2 h-auto rounded-[10px] overflow-hidden">
             <div className="w-[408px]">
               <div className="bg-[#131313] h-auto w-full px-2">
                

@@ -69,7 +69,7 @@ const handleOnBoard = () => {
                   alt=""
                 />
               </div>
-              <h3 className="font-normal text-center text-[32px] md:text-[40px] leading-[32px] md:leading-[40px] lg:leading-[40px] mx-auto mb-3">
+              <h3 className="font-normal text-center text-[27px] md:text-[40px] leading-[32px] md:leading-[40px] lg:leading-[40px] mx-auto mb-3">
                 Onboarded Successfully
               </h3>
               <p className="font-normal text-sm mx-auto text-center text-[#707070] w-[85%] md:w-[383px] lg:w-[383px] mb-10">

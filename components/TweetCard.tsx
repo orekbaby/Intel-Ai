@@ -30,27 +30,27 @@ const TweetCard: React.FC<CardProps> = ({ tweet, date, onDelete, time }) => {
 
   return (
     <div
-      className="w-[363px] h-auto pb-4 rounded-[20px] bg-[#252525] p-4 cursor-pointer"
-      onClick={() => setIsExpanded(!isExpanded)}
-    >
-      <div className="flex justify-between gap-6">
-        <div className="w-[75%]">
-          <p className="font-normal text-sm leading-[14.56px]">
-            {isExpanded ? stripHtmlTags(tweet) : truncatedTweet}
-          </p>
-        </div>
-        <div className="w-[25%] flex flex-col gap-2">
-          <div className="flex gap-4">
+    className="w-[363px] md:w-full lg:w-[363px] h-auto pb-4 rounded-[20px] bg-[#252525] p-4 mx-auto cursor-pointer"
+    onClick={() => setIsExpanded(!isExpanded)}
+  >
+    <div className="flex flex-col md:flex-row justify-between gap-6">
+      <div className="w-full md:w-[60%]">
+        <p className="font-normal text-sm leading-[14.56px]">
+          {isExpanded ? stripHtmlTags(tweet) : truncatedTweet}
+        </p>
+      </div>
+      <div className="w-full md:w-[40%] flex flex-col gap-2">
+        <div className="flex gap-4">
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-            <div
-                  className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px] cursor-pointer"
-                  onClick={(e) => e.stopPropagation()} // Prevent click event from bubbling up
-                >
-                  <MdDeleteOutline className="w-[16px] h-[16px]" />
-                </div>
+              <div
+                className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px] cursor-pointer"
+                onClick={(e) => e.stopPropagation()} // Prevent click event from bubbling up
+              >
+                <MdDeleteOutline className="w-[16px] h-[16px]" />
+              </div>
             </DialogTrigger>
-
+  
             {/* Modal content */}
             <DialogContent className="max-w-[300px] py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
               <div className="text-[14px] font-normal text-white text-center mb-4">
@@ -75,30 +75,32 @@ const TweetCard: React.FC<CardProps> = ({ tweet, date, onDelete, time }) => {
               </div>
             </DialogContent>
           </Dialog>
-            <div className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px]">
-              <GoPencil className="w-[16px] h-[16px]" />
-            </div>
-          </div>
-          <div className="bg-[#03FFA3] flex justify-center w-[45px] h-auto rounded-lg bg-opacity-[8%]">
-            <p className="text-[#03FFA3] font-[300] text-[8px] leading-[12px]">
-              Thread
-              <span className="font-normal text-[8px] leading-[12px] text-white">
-                5
-              </span>
-            </p>
-          </div>
-          <div className="flex gap-1 w-[91px] items-center h-auto bg-[#131313] p-[3px] rounded-[12px] mr-4">
-            <FaRegClock className="w-[6px] h-[6px]" />
-            <p className="font-[300] text-[8px] leading-[12px] text-[#858585]">
-              {date} {""}
-              <span className="font-normal text-[8px] leading-[12px] text-white">
-                {time}
-              </span>
-            </p>
+          <div className="w-[25px] h-[25px] bg-[#434343] flex justify-center items-center rounded-[4px]">
+            <GoPencil className="w-[16px] h-[16px]" />
           </div>
         </div>
+        <div className="bg-[#03FFA3] flex justify-center w-[45px] h-auto rounded-lg bg-opacity-[8%]">
+          <p className="text-[#03FFA3] font-[300] text-[8px] leading-[12px]">
+            Thread
+            <span className="font-normal text-[8px] leading-[12px] text-white">
+              5
+            </span>
+          </p>
+        </div>
+        <div className="flex gap-1 w-[91px] md:w-[60%] lg:w-[91px] justify-center items-center h-auto bg-[#131313] p-[3px] rounded-[12px] mr-4 md:mr-6 lg:mr-4">
+  <FaRegClock className="w-[6px] h-[6px]" />
+  <p className="font-[300] text-[8px] leading-[12px] text-[#858585]">
+    {date} {""}
+    <span className="font-normal text-[8px] leading-[12px] text-white">
+      {time}
+    </span>
+  </p>
+</div>
+
       </div>
     </div>
+  </div>
+  
   );
 };
 

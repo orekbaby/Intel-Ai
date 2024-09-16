@@ -218,12 +218,12 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
                   autoComplete="off"
                 />
               </div>
-              <Button
-                className="w-[60px] h-[60px] rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
+              <button
+                className="w-[50px] h-[60px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] rounded-lg md:rounded-[20px] lg:rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
                 onClick={handleSendPrompt}
               >
                 <CiPaperplane className="w-[26px] h-[26px] text-black" />
-              </Button>
+              </button>
             </div>
 
             {/* stimulate your telegram button */}

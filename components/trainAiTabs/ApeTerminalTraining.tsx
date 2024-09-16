@@ -22,8 +22,8 @@ const ApeTerminalTraining = () => {
   };
 
   return (
-    <div className="w-full h-auto mx-auto px-0 md:px-10 lg:px-10">
-      <h2 className="font-medium text-[30px] md:text-[36px] lg:text-[27px] leading-[33.28px] md:leading-[37.44px] lg:leading-[37.44px] pt-0 md:pt-10 lg:pt-2 mb-7 text-center px-0 md:px-0 lg:px-0 w-[100%] md:w-full lg:w-full">
+    <div className="w-full h-auto mx-auto px-0 md:px-0 lg:px-10">
+      <h2 className="font-medium text-[30px] md:text-[27px] lg:text-[27px] leading-[35.28px] md:leading-[37.44px] lg:leading-[37.44px] pt-5 md:pt-10 lg:pt-2 mb-7 text-center px-0 md:px-0 lg:px-0 w-[100%] md:w-full lg:w-full">
         What’s happening in your Community?
       </h2>
       <div className="flex flex-col md:flex-row lg:flex-row justify-center items-center gap-6 md:gap-8 lg:gap-8 mb-10">

@@ -19,7 +19,7 @@ const Page = () => {
   const handleClick = () => {
     setIsLoading(true);
     setTimeout(() => {
-      router.push("/workspaceDataMobile");
+      router.push("/workspace-data-mobile");
     }, 3000);
   };
 
@@ -42,16 +42,16 @@ const Page = () => {
           </div>
         </div>
       ) : (
-        <div className="pl-0 md:pl-16 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-full overflow-hidden mb-4 ">
+        <div className="pl-0 md:pl-4 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-full overflow-hidden mb-4 ">
           <section className="relative w-full h-full mb-48 bg-[#131313]">
-            <div className="w-full pl-0 md:pl-8 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
-              <div className="pt-5 pl-2 md:pl-6 lg:pl-6 xl:pl-8 2xl:pl-10  h-full overflow-hidden">
+            <div className="w-full pl-0 md:pl-2 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
+              <div className="pt-5 pl-2 md:pl-2 lg:pl-6 xl:pl-8 2xl:pl-10  h-full overflow-hidden">
                 <p className="font-medium text-base md:text-[20px] lg:text-[20px] xl:[20px] 2xl:[24px] mb-4">
                   IntelAI Workspace
                 </p>
-                <div className="w-full flex flex-col gap-4 md:flex-row lg:flex-row xl:flex-row 2xl:flex-rowjustify-between  h-full">
-                  <div className="w-full md:w-[40%] lg:w-[40%] xl:w-[40%] 2xl:w-[45%] bg-transparent h-[840px] overflow-y-auto scrollbar-hide rounded-[20px] ">
-                    <div className="w-full md:w-[490px] lg:w-[490px] h-auto bg-[#1B1B1B] rounded-[20px] p-4 mb-10">
+                <div className="w-full flex flex-col gap-4 md:flex-row lg:flex-row xl:flex-row 2xl:flex-rowjustify-between h-full">
+                  <div className="w-full md:w-[45%] lg:w-[40%] xl:w-[40%] 2xl:w-[45%] bg-transparent h-[840px] overflow-y-auto scrollbar-hide rounded-[20px] ">
+                    <div className="w-full md:w-full lg:w-[490px] h-auto bg-[#1B1B1B] rounded-[20px] p-4 mb-10">
                       <h3 className="font-medium text-sm text-[#f9f9f9] mb-4">
                         Provide Context
                       </h3>
@@ -62,12 +62,12 @@ const Page = () => {
                       </p>
                     </div>
                     <div className="w-full h-[250px] md:h-[230px] lg:h-[230px] overflow-y-auto scrollbar-hide mb-2 md:mb-10 lg:mb-10 xl:mb-10 2xl:mb-10">
-                      <h4 className="font-normal text-sm text-[#D6D6D6] italic mb-5 pl-3">
+                      <h4 className="font-normal text-sm text-[#D6D6D6] italic mb-5 pl-3 md:pl-2 lg:pl-3">
                         UPLOAD DOCUMENTS
                       </h4>
 
                       {/* my form data*/}
-                      <div className="px-2 md:px-6 lg-px-6">
+                      <div className="px-2 md:px-2 lg-px-6">
                         <div className="border-b border-[#2B2B2B] pb-3 mb-6 w-full flex justify-between">
                           <h5
                             className="text-[#ABABAB] font-bold
@@ -168,7 +168,7 @@ const Page = () => {
                     </div>
                   </div>
 
-                  <div className="hidden md:block lg:block xl:block 2xl:block w-full md:w-[60%] lg:w-[60%] bg-[#181818] rounded-[20px] h-[840px] overflow-y-auto scrollbar-hide relative">
+                  <div className="hidden md:block lg:block xl:block 2xl:block w-full md:w-[55%] lg:w-[60%] bg-[#181818] rounded-[20px] h-[840px] overflow-y-auto scrollbar-hide relative overflow-hidden">
                     <div className="w-full h-[60px] rounded-[20px] bg-[#1B1B1B] flex justify-between items-center px-5 mb-10">
                       <p className="font-normal text-sm leading-[14.56px] text-[#858585]">
                         Test Area
@@ -195,7 +195,7 @@ const Page = () => {
                       {/* first content */}
                       {userDocInfo?.map((row, index) => (
                         <div key={index} className="">
-                          <p className="font-[200] text-base leading-[19.2px] mb-5 w-full md:w-[95%] lg:w-[95%] xl:[90%] 2xl:[85%]">
+                          <p className="font-[200] text-base leading-[19.2px] mb-5 w-full md:w-[90%] lg:w-[95%] xl:[90%] 2xl:[85%]">
                             {row.content}
                           </p>
                         </div>
@@ -247,7 +247,7 @@ const Page = () => {
 
   {/* Second DialogContent */}
   <DialogContent 
-    className="absolute top-[54%] left-[50%] md:left-[80%] lg:left-[80%] -translate-x-1/2 w-full px-0 md:px-4 lg:px-4 bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
+    className="absolute top-[54%] left-[50%] md:left-[68%] lg:left-[80%] -translate-x-1/2 w-full px-0 md:px-2 lg:px-4 bg-[#131313] border-none h-auto rounded-lg max-w-auto mb-20"
     style={{ backdropFilter: "none" }} // Ensure no blur is applied
   >
     <DialogData />

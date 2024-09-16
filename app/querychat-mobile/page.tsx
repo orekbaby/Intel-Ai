@@ -4,7 +4,7 @@ import { FaArrowUp } from "react-icons/fa";
 import { CiMenuKebab, CiPaperplane } from "react-icons/ci";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { GlowImg } from "@/assets";
+import { avatar, GlowImg } from "@/assets";
 
 interface ChatItem {
   type: "query" | "response";
@@ -40,7 +40,7 @@ const Page = () => {
         content: query,
         time: "Now",
         username: userData.name || "Spockman2304",
-        img: userData.img || "/avatar.png",
+        img: avatar,
       };
       setChatItems((prevItems) => [...prevItems, newQuery]);
 
@@ -128,20 +128,16 @@ const Page = () => {
   };
 
   return (
-    <div className="fixed top-10 right-0 h-[90vh] md:h-[100vh] lg:h-[100vh] w-full md:w-[30%] lg:w-[30%] pb-20 overflow-y-auto scrollbar-hide pt-10 md:pt-24 lg:pt-24">
+    <div className="fixed top-10 right-0 md:right-10 lg:right-0 h-[90vh] md:h-[100vh] lg:h-[100vh] w-full md:w-[90%] lg:w-[30%] pb-24 overflow-y-auto scrollbar-hide pt-10 md:pt-24 lg:pt-24 overflow-hidden">
       <p className="font-normal text-base leading-[16.64px] mb-4">
         Query Sorting Portal
       </p>
       <div className="w-full h-full overflow-y-auto scrollbar-hide overflow-x-hidden bg-[#181818] rounded-[20px] pb-5">
-        <div className="bg-[#252525] w-[397px] flex justify-between px-6 items-center h-[65px] rounded-[20px]">
+        <div className="bg-[#252525] w-[397px] md:w-full lg:w-[397px] flex justify-between px-6 items-center h-[65px] rounded-[20px]">
           {showUserInfo && (
             <div className="flex items-center gap-1">
-              <Image
-                src={userData.img}
-                alt="User Avatar"
-                width={25}
-                height={25}
-              />
+             <Image src={avatar} alt="User Avatar" width={25} height={25} />
+
               <p className="font-medium text-[15px] leading-[14.56px]">
                 {userData.name}
               </p>
@@ -162,7 +158,7 @@ const Page = () => {
                 } mb-8 relative pt-6 px-4`}
               >
                 {item.type === "query" ? (
-                  <div className="relative w-[237px] md:w-[375px] lg:w-[375px] h-[86px] md:h-[69px] lg:h-[69px] rounded-[20px] bg-[#2D2D2D] px-4 py-2">
+                  <div className="relative w-full md:w-[375px] lg:w-[375px] h-auto md:h-auto lg:h-auto rounded-[20px] bg-[#2D2D2D] px-4 py-2">
                     <p className="font-normal text-[13.75px] md:text-xs lg:text-xs leading-[15.6px] md:leading-[12.84px] lg:leading-[12.84px] mb-1">
                       {item.content}
                     </p>
@@ -173,7 +169,7 @@ const Page = () => {
                     </div>
                     <div
                       className="flex justify-center items-center bg-[#2D2D2D] border-[3px]
-                            border-[#181818] w-[107px] h-[28px] rounded-[20px] py-4 absolute left-7 bottom-[-15%]"
+                            border-[#181818] w-[107px] h-auto rounded-[20px] py-4 absolute left-7 bottom-[-15%]"
                     >
                       <p className="font-normal text-xs">{item.username}</p>
                     </div>
@@ -183,7 +179,7 @@ const Page = () => {
                   </div>
                 ) : (
                   <div className="relative flex flex-col items-end gap-4">
-                    <div className="relative w-[237px] md:w-[375px] lg:w-[375px] h-[86px] md:h-[69px] lg:h-[69px] rounded-[20px] bg-[#2D2D2D] px-4 py-2">
+                    <div className="relative w-full md:w-[375px] lg:w-[375px] h-auto md:h-auto lg:h-auto rounded-[20px] bg-[#2D2D2D] px-4 py-2">
                       <p className="font-normal text-[13.75px] md:text-xs lg:text-xs leading-[15.6px] md:leading-[12.84px] lg:leading-[12.84px] mb-1">
                         {item.content}
                       </p>
@@ -202,7 +198,7 @@ const Page = () => {
                       </div>
                       <div
                         className="flex items-center bg-[#2D2D2D] border-[3px]
-                                border-[#181818] w-[107px] h-[28px] rounded-[20px] py-4 absolute right-7 bottom-[-15%]"
+                                border-[#181818] w-[107px] h-auto rounded-[20px] py-4 absolute right-7 bottom-[-15%]"
                       >
                         <p className="font-normal text-xs">
                           {item.responderName}
@@ -216,7 +212,16 @@ const Page = () => {
             <div ref={latestMessageRef} />
           </div>
         </div>
-        <div className="px-4">
+        {showResolveButton && (
+             <Button
+             className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[25px] w-[133px] rounded-[24px] hover:bg-[#0B0F16] text-xs"
+             onClick={handleResolveComment}
+           >
+             Resolve comment
+             <FaArrowUp className="text-[10px] rotate-45" />
+           </Button>
+          )}
+        <div className="px-4 pt-4">
           <div className="flex items-center gap-3 mb-4">
             <input
               type="text"
@@ -224,21 +229,14 @@ const Page = () => {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Type your query..."
-              className="flex-1 py-2 px-4 rounded-[20px] bg-[#2D2D2D] text-white placeholder-[#939393] border-none"
+              className="flex-1 py-2 md:py-5 px-4 rounded-[20px] bg-[#2D2D2D] text-white placeholder-[#939393] border-none"
             />
             <CiPaperplane
               onClick={handleSendQuery}
-              className="text-base cursor-pointer text-[#D6D6D6]"
+              className="text-[24px] cursor-pointer text-[#D6D6D6]"
             />
           </div>
-          {showResolveButton && (
-            <Button
-              onClick={handleResolveComment}
-              className="bg-[#4CAF50] text-white rounded-full px-4 py-2"
-            >
-              Resolve
-            </Button>
-          )}
+          
         </div>
       </div>
     </div>

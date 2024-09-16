@@ -73,14 +73,14 @@ const Page = () => {
           style={style2}
           className="bottom-[-70%] right-0 absolute w-[40%] h-[130px] md:h-[500px] lg:h-[120px] translate-x-1/2 z-[-1]"
         ></div>
-        <div className="w-full px-0 md:px-4 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
+        <div className="w-full px-0 md:px-4 lg:px-6 relative mb-10 md:mb-10 lg:mb-10 h-full mx-auto">
           <h2
             className="text-sm text-[16.8px] text-white
               leading-[36.28px] md:leading-[64px] lg:leading-[64px] text-center mb-5"
           >
            Select the persona that best describes you
           </h2>
-          <div className="flex justify-center items-center gap-4">
+          <div className="flex flex-col md:flex-row lg:flex-row justify-center items-center gap-4">
             {cards.map((card, index) => (
               <CardComponent
                 key={index}

@@ -127,8 +127,8 @@ import { avatar, GlowImg, onboard } from '@/assets';
       <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto scrollbar-hide outline-0 mb-5 pt-20 pb-20">
         <SocialMenu />
 
-        <div className="bg-[#181818] px-6 rounded-[20px]">
-          <div className="flex w-full h-[60px] bg-[#1B1B1B] rounded-[20px] px-8 mb-3 items-center justify-between">
+        <div className="bg-[#181818] px-6 md:px-2 lg:px-6 rounded-[20px]">
+          <div className="flex w-full h-[60px] bg-[#1B1B1B] rounded-[20px] px-8 md:px-2 lg:px-8 mb-3 items-center justify-between">
             <p className="font-normal text-left text-sm leading-[14.56px] text-[#858585]">
               Simulation workspace
             </p>
@@ -142,7 +142,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
             </div>
           </div>
           {/* chips options */}
-          <div className="flex justify-center gap-0 md:gap-1 lg:gap-1 xl:gap-2 2xl:gap-2 items-center mb-14 px-6">
+          <div className="flex justify-center md:justify-start lg:justify-center gap-0 md:gap-1 lg:gap-1 xl:gap-2 2xl:gap-2 items-center mb-14 px-6 md:px-0 lg:px-6">
             {chipsButton?.map((row, index) => (
               <div
                 key={index}
@@ -166,7 +166,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
           {conversation?.map((entry, index) => (
             <div key={index}>
               <div className="flex justify-end mb-8 relative">
-                <div className="">
+                <div className="px-4">
                   <div className="w-[183px] md:w-[264px] lg:w-[264px] xl:w-[270px] 2xl:w-[274px] h-[53px] rounded-[20px] bg-[#696969] px-4 py-2">
                     <h5 className="font-normal text-xs mb-1">
                       {entry.user.question}

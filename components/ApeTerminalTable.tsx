@@ -28,7 +28,7 @@ const ApeTerminalTable = () => {
               <TableHead className="text-left font-normal text-[12px] text-[#898989] leading-[12.48px]">
                 ACTION
               </TableHead>
-              <TableHead className="font-normal text-left md:text-center lg:text-left pl-0 md:pl-20 lg:pl-20 text-[12px] text-[#898989] leading-[12.48px]">
+              <TableHead className="font-normal text-left md:text-left lg:text-left pl-0 md:pl-20 lg:pl-20 text-[12px] text-[#898989] leading-[12.48px]">
                 DATE & TIME
               </TableHead>
             </TableRow>

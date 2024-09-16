@@ -32,7 +32,7 @@ const UnresolvedMobile: React.FC<UnresolvedProps> = ({
     localStorage.setItem("redirectName", name);
 
     localStorage.setItem("redirectImg", img);
-    router.push("/queryChatMobile");
+    router.push("/querychat-mobile");
   };
 
   return (

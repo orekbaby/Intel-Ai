@@ -34,8 +34,8 @@ const ScheduleTweet: React.FC = () => {
   return (
     <div className="pt-5">
       {tweetContents.length === 0 ? (
-        <div className="pt-5 flex flex-col items-center mx-auto gap-2 justify-center">
-          <p className="font-semibold text-sm text-[14.56px]">
+        <div className="pt-5 flex flex-col items-center mx-auto gap-2 pr-4 md:pr-2 lg:pr-0 justify-center">
+          <p className="font-semibold text-xs md:text-[11px] lg:text-sm text-[14.56px]">
             You do not have any scheduled tweets
           </p>
           <span className="font-normal text-xs leading-[12.48px] mx-auto text-center ">
