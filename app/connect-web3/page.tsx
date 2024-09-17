@@ -7,9 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount, useDisconnect } from "wagmi";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from '@/store/combinedStore'; // Adjust import path as needed
-import { connectWallet, disconnect } from '@/store/reducers/authSlice'; // Adjust import path as needed
-import dynamic from "next/dynamic";
+import { RootState, AppDispatch } from '@/store/combinedStore'; // Adjust import path as neededimport dynamic from "next/dynamic";
 
 const Page = () => {
   const style2: React.CSSProperties = {

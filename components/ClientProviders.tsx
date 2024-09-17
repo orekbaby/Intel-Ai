@@ -13,9 +13,7 @@ interface ClientProvidersProps {
 export default function ClientProviders({ children, initialState }: ClientProvidersProps) {
   return (
     <Provider store={combinedStore}>
-      <Web3ModalProvider initialState={initialState}>
-        {children}
-      </Web3ModalProvider>
+      {children}
     </Provider>
   );
 }

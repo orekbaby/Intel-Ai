@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-guaruja Neue">
       <ClientProviders initialState={initialState}>
-          <AppKitProvider initialState={initialState}>
+         
            <SelectedCategoryProvider>
             <UserInputProvider>
               <div className="flex w-full h-auto relative">
@@ -44,7 +44,7 @@ export default function RootLayout({
               </div>
               </UserInputProvider>
               </SelectedCategoryProvider>
-             </AppKitProvider>
+           
           </ClientProviders>
          <Toaster /> 
       </body>
