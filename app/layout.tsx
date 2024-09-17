@@ -3,13 +3,8 @@ import "@/styles/globals.scss";
 import Navigation from "@/components/layout/Navigation";
 import SideBar from "@/components/layout/SideBar";
 import FooterNav from "@/components/layout/FooterNav";
-import { headers } from "next/headers";
 import { Toaster } from "@/components/ui/toaster";
 import ClientProviders from "@/components/ClientProviders";
-import { cookieToInitialState } from 'wagmi'
-
-import { config } from '@/config'
-import AppKitProvider from '@/context'
 import { SelectedCategoryProvider } from "@/context/SelectedCategoryContext";
 import { UserInputProvider } from "@/context/UserInputContext";
 
@@ -23,17 +18,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const initialState = cookieToInitialState(config, headers().get('cookie'))
-
   return (
     <html lang="en">
       <body className="font-guaruja Neue">
-      <ClientProviders initialState={initialState}>
-         
-           <SelectedCategoryProvider>
+        <ClientProviders>
+          <SelectedCategoryProvider>
             <UserInputProvider>
               <div className="flex w-full h-auto relative">
-                <SideBar /> 
+                <SideBar />
                 <div className="relative w-full h-auto">
                   <Navigation />
                   <div className="scrollbar-hide overflow-y-auto h-[100vh] w-full overflow-x-hidden pt-20">
@@ -42,11 +34,10 @@ export default function RootLayout({
                   <FooterNav />
                 </div>
               </div>
-              </UserInputProvider>
-              </SelectedCategoryProvider>
-           
-          </ClientProviders>
-         <Toaster /> 
+            </UserInputProvider>
+          </SelectedCategoryProvider>
+        </ClientProviders>
+        <Toaster />
       </body>
     </html>
   );

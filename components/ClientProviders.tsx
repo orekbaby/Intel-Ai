@@ -7,10 +7,10 @@ import Web3ModalProvider from '@/context';
 
 interface ClientProvidersProps {
   children: React.ReactNode;
-  initialState: any; // replace 'any' with the correct type if known
+ 
 }
 
-export default function ClientProviders({ children, initialState }: ClientProvidersProps) {
+export default function ClientProviders({ children }: ClientProvidersProps) {
   return (
     <Provider store={combinedStore}>
       {children}
