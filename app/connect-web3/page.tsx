@@ -11,7 +11,7 @@ import { RootState, AppDispatch } from '@/store/combinedStore'; // Adjust import
 import { connectWallet, disconnect } from '@/store/reducers/authSlice'; // Adjust import path as needed
 import dynamic from "next/dynamic";
 
-const page: React.FC = () => {
+const Page = () => {
   const style2: React.CSSProperties = {
     background:
       "radial-gradient(circle, rgba(3, 255, 163, 0.2), rgba(16, 12, 14, 0.2))",
@@ -61,4 +61,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default Page;
