@@ -27,7 +27,7 @@ const ScheduleCard: React.FC<CardProps> = ({ strategy, date, time, onDelete }) =
 
   return (
     <div
-  className="w-[363px] md:w-[100%] lg:w-[363px] h-auto pb-4 rounded-[20px] bg-[#252525] py-2 px-4 cursor-pointer"
+  className="w-[363px] md:w-[100%] lg:w-[410px] h-auto pb-4 rounded-[20px] bg-[#252525] py-2 px-4 cursor-pointer"
   onClick={() => setIsExpanded(!isExpanded)}
 >
   <div className="flex flex-col justify-between h-full">

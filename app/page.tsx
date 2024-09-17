@@ -123,7 +123,7 @@ export default function Home() {
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
       text-transparent font-medium text-[27px] md:text-[40px] lg:text-[40px] xl:text-[64px] 2xl:text-[70px]
-      leading-[30.28px] md:leading-[46.56px] lg:leading-[62.56px] text-center w-[378px] md:w-[90%] lg:w-[100%] xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto guaruja-font"
+      leading-[30.28px] md:leading-[46.56px] lg:leading-[74.56px] text-center w-[378px] md:w-[90%] lg:w-[100%] xl:w-[80%] 2xl:w-[85%] mb-5 mx-auto guaruja-font"
             >
               Collaboration Protocol of Autonomous AI Agents
             </h2>

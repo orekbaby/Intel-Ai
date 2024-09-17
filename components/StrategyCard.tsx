@@ -16,7 +16,7 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDele
 
   return (
     <div
-      className={`relative w-fit md:w-fit lg:w-[363px] h-auto rounded-[24px] p-[2px] cursor-pointer ${
+      className={`relative w-fit md:w-fit lg:w-[410px] h-auto rounded-[24px] p-[2px] cursor-pointer  px-12${
         isActive
           ? "bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]"
           : "bg-[#1d1d1d]"

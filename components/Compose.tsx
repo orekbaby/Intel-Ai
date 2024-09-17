@@ -399,8 +399,7 @@ return (
 
 />
 
-
-                  <div className="absolute bottom-[30%] right-5 flex justify-end">
+<div className="absolute bottom-[30%] right-5 flex justify-end">
                     <button
                       className="flex justify-center items-center w-[27px] h-[27px] rounded-full bg-[#03ffa3]"
                       onClick={handleButtonClick}
@@ -441,7 +440,7 @@ return (
 
               {/* Progress bar */}
               {progress > 0 && (
-                <div className="flex flex-col items-start gap-3 px-4 py-4  w-[609px] h-[73px] rounded-[16px] bg-[#131313] border-[#303030] absolute left-[10%] top-[50%]">
+                <div className="flex flex-col items-start gap-3 px-4 py-4  w-[609px] h-[73px] rounded-[16px] bg-[#131313] border-[#303030] absolute left-[10%] top-[20%]">
                   <div>
                     {progress < 100
                       ? progress === 25
@@ -465,7 +464,7 @@ return (
 
             {/* Conditional rendering based on mode */}
             {isTweetMode ? (
-              <div className="flex flex-col md:flex-col lg:flex-row justify-between pt-10 gap-2 md:gap-4 lg:gap-2  pb-20 px-2">
+              <div className="flex flex-col md:flex-col lg:flex-row justify-between pt-10 gap-2 md:gap-4 lg:gap-0  pb-20 px-2 md:px-2 lg:px-4">
                 {generatedResponses?.map((row, index) => (
                   <div
                     key={index}
@@ -489,8 +488,7 @@ return (
   setIsDialogOpen={setIsDialogOpen} 
   handlePostDirectly={handlePostDirectly} // Now directly posts the response
   selectedCardIndex={selectedCardIndex} 
-  
-  handleEditSave={() => handleEditSave(index)} 
+   handleEditSave={() => handleEditSave(index)} 
   handleCancel={handleCancel}
   savedSuccessfully={savedSuccessfully}
   openModal={openModal}
@@ -522,7 +520,7 @@ return (
           </div>
 
           <div className="w-[40%] md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-1 lg:ml-2 h-auto rounded-[10px] overflow-hidden">
-            <div className="w-[408px]">
+            <div className="w-full">
               <div className="bg-[#131313] h-auto w-full px-2">
                
                 {/* put your content here */}

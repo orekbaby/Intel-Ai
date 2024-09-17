@@ -61,7 +61,7 @@ const Page = () => {
                         more accurate assistance.
                       </p>
                     </div>
-                    <div className="w-full h-[250px] md:h-[230px] lg:h-[230px] overflow-y-auto scrollbar-hide mb-2 md:mb-10 lg:mb-10 xl:mb-10 2xl:mb-10">
+                    <div className="w-full h-[250px] md:h-[330px] lg:h-[300px] overflow-y-auto scrollbar-hide mb-2 md:mb-10 lg:mb-10 xl:mb-10 2xl:mb-10">
                       <h4 className="font-normal text-sm text-[#D6D6D6] italic mb-5 pl-3 md:pl-2 lg:pl-3">
                         UPLOAD DOCUMENTS
                       </h4>
@@ -191,7 +191,7 @@ const Page = () => {
                       className="ml-10 mb-1"
                     />
 
-                    <div className="w-full  ml-10 border-l-2 border-[#03FFA3] px-2  h-[250px] md:h-[230px] lg:h-[230px] overflow-y-auto scrollbar-hide mb-5">
+                    <div className="w-full  ml-10 border-l-2 border-[#03FFA3] px-2  h-[250px] md:h-[330px] lg:h-[330px] overflow-y-auto scrollbar-hide mb-1">
                       {/* first content */}
                       {userDocInfo?.map((row, index) => (
                         <div key={index} className="">

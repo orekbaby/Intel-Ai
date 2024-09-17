@@ -9,6 +9,7 @@ import { toast, useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
 import { ring } from "@/assets";
 import UploadRing from "./UploadRing";
+import { FiLoader } from "react-icons/fi";
 
 interface ModalState {
   textAreaContent: string;
@@ -27,6 +28,7 @@ const AnnouncementModal: FC = () => {
   const [savedDate, setSavedDate] = useState<string | null>(
     localStorage.getItem("savedDate")
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   const [openModals, setOpenModals] = useState<boolean[]>(
     Array(announcementsModal.length).fill(false)
@@ -59,7 +61,7 @@ const AnnouncementModal: FC = () => {
     const newModalStates = [...modalStates];
   
     // Check if the input box (textAreaContent) is empty
-    if (newModalStates[index].textAreaContent.trim() === '' ||  !selectedFile) {
+    if (newModalStates[index].textAreaContent.trim() === '' &&  !selectedFile) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
@@ -79,22 +81,22 @@ const AnnouncementModal: FC = () => {
     newModalStates[index].textAreaContent = '';
   
     // Show the save message
-    newModalStates[index].showSaveMessage = true;
-    setModalStates(newModalStates);
+    setIsLoading(true);
   
     // Hide the save message and close the modal after 2 seconds
     setTimeout(() => {
       const newModalStatesAfterTimeout = [...newModalStates];
-      newModalStatesAfterTimeout[index].showSaveMessage = false;
+     
       setModalStates(newModalStatesAfterTimeout);
   
       // Close the modal
       setOpenModals((prev) => {
         const newOpenModals = [...prev];
         newOpenModals[index] = false;
+        setIsLoading(false);
         return newOpenModals;
       });
-    }, 2000);
+    }, 3000);
   };
   
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -106,6 +108,7 @@ const AnnouncementModal: FC = () => {
 
   return (
     <div className="w-full h-full ">
+      
       {announcementsModal?.map((row, index) => (
         <Dialog
           key={index}
@@ -139,6 +142,26 @@ const AnnouncementModal: FC = () => {
               </div>
             </div>
           </DialogTrigger>
+          {isLoading ? (
+             
+             <div className="absolute top-20 left-[20%] flex justify-center items-center">
+         <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+           <div className="mx-auto">
+             <FiLoader
+             
+               className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+              
+             />
+             <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+               Please wait.....
+             </h3>
+             <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+               Now saving your contents.
+             </p>
+           </div>
+         </div>
+         </div>
+                 ):(
           <DialogContent
             className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px]
                       h-[90vh] overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none"
@@ -262,16 +285,11 @@ const AnnouncementModal: FC = () => {
                   Save
                 </button>
               </div>
-
-              <div className="absolute top-[10%] left-[28%] md:left-[35%] lg:left-[32%] text-center mt-2 text-green-500">
-                {modalStates[index].showSaveMessage && (
-                  <div className="bg-white w-[200px] h-auto p-2 rounded-[20px] ">
-                    <p className="text-sm font-normal"> Saved successfully!</p>
-                  </div>
-                )}
-              </div>
-            </div>
+             
+              
+             </div>
           </DialogContent>
+                 )}
         </Dialog>
       ))}
     </div>

@@ -5,6 +5,7 @@ import { launchpadData } from "@/config/mockData";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
+import { FiLoader } from "react-icons/fi";
 
 interface ProjectListingsProps {
   onClose: () => void;
@@ -16,7 +17,8 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
   const [isUpload, setIsUpload] = useState<boolean>(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
-
+  const [isLoading, setIsLoading] = useState(false);
+  
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     setIsFilled(event.target.value.trim() !== "");
@@ -80,7 +82,7 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
 
   const handleSave = () => {
     // Check if both inputValue is not empty and a file has been uploaded
-    if (inputValue.trim() === "" || !uploadedFileName) {
+    if (inputValue.trim() === "" && !uploadedFileName) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
@@ -99,14 +101,16 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
     setUploadedFileName(null);
   
     // Show success message
-    setShowSuccessMessage(true);
+    setIsLoading(true);
   
     // Close the dialog after 2 seconds
     setTimeout(() => {
-      setShowSuccessMessage(false);
-      onClose(); // Assuming onClose is a function to close the dialog
-    }, 2000);
+     onClose(); // Assuming onClose is a function to close the dialog
+    setIsLoading(false);
+  }, 2000);
   
+
+
     // Show a success toast notification
     // Comment out this line if you don't want a success toast notification
   1
@@ -123,6 +127,26 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
               Upcoming Project Listings
             </h5>
           </div>
+          {isLoading ? (
+             
+             <div className="absolute top-[20%] left-[20%] flex justify-center items-center">
+         <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+           <div className="mx-auto">
+             <FiLoader
+             
+               className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+              
+             />
+             <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+               Please wait.....
+             </h3>
+             <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+               Now saving your contents.
+             </p>
+           </div>
+         </div>
+         </div>
+                 ):(
           <div className="w-full h-auto rounded-[20px] pb-10">
             <div className="w-[430px] md:w-[460px] lg:w-[460px] h-auto bg-[#1B1B1B] pt-3 pb-4 px-3 md:px-4 lg:px-4 rounded-bl-[20px] rounded-br-[20px]">
               <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
@@ -276,6 +300,7 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
               )}
             </div>
           </div>
+                 )}
         </div>
       ))}
     </>

@@ -715,10 +715,7 @@ const handleContinueChatting = async () => {
     </div>
   </DialogContent>
 </Dialog>
-
-
-                    <div
-                      className="flex justify-center items-center bg-[#434343] rounded-md w-[25px] h-[25px]"
+ <div className="flex justify-center items-center bg-[#434343] rounded-md w-[25px] h-[25px]"
                       onClick={() => handleCopy(item.text)}
                     >
                       <MdOutlineContentCopy className="w-[13px] h-[13px]" />
@@ -743,7 +740,7 @@ const handleContinueChatting = async () => {
     </div>
 
 
-       <div className="w-full md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-3 lg:ml-2  h-auto rounded-[10px] overflow-hidden">
+       <div className="w-full md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-3 lg:ml-3  h-auto rounded-[10px] overflow-hidden">
             <div className="w-full">
               <div className="bg-[#131313] h-auto w-full">
 

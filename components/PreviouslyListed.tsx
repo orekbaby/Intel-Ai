@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import AccordionComponent from "./AccordionComponent";
 import { toast, useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
+import { FiLoader } from "react-icons/fi";
 
 interface ModalState {
   newBullet: string;
@@ -34,7 +35,7 @@ const PreviouslyListed: React.FC = () => {
 
   const [modalStates, setModalStates] = useState<ModalState[]>(initialModalStates);
   const [openModals, setOpenModals] = useState<boolean[]>(Array(previousListings.length).fill(false));
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const savedData = localStorage.getItem("modalStates");
     if (savedData) {
@@ -54,8 +55,8 @@ const PreviouslyListed: React.FC = () => {
 
   const handleSave = (index: number) => {
     if (
-      !modalStates[index].newBullet || 
-      modalStates[index].newBullet.trim() === "" ||
+      !modalStates[index].newBullet &&
+      modalStates[index].newBullet.trim() === "" &&
       !selectedFile  // Check if the file is not uploaded
     ) {
       toast({
@@ -69,21 +70,22 @@ const PreviouslyListed: React.FC = () => {
     
 
     const newModalStates = [...modalStates];
-    newModalStates[index].showSaveMessage = true;
+  
     localStorage.setItem("modalStates", JSON.stringify(newModalStates));
 
     newModalStates[index].newBullet = "";
     setModalStates(newModalStates);
-
+    setIsLoading(true);
     setTimeout(() => {
       setOpenModals((prev) => {
         const newOpenModals = [...prev];
         newOpenModals[index] = false;
+        setIsLoading(false);
         return newOpenModals;
       });
 
       const newModalStatesAfterTimeout = [...newModalStates];
-      newModalStatesAfterTimeout[index].showSaveMessage = false;
+      
       setModalStates(newModalStatesAfterTimeout);
     }, 3000);
   };
@@ -117,6 +119,26 @@ const PreviouslyListed: React.FC = () => {
                 </div>
               </div>
             </DialogTrigger>
+            {isLoading ? (
+             
+             <div className="absolute top-[-40%] left-[20%] flex justify-center items-center">
+         <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+           <div className="mx-auto">
+             <FiLoader
+             
+               className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+              
+             />
+             <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+               Please wait.....
+             </h3>
+             <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+               Now saving your contents.
+             </p>
+           </div>
+         </div>
+         </div>
+                 ):(
             <DialogContent className="absolute top-[55%] left-[48%] w-[430px] md:w-[486px] lg:w-[486px] h-auto overflow-y-auto scrollbar-hide border-0 outline-none overflow-x-hidden">
               <div className="w-full h-auto bg-[#131313] border-b border-[#131313] rounded-[20px] pb-10">
                 <div className="bg-[#101010] border-[#181818] border-b pr-6 md:pr-4 lg:pr-4 pl-0 md:pl-4 lg:pl-4 py-[10px] w-[420px] md:w-[460px] lg:w-[460px] h-[47px] mb-3">
@@ -174,6 +196,7 @@ const PreviouslyListed: React.FC = () => {
                 />
               </div>
             </DialogContent>
+                 )}
           </Dialog>
         ))}
       </div>

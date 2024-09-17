@@ -30,7 +30,7 @@ const TweetCard: React.FC<CardProps> = ({ tweet, date, onDelete, time }) => {
 
   return (
     <div
-    className="w-[363px] md:w-full lg:w-[363px] h-auto pb-4 rounded-[20px] bg-[#252525] p-4 mx-auto cursor-pointer"
+    className="w-[363px] md:w-full lg:w-[410px] h-auto pb-4 rounded-[20px] bg-[#252525] p-4 mx-auto cursor-pointer"
     onClick={() => setIsExpanded(!isExpanded)}
   >
     <div className="flex flex-col md:flex-row justify-between gap-6">

@@ -123,8 +123,10 @@ const handlePersonaSwitch = (persona: string) => {
             </Link>
             <div className="flex items-center gap-2 border border-[#181818] h-[40px] rounded-[88px] px-4">
               <p className="font-normal text-sm pr-1">Community</p>
+              
+              <div className="">
               <Image src={twitter} width={13.59} height={13.59} alt="twitter" />
-
+              </div>
               <Image
                 src={telegram}
                 width={13.59}

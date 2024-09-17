@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import React, { useEffect, FC, useState } from "react";
 import moment from 'moment-timezone';
 import { toast, useToast } from "@/components/ui/use-toast"
+import { FiLoader } from "react-icons/fi";
 
 interface AccordionData {
   id: number;
@@ -36,6 +37,8 @@ const Calendar3: FC<CalendarProps> = ({
   accordionData,
   ...props
 }) => {
+  
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedTimeZone, setSelectedTimeZone] = useState<string>('UTC');
   const [hours, setHours] = useState<number>(0);
@@ -136,14 +139,16 @@ const Calendar3: FC<CalendarProps> = ({
   
     const cookieData = Cookies.get(`accordionText_${selectedContent.id}`);
     if (cookieData) {
+      setIsLoading(true);
       addStrategyContent(selectedDay, selectedTime, cookieData);
   
       // Pass the saved content to the parent component's onSave function
       onSave(selectedDay, selectedTime, cookieData);
+      setTimeout(() => {
+        onCloseModal();
+        setIsLoading(false);
+      }, 1000); // Adjust this delay as needed for smoother UX
     
-      // Close the modal after saving
-      onCloseModal();
-        // Ensure this function sets the modal state to closed
     } else {
       console.log('No saved text in cookies');
     }
@@ -163,6 +168,25 @@ const Calendar3: FC<CalendarProps> = ({
 
   return (
     <div className="flex justify-center items-center pr-24 md:pr-6 lg:pr-6">
+       {isLoading ? (
+  <div className="absolute top-10 left-[20%] flex justify-center items-center">
+      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+        <div className="mx-auto">
+          <FiLoader
+          
+            className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+           
+          />
+          <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+            Please wait.....
+          </h3>
+          <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+            Now scheduling your strategy.
+          </p>
+        </div>
+      </div>
+      </div>
+    ) : (
       <div className="bg-[#181818] w-fit mt-5 rounded-[20px] pb-5">
         <div className={`py-3 ${className}`}>
           <div className="flex justify-center items-center mb-2 space-x-2">
@@ -278,6 +302,7 @@ const Calendar3: FC<CalendarProps> = ({
           </button>
         </div>
       </div>
+    )}
     </div>
   );
 };

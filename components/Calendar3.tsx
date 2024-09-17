@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import React, { useEffect, FC, useState } from "react";
 import moment from 'moment-timezone';
 import { toast, useToast } from "@/components/ui/use-toast"
+import { FiLoader } from "react-icons/fi";
 
 interface CalendarProps {
   className?: string;
@@ -32,6 +33,7 @@ const Calendar3: FC<CalendarProps> = ({
   const [currentMonth, setCurrentMonth] = useState<number>(
     new Date().getMonth()
   );
+  const [isLoading, setIsLoading] = useState(false);
   const timeZones = moment.tz.names();
 
   const [currentYear, setCurrentYear] = useState<number>(
@@ -137,23 +139,47 @@ const Calendar3: FC<CalendarProps> = ({
       return;
     }
   
+    // Show loading image before proceeding with save
+    setIsLoading(true);
+  
     // Proceed with saving the content
     addThreadContent(formattedDate, formattedTime, threadsText);
   
     // Handle post-save actions
     onSave();
-    onCloseModal();
-    setProgress(25);
+  
+    // Delay modal closing to show loading state
     setTimeout(() => {
-      setProgress(100);
-    }, 1000);
+      onCloseModal();
+      setIsLoading(false);  // Stop loading after modal closes
+    }, 3000); // Adjust this delay as needed for smoother UX
   };
+  
   
   
 
 
   return (
     <div className="flex justify-center items-center px-24 md:px-6 lg:px-6">
+       {isLoading ? (
+  <div className="absolute top-20 left-[20%] flex justify-center items-center">
+      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+        <div className="mx-auto">
+          <FiLoader
+          
+            className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+           
+          />
+          <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+            Please wait.....
+          </h3>
+          <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+            Now scheduling your tweet.
+          </p>
+        </div>
+      </div>
+      </div>
+    ) : (
       <div className="bg-[#181818] w-fit mt-5 rounded-[20px] pb-5">
         <div className={`py-3 ${className}`}>
           <div className="flex justify-center items-center mb-2 space-x-2">
@@ -269,6 +295,7 @@ const Calendar3: FC<CalendarProps> = ({
           </button>
         </div>
       </div>
+    )}
     </div>
   );
 };

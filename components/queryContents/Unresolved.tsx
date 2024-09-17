@@ -24,7 +24,7 @@ const Unresolved: React.FC<UnresolvedProps> = ({
   updateUserData,
 }) => {
   return (
-    <div className="w-full">
+    <div className="w-[97%]">
       <Table className="overflow-x-auto w-full">
         <TableHeader>
           <TableRow className="border-[#373737] h-[35px] border-b bg-[#1D1D1D]">

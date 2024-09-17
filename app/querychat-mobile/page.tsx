@@ -128,7 +128,7 @@ const Page = () => {
   };
 
   return (
-    <div className="fixed top-10 right-0 md:right-10 lg:right-0 h-[90vh] md:h-[100vh] lg:h-[100vh] w-full md:w-[90%] lg:w-[30%] pb-24 overflow-y-auto scrollbar-hide pt-10 md:pt-24 lg:pt-24 overflow-hidden">
+    <div className="fixed top-10 right-0 md:right-10 lg:right-0 h-[90vh] md:h-[90vh] lg:h-[100vh] w-full md:w-[90%] lg:w-[30%] pb-24 overflow-y-auto scrollbar-hide pt-10 md:pt-16 lg:pt-24 overflow-hidden">
       <p className="font-normal text-base leading-[16.64px] mb-4">
         Query Sorting Portal
       </p>
@@ -158,7 +158,7 @@ const Page = () => {
                 } mb-8 relative pt-6 px-4`}
               >
                 {item.type === "query" ? (
-                  <div className="relative w-full md:w-[375px] lg:w-[375px] h-auto md:h-auto lg:h-auto rounded-[20px] bg-[#2D2D2D] px-4 py-2">
+                  <div className="relative w-full md:w-[375px] lg:w-[375px] h-[65px] md:h-auto lg:h-auto rounded-[20px] bg-[#2D2D2D] px-4 py-2">
                     <p className="font-normal text-[13.75px] md:text-xs lg:text-xs leading-[15.6px] md:leading-[12.84px] lg:leading-[12.84px] mb-1">
                       {item.content}
                     </p>
@@ -169,11 +169,11 @@ const Page = () => {
                     </div>
                     <div
                       className="flex justify-center items-center bg-[#2D2D2D] border-[3px]
-                            border-[#181818] w-[107px] h-auto rounded-[20px] py-4 absolute left-7 bottom-[-15%]"
+                            border-[#181818] w-[107px] h-auto rounded-[20px] py-4 absolute left-7 bottom-[-60%] md:bottom-[-70%] lg:bottom-[-70%]"
                     >
                       <p className="font-normal text-xs">{item.username}</p>
                     </div>
-                    <div className="absolute bottom-[-10%] left-0">
+                    <div className="absolute bottom-[10%] md:bottom-[-25%] lg:bottom-[-10%] left-0">
                       <Image src={item.img} width={28} height={28} alt="User" />
                     </div>
                   </div>
@@ -188,7 +188,7 @@ const Page = () => {
                           {item.time}
                         </p>
                       </div>
-                      <div className="absolute bottom-[-10%] right-[-10%]">
+                      <div className="absolute right-[-2%] md:right-[2%] lg:right-[-10%]">
                         <Image
                           src={item.img}
                           width={28}
@@ -198,7 +198,7 @@ const Page = () => {
                       </div>
                       <div
                         className="flex items-center bg-[#2D2D2D] border-[3px]
-                                border-[#181818] w-[107px] h-auto rounded-[20px] py-4 absolute right-7 bottom-[-15%]"
+                                border-[#181818] w-[107px] h-auto rounded-[20px] py-4 absolute right-7 bottom-[10%] md:bottom-[-40%] lg:bottom-[-15%]"
                       >
                         <p className="font-normal text-xs">
                           {item.responderName}

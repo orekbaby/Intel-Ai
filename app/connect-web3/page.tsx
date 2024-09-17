@@ -11,52 +11,15 @@ import { RootState, AppDispatch } from '@/store/combinedStore'; // Adjust import
 import { connectWallet, disconnect } from '@/store/reducers/authSlice'; // Adjust import path as needed
 import dynamic from "next/dynamic";
 
-const ConnectWallet: React.FC = () => {
+const page: React.FC = () => {
   const style2: React.CSSProperties = {
     background:
       "radial-gradient(circle, rgba(3, 255, 163, 0.2), rgba(16, 12, 14, 0.2))",
     backgroundBlendMode: "darken",
     filter: "blur(60px)",
   };
-  
   const router = useRouter();
-  const [connect, setConnect] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const { open } = useWeb3Modal();
-  const { isConnected, address: publicAddress } = useAccount();
-  const { disconnect: wagmiDisconnect } = useDisconnect();
   
-  const dispatch: AppDispatch = useDispatch();
-  const connectedAddress = useSelector((state: RootState) => state.auth.publicAddress);
-
-  useEffect(() => {
-    if (isConnected && publicAddress && connect) {
-      setConnect(true);
-      dispatch(connectWallet(publicAddress));
-      router.push("/user");
-    }
-  }, [isConnected, publicAddress, connect, router, dispatch]);
-
-  const handleConnectWallet = async (event: React.MouseEvent) => {
-    event.preventDefault();
-    if (loading) return; // Prevent multiple clicks
-    setLoading(true);
-    try {
-      await open({ view: "Connect" });
-      setConnect(true);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleLogOut = () => {
-    dispatch(disconnect());
-    wagmiDisconnect(); // Ensure the Wagmi disconnect is also called
-  };
-
   return (
     <>
       <main className="mt-4 md:mt-20 lg:mt-44 mx-auto">
@@ -76,7 +39,7 @@ const ConnectWallet: React.FC = () => {
           {/* Back button */}
           <div className="mb-6 flex justify-start absolute top-[-40%] left-10">
             <Link href="logIn">
-              <button className="flex items-center text-[#707070]">
+              <button className=" flex items-center text-[#707070]">
                 <FaArrowLeft className="mr-2 text-[#707070]" />
                 Back
               </button>
@@ -85,24 +48,10 @@ const ConnectWallet: React.FC = () => {
 
           <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full mx-auto">
             <div className="w-[270px] h-[311px] bg-[#131313] mx-auto rounded-[16px] mt-40 md:mt-0 lg:mt-0">
-              <div className="border-b flex justify-center border-[#202020] pt-10 pb-2 px-10 mb-3">
-                <Button onClick={handleConnectWallet} disabled={loading}>
-                  {loading ? (
-                    "Connecting..."
-                  ) : (
-                    <>
-                      {connectedAddress ? (
-                        <div className="flex items-center justify-center gap-3 rounded-[12px] border-2 px-4 py-2 border-[#1e1e1e] ">
-                          <p className="font-medium text-sm text-white">
-                            {`${connectedAddress.slice(0, 8)}...${connectedAddress.slice(-8)}`}
-                          </p>
-                        </div>
-                      ) : (
-                        "Connect Wallet"
-                      )}
-                    </>
-                  )}
-                </Button>
+              <div className="border-b cursor-pointer flex justify-center border-[#202020] pt-10 pb-2 px-10 mb-3">
+              <Button onClick={() => router.push('/user')}>
+      Connect Wallet
+    </Button>
               </div>
             </div>
           </div>
@@ -112,4 +61,4 @@ const ConnectWallet: React.FC = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(ConnectWallet), { ssr: false });
+export default page;

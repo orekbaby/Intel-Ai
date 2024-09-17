@@ -55,7 +55,7 @@ const Card: React.FC<CardProps> = ({ index, title, response, handleCardClick, ad
   const [charLimitExceeded, setCharLimitExceeded] = useState<boolean>(false);
   // console.log("editorContent data", editorContent)
   return (
-    <div className="w-[350px] h-auto pb-4 rounded-[16px] bg-[#252525] px-3 ">
+    <div className="w-[300px] h-auto pb-4 rounded-[16px] bg-[#252525] px-3 ">
       <div className="px-3 py-3 h-[34px] border-b border-[#3D3D3D] mb-5">
         <h5 className="font-medium text-sm leading-[14.56px]">{title}</h5>
       </div>

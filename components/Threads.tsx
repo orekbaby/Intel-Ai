@@ -12,6 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { HiOutlineArrowPath } from "react-icons/hi2";
 import Cookies from "js-cookie";
+import { loader, onboard } from "@/assets";
+
 interface Thread {
   content: string;
   count: number;
@@ -37,7 +39,7 @@ const Threads: React.FC<ThreadsProps> = ({
   handleDeleteThread,
 }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const { toast } = useToast();
   const [images, setImages] = useState<{ [key: number]: string[] }>({});
@@ -118,12 +120,11 @@ const Threads: React.FC<ThreadsProps> = ({
   
     // Pass the content, date, and time to addPostedContent
     addPostedContent(threadsText, currentDate, currentTime);
-  
+    setIsLoading(true);
     // Set progress to 25% and start updating progress
-    setProgress(25);
     setTimeout(() => {
-      setProgress(100);
-    }, 1000);
+       setIsLoading(false); // Hide loading state
+  }, 3000);
   };
   
 
@@ -135,6 +136,7 @@ const Threads: React.FC<ThreadsProps> = ({
   return (
     <>
       <div className="pt-5">
+        
         <Image
           src="/threads.png"
           width={820}
@@ -142,6 +144,27 @@ const Threads: React.FC<ThreadsProps> = ({
           alt="threads-img"
           className="hidden"
         />
+         {isLoading ? (
+  <div className="absolute top-0 left-[20%] flex justify-center items-center">
+      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+        <div className="mx-auto">
+          <Image
+            width={48}
+            height={48}
+            src={loader}
+            className="mx-auto mb-5 pt-10 bg-[#181818]"
+            alt=""
+          />
+          <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+            Please wait.....
+          </h3>
+          <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+            Now posting your tweet.
+          </p>
+        </div>
+      </div>
+      </div>
+    ) : (
 
         <div className="w-full h-auto">
           <div className="w-full flex justify-between h-[58px] border-[#262626] border-b bg-[#131313] px-3">
@@ -182,6 +205,7 @@ const Threads: React.FC<ThreadsProps> = ({
               </Button>
               </div>
               </div>
+             
          <div className="flex flex-col gap-6 pt-5 px-3 w-full h-auto">
             {threadsContent?.map((row, index) => (
               <div key={index}>
@@ -257,7 +281,9 @@ const Threads: React.FC<ThreadsProps> = ({
               </div>
             ))}
           </div>
+    
         </div>
+    )}
       </div>
     </>
   );

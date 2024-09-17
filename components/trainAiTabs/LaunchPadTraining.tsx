@@ -38,7 +38,7 @@ const LaunchPadTraining = () => {
           </DialogTrigger>
           {isOpen && (
             <DialogContent className="absolute top-[50%] max-w-auto w-[420px] md:w-[460px] lg:w-[460px] px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
-              <div className="w-full md:w-full lg:w-full h-[400px] md:h-[400px] lg:h-[90vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+              <div className="w-full md:w-full lg:w-full h-[400px] md:h-full lg:h-[90vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
                 <ProjectListings onClose={handleClose} />
               </div>
             </DialogContent>

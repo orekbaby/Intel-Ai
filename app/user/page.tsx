@@ -8,6 +8,8 @@ import CardComponent from "@/components/CardComponent";
 import { influencer, manager } from "@/assets";
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '@/store/reducers/userSlice';
+import { GoPeople } from "react-icons/go";
+import { RiCodeSSlashFill } from "react-icons/ri";
 
 const Page = () => {
   const style2: React.CSSProperties = {
@@ -33,16 +35,17 @@ const Page = () => {
       !onBoard ? router.push('/onboard') : router.push('/dashboard');  // Smart Contract Engineer continues to /onboard or /dashboard
     }
   };
+  
   const cards = [
     {
-      imgSrc: manager,
+      icon: <GoPeople size={20} />,  // Pass the icon as JSX
       title: "Community Owner/Manager",
       description: "Select a dedicated community manager to help nurture and grow your online community, ensuring a vibrant and engaged environment.",
       onClick: () => handleSelectUser('communityManager'),
       isClickable: true,
     },
     {
-      imgSrc: influencer,
+      icon: <RiCodeSSlashFill size={20} />,  // Pass the second icon
       title: "Smart Contract Engineer",
       description: "Audit, optimize, and enhance your smart contracts with tailored insights and automated tools designed to make you a 10x engineer.",
       onClick: () => handleSelectUser('smartContractEngineer'),
@@ -84,7 +87,7 @@ const Page = () => {
             {cards.map((card, index) => (
               <CardComponent
                 key={index}
-                imgSrc={card.imgSrc}
+                icon={card.icon}
                 title={card.title}
                 description={card.description}
                 onClick={card.onClick}

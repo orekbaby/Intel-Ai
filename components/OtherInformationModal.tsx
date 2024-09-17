@@ -7,6 +7,7 @@ import { toast, useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
 import { ring } from "@/assets";
 import UploadRing from "./UploadRing";
+import { FiLoader } from "react-icons/fi";
 
 
 
@@ -32,12 +33,12 @@ const OtherInformationModal: React.FC = () => {
     newModalStates[index].newContent = value;
     setModalStates(newModalStates);
   };
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleSave = (index: number) => {
     const newModalStates = [...modalStates];
 
     // Check if the input box (newContent) is empty
-    if (newModalStates[index].newContent.trim() === '' ||  !selectedFile) {
+    if (newModalStates[index].newContent.trim() === '' &&  !selectedFile) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
@@ -53,22 +54,19 @@ const OtherInformationModal: React.FC = () => {
       newModalStates[index].newContent
     );
 
-    // Show the save message
-    newModalStates[index].showSaveMessage = true;
-    setModalStates(newModalStates);
-
-    // Clear the input area
+       // Clear the input area
     newModalStates[index].newContent = '';
     setModalStates(newModalStates);
-
+    setIsLoading(true);
     // Delay closing the modal by 2 seconds
     setTimeout(() => {
       setOpenModals((prev) => {
         const newOpenModals = [...prev];
         newOpenModals[index] = false;
+        setIsLoading(false);
         return newOpenModals;
       });
-    }, 2000);
+    }, 3000);
 
     // Hide the save message after 2 seconds
     setTimeout(() => {
@@ -127,6 +125,26 @@ const OtherInformationModal: React.FC = () => {
                 </div>
               </div>
             </DialogTrigger>
+            {isLoading ? (
+             
+             <div className="absolute top-[-50%] left-[20%] flex justify-center items-center">
+         <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+           <div className="mx-auto"> 
+             <FiLoader
+             
+               className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+              
+             />
+             <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+               Please wait.....
+             </h3>
+             <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+               Now saving your contents.
+             </p>
+           </div>
+         </div>
+         </div>
+                 ):(
             <DialogContent className="absolute top-[50%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px] h-auto overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none">
               <div className="w-full h-auto bg-[#131313] border-b border-[#131313] rounded-[20px] pb-10">
                 <div className="bg-[#101010] border-[#181818] border-b px-4 py-[10px] w-[460px] h-[47px] mb-1">
@@ -194,6 +212,7 @@ const OtherInformationModal: React.FC = () => {
                 </div>
               </div>
             </DialogContent>
+                 )}
           </Dialog>
         ))}
       </div>

@@ -63,7 +63,7 @@ const Page = () => {
   }, [selectedUser, dispatch]);
   return (
     <>
-      <div className="pl-0 md:pl-0 lg:pl-28 xl:pl-28 2xl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
+      <div className="pl-0 md:pl-0 lg:pl-24 xl:pl-28 2xl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
         <section className="w-full h-full mb-48 bg-[#131313]">
           <div className="w-full px-3 md:px-6 lg:px-10 relative mb-0 md:mb-10 lg:mb-10 h-full">
             <div className="w-full pt-2 md:pt-5 lg:pt-5">

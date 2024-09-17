@@ -175,7 +175,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
                       {entry.user.time}
                     </p>
                   </div>
-                  <div className="flex justify-center items-center bg-[#2D2D2D] border-[3px] border-[#181818] w-[49px] h-[28px] rounded-[20px] absolute right-7 bottom-[-15%]">
+                  <div className="flex justify-center items-center bg-[#2D2D2D] border-[3px] border-[#181818] w-[49px] h-[28px] rounded-[20px] absolute right-7 bottom-[-20%]">
                     <p className="font-normal text-xs">{entry.user.user}</p>
                   </div>
                   <div className="absolute bottom-[-10%] right-0">

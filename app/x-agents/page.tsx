@@ -127,7 +127,7 @@ const Page = () => {
                   />
                 </TabsContent>
                 
-                <TabsContent value="PostNow">
+                <TabsContent className="w-full bg-[#181818]" value="PostNow">
                   <Compose
                     addEditorContent={addEditorContent}
                   />

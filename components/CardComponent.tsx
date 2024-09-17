@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 interface CardProps {
-  imgSrc: any;
+  icon: React.ReactNode;
   title: string;
   description: string;
   onClick?: () => void;
@@ -10,7 +10,7 @@ interface CardProps {
 }
 
 const CardComponent: React.FC<CardProps> = ({
-  imgSrc,
+  icon,
   title,
   description,
   onClick,
@@ -31,13 +31,9 @@ const CardComponent: React.FC<CardProps> = ({
           className="bg-gradient-to-r from-[rgba(28,28,28,0.9)] to-[rgba(0,0,0,0.9)]
                       w-[354px] md:w-[250px] lg:w-[250px] h-auto rounded-[40px] px-4 py-6"
         >
-          <Image
-            src={imgSrc}
-            width={40}
-            height={40}
-            className="mb-5"
-            alt={title}
-          />
+          <div className="text-[#707070]">
+          {icon}
+          </div>
           <h3 className="font-medium text-sm md:text-base lg:text-base mb-2 text-center">
             {title}
           </h3>
