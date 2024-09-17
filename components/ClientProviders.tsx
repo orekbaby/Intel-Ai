@@ -3,7 +3,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { combinedStore } from '@/store/combinedStore';
-import Web3ModalProvider from '@/context';
+
 
 interface ClientProvidersProps {
   children: React.ReactNode;
