@@ -10,8 +10,8 @@ import {book, IntelLogo, Logo, telegram, twitter} from "@/assets/images"
 import { FaTelegramPlane, FaDiscord } from 'react-icons/fa';
 import { setUser } from '@/store/reducers/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
-
-
+import { PiTelegramLogo } from "react-icons/pi";
+import { BsTwitterX } from "react-icons/bs";
 const Navigation = () => {
  const pathname = usePathname();
 
@@ -122,19 +122,27 @@ const handlePersonaSwitch = (persona: string) => {
               </p>
             </Link>
             <div className="flex items-center gap-2 border border-[#181818] h-[40px] rounded-[88px] px-4">
-              <p className="font-normal text-sm pr-1">Community</p>
-              
-              <div className="">
-              <Image src={twitter} width={13.59} height={13.59} alt="twitter" />
-              </div>
-              <Image
-                src={telegram}
-                width={13.59}
-                height={13.59}
-                alt="Telegram"
-              />
-            </div>
-            <Link href="/log-in" prefetch={false}>
+  <p className="font-normal text-sm pr-1">Community</p>
+
+  <div className="">
+  <a href="https://t.me/mylabwork" target="_blank" rel="noopener noreferrer">
+    <Image src={twitter} width={16} height={16} alt="twitter" />
+    </a>
+  </div>
+
+  {/* Wrap the Telegram image inside a link */}
+  <a href="https://t.me/mylabwork" target="_blank" rel="noopener noreferrer">
+    <Image
+      src={telegram}
+      width={16}
+      height={16}
+      alt="Telegram"
+    />
+  </a>
+  
+
+</div>
+ <Link href="/log-in" prefetch={false}>
               <div className=" hidden md:block lg:block bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[66px] py-[2px] px-[2px] mb-10 mt-10 shadow-drop">
                 <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[66px] hover:bg-[#0B0F16]">
                   Request Access

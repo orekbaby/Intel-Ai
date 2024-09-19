@@ -12,21 +12,34 @@ import { toast, useToast } from "@/components/ui/use-toast"
 const Page = () => {
   const [invitationCode, setInvitationCode] = useState("");
   const router = useRouter();
-
+  
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    
+    // Check if the input is empty
     if (invitationCode.trim() === "") {
-     
       toast({
         variant: "destructive",
-        title: "oops something is wrong",
+        title: "Oops, something is wrong!",
         description: "Please enter your invitation code.",
         action: <ToastAction altText="Okay">Okay</ToastAction>,
       });
-    } else {
+    } 
+    // Check if the input matches the exact invitation code
+    else if (invitationCode.trim() !== "N@v*Uc8TK") {
+      toast({
+        variant: "destructive",
+        title: "Invalid code!",
+        description: "The invitation code you entered is incorrect.",
+        action: <ToastAction altText="Okay">Okay</ToastAction>,
+      });
+    } 
+    // Proceed if the code is correct
+    else {
       router.push("/connect-web3");
     }
   };
+  
 
   const style2: React.CSSProperties = {
     background:
