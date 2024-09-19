@@ -39,14 +39,14 @@ const Page = () => {
   const [userData, setUserData] = useState({ name: "", img: "" });
   const [showUserData, setShowUserData] = useState(false);
 
-  useEffect(() => {
-    const name = localStorage.getItem("redirectName") || "";
-    const img = localStorage.getItem("redirectImg") || "";
+  // useEffect(() => {
+  //   const name = localStorage.getItem("redirectName") || "";
+  //   const img = localStorage.getItem("redirectImg") || "";
 
-    if (name && img) {
-      setUserData({ name, img });
-    }
-  }, []);
+  //   if (name && img) {
+  //     setUserData({ name, img });
+  //   }
+  // }, []);
 
   const updateUserData = () => {
     const name = localStorage.getItem("redirectName") || "";
@@ -64,12 +64,13 @@ const Page = () => {
     }
   }, [chatItems]);
 
+  
   const addQuery = (query: string) => {
     const newQuery: ChatItem = {
       type: "query",
       content: query,
       time: "Now",
-      username: "Spockman2304",
+      username: userData.name || "Spockman2304",
       img: avatar,
     };
     setChatItems((prevItems) => [...prevItems, newQuery]);

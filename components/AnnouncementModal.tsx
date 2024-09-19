@@ -270,9 +270,9 @@ const AnnouncementModal: FC = () => {
                   />
                   <div className="absolute bottom-0 w-full h-[43px] border-t border-[#272727] flex justify-between items-center px-4">
                   <UploadRing
-    value={selectedFile}  // Pass the selected file or null
-    onChange={handleFileChange}  // Pass the handler function
-  />
+                value={selectedFile}  // Pass the selected file or null
+               onChange={handleFileChange}  // Pass the handler function
+                   />
                   </div>
                 </div>
               </div>

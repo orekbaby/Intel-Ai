@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import ScheduleCard from "./ScheduleCard";
 import Cookies from "js-cookie";
@@ -9,31 +9,29 @@ interface StrategyContent {
   time: string;
 }
 
-const ScheduledPosts: React.FC = () => {
-  const cookieData = Cookies.get("strategyContents");
+const ScheduledPosts: React.FC<{ savedStrategyContents?: StrategyContent[] }> = ({ savedStrategyContents }) => {
+  // Set initial strategyContents from cookies or the parent (if passed via props)
   const [strategyContents, setStrategyContents] = useState<StrategyContent[]>(
-    cookieData ? JSON.parse(cookieData) : []
+    savedStrategyContents || (Cookies.get("strategyContents") ? JSON.parse(Cookies.get("strategyContents")!) : [])
   );
 
+  // Sync strategyContents state with cookie whenever it changes
   useEffect(() => {
     Cookies.set("strategyContents", JSON.stringify(strategyContents), {
       expires: 7,
-      path: "/x-agents",
+      path: "/", // Now using root path for both train-ai and x-agents
       secure: true,
     });
   }, [strategyContents]);
 
   const handleDelete = (index: number) => {
-    // Remove the item at the specified index
     const updatedContents = strategyContents.filter((_, i) => i !== index);
-
-    // Update the state with the new array
     setStrategyContents(updatedContents);
 
-    // Update the cookie with the new array
+    // Update the cookie with the new array for both paths
     Cookies.set("strategyContents", JSON.stringify(updatedContents), {
       expires: 7,
-      path: "/x-agents",
+      path: "/", // Ensure it's accessible from both paths
       secure: true,
     });
   };

@@ -17,10 +17,10 @@ const CardComponent: React.FC<CardProps> = ({
   isClickable = true,
 }) => {
   return (
-    <div className="flex flex-col items-center px-4  rounded-[40px]">
+    <div className="flex flex-col items-center px-4  rounded-[48px]">
       <div
         className={`hover:bg-gradient-to-r from-[rgba(189,254,28,0.9)] to-[rgba(37,184,222,0.9)] py-[2px] px-[2px] 
-                    w-fit rounded-[40px] ${
+                    w-fit rounded-[48px] ${
                       isClickable
                         ? "cursor-pointer"
                         : "cursor-not-allowed"
@@ -29,7 +29,7 @@ const CardComponent: React.FC<CardProps> = ({
       >
         <div
           className="bg-gradient-to-r from-[rgba(28,28,28,0.9)] to-[rgba(0,0,0,0.9)]
-                      w-[354px] md:w-[250px] lg:w-[250px] h-auto rounded-[40px] px-4 py-6"
+                      w-[354px] md:w-[250px] lg:w-[354px] h-[195px] rounded-[48px] px-6 py-6 shadow-lg"
         >
           <div className="text-[#707070]">
           {icon}
@@ -38,7 +38,7 @@ const CardComponent: React.FC<CardProps> = ({
             {title}
           </h3>
           <p
-            className="font-[300] text-xs w-full h-auto text-[#707070] text-center"
+            className="font-[300] text-sm w-full h-auto text-[#707070] text-center"
             style={{ fontWeight: 300 }}
           >
             {description}

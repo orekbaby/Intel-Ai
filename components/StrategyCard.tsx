@@ -16,12 +16,13 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDele
 
   return (
     <div
-      className={`relative w-fit md:w-fit lg:w-[410px] h-auto rounded-[24px] p-[2px] cursor-pointer  px-12${
+      className={`relative w-fit md:w-fit lg:w-[95%] h-auto rounded-[24px] p-[1px] cursor-pointer ${
         isActive
-          ? "bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]"
-          : "bg-[#1d1d1d]"
+          ? "border-[1px] border-transparent bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)] rounded-[24px]"
+          : ""
       }`}
       onClick={onClick}
+       // Adjust padding for border space
     >
       <div className="bg-[#1d1d1d] rounded-[24px] flex flex-col justify-between h-full px-2 py-2">
         <div className="flex justify-between items-center">

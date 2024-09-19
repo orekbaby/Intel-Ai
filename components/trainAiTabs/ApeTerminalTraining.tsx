@@ -33,7 +33,7 @@ const ApeTerminalTraining = () => {
               Upcoming Announcements
             </div>
           </DialogTrigger>
-          <DialogContent className="absolute top-[48%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B]  rounded-[20px]">
+          <DialogContent className="absolute top-[56%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B]  rounded-[20px]">
             <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <AnnouncementModal />
             </div>
@@ -47,7 +47,7 @@ const ApeTerminalTraining = () => {
               Community Engagement
             </div>
           </DialogTrigger>
-          <DialogContent className="absolute top-[50%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] h-auto px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
+          <DialogContent className="absolute top-[56%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] h-auto px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
             <div className=" w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <CommunityModal />
             </div>

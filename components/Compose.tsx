@@ -263,7 +263,7 @@ const handleEditSave = (index: number) => {
     let updatedContent = JSON.stringify(contentArray);
     Cookies.set("postedContents", updatedContent, {
       expires: 7,
-      path: "/x-agents",
+      path: "/",
       secure: true,
     });
   };

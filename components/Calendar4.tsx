@@ -139,20 +139,39 @@ const Calendar3: FC<CalendarProps> = ({
   
     const cookieData = Cookies.get(`accordionText_${selectedContent.id}`);
     if (cookieData) {
-      setIsLoading(true);
+     
       addStrategyContent(selectedDay, selectedTime, cookieData);
   
       // Pass the saved content to the parent component's onSave function
       onSave(selectedDay, selectedTime, cookieData);
+  
+      // Update the global cookie for both paths "/train-ai" and "/x-agents"
+      const existingStrategyContents = Cookies.get("strategyContents")
+        ? JSON.parse(Cookies.get("strategyContents")!)
+        : [];
+      const updatedStrategyContents = [
+        ...existingStrategyContents,
+        { content: cookieData, date: selectedDay, time: selectedTime },
+      ];
+  
+      // Set the cookie with a path accessible from both /train-ai and /x-agents
+      Cookies.set("strategyContents", JSON.stringify(updatedStrategyContents), {
+        expires: 7,
+        path: "/",
+        secure: true,
+      });
+  
+      setIsLoading(true);
       setTimeout(() => {
         onCloseModal();
         setIsLoading(false);
-      }, 1000); // Adjust this delay as needed for smoother UX
-    
+      }, 1000);
+      
     } else {
       console.log('No saved text in cookies');
     }
   };
+  
   
   
  const handleCancel = () => {

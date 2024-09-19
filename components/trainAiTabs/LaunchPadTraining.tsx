@@ -37,7 +37,7 @@ const LaunchPadTraining = () => {
             </div>
           </DialogTrigger>
           {isOpen && (
-            <DialogContent className="absolute top-[50%] max-w-auto w-[420px] md:w-[460px] lg:w-[460px] px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
+            <DialogContent className="absolute top-[60%] max-w-auto w-[420px] md:w-[460px] lg:w-[460px] px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
               <div className="w-full md:w-full lg:w-full h-[400px] md:h-full lg:h-[90vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
                 <ProjectListings onClose={handleClose} />
               </div>
@@ -51,7 +51,7 @@ const LaunchPadTraining = () => {
               Update Previously Listed Projects
             </Button>
           </DialogTrigger>
-          <DialogContent className="absolute top-[50%] h-auto px-3 md:px-0 lg:px-0 w-[420px] md:w-[486px] lg:w-[486px] bg-[#131313] border-b border-[#131313] rounded-[20px] overflow-x-hidden">
+          <DialogContent className="absolute bottom-[5%] h-auto px-3 md:px-0 lg:px-0 w-[420px] md:w-[486px] lg:w-[486px] bg-[#131313] border-b border-[#131313] rounded-[20px] overflow-x-hidden">
             <div className="w-full md:w-full lg:w-full h-auto overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <PreviouslyListed />
             </div>

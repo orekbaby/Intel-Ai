@@ -50,12 +50,12 @@ const Page = () => {
                   IntelAI Workspace
                 </p>
                 <div className="w-full flex flex-col gap-4 md:flex-row lg:flex-row xl:flex-row 2xl:flex-rowjustify-between h-full">
-                  <div className="w-full md:w-[45%] lg:w-[40%] xl:w-[40%] 2xl:w-[45%] bg-transparent h-[840px] overflow-y-auto scrollbar-hide rounded-[20px] ">
+                  <div className="w-full md:w-[45%] lg:w-[40%] xl:w-[40%] 2xl:w-[45%] bg-transparent h-[840px] overflow-y-auto scrollbar-hide rounded-[20px] overflow-hidden ">
                     <div className="w-full md:w-full lg:w-[490px] h-auto bg-[#1B1B1B] rounded-[20px] p-4 mb-10">
                       <h3 className="font-medium text-sm text-[#f9f9f9] mb-4">
                         Provide Context
                       </h3>
-                      <p className="font-normal text-sm text-[#858585] leading-[16.58px] w-full">
+                      <p className="font-normal text-sm text-[#858585] leading-[16.58px] w-full md:w-full lg:w-[90%]">
                         Providing more information about your community will
                         help the AI better understand your needs and provide
                         more accurate assistance.
@@ -191,7 +191,7 @@ const Page = () => {
                       className="ml-10 mb-1"
                     />
 
-                    <div className="w-full  ml-10 border-l-2 border-[#03FFA3] px-2  h-[250px] md:h-[330px] lg:h-[330px] overflow-y-auto scrollbar-hide mb-1">
+                    <div className="w-full  ml-10 border-l-2 border-[#03FFA3] px-2  h-[250px] md:h-[330px] lg:h-[300px] overflow-y-auto scrollbar-hide mb-1">
                       {/* first content */}
                       {userDocInfo?.map((row, index) => (
                         <div key={index} className="">

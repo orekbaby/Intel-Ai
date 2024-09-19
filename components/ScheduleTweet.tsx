@@ -20,7 +20,7 @@ const ScheduleTweet: React.FC = () => {
   useEffect(() => {
     Cookies.set("tweetContents", JSON.stringify(tweetContents), {
       expires: 7,
-      path: "/x-agents",
+      path: "/",
       secure: true,
     });
   }, [tweetContents]);

@@ -17,21 +17,31 @@ const InputField: React.FC<InputFieldProps> = ({
   const [isFilled, setIsFilled] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(true);
 
+  // Helper function to capitalize the first letter if not already capitalized
+  const capitalizeFirstLetter = (input: string) => {
+    if (!input) return input; // Return if empty
+    return input.charAt(0).toUpperCase() + input.slice(1);
+  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    onChange(newValue);
+    onChange(newValue); // Call the parent onChange with the raw input
     setIsFilled(newValue.trim() !== "");
   };
 
   const handleInputBlur = () => {
     if (value.trim() !== "") {
       setIsEditing(false);
+      // Capitalize first letter when the user finishes editing
+      onChange(capitalizeFirstLetter(value));
     }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       setIsEditing(false);
+      // Capitalize first letter when the user presses "Enter"
+      onChange(capitalizeFirstLetter(value));
     }
   };
 

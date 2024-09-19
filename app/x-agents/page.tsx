@@ -28,28 +28,32 @@ const Page = () => {
   
     Cookies.set("tweetContents", updatedContent, {
       expires: 7,
-      path: "/x-agents",
+      path: "/",
       secure: true,
     });
   };
 
   const addStrategyContent = (date: string, time: string, content: string) => {
+    // Retrieve the current content from the cookie
     let currentContent = Cookies.get("strategyContents");
     let contentArray = currentContent ? JSON.parse(currentContent) : [];
-
+  
+    // Add the new content to the content array
     contentArray.push({
       content: content,
       time: time,
       date: date,
     });
-
+  
+    // Update the content and set it in the cookie
     let updatedContent = JSON.stringify(contentArray);
     Cookies.set("strategyContents", updatedContent, {
       expires: 7,
-      path: "/x-agents",
+      path: "/", // Use root path to make the cookie available for both /train-ai and /x-agents
       secure: true,
     });
   };
+  
 
   // Define the handleSave function
   const handleSave = (index: number) => {
