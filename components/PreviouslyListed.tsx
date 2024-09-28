@@ -139,7 +139,7 @@ const PreviouslyListed: React.FC = () => {
          </div>
          </div>
                  ):(
-            <DialogContent className="absolute top-[55%] left-[48%] w-[430px] md:w-[486px] lg:w-[486px] h-auto overflow-y-auto scrollbar-hide border-0 outline-none overflow-x-hidden">
+            <DialogContent className="absolute top-[55%] left-[48%] w-[430px] md:w-[486px] p-6 lg:w-[486px] h-auto overflow-y-auto scrollbar-hide border-0 outline-none overflow-x-hidden">
               <div className="w-full h-auto bg-[#131313] border-b border-[#131313] rounded-[20px] pb-10">
                 <div className="bg-[#101010] border-[#181818] border-b pr-6 md:pr-4 lg:pr-4 pl-0 md:pl-4 lg:pl-4 py-[10px] w-[420px] md:w-[460px] lg:w-[460px] h-[47px] mb-3">
                   <h5 className="font-semibold text-sm text-center md:text-left lg:text-left text-[14.56px]">

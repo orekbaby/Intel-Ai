@@ -97,7 +97,7 @@ import VercelSvg from "./VercelSvg.svg";
 import VolumeSvg from "./VolumeSvg.svg";
 import world from "./world.png";
 import twitter from "./twitter.png";
-
+import greenBox from "./greenBox.png"
 
 export {
   AccordionBgImg,
@@ -113,6 +113,7 @@ export {
   avatar5,
   avatar6,
   avatar7,
+  greenBox,
   BackgroundImg,
   BarChart,
   book,

@@ -105,22 +105,25 @@ const Page = () => {
       </div>
       </div>
               
-              <Tabs defaultValue="StrategyPlanning" className="w-full h-auto px-4 pt-0 md:pt-2 lg:pt-2 pb-5">
-                <TabsList className="w-[256px] border-[#272727] rounded-[50px] gap-4 flex justify-end border items-center">
-                  <TabsTrigger
-                    className="w-[128px] h-[35px] p-[10px] data-[state=active]:text-black data-[state=active]:bg-white text-white rounded-[50px] bg-[#1B1B1B] font-medium text-sm"
-                    value="StrategyPlanning"
-                  >
-                    Strategy Planning
-                  </TabsTrigger>
+              <Tabs defaultValue="StrategyPlanning" className="w-full h-auto px-0 md:px-4 lg:px-4 pt-0 md:pt-2 lg:pt-2 pb-5">
+              <TabsList className="w-fit max-w-none border-[#272727] rounded-[50px] gap-4 flex justify-center md:justify-start lg:justify-start border items-center mx-auto md:mx-0 lg:mx-0">
 
-                  <TabsTrigger
-                    className="w-[128px] h-[35px] font-medium text-sm leading-[14.56px] data-[state=active]:text-black data-[state=active]:bg-white text-white rounded-[50px] bg-[#1B1B1B] p-[10px]"
-                    value="PostNow"
-                  >
-                    Post Now
-                  </TabsTrigger>
-                </TabsList>
+<TabsTrigger
+  className="w-[128px] h-[35px] p-[10px] data-[state=active]:text-black data-[state=active]:bg-white text-white rounded-lg md:rounded-[50px] lg:rounded-[50px] bg-[#1B1B1B] font-medium text-sm"
+  value="StrategyPlanning"
+>
+  Strategy Planning
+</TabsTrigger>
+
+<TabsTrigger
+  className="w-[128px] h-[35px] font-medium text-sm leading-[14.56px] data-[state=active]:text-black data-[state=active]:bg-white text-white rounded-lg md:rounded-[50px] lg:rounded-[50px] bg-[#1B1B1B] p-[10px]"
+  value="PostNow"
+>
+  Post Now
+</TabsTrigger>
+
+</TabsList>
+
                 
                 <TabsContent className="w-full bg-[#181818]" value="StrategyPlanning">
                   <StrategyPlanning
@@ -128,6 +131,7 @@ const Page = () => {
                     handleSave={() => handleSave(0)}  
                     onCloseModal={closeModal} 
                     strategies={[]}
+                  accordionData={[]}
                   />
                 </TabsContent>
                 

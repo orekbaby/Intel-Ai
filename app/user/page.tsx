@@ -55,7 +55,7 @@ const Page = () => {
 
 
   return (
-    <main className="mt-4 md:mt-20 lg:mt-28 mx-auto">
+    <main className="mt-5 md:mt-20 lg:mt-28 mx-auto">
       <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-60">
         {/* Back button */}
         <div className="mb-6 flex justify-start absolute top-[-40%] left-10">
@@ -79,7 +79,7 @@ const Page = () => {
         <div className="w-full px-0 md:px-4 lg:px-6 relative mb-10 md:mb-10 lg:mb-10 h-full mx-auto">
           <h2
             className="text-sm text-[16.8px] text-white
-              leading-[36.28px] md:leading-[64px] lg:leading-[64px] text-center mb-5"
+              leading-[36.28px] md:leading-[64px] lg:leading-[64px] text-center mb-5 pt-10"
           >
            Select the persona that best describes you
           </h2>

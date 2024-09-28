@@ -17,6 +17,8 @@ import Calendar2 from "./Calendar2";
 import HookList from "./HookList";
 import { Progress } from "@/components/ui/progress";
 import { maxIndex } from "d3-array";
+import ToggleButtonMobile from "./TogleButtonMobile";
+import { CiMenuKebab } from "react-icons/ci";
 
 interface Response {
   title: string;
@@ -29,7 +31,7 @@ const response: Response[] = [
   {
     id: 1,
 
-    title: "response1",
+    title: "Response1",
     response:
       "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
     
@@ -37,7 +39,7 @@ const response: Response[] = [
 
   {
     id: 2,
-    title: "response2",
+    title: "Response2",
     response:
       "Decentralized Finance (DeFi) is revolutionizing the financial world by enabling peer-to-peer transactions without intermediaries like banks. Using blockchain technology, DeFi offers innovative services such as lending, borrowing, and trading with enhanced security and transparency. It's democratizing access to financial tools, empowering users globally. #DeFi #Blockchain #CryptoFinance",
     
@@ -59,14 +61,16 @@ const Compose: React.FC<ComposeProps> = ({ addEditorContent }) => {
   };
 
   const [isTweetMode, setIsTweetMode] = useState<boolean>(true);
+  const [tweetHeading, setTweetHeading] = useState<boolean>(false);
   const [savedDate, setSavedDate] = useState<string | null>(
     localStorage.getItem("savedDate")
   );
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [userInput, setUserInput] = useState<string>("");
+  const [threadInput, setThreadInput] = useState<string>("");
+  const [threadsText, setThreadsText] = useState<string>("");
   const [copyMessage, setCopyMessage] = useState<string | null>(null);
   const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
-
   const [generatedResponses, setGeneratedResponses] = useState<Response[]>([]);
   const [typedResponses, setTypedResponses] = useState<string[]>([]);
   const [editorContent, setEditorContent] = useState<string>("");
@@ -88,7 +92,7 @@ const Compose: React.FC<ComposeProps> = ({ addEditorContent }) => {
     Array<{ content: string; count: number; countNum: string }>
   >([]);
 
-  const [threadsText, setThreadsText] = useState<string>("");
+  
 
   const handleToggle = () => {
     setIsTweetMode((prev) => !prev);
@@ -133,6 +137,7 @@ const handleEditSave = (index: number) => {
 
     setGeneratedResponses([]);
     setTypedResponses([]);
+    setTweetHeading(true);
     response.forEach((response, index) => {
       setTimeout(() => {
         setGeneratedResponses((prev) => [...prev, response]);
@@ -176,6 +181,7 @@ const handleEditSave = (index: number) => {
 
     // Update state or pass threads to the component that will display them
     setThreadsContent(threads); // Assuming you have a state or method to update this
+    
   };
 
   const handleDivideThread = (index: number) => {
@@ -219,10 +225,7 @@ const handleEditSave = (index: number) => {
       });
   };
 
-  const handleButtonClick = () => {
-    handleGenerateResponses();
-    handleThreads();
-  };
+  
 
   const addTypingEffect = (text: string, index: number) => {
     let i = 0;
@@ -368,38 +371,48 @@ useEffect(() => {
   }
 }, []);
 
-const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
   const inputValue = e.target.value;
   setUserInput(inputValue); // This will keep your original functionality
   setThreadsText(inputValue); // This will handle the new functionality
 };
 
+const handleButtonClick = () => {
+
+  handleGenerateResponses();
+  handleThreads();
+  setThreadsText(userInput);
+  setUserInput(""); 
+};
 
 
 return (
     <>
       <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
-        <div className="w-full flex justify-between">
+        <div className="w-full flex flex-col md:flex-row lg:flex-row justify-between overflow-auto h-full">
           <div className="w-full md:w-[55%] lg:w-[60%] bg-[#181818] h-[781px] overflow-y-auto scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px] pb-40">
             <div>
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center gap-4 md:gap-0 lg-gap-0 flex-col md:flex-row lg:flex-row items-center">
                 <p className="font-medium text-[20px] leading-[20.8px]">
                   Tweet about something...
                 </p>
+                <ToggleButtonMobile
+                      checked={!isTweetMode}
+                      onToggle={handleToggle}
+                    />
               </div>
               {/* Text area */}
-              <div className="pt-5 flex justify-center items-center">
+              <div className="hidden md:flex lg:flex pt-5 justify-center items-center">
                 <div className="relative w-[607px] md:w-[90%] lg:w-[607px] h-[213px] bg-[#1D1D1D] rounded-[12px] border border-[#323232]">
                 <textarea
-  className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#f9f9f9] font-normal italic text-xs mb-t helvetica-font"
-  placeholder=""
-  value={userInput} // Keep the original value
-  onChange={handleInputChange} // Use the combined handler
-  content={threadsText}
-
+          className="w-full h-[65px] bg-transparent border-none outline-none pt-9 px-4 pb-2 text-[#f9f9f9] font-normal italic text-xs mb-t helvetica-font"
+        placeholder=""
+        value={userInput} // Keep the original value
+        onChange={handleInputChange} // Use the combined handler
+     content={threadsText}
 />
 
-<div className="absolute bottom-[30%] right-5 flex justify-end">
+      <div className="absolute bottom-[30%] right-5 flex justify-end">
                     <button
                       className="flex justify-center items-center w-[27px] h-[27px] rounded-full bg-[#03ffa3]"
                       onClick={handleButtonClick}
@@ -437,6 +450,184 @@ return (
                   </div>
                 </div>
               </div>
+          {/* mobile */}
+             < div className="block md:hidden lg:hidden  bg-transparent w-full  h-[300px] overflow-y-auto scrollbar-hide relative rounded-[16px] overflow-hidden">
+          <>
+        <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[165px]">
+        <div className="flex flex-col-reverse space-y-4 space-y-reverse">
+      <div className="flex justify-end mb-5">
+              <div className="w-[325px] p-[10px] rounded-lg  bg-transparent md:bg-[#252525] lg:bg-[#252525] border-[#292929] border">
+                <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
+                 {threadsText}
+                </p>
+              </div>
+            </div>
+         </div>
+     {/* mobile response */}
+     {tweetHeading && (
+  <div className="flex justify-between md:hidden lg:hidden pt-5 px-2 md:px-4 lg:px-4">
+    {/* Conditionally change the heading text based on tweet mode or threads mode */}
+    <h4 className="font-medium text-sm">
+      {isTweetMode ? "Here’s Your Response" : "Here’s your Thread Content"}
+    </h4>
+
+    <div className="relative">
+      {/* First Modal Trigger: CiMenuKebab */}
+      <Dialog>
+        <DialogTrigger asChild>
+          <button>
+            <CiMenuKebab className="w-[24px] h-[24px] text-white" />
+          </button>
+        </DialogTrigger>
+
+        {/* First Modal Content: Select Options */}
+        <DialogContent
+          className="block md:hidden lg:hidden bg-[#131313] absolute text-left top-[40%]
+          w-[400px] h-[212px] border-b-[1px] border-[#333333] rounded-t-[16px] overflow-y-auto"
+        >
+          <div className="text-xs font-semibold text-white">
+            <ul className="flex flex-col space-y-4 px-4tab">
+              {/* Trigger Dialog for Scheduled Post */}
+              <li>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="block text-left w-full py-2 px-4 bg-transparent hover:bg-gray-700 rounded-lg">
+                      Scheduled Post
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="bg-[#131313] w-full h-[500px] overflow-y-auto scrollbar-hide md:w-[430px] md:h-[388px] border-b-[1px] border-[#333333] rounded-t-[16px]">
+                    <ScheduleTweet />
+                  </DialogContent>
+                </Dialog>
+              </li>
+
+              {/* Trigger Dialog for Posted Contents */}
+              <li>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="block text-left w-full py-2 px-4 bg-transparent hover:bg-gray-700 rounded-lg">
+                      Content Posted
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="bg-[#131313] w-full h-[500px] overflow-y-auto scrollbar-hide md:w-[430px] md:h-[388px] border-b-[1px] border-[#333333] rounded-t-[16px]">
+                    <ContentPosted />
+                  </DialogContent>
+                </Dialog>
+              </li>
+            </ul>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </div>
+  </div>
+)}
+     {isTweetMode ? (
+              <div className="flex md:hidden lg:hidden flex-col gap-4 md:flex-col lg:flex-row justify-between pt-2 md:gap-4 lg:gap-0  pb-5 px-2 md:px-2 lg:px-4">
+                {generatedResponses?.map((row, index) => (
+                  <div
+                    key={index}
+                        className={`cursor-pointer p-[2px] rounded-[16px] h-full ${
+                      activeIndex === index
+                        ? "bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]"
+                        : ""
+                    }`}
+                    onClick={()=> setActiveIndex(index)}
+                  >
+                    <div className="bg-[#252525] rounded-[16px]">
+                      
+                    <Card
+  key={index}
+  index={index}
+  title={row.title}
+  response={typedResponses[index] || ""}
+  handleCardClick={() => handleCardClick(index)} // For editing
+  setEditorContent={setEditorContent}
+  editorContent={editorContent}
+  isDialogOpen={isDialogOpen}
+  setIsDialogOpen={setIsDialogOpen} 
+  handlePostDirectly={handlePostDirectly} // Now directly posts the response
+  selectedCardIndex={selectedCardIndex} 
+   handleEditSave={() => handleEditSave(index)} 
+  handleCancel={handleCancel}
+  savedSuccessfully={savedSuccessfully}
+  openModal={openModal}
+  setOpenModal={setOpenModal}
+  generatedResponses={generatedResponses}
+  setProgress={setProgress}
+  handleSave={handleSave}
+  closeModal={closeModal}
+  addEditorContent={addEditorContent}
+  handlePostClick={() => handlePostClick(index)} // Pass index directly
+/>
+</div>
+  </div>
+                ))}
+              </div>
+            ) : (
+              <Threads
+                threadsContent={threadsContent}
+                threadsText={threadsText}
+                handleSave={handleSave}
+                handleDivideThread={handleDivideThread}
+                handleAddImage={handleAddImage}
+                handleDeleteThread={handleDeleteThread}
+                handleCopyContent={handleCopyContent}
+              />
+            )}
+    
+  </div>
+    </>
+
+  <div className="fixed bottom-20 w-full">
+    <div className="flex justify-between items-center bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2">
+   
+      <div className=" w-full h-[54px] border-b border-[#272727] flex justify-between items-center px-4">
+                   
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                      <DialogTrigger className="cursor-pointer" asChild>
+                        <Button className="font-medium text-[12px] leading-[12.48px] bg-[#303030] w-auto h-[36px] rounded-[50px] py-[10px] px-4">
+                          {selectedContent}
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent
+                        className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[397px]
+                  h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none"
+                      >
+                        <div className="w-full bg-[#0d0d0d] h-auto rounded-[20px] border-b border-[#131313] pb-5 px-4 pt-2">
+                          <HookList onSelect={handleSelect} />
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                   <Button
+                      className="font-medium text-[12px] w-[83px] h-[36px] rounded-[50px] bg-[#0D0D0D] leading-[12.48px]"
+                      onClick={clearInput}
+                    >
+                      Clear
+                    </Button>
+                  </div>
+               </div>
+    
+            <div className="flex items-center justify-between w-full h-[48px] px-4 md:px-6 lg:px-6 bg-[#1f1f1f] md:bg-[#1F1F1F] lg:bg-[#1F1F1F] border-t border-[#2B2B2B] pt-8 pb-8">
+             <input
+            type="text"
+            placeholder="What is on your mind?"
+            value={userInput}
+            onChange={handleInputChange} // Use the combined handler
+            content={threadsText}
+           className="flex-1 input-area bg-transparent border-white border-none outline-none font-normal text-xs italic text-white placeholder-[#707070]"
+          />
+        <div className="absolute bottom-3 right-7">
+          <button
+            className="flex justify-center items-center w-[37px] h-[37px] rounded-full bg-[#03ffa3]"
+            onClick={handleButtonClick}
+          >
+            <FaArrowUp className="w-[16px] h-[14px] text-black" />
+          </button>
+        </div>
+      </div>
+    
+  </div>
+</div>
 
               {/* Progress bar */}
               {progress > 0 && (
@@ -462,9 +653,13 @@ return (
               )}
             </div>
 
+
+
+
+
             {/* Conditional rendering based on mode */}
             {isTweetMode ? (
-              <div className="flex flex-col md:flex-col lg:flex-row justify-between pt-10 gap-2 md:gap-4 lg:gap-0  pb-20 px-2 md:px-2 lg:px-4">
+              <div className="hidden md:flex lg:flex flex-col md:flex-col lg:flex-row justify-between pt-2 gap-2 md:gap-4 lg:gap-0  pb-20 px-2 md:px-2 lg:px-4">
                 {generatedResponses?.map((row, index) => (
                   <div
                     key={index}
@@ -476,6 +671,7 @@ return (
                     onClick={()=> setActiveIndex(index)}
                   >
                     <div className="bg-[#252525] rounded-[16px]">
+                      
                     <Card
   key={index}
   index={index}
@@ -500,13 +696,12 @@ return (
   addEditorContent={addEditorContent}
   handlePostClick={() => handlePostClick(index)} // Pass index directly
 />
-
-
-                    </div>
-                  </div>
+</div>
+  </div>
                 ))}
               </div>
             ) : (
+              <div className="hidden md:block lg:block">
               <Threads
                 threadsContent={threadsContent}
                 threadsText={threadsText}
@@ -516,10 +711,11 @@ return (
                 handleDeleteThread={handleDeleteThread}
                 handleCopyContent={handleCopyContent}
               />
+              </div>
             )}
           </div>
 
-          <div className="w-[40%] md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-1 lg:ml-2 h-auto rounded-[10px] overflow-hidden">
+          <div className="hidden md:block lg:block w-[40%] md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-1 lg:ml-2 h-auto rounded-[10px] overflow-hidden">
             <div className="w-full">
               <div className="bg-[#131313] h-auto w-full px-2">
                
@@ -548,13 +744,13 @@ return (
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[250px] md:h-[90vh] lg:h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
                       value="ScheduledTweet"
                     >
                       <ScheduleTweet />
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 o h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[250px] md:h-[90vh] lg:h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
                       value="PostedContent"
                     >
                       <ContentPosted />

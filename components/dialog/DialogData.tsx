@@ -32,8 +32,12 @@ import { avatar, GlowImg, onboard } from '@/assets';
   const [inputValue, setInputValue] = useState<string>(""); // State to track input value
   const latestMessageRef = useRef<HTMLDivElement>(null); // Ref to track latest message
   const [hasPerformedAction, setHasPerformedAction] = useState(false);
+  const [isPromptSent, setIsPromptSent] = useState(false);
 
-  
+  const handleContinueChatting = () => {
+    setIsPromptSent(false); // Show input, hide buttons
+    setInputValue(''); // Clear input field
+  };
 
   useEffect(() => {
     if (latestMessageRef.current) {
@@ -66,6 +70,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
   
       // Set the flag to true when the button is clicked
       setHasPerformedAction(true);
+      setIsPromptSent(true);
     }
   };
   
@@ -100,6 +105,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
   
       // Set the flag to true when the prompt is sent
       setHasPerformedAction(true);
+      setIsPromptSent(true);
     }
   };
 
@@ -142,19 +148,19 @@ import { avatar, GlowImg, onboard } from '@/assets';
             </div>
           </div>
           {/* chips options */}
-          <div className="flex justify-center md:justify-start lg:justify-center gap-0 md:gap-1 lg:gap-1 xl:gap-2 2xl:gap-2 items-center mb-14 px-6 md:px-0 lg:px-6">
+          <div className="flex justify-center md:justify-start lg:justify-center gap-2 md:gap-1 lg:gap-1 xl:gap-2 2xl:gap-2 items-center mb-14 px-12 md:px-0 lg:px-6 rounded-[24px] md:rounded-xl lg:rounded-xl">
             {chipsButton?.map((row, index) => (
               <div
                 key={index}
-                className={`relative w-fit rounded-[8px] p-[1px] ${
+                className={`relative w-fit rounded-[24px] md:rounded-xl lg:rounded-xl p-[1px] ${
                   activeIndex === index
-                    ? "bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]"
+                    ? "md:bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)] lg:"
                     : ""
                 }`}
               >
                 <Button
                   key={index}
-                  className={`w-[126px] md:w-[149px] lg:w-[149px] xl:w-[149px] 2xl:w-[163px] h-[37px] flex justify-center items-center rounded-[8px] py-2 px-6 font-medium text-[12.76px] bg-[#2C2C2C]`}
+                  className={`w-[120px] md:w-[149px] lg:w-[149px] xl:w-[149px] 2xl:w-[163px] h-[38px] flex justify-center items-center rounded-[24px] md:rounded-xl lg:rounded-xl] py-2 px-6 border border-white md:border-none lg:border-none font-medium text-[12.76px] bg-[#2C2C2C]`}
                   onClick={() => handleButtonClick(index)}
                 >
                   {row.button}
@@ -164,7 +170,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
           </div>
           {/* conversation section */}
           {conversation?.map((entry, index) => (
-            <div key={index}>
+            <div className='' key={index}>
               <div className="flex justify-end mb-8 relative">
                 <div className="px-4">
                   <div className="w-[183px] md:w-[264px] lg:w-[264px] xl:w-[270px] 2xl:w-[274px] h-[53px] rounded-[20px] bg-[#696969] px-4 py-2">
@@ -220,7 +226,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
           {/* conversation section ends here */}
 
           {/* like section starts */}
-          <div className="flex gap-2 pt-10 md:pt-5 lg:pt-5">
+          <div className="hidden  gap-2 pt-10 md:pt-5 lg:pt-5">
             <div className="w-[26px] h-[26px] rounded-full bg-[#2D2D2D] flex justify-center items-center">
               <FaRegThumbsUp className="text-[#8E8E8E] w-[14px] h-[14px]" />
             </div>
@@ -231,34 +237,113 @@ import { avatar, GlowImg, onboard } from '@/assets';
           {/* ends here */}
 
           {/* input box and send button section */}
-          <div className="fixed pb-16 bg-[#181818] w-full h-fit bottom-0 left-0 pt-5 md:pt-0 lg:pt-0">
+          <div className="fixed pb-0 md:pb-16 lg:pb-16 bg-[#181818] w-full h-fit bottom-0 left-0 pt-5 md:pt-0 lg:pt-0">
             <div className="flex justify-center items-center gap-2 md:gap-4 lg:gap-4 xl:gap-4 2xl:gap-4">
               <div className="pl-2 md:pl-0 lg:pl-0">
-                <input
-                  type="text"
-                  id="inputField2"
-                  className="text-input pt-1 font-[300px] text-sm leading-[22.68px]"
-                  placeholder="Ask any question"
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  onKeyDown={handleKeyDown}
-                  autoComplete="off"
-                />
+              <div className="chat-container flex flex-col items-center gap-4">
+      {/* Input field and send button */}
+      {!isPromptSent && (
+        <div className="flex items-center gap-4">
+          <input
+            type="text"
+            id="inputField2"
+            className="
+              w-[300px] sm:w-[300px] md:w-[300px] lg:w-[383px]
+              h-[45px] sm:h-[50px] md:h-[55px] lg:h-[50px]
+              rounded-[15px] bg-[#0d0d0d] border border-gray-500 text-white
+              italic font-light text-sm md:text-base lg:text-lg
+              px-4 outline-none focus:ring-2 focus:ring-blue-500 outline-0
+            "
+            placeholder="Ask any question"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            autoComplete="off"
+          />
+          <Button
+            className="
+              w-[50px] h-[50px] sm:w-[50px] sm:h-[50px] md:w-[55px] md:h-[55px] lg:w-[60px] lg:h-[60px]
+              rounded-[15px] sm:rounded-[16px] md:rounded-[18px] lg:rounded-[20px]
+              bg-[#03FFA3] flex justify-center items-center
+            "
+            onClick={handleSendPrompt}
+          >
+            <CiPaperplane
+              className="
+                w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] lg:w-[26px] lg:h-[26px]
+                text-black
+              "
+            />
+          </Button>
+        </div>
+      )}
+
+      {/* Buttons to show after the prompt is sent */}
+      {isPromptSent && (
+        <div className="flex flex-col gap-4 justify-center items-center pt-10">
+           <Dialog>
+              <div className="flex justify-center pt-0 ">
+                <DialogTrigger>
+                  <button
+            className="w-[297px] h-[55px] flex justify-center items-center rounded-[24px] bg-white border text-black text-medium text-xs leading-[12.48px] py-[10px] px-4"
+            onClick={(e) => {
+              if (!hasPerformedAction) {
+                e.preventDefault();
+                toast({
+                  variant: "destructive",
+                  title: "Uh oh! Something went wrong.",
+                  description: "Please complete a simulation or send a prompt before proceeding.",
+                  action: <ToastAction altText="Try again">Try again</ToastAction>,
+                });
+              }
+            }}
+          >
+            Complete Simulation
+          </button>
+          </DialogTrigger>
+                <DialogContent className="px-8 md:w-full lg:w-full border-none rounded-lg max-w-auto w-[540px] h-[401px] bg-[#181818]">
+                  <div className="mx-auto">
+                    <Image
+                      width={120}
+                      height={120}
+                      src={onboard}
+                      className="mx-auto mb-5 pt-10"
+                      alt=""
+                    />
+                    <h3 className="font-medium text-center text-[20px] leading-[26px] w-[80%] mx-auto mb-4">
+                      Congratulations on Completing Your Initial Training!
+                    </h3>
+                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-[383px] mb-5">
+                      The next step is to integrate your Telegram community
+                    </p>
+                    {/* button */}
+                    <button
+                      onClick={handleNavigation}
+                      className="bg-white items-center flex justify-center text-center 
+                text-xs font-normal ring-offset-white focus-visible:outline-none
+                text-[#0D0D0D] h-10 w-[199px] rounded-[66px] mx-auto shadow-drop2"
+                    >
+                      Integrate your community now
+                    </button>
+                  </div>
+                </DialogContent>
               </div>
-              <Button
-                className="w-[60px] h-[60px] rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
-                onClick={handleSendPrompt}
-              >
-                <CiPaperplane className="w-[26px] h-[26px] text-black" />
-              </Button>
-            </div>
-            {/* stimulate your telegram button */}
+            </Dialog>
+          <button
+            className="w-[297px] h-[55px] flex justify-center items-center rounded-[24px] bg-[#4C4C4C] border border-white text-white text-medium text-xs leading-[12.48px] py-[10px] px-4"
+            onClick={handleContinueChatting}
+          >
+            Continue Chatting
+          </button>
+        </div>
+         
+      )}
 
             <Dialog>
               <div className="flex justify-center pt-6 ">
                 <DialogTrigger>
                   <div className="flex justify-center items-center pt-1">
-                    <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] w-fit rounded-[66px] py-[2px] px-[2px] shadow-drop">
+                    <div className="hidden md:hidden lg:hiddenbg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] w-fit rounded-[66px] py-[2px] px-[2px] shadow-drop">
                       <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950
                        dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[177px] rounded-[66px] hover:bg-[#0B0F16] font-normal text-xs"
                        onClick={(e) => {
@@ -312,7 +397,10 @@ import { avatar, GlowImg, onboard } from '@/assets';
             </Dialog>
           </div>
         </div>
-      </div>
+        </div>
+        </div>
+        </div>
+        </div>
     </>
   );
 };

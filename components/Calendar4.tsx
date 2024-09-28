@@ -139,7 +139,6 @@ const Calendar3: FC<CalendarProps> = ({
   
     const cookieData = Cookies.get(`accordionText_${selectedContent.id}`);
     if (cookieData) {
-     
       addStrategyContent(selectedDay, selectedTime, cookieData);
   
       // Pass the saved content to the parent component's onSave function
@@ -162,15 +161,24 @@ const Calendar3: FC<CalendarProps> = ({
       });
   
       setIsLoading(true);
+  
+      // Show the toast after the loading state ends
       setTimeout(() => {
         onCloseModal();
         setIsLoading(false);
+  
+        // Show toast after loading completes
+        toast({
+          description:
+            "Your strategy has been automatically added to your content schedule. Take a look to review and confirm it.",
+        });
       }, 1000);
-      
+  
     } else {
       console.log('No saved text in cookies');
     }
   };
+  
   
   
   
@@ -186,7 +194,7 @@ const Calendar3: FC<CalendarProps> = ({
 
 
   return (
-    <div className="flex justify-center items-center pr-24 md:pr-6 lg:pr-6">
+    <div className="flex justify-center items-center pr-6 md:pr-6 lg:pr-6">
        {isLoading ? (
   <div className="absolute top-10 left-[20%] flex justify-center items-center">
       <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">

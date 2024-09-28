@@ -14,7 +14,7 @@ import { ToastAction } from "@/components/ui/toast"
 import { responsesData } from "@/config/mockData";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { FiPlus, FiEdit2, FiTrash2 } from "react-icons/fi";
-import { code, settings } from "@/assets";
+import { code, greenBox, settings } from "@/assets";
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '@/store/reducers/userSlice';
 import Cookies from 'js-cookie';
@@ -342,7 +342,21 @@ const Page = () => {
   
   return (
 <>
-<div className="pl-0 md:pl-2 lg:pl-28 w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide pb-20">
+{/* mobile */}
+<div className="mx auto flex md:hidden lg:hidden flex-col justify-center items-center pt-20">
+<h2 className='font-normal text-[20px] leading-[32px] text-white mb-5'>Not compatible with mobile devices.</h2>
+<Image
+width={136}
+height={134.83}
+src={greenBox}
+alt=''
+/>
+
+<p className='text-[#707070] font-normal text-sm text-center pb-10 pt-5 w-[80%] md:w-full lg:w-full'>We recommend accessing it on a desktop or laptop for the best user experience</p>
+</div>
+
+
+<div className="hidden md:block lg:block pl-0 md:pl-2 lg:pl-28 w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide pb-20">
   <div className="dasboard-color">
 <div className="flex justify-between items-center w-full p-4">
       {/* Left Side: Buttons */}

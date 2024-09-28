@@ -38,7 +38,7 @@ const ContentPostedCard: React.FC<CardProps> = ({
   
   return (
     <>
-      <div className="w-[362px] md:w-[100%] lg:w-[410px] h-auto rounded-[20px] bg-[#252525] px-4 py-3">
+      <div className="w-full md:w-[100%] lg:w-[410px] h-auto rounded-[20px] bg-[#252525] px-4 py-3">
         <p className="font-normal md:text-xs lg:text-[13.56px] w-full md:w-[80%] lg:w-full leading-[14.1px] mb-5">
           {stripHtmlTags(content)}
         </p>

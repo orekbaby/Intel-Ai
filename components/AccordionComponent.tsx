@@ -103,10 +103,10 @@ const AccordionComponent: React.FC<AccordionProps> = ({
             }`}
           >
             <button
-              className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h  md:h-10 lg:h-10 w-[325px] md:w-[153px] lg:w-[153px]  rounded-[200px] hover:bg-[#0B0F16] text-xs"
+              className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 w-full h-12 md:h-10 lg:h-10 md:w-[153px] lg:w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
               onClick={() => handleSave(index)}
             >
-              Save
+         Save
             </button>
             <div className="absolute top-[10%] left-[30%] md:left-[35%] lg:left-[35%] text-center mt-2 text-green-500">
               {modalStates[index].showSaveMessage && (

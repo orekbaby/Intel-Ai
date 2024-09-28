@@ -35,8 +35,10 @@ import {
 import LazyLoad from 'react-lazy-load'; 
 import Link from "next/link";
 import Image from "next/image";
-import { accordionData } from "@/config/mockData";
+import {   accordionLanding } from "@/config/mockData";
 import { AiImg, Ellipse3, VectorQuestion } from "@/assets";
+import router from "next/router";
+import { useRouter } from "next/navigation";
 const Footer = dynamic(() => import("@/components/Footer"), {
   ssr: false,
   loading: () => (
@@ -100,7 +102,7 @@ export default function Home() {
     backgroundBlendMode: "darken",
     filter: "blur(50px)",
   };
-
+  const router = useRouter(); 
   const videoUrl = "https://res.cloudinary.com/dy9f5rcat/video/upload/v1725477344/shcwnfht8qob3juvwzds.mp4";
   const videoId = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
 
@@ -157,9 +159,9 @@ export default function Home() {
             </Link>
 
             {/* mobile picture */}
-        <div className="mx-auto block md:hidden lg:hidden rounded-[20px] px-4 ">
-        <div className="w-full h-full p-[2px] bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[20px] object-cover block md:hidden lg:hidden">
-  <div className="bg-[#0D0D0D] w-full h-full rounded-[20px] p-[2px]">
+        <div className="mx-auto block md:hidden lg:hidden rounded-[20px] px-4 relative overflow-hidden">
+        <div className="w-full h-[35vh] p-[3px] bg-gradient-to-r translate-y-12 from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[20px] object-cover block md:hidden lg:hidden">
+          <div className="bg-[#0D0D0D] w-full h-full rounded-[20px] p-[2px]"> 
     <video
       className="object-cover w-full h-full rounded-[20px] text-center"
       loop
@@ -179,8 +181,7 @@ export default function Home() {
     </video>
   </div>
 </div>
-
-            </div>
+ </div>
             <Link href="log-in" prefetch={false}>
               <div
                 className="shadow-drop hidden md:block lg:block bg-gradient-to-r from-[rgba(3,255,163,.9)]
@@ -251,7 +252,8 @@ export default function Home() {
       Human-Like Responses
     </span>
   </h2>
-  <p className="font-normal text-[13px] md:text-[16px] lg:text-[20px] xl:text-[20px] 2xl:text-[22px] px-1 md:px-8 lg:px-12 mb-4 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[31.2px] mx-auto w-full md:w-full lg:w-[65%]">
+  <p className="font-normal text-[13px] md:text-[16px] lg:text-[20px] xl:text-[20px] 2xl:text-[22px] 
+  px-2 md:px-8 lg:px-12 mb-4 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[31.2px] mx-auto w-full md:w-full lg:w-[65%]">
     Experience the sophistication of AI Agents that talk like a human but
     work like a supercomputer. Intel AI&apos;s deep learning algorithms
     are crafted to replicate the warmth, empathy, and complexity of human
@@ -298,7 +300,7 @@ export default function Home() {
           <h3 className="font-medium text-center text-[20px] md:text-[27px] lg:text-[32px] mb-5">
             Custom AI Agents Like Never Before
           </h3>
-          <p className="font-normal text-center text-[13px] md:text-[14px] lg:text-[20px] w-full md:w-full lg:w-[90%] h-auto mx-auto px-1 md:px-28 lg:px-0 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[18.45px] lg:leading-[31.2px]">
+          <p className="font-normal text-center text-[13px] md:text-[14px] lg:text-[20px] w-[90%] md:w-full lg:w-[90%] h-auto mx-auto px-0 md:px-28 lg:px-0 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[18.45px] lg:leading-[31.2px]">
             Intel AI leverages a custom LLM architecture that&apos;s fine-tuned
             to grasp the intricacies of blockchain technology, its narratives,
             trends, & community nuances with unparalleled precision
@@ -405,13 +407,13 @@ export default function Home() {
               Features
             </span>
           </div>
-          <h5 className=" hidden md:block lg:block font-medium w-full h-[78px] md:h-auto lg:h-auto md:w-[80%] lg:w-full text-[24px] md:text-[27px] lg:text-[32px] xl:text-[36px] 2xl:text-[40px] leading-[38.77px] md:leading-[40.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8  mx-auto">
+          <h5 className="hidden md:block lg:block font-medium w-full h-[78px] md:h-auto lg:h-auto md:w-[80%] lg:w-full text-[24px] md:text-[27px] lg:text-[32px] xl:text-[36px] 2xl:text-[40px] leading-[38.77px] md:leading-[40.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8  mx-auto">
           Empower Your Workflow with Cutting-Edge Features
           </h5>
           <h5 className="block md:hidden lg:hidden font-medium w-[346px] h-[78px] md:h-auto lg:h-auto md:w-full lg:w-full text-[22px] md:text-[27px] lg:text-[36px] leading-[30.77px] md:leading-[58.15px] lg:leading-[58.15px] pt-5 md:pt-8 lg:pt-8 mb-5 mx-auto">
             Empower Your Workflow with Cutting-Edge Features
           </h5>
-          <p className="font-normal w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-sm lg:text-sm leading-[14.92px] md:leading-[23.92px] lg:leading-[23.92px]  text-[#BDBDBD] mx-auto px-2 md:px-12 lg:px-0 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20 pt-5">
+          <p className="font-normal w-[90%] md:w-full lg:w-full h-[69px] md:h-auto lg:h-auto text-[13px] md:text-sm lg:text-sm leading-[14.92px] md:leading-[23.92px] lg:leading-[23.92px]  text-[#BDBDBD] mx-auto px-0 md:px-12 lg:px-0 xl:px-36 2xl:px-40 mb-12 md:mb-20 lg:mb-20 pt-5">
             Explore the frontier of coding evolution with Glossy Unleashed. Our
             latest features redefine the boundaries of what&apos;s possible in
             coding tools.
@@ -722,7 +724,7 @@ export default function Home() {
             </p>
           </div>
           <div className="relative mx-auto max-w-screen-lg w-[100%] px-4 md:w-[70%] lg:w-[70%] mb-20 md:mb-48 lg:mb-48">
-            {accordionData?.map((row, index) => (
+            {accordionLanding?.map((row, index) => (
               <div key={index} className="">
                 <Accordion className="" type="single" collapsible>
                   <AccordionItem className="border-none" value={row.value}>
@@ -758,7 +760,9 @@ export default function Home() {
                   </p>
                   <div className="w-fit md:w-auto mb-5 md:text-right md:mb-10 lg:mb-10 text-left">
                     <div className="bg-gradient-to-r from-[rgba(189,254,28,.9)] to-[rgba(37,184,222,.9)] rounded-[66px] py-[2px] px-[2px] shadow-drop">
-                      <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[66px] hover:bg-[#0B0F16]">
+                      <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[153px] rounded-[66px] hover:bg-[#0B0F16] cursor-pointer"
+                       onClick={() => router.push('/log-in')}
+                      >
                         Sign Up
                       </button>
                     </div>

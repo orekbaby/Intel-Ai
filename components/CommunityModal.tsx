@@ -158,7 +158,7 @@ const CommunityModal: FC = () => {
                  ):(
           <DialogContent
             className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px]
-                      h-[90vh] overflow-y-auto scrollbar-hide overflow-x-hidden border-0 outline-none"
+                      h-[90vh] overflow-y-auto scrollbar-hide overflow-x-hidden border-0 outline-none p-6"
           >
             <div className="w-full bg-[#131313] h-auto rounded-[20px] border-b border-[#131313] pb-10">
               <div
@@ -169,8 +169,8 @@ const CommunityModal: FC = () => {
                   {row.title}
                 </h5>
               </div>
-              <div className="px-0 md:px-4 lg:px-4  w-auto">
-                <p className="italic text-[13px] font-[300] mb-3">
+              <div className="px-4 md:px-4 lg:px-4  w-auto">
+                <p className="italic text-[13px] w-[80%] md:w-full lg:w-full h-full font-[300] mb-3">
                   When do you want to inform your community about this
                   information?
                 </p>
@@ -222,31 +222,31 @@ const CommunityModal: FC = () => {
                 <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
                   Instructions:
                 </h5>
-                <p className="font-normal text-sm w-[80%] leading-[16.56px] text-[#E4E4E4] mb-3">
+                <p className="font-normal text-sm w-[80%] leading-[18.56px] text-[#E4E4E4] mb-3">
                   {row.insructionText}
                 </p>
                 <div className="flex flex-col gap-2">
                   <div className="flex gap-2 items-center">
                     <FaCircle className="text-[#858585] text-[6px]" />
-                    <p className="font-normal w-[80%] italic text-sm leading-[14.56px] text-[#858585]">
+                    <p className="font-normal w-[80%] italic text-sm leading-[16.56px] text-[#858585]">
                       {row.bullet1}
                     </p>
                   </div>
                   <div className="flex gap-2 items-center">
                     <FaCircle className="text-[#858585] text-[6px]" />
-                    <p className="font-normal w-[80%]  italic text-sm leading-[14.56px] text-[#858585]">
+                    <p className="font-normal w-[80%]  italic text-sm leading-[16.56px] text-[#858585]">
                       {row.bullet2}
                     </p>
                   </div>
                   <div className="flex gap-2 items-center">
                     <FaCircle className="text-[#858585] text-[6px]" />
-                    <p className="font-normal italic w-[80%] text-sm leading-[14.56px] text-[#858585]">
+                    <p className="font-normal italic w-[80%] text-sm leading-[16.56px] text-[#858585]">
                       {row.bullet3}
                     </p>
                   </div>
                   <div className="flex gap-2 items-center">
                     <FaCircle className="text-[#858585] text-[6px]" />
-                    <p className="font-normal italic w-[80%]  text-sm leading-[14.56px] text-[#858585]">
+                    <p className="font-normal italic w-[80%]  text-sm leading-[16.56px] text-[#858585]">
                       {row.bullet4}
                     </p>
                   </div>

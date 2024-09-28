@@ -132,7 +132,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
                       width={180}
                       height={50}
                       alt="star-img"
-                      className=""
+                      className="hidden md:block lg:block"
                     />
                   </div>
                   <h4 className=" font-medium text-base leading-[16.64px] mb-2 md:mb-3 lg:mb-3">
@@ -156,7 +156,7 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
               ))}
 
               {proUpgrade?.map((row, index) => (
-                <div key={index} className="pb-20">
+                <div key={index} className="pb-40 md:pb-20 lg:pb-20">
                   <div
                     className="w-[371px] md:w-[98%] lg:w-[437px] h-auto rounded-[20px] bg-gradient-to-r from-[rgba(189,254,28,1)]
            via-[rgba(37,184,222,1)] to-[rgba(70,13,255,1)] px-6 py-5"

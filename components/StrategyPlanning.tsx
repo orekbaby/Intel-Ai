@@ -11,49 +11,22 @@ import { Button } from "./ui/button";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { IoMdCheckmark } from "react-icons/io";
 import { IoBulbOutline } from "react-icons/io5";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
 import Image from "next/image";
 import Calendar4 from "./Calendar4";
 import Cookies from "js-cookie";
 import { loader, onboard } from "@/assets";
+import { CiMenuKebab } from "react-icons/ci";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import StrategyResponses from "./StrategyResponses";
+import StrategyButton from "./StrategyButton";
 
-
-const accordionData: AccordionData[] = [
-  {
-    id: 1,
-    title: "Teaser Post",
-    text: "Exciting news is on the horizon! 🚀 Stay tuned this week as we reveal something game-changing.Can you guess what it is? Drop your thoughts below! #TeaserTuesday #ComingSoon",
-  button: "my name is folakemi",
-  },
-  {
-    id: 2,
-    title: "Poll",
-    text: "We’re working on something special! Which aspect of [Your Product] are you most excited about?",
-    button: "my name is folakemi",
-  },
-
-  {
-    id: 3,
-    title: "Teaser",
-    text: "We’re working on something special! Which aspect of [Your Product] are you most excited about?",
-    button: "my name is folakemi",
-  },
-
-  {
-    id: 4,
-    title: "Poll",
-    text: "We’re working on something special! Which aspect of [Your Product] are you most excited about?",
-    button: "my name is folakemi",
-  },
-];
 
 interface Strategy {
   strategy: string;
   content: string;
    timestamp: { date: string; time: string };
   }
-
-  
 
   interface Timestamp {
     date: string;
@@ -66,29 +39,31 @@ interface Strategy {
     timestamp: Timestamp; // Add the timestamp property
   }
 
- 
-interface AccordionData {
-  id: number;
-  title: string;
-  text: string;
-  button: string;
-}
+   interface AccordionData {
+        id: number;
+        title: string;
+        text: string;
+        button: string;
+      }
+
 
 interface StrategyPlanningProps {
   handleSave: () => void;
   addStrategyContent: (date: string, time: string, content: string) => void;
   onCloseModal: () => void;  // Add onCloseModal to the props
-  strategies: Strategy[]; // Example prop if you're passing an array of strategies
+  strategies: Strategy[];
+  accordionData: AccordionData[];
+   // Example prop if you're passing an array of strategies
 }
 
 
-const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strategies, onCloseModal, addStrategyContent }) => {
+const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strategies, accordionData, onCloseModal, addStrategyContent }) => {
 
   const [isReadMoreStatic, setIsReadMoreStatic] = useState<boolean>(false);
   const [isReadMore, setIsReadMore] = useState<Record<number, boolean>>({});
   const [text, setText] = useState<string>('');
   const [request, setRequest] = useState<string[]>([]);
-const [tempRequest, setTempRequest] = useState<string[]>([]); 
+  const [tempRequest, setTempRequest] = useState<string[]>([]); 
   const [response, setResponse] = useState<string | null>(null);
   const [isQuickStrategyClicked, setIsQuickStrategyClicked] = useState<boolean>(false);
   const [isInputVisible, setIsInputVisible] = useState<boolean>(true);
@@ -189,7 +164,7 @@ const handleKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
           // Make input invisible and change Quick Strategy button to Clear
           setIsInputVisible(false);
           setIsQuickStrategyClicked(true);
-setHasRequested(true);
+          setHasRequested(true);
           setAreButtonsVisible(true);
 
           await delayResponse();
@@ -395,7 +370,7 @@ const handleContinueChatting = async () => {
 
     useEffect(() => {
     // Save each item's text to cookies
-    accordionData.forEach((item, index) => {
+    accordionData.forEach((item:any, index:any,) => {
       Cookies.set(`accordionText_${item.id}`, item.text);
     });
   }, []);
@@ -449,15 +424,15 @@ const handleContinueChatting = async () => {
 
   return (
     
-    <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color pb-40">
-        <div className="w-full flex flex-col md:flex-row lg:flex-row justify-between">
-         <div className="w-full md:w-[55%] lg:w-[60%] h-[781px] overflow-y-auto scrollbar-hide pt-5 border-r border-[#252525] rounded-[20px] pb-40">
+    <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color pb-0 md:pb-40 lg:pb-10">
+        <div className="w-full flex h-full flex-col md:flex-row lg:flex-row justify-between">
+         <div className="w-full md:w-[55%] lg:w-[60%] h-full md:[781px] lg:[781px] overflow-y-auto scrollbar-hide pt-0 md:pt-5 lg:pt-5 border-r border-[#252525] rounded-[20px] pb-0 md:pb-10 lg:pb-10">
          <div className="flex flex-col gap-4 justify-center items-center">
           <h3 className='text-[27px] font-medium leading-[33.38px] text-center pt-5 md:pt-2 lg:pt-0'> Welcome To Co-Pilot</h3>
                 <p className="font-normal text-[14px] leading-[14.56px]">
                 Create a tailored strategy for your community or project.
                 </p>
-                <div className="relative inline-block text-left">
+                <div className="relative inline-block text-left pt-5">
       <select
         className="custom-dropdown block w-[150px] h-[32px] bg-[#121212] text-white"
         value={selectedOption}
@@ -478,7 +453,7 @@ const handleContinueChatting = async () => {
             width={48}
             height={48}
             src={loader}
-            className="mx-auto mb-5 pt-10 bg-[#181818]"
+            className="mx-auto mb-5 pt-5 bg-[#181818]"
             alt=""
           />
           <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
@@ -492,257 +467,137 @@ const handleContinueChatting = async () => {
       </div>
     ) : (
 
-<div className="flex justify-center items-center pt-10">
-<div className="custom-textarea bg-[#1F1F1F] w-[610px] h-[220px] overflow-auto scrollbar-hide relative rounded-[16px]">
-  {/* Top part displaying the typed text */}
-
-  {/* loading state */}
-  
-  <>
-    
-
-   
- 
-  <div className="bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[165px]">
-    <div className="flex flex-col-reverse space-y-4 space-y-reverse">
-      {chats.map((chat, index) => (
-        <div key={index} className="mb-4">
-          {chat.request && (
-            <div className="flex justify-end mb-5">
-              <div className="w-[325px] p-[10px] rounded-lg bg-[#252525] border-[#292929] border">
-                <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
-                  {chat.request}
-                </p>
-              </div>
-            </div>
-          )}
-          {chat.response && (
-            <div className="flex justify-start">
-              <div className="pt-5 w-[366px] py-2 px-[10px] rounded-lg bg-[#252525] border-[#292929] border">
-                <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
-                  {chat.response}
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  </div>
-   
-    </>
-
-  <div className="absolute bottom-0 w-full">
-    {/* Fixed button container */}
-    <div className="flex justify-between items-center bg-[#1F1F1F] p-2">
-      {/* Left-aligned Buttons */}
-      <div className="flex space-x-4">
-        {areButtonsVisible && (
-          <Dialog open={isDialogOpen} onOpenChange={(isOpen) => setIsDialogOpen(isOpen)}>
-            <DialogTrigger>
-              <button
-                className={`flex items-center justify-center w-[77px] h-[27px] text-[#0d0d0d] bg-white font-medium text-xs leading-[12.48px] rounded-[24px] py-[10px] px-3 ${!hasRequested ? 'opacity-50 cursor-not-allowed' : ''}`}
-                disabled={!hasRequested}
-                onClick={() => setIsDialogOpen(true)}
-              >
-                <div className="flex items-center">
-                  <div className="w-[14px] h-[14px] bg-green-500 rounded-[4px] flex justify-center items-center mr-2">
-                    <IoMdCheckmark className="text-white w-[12px] h-[12px]" />
-                  </div>
-                  <span>Approve</span>
+<div className="flex flex-col items-center pt-0 md:pt-10 lg:pt-10 w-full">
+  <div className="custom-textarea bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] w-full max-w-[610px] h-[220px] overflow-auto scrollbar-hide relative rounded-[16px]">
+    <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[165px]">
+      <div className="flex flex-col-reverse space-y-4 space-y-reverse">
+        {chats.map((chat, index) => (
+          <div key={index} className="mb-4">
+            {chat.request && (
+              <div className="flex justify-end mb-5">
+                <div className="w-[325px] p-[10px] rounded-lg bg-[#252525] border-[#292929] border">
+                  <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
+                    {chat.request}
+                  </p>
                 </div>
-              </button>
-            </DialogTrigger>
-            <DialogContent className="px-4 py-4 w-[90%] sm:w-[80%] md:w-[75%] lg:w-[390px] max-w-full border-none h-auto md:h-[325px] bg-[#181818] rounded-[20px]">
-  <div className="mx-auto">
-    <Image
-      width={120}
-      height={120}
-      src={onboard}
-      className="mx-auto mb-5 pt-5"
-      alt=""
-    />
-    <h3 className="font-medium text-center text-[18px] sm:text-[20px] leading-[24px] sm:leading-[26px] w-full mx-auto mb-4">
-      Great Job!
-    </h3>
-    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] leading-[16.8px] mb-5">
-      Now, click on &quot;Finalize Strategy&quot; button to get results
-    </p>
-    <button
-      className="bg-white items-center flex justify-center text-center 
-        text-xs font-normal ring-offset-white focus-visible:outline-none
-        text-[#0D0D0D] h-10 w-full sm:w-[326px] rounded-[66px] mx-auto shadow-drop2"
-      onClick={handleFinalizeStrategyClick}
-    >
-      Finalize Strategy
-    </button>
-  </div>
-</DialogContent>
-
-          </Dialog>
-        )}
-        {areButtonsVisible && (
-          <button className="w-auto h-[28px] flex justify-center items-center rounded-[24px] bg-[#4C4C4C] border border-[#707070] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4" onClick={handleContinueChatting}>
-            Continue Chatting
-          </button>
-        )}
-      </div>
-      <div>
-        {isQuickStrategyClicked ? (
-          <button
-            className="flex items-center justify-center w-[53px] h-[28px] rounded-[24px] bg-[#0D0D0D] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4"
-            onClick={handleClearChat}
-          >
-            Clear
-          </button>
-        ) : (
-          <button
-            className="flex items-center justify-center h-[28px] rounded-[24px] border border-[#3A3939] text-white text-medium text-xs leading-[12.48px] py-[10px] px-4"
-            onClick={handleQuickStrategyClick}
-          >
-            Quick Strategy
-            <div className="flex items-center text-white text-l">
-              💡
-            </div>
-          </button>
-        )}
+              </div>
+            )}
+            {chat.response && (
+              <div className="flex justify-start">
+                <div className="pt-5 w-[366px] py-2 px-[10px] rounded-lg bg-[#252525] border-[#292929] border">
+                  <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
+                    {chat.response}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
-    {isInputVisible && (
-      <div className="flex items-center justify-between w-full h-[48px] px-6 bg-[#1F1F1F] border-t border-[#2B2B2B] pt-8 pb-8">
-        <input
-            type="text"
-            placeholder="What is on your mind?"
-            value={text}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            className="flex-1 input-area bg-transparent border-none outline-none font-normal text-xs italic text-white placeholder-[#707070]"
-          />
-        <div className="absolute bottom-4 right-7">
-          <button
-            className="flex justify-center items-center w-[27px] h-[27px] rounded-full bg-[#03ffa3]"
-            onClick={handleSendButtonClick}
-          >
-            <FaArrowUp className="w-[16px] h-[14px] text-black" />
-          </button>
-        </div>
-      </div>
-    )}
+
+    <div className="block md:hidden lg:hidden">
+      <StrategyResponses
+        handleSave={handleSave}
+        showContent={showContent}
+        finalizedStrategies={finalizedStrategies}
+        onDeleteStrategy={handleDeleteStrategy}
+        renderTextStatic={renderTextStatic}
+        renderText={renderText}
+        isReadmore={isReadMore}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        addStrategyContent={addStrategyContent}
+        closeModal={closeModal}
+        showCopyMessage={showCopyMessage}
+        copiedContent={copiedContent}
+        onCloseModal={onCloseModal}
+        strategies={strategies}
+        handleCopy={handleCopy}
+      />
+    </div>
   </div>
+
+  <div className="fixed bottom-[10%] left-0 right-0 p-4 block md:hidden lg:hidden">
+    <StrategyButton
+      areButtonsVisible={areButtonsVisible}
+      isDialogOpen={isDialogOpen}
+      setIsDialogOpen={setIsDialogOpen}
+      hasRequested={hasRequested}
+      setHasRequested={setHasRequested}
+      handleFinalizeStrategyClick={handleFinalizeStrategyClick}
+      handleContinueChatting={handleContinueChatting}
+      handleQuickStrategyClick={handleQuickStrategyClick}
+      handleClearChat={handleClearChat}
+      isInputVisible={isInputVisible}
+      setIsInputVisible={setIsInputVisible}
+      text={text}
+      setText={setText}
+      handleSendButtonClick={handleSendButtonClick}
+      handleKeyDown={handleKeyDown}
+      handleInputChange={handleInputChange}
+      isQuickStrategyClicked={isQuickStrategyClicked}
+      setIsQuickStrategyClicked={setIsQuickStrategyClicked}
+      setAreButtonsVisible={setAreButtonsVisible}
+    />
+  </div>
+
+  <div className="w-full max-w-[610px] hidden md:block lg:block">
+  <StrategyButton
+    areButtonsVisible={areButtonsVisible}
+    isDialogOpen={isDialogOpen}
+    setIsDialogOpen={setIsDialogOpen}
+    hasRequested={hasRequested}
+    setHasRequested={setHasRequested}
+    handleFinalizeStrategyClick={handleFinalizeStrategyClick}
+    handleContinueChatting={handleContinueChatting}
+    handleQuickStrategyClick={handleQuickStrategyClick}
+    handleClearChat={handleClearChat}
+    isInputVisible={isInputVisible}
+    setIsInputVisible={setIsInputVisible}
+    text={text}
+    setText={setText}
+    handleSendButtonClick={handleSendButtonClick}
+    handleKeyDown={handleKeyDown}
+    handleInputChange={handleInputChange}
+    isQuickStrategyClicked={isQuickStrategyClicked}
+    setIsQuickStrategyClicked={setIsQuickStrategyClicked}
+    setAreButtonsVisible={setAreButtonsVisible}
+  />
 </div>
 
- {/* stop */}
 </div>
+
 )}
 
 {/* accordion content */}
-  {showContent && (
-        <div className="space-y-4 pb-40 pt-10 md:pt-16 lg:pt-16">
-          <h5 className="font-medium text-base leading-[16.64px] pb-2">Actionable Recommendations</h5>
+<div className="hidden md:block lg:block">
+<StrategyResponses
+  handleSave={handleSave}
+  showContent={showContent}
+  finalizedStrategies={finalizedStrategies}
+  onDeleteStrategy={handleDeleteStrategy}
+  renderTextStatic={renderTextStatic}
+  renderText={renderText}
+  isReadmore={isReadMore}
+  openModal={openModal}
+  setOpenModal={setOpenModal}
+  addStrategyContent={addStrategyContent}
+  closeModal={closeModal}
+  showCopyMessage={showCopyMessage}
+  copiedContent={copiedContent}
+  onCloseModal={onCloseModal}
+  strategies={strategies}
+  handleCopy={handleCopy}
+/>
+</div>
 
-          {/* First row */}
-          <div className="bg-[#131313] p-4 rounded-md border border-[#262626]">
-            <div className="flex justify-start items-center gap-1 ">
-              <IoBulbOutline className="text-[#03FFA3]" />
-              <h3 className="text-white font-medium text-base leading-[16.64px] ">Rationale:</h3>
-            </div>
-
-            <div className="text-[#DEDEDE] mt-2 font-[300] text-sm leading-[14.56px]">
-              {renderTextStatic(
-                "To effectively build anticipation for the upcoming product launch, it's crucial to create a sense of excitement and community involvement. By strategically releasing teaser content and actively engaging with your community through polls and AMAs, you can generate buzz and gather valuable feedback that may help refine your launch approach."
-              )}
-            </div>
-          </div>
-
-          {/* Mapped Rows */}
-          {accordionData.map((item, index) => (
-            <div
-              key={item.id}
-              className={`${
-                index === 0
-                  ? "bg-[#0d0d0d] border border-[#262626]"
-                  : index === 2
-                  ? "bg-[#0d0d0d] border border-[#262626]"
-                  : "bg-[#151515] border border-[#262626]"
-              } p-4 rounded-md`}
-            >
-              <div>
-                <h3 className="text-white text-sm leading-[14.56px] font-semibold pb-3">
-                  {item.title}
-                </h3>
-                <h5 className="text-[13px] font-medium leading-[20.28px] text-left">
-                  Content Suggestion:
-                </h5>
-                <div className="text-[#DEDEDE] font-normal text-[13px] leading-[20.8px] text-left inline">
-                  {renderText(item.text, index)}
-                </div>
-              </div>
-
-              {isReadMore[index] && (
-                <div>
-                  <div className="flex justify-start gap-1 items-center pt-2">
-                    <span className="font-medium text-xs leading-[12.48px] text-[#BDBDBD]">
-                      Recommended Post Time
-                    </span>
-                    <div className="flex gap-1 w-[91px] items-center h-auto bg-[#131313] p-[3px] rounded-[12px] mr-4">
-                      <FaRegClock className="w-[6px] h-[6px]" />
-                      <p className="font-[300] text-[8px] leading-[12px] text-[#858585]">
-                        19/09/2024{" "}
-                        <span className="font-normal text-[8px] leading-[12px] text-white">
-                          10:00PM
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="pt-3 flex items-center gap-2">
-                  <Dialog open={openModal} onOpenChange={setOpenModal}>
-  <DialogTrigger className="cursor-pointer" asChild>
-    <button
-      className="w-[187px] h-[29px] font-semibold text-xs leading-[12.48px] px-3 rounded-[24px] bg-white text-[#0d0d0d] border-[#E5E5E5] border"
-    >
-      Add to content calendar
-    </button>
-  </DialogTrigger>
-  <DialogContent className="absolute top-[48%] right-[-80%] -translate-x-1/2 max-w-auto border-none outline-none px-6 md:px-4 lg:px-4 rounded-[20px]">
-    <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
-      <Calendar4 
-        index={index}
-        addStrategyContent={addStrategyContent}
-        onSave={handleSave}
-        onCloseModal={closeModal} // Use the correct function name
-        accordionData={accordionData}
-      />
-    </div>
-  </DialogContent>
-</Dialog>
- <div className="flex justify-center items-center bg-[#434343] rounded-md w-[25px] h-[25px]"
-                      onClick={() => handleCopy(item.text)}
-                    >
-                      <MdOutlineContentCopy className="w-[13px] h-[13px]" />
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {showCopyMessage && copiedContent && (
-        <div className="w-fit absolute bottom-[80%] right-[80%] bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)] h-auto p-[1px] rounded-lg">
-        <div
-          className=" w-full bg-[#0d0d0d] text-white rounded-md shadow-lg h-full py-2 px-2"
-        >
-          Message copied
-        </div>
-        </div>
-      )}
     </div>
 
 
-       <div className="w-full md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-3 lg:ml-3  h-auto rounded-[10px] overflow-hidden">
+       <div className="hidden md:block lg:block w-full md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-3 lg:ml-3  h-auto rounded-[10px] overflow-hidden">
             <div className="w-full">
-              <div className="bg-[#131313] h-auto w-full">
+              <div className="bg-[#131313] h-[781px] w-full">
 
                 {/* put your content here */}
                 <div className="">
@@ -777,7 +632,7 @@ const handleContinueChatting = async () => {
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-30 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-10 scrollbar-hide"
                       value="AllStrategies"
                     >
     <AllStrategies 
@@ -788,13 +643,13 @@ const handleContinueChatting = async () => {
 
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-30 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-10 scrollbar-hide"
                       value="ScheduledPosts"
                     >
                       <ScheduledPosts />
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-30 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[90vh] overflow-y-auto bg-[#181818] pb-10 scrollbar-hide"
                       value="PostedContents"
                     >
                       <PostedContents />

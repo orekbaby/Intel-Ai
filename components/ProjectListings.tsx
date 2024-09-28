@@ -102,27 +102,18 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
   
     // Show success message
     setIsLoading(true);
-  
-    // Close the dialog after 2 seconds
     setTimeout(() => {
-     onClose(); // Assuming onClose is a function to close the dialog
+     onClose();
     setIsLoading(false);
   }, 2000);
-  
-
-
-    // Show a success toast notification
-    // Comment out this line if you don't want a success toast notification
   1
   };
   
   return (
     <>
       {launchpadData?.map((row, index) => (
-        
         <div key={index}>
-           
-          <div className="flex flex-col mb-5 pb-1 border-[#1E1E1E] border-b text-left px-2 md:px-0 lg:px-0">
+             <div className="flex flex-col mb-5 pb-1 border-[#1E1E1E] border-b text-left px-6 md:px-0 lg:px-0 overflow-hidden">
             <h5 className="font-medium cursor-pointer text-[13px] md:text-sm lg:text-sm leading-[14.56px] pb-2">
               Upcoming Project Listings
             </h5>
@@ -148,11 +139,11 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
          </div>
                  ):(
           <div className="w-full h-auto rounded-[20px] pb-10">
-            <div className="w-[430px] md:w-[460px] lg:w-[460px] h-auto bg-[#1B1B1B] pt-3 pb-4 px-3 md:px-4 lg:px-4 rounded-bl-[20px] rounded-br-[20px]">
+            <div className="w-full md:w-[460px] lg:w-[460px] h-auto bg-[#1B1B1B] pt-3 pb-4 px-3 md:px-4 lg:px-4 rounded-bl-[20px] rounded-br-[20px]">
               <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
                 Instructions:
               </h5>
-              <p className="font-normal text-[13.5px] md:text-sm lg:text-sm leading-[16.55px] text-[#E4E4E4] mb-3">
+              <p className="font-normal text-[13.5px] md:text-sm lg:text-sm leading-[16.55px] text-[#E4E4E4] mb-3 w-[95%] md:w-full lgw-full">
                 {row.insructionText}
               </p>
               <div className="flex flex-col gap-1">
@@ -283,22 +274,14 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
               {/* Ends here */}
               {/* Save button */}
               <div className="flex justify-center pt-5 mx-auto items-center">
-                <button
-                  className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[52px] md:h-10 lg:h-10 w-[325px] md:w-[153px] lg:w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
-                  onClick={handleSave}
-                >
-                  Save
-                </button>
-              </div>
-              {/* pop up message */}
-              {showSuccessMessage && (
-                <div className="absolute top-[10%] left-[25%] text-center mt-2 text-green-500">
-                  <div className="bg-white w-[200px] h-auto p-2 rounded-[20px] ">
-                    <p className="text-sm font-normal">Saved successfully!</p>
-                  </div>
-                </div>
-              )}
-            </div>
+              <button
+  className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 w-full h-12 md:h-10 lg:h-10 md:w-[153px] lg:w-[153px] rounded-[200px] hover:bg-[#0B0F16] text-xs"
+  onClick={handleSave}
+>
+  Save
+</button>
+</div>
+    </div>
           </div>
                  )}
         </div>

@@ -55,14 +55,14 @@ const Page = () => {
 
   return (
     <>
-      <div className="mt-10 md:mt-20 lg:mt-20 mx-auto">
+      <div className="mt-10 md:mt-20 lg:mt-10 mx-auto h-[100vh] overflow-hidden">
         
         <section className="first-gradient section relative w-full h-[80vh] md:h-[100vh] lg:h-[100vh] z-10 mb-48 ">
           <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full">
             {/* top-gradient */}
             <div
               style={style2}
-              className="top-[-15%] right-[50%] absolute w-[40%] h-[130px] md:h-[500px] lg:h-[160px] translate-x-1/2 z-[-1]"
+              className="top-[-1%] right-[50%] absolute w-[40%] h-[130px] md:h-[500px] lg:h-[160px] translate-x-1/2 z-[-1]"
             ></div>
             {/* bottom-gradient */}
             <div
@@ -70,7 +70,7 @@ const Page = () => {
               className="bottom-[-30%] right-[50%] absolute w-[40%] h-[130px] md:h-[500px] lg:h-[150px] translate-x-1/2"
             ></div>
             {/* Back button */}
-            <div className="mb-6 flex justify-start absolute top-[-8%] md:top-[-10%] left-15s md:left-10 lg:left-10">
+            <div className="mb-6 flex justify-start absolute top-[-8%] md:top-[-10%] left-15 md:left-10 lg:left-10">
               <Link href="/" prefetch={false}>
                 <button className="flex items-center text-[#707070]">
                   <FaArrowLeft className="mr-2 text-[#707070]" />
@@ -100,7 +100,7 @@ const Page = () => {
             {/* invitation code box */}
             <div className="w-auto">
               <div
-                className="border border-[#474747] bg-[#131313] bg-opacity-[6%] w-[389px]
+                className="border border-[#474747] bg-[#131313] bg-opacity-[6%] w-[95%]
               md:w-[543px] lg:w-[543px] h-auto md:h-[435px] lg:h-[435px] leading-[16.64px] mx-auto rounded-[20px] py-6 md:py-14 lg:py-14"
               >
                 <h2 className="font-medium text-base text-center leading-[16.4px] mb-4">
@@ -119,7 +119,7 @@ const Page = () => {
                     Input your invitation code
                   </p>
                   <input
-                    className="mb-6 md:mb-5 lg:mb-5 mt-2 text-xs md:text-sm lg:text-sm w-[361px] md:w-[380px] lg:w-[380px] h-[49px] md:h-[40px] lg:h-[40px] py-[8px] px-6 md:px-[16px] lg:px-[16px] pr-[32px] italic bg-[#1B1B1B] font-[300] md:font-normal lg:font-normal text-white rounded-[14px] md:rounded-[12px] lg:rounded-[12px] mx-auto"
+                    className="mb-6 md:mb-5 lg:mb-5 mt-2 text-xs md:text-sm lg:text-sm w-[97%] md:w-[380px] lg:w-[380px] h-[49px] md:h-[40px] lg:h-[40px] py-[8px] px-6 md:px-[16px] lg:px-[16px] pr-[32px] italic bg-[#1B1B1B] font-[300] md:font-normal lg:font-normal text-white rounded-[14px] md:rounded-[12px] lg:rounded-[12px] mx-auto"
                     type="text"
                     placeholder="Enter invite code"
                     value={invitationCode}

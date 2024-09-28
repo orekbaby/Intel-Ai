@@ -172,7 +172,7 @@ const handlePersonaSwitch = (persona: string) => {
 
           <p
             onClick={() => handlePersonaSwitch('smartContractEngineer')}
-            className={`text-base font-medium cursor-pointer ${
+            className={`text-base font-medium cursor-pointer hidden md:block lg:block ${
               selectedUser === "smartContractEngineer"
                 ? "text-white" // Highlight active state
                 : "text-[#6D6D6D]"
@@ -270,7 +270,7 @@ const handlePersonaSwitch = (persona: string) => {
     {/* Left Side: Smart Contract Engineer */}
     <div className="flex items-center pl-20">
       <Link href="/smart-contract-engineer">
-        <p className="font-medium text-[20px] text-white">Smart Contract Engineer</p>
+        <p className="hidden md:block lg:block font-medium text-[20px] text-white">Smart Contract Engineer</p>
       </Link>
     </div>
 
@@ -468,7 +468,7 @@ const handlePersonaSwitch = (persona: string) => {
  {/* login navigation */}
 
       {visible && (
-        <header className="absolute z-40 top-0 left-0 flex justify-end h-[60px] md:h-[70px] lg:h-auto px-3 md:px-20 lg:px-10 py-4 border-[#363636] w-[95%] border-b ">
+        <header className="fixed z-40 top-0 left-0 flex justify-between items-center h-[60px] md:h-[70px] lg:h-[80px] px-3 md:px-20 lg:px-10 py-4 bg-[#181818] w-full border-b border-[#363636]">
           <div className="flex justify-end pr-10">
             <Image src={Logo}width={97} height={30} alt="logo" />
           </div>

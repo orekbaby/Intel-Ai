@@ -145,7 +145,8 @@ const OtherInformationModal: React.FC = () => {
          </div>
          </div>
                  ):(
-            <DialogContent className="absolute top-[50%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px] h-auto overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none">
+            <DialogContent className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px]
+                      h-[90vh] overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none p-6">
               <div className="w-full h-auto bg-[#131313] border-b border-[#131313] rounded-[20px] pb-10">
                 <div className="bg-[#101010] border-[#181818] border-b px-4 py-[10px] w-[460px] h-[47px] mb-1">
                   <h5 className="font-semibold text-sm text-[14.56px]">

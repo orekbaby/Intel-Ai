@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { FaArrowUp } from "react-icons/fa";
+import { FaArrowUp, FaTelegramPlane } from "react-icons/fa";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CiMenuKebab, CiPaperplane } from "react-icons/ci";
 import Image from "next/image";
@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/pagination";
 import { Button } from "@/components/ui/button";
 import { avatar, GlowImg } from "@/assets";
+import ResolvedMobile from "../queryContents/ResolvedMobile";
 
 interface ChatItem {
   type: "query" | "response";
@@ -143,7 +144,7 @@ const Page = () => {
     }
   };
   return (
-    <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
+    <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
       <div className="w-full md:w-full lg:w-[70%] h-full pt-5">
         <div className="">
           <div className="w-[150px] h-[35px] rounded-[25px] bg-[#1B1B1B] flex justify-center items-center mb-10">
@@ -155,10 +156,17 @@ const Page = () => {
           <div className="hidden md:flex lg:flex justify-center md:justify-start lg:justify-start gap-4 items-center">
             {escalationReport?.map((row, index) => (
               <div key={index} className="">
-                <div className="w-[189px] md:w-[138px] lg:w-[138px] h-[137px] md:h-[115px] lg:h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
-                  <p className="font-medium text-[13.2px] md:text-xs lg:text-xs leading-[12.48px] mb-5">
+                <div className="w-[189px] md:w-[138px] lg:w-[138px] h-[137px]  rounded-[20px] bg-[#181818] shadow-lg flex flex-col py-4 px-3">
+                {row.img && (
+                <div className="flex items-center justify-start gap-2">
+               <div className="w-[21px] h-[21px] rounded-full bg-[#7289DA] flex justify-center items-center">
+              <row.img className="w-[10px] h-[10px]" /> {/* Render the icon */}
+            </div>
+         <p className="font-medium text-xs leading-[12.48px] mb-5 pt-5">
                     {row.title}
                   </p>
+                  </div> 
+                   )}
                   <p className="font-[300] text-[40px] leading-[41.6px]">
                     {row.number}
                   </p>
@@ -179,10 +187,18 @@ const Page = () => {
           <div className="grid grid-cols-2 gap-6 items-center md:hidden lg:hidden">
             {escalationReport?.map((row, index) => (
               <div key={index} className="">
-                <div className="w-[189px] h-[115px] rounded-[20px] bg-[#181818] flex flex-col pt-4 px-3">
-                  <p className="font-medium text-xs leading-[12.48px] mb-5">
+                
+                <div className="w-[189px] h-[137px] rounded-[20px] bg-[#181818] flex flex-col py-4 px-3">
+                {row.img && (
+                <div className="flex items-center justify-start gap-2">
+               <div className="w-[21px] h-[21px] rounded-full bg-[#7289DA] flex justify-center items-center">
+              <row.img className="w-[10px] h-[10px]" /> {/* Render the icon */}
+            </div>
+         <p className="font-medium text-xs leading-[12.48px] mb-5 pt-5">
                     {row.title}
                   </p>
+                  </div> 
+                   )}
                   <p className="font-[300] text-[40px] leading-[41.6px]">
                     {row.number}
                   </p>
@@ -201,9 +217,9 @@ const Page = () => {
 
           <Tabs
             defaultValue="Unresolved"
-            className="w-full pl-2 pr-3 md:pl-0 lg:pl-0 pt-5 md:pt-7 lg:pt-7 overflow-x-hidden"
+            className="w-full pl-0 pr-0 md:pl-0 lg:pl-0 pt-5 md:pt-7 lg:pt-7 overflow-x-hidden"
           >
-            <TabsList className="flex mt-0 mb-0 items-center justify-between md:justify-start lg:justify-start gap-0 md:gap-2 lg:gap-1 px-2 md:px-0 lg:px-0 border w-fit rounded-[24px] border-[#1C1C1C]">
+            <TabsList className="flex mt-0 mb-0 items-center justify-between md:justify-start lg:justify-start gap-0 md:gap-2 lg:gap-1 px-0 md:px-0 lg:px-0 border w-fit rounded-[24px] border-[#1C1C1C]">
               <TabsTrigger
                 className=" w-full md:w-fit lg:w-[100px] px-5 md:px-2 lg:px-2 bg-[#161616] text-[#666666] data-[state=active]:bg-white text-[9px] md:text-sm lg:text-sm gap-2 font-medium rounded-[24px]"
                 value="Unresolved"
@@ -254,7 +270,7 @@ const Page = () => {
               className="block md:hidden lg:hidden w-full h-full pt-2 overflow-x-hidden"
               value="Resolved"
             >
-              <Resolved />
+              <ResolvedMobile />
             </TabsContent>
 
             <TabsContent
@@ -412,10 +428,16 @@ const Page = () => {
             {/* bg-[#181818] */}
             <div className="flex justify-center items-center gap-2">
               <div className="">
-                <input
-                  type="text"
-                  id="inputField2"
-                  className="text-input2 font-normal pt-1 text-sm leading-[14.56px] italic"
+              <input
+            type="text"
+            id="inputField2"
+            className="
+              w-[300px] sm:w-[300px] md:w-[300px] lg:w-[280px]
+              h-[45px] sm:h-[50px] md:h-[55px] lg:h-[50px]
+              rounded-[15px] bg-[#0d0d0d] border border-gray-500 text-white
+              italic font-light text-sm md:text-base lg:text-base
+              px-4 outline-none focus:ring-2 focus:ring-blue-500 outline-0
+            "
                   placeholder="Input the proper response here ...."
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
@@ -423,12 +445,21 @@ const Page = () => {
                   autoComplete="off"
                 />
               </div>
-              <div
-                onClick={handleSendQuery}
-                className="w-[50px] h-[50px] rounded-full bg-[#03FFA3] flex justify-center items-center cursor-pointer"
-              >
-                <CiPaperplane className="w-[26px] h-[30px] text-black" />
-              </div>
+             
+<Button className="
+              w-[50px] h-[50px] sm:w-[50px] sm:h-[50px] md:w-[55px] md:h-[55px] lg:w-[50px] lg:h-[50px]
+              rounded-[15px] sm:rounded-[16px] md:rounded-[18px] lg:rounded-[20px]
+              bg-[#03FFA3] flex justify-center items-center
+            "
+            onClick={handleSendQuery}
+          >
+            <CiPaperplane
+              className="
+                w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] lg:w-[26px] lg:h-[26px]
+                text-black
+              "
+            />
+          </Button>
             </div>
           </div>
         </div>

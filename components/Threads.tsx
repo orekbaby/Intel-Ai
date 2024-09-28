@@ -136,23 +136,17 @@ const Threads: React.FC<ThreadsProps> = ({
   return (
     <>
       <div className="pt-5">
+         
         
-        <Image
-          src="/threads.png"
-          width={820}
-          height={610}
-          alt="threads-img"
-          className="hidden"
-        />
          {isLoading ? (
-  <div className="absolute top-0 left-[20%] flex justify-center items-center">
+  <div className="absolute top-[-1%] md:top-0 lg:top-0 left-[20%] flex justify-center items-center">
       <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
         <div className="mx-auto">
           <Image
             width={48}
             height={48}
             src={loader}
-            className="mx-auto mb-5 pt-10 bg-[#181818]"
+            className="mx-auto mb-5 pt-5 bg-[#181818]"
             alt=""
           />
           <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
@@ -167,17 +161,14 @@ const Threads: React.FC<ThreadsProps> = ({
     ) : (
 
         <div className="w-full h-auto">
-          <div className="w-full flex justify-between h-[58px] border-[#262626] border-b bg-[#131313] px-3">
+          <div className="w-full flex justify-between h-[58px] border-[#262626] border-b bg-[#131313] px-0 md:px-3 lg:px-3">
             <div className="flex justify-start items-center">
-              <h5 className="font-semibold text-[15.6px] leading-[15.6px]">
+              <h5 className="hidden md:block lg:block font-semibold text-[15.6px] leading-[15.6px]">
                 Threads Content
               </h5>
             </div>
-            <div className="flex justify-end gap-5 items-center px-4">
-              <Button className="font-normal text-[15px] leading-[15.6px] text-[#A4A4A4]">
-                Add to draft
-              </Button>
-              <Dialog open={openModal} onOpenChange={setOpenModal}>
+            <div className="flex justify-center gap-5 items-center px-4 md:px-4 lg:px-4">
+             <Dialog open={openModal} onOpenChange={setOpenModal}>
                 <DialogTrigger className="cursor-pointer" asChild>
                   <Button
                     className="font-normal text-[15px] leading-[15.6px] text-[#A4A4A4]"

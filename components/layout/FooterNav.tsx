@@ -53,7 +53,7 @@ const FooterNav = () => {
     <>
       {showFooter && (
         <div className="bg-[#0B0F16] w-full h-[70px] fixed bottom-0 left-0 block md:block lg:hidden">
-          <div className="flex justify-between py-6 px-24 items-center">
+          <div className="flex justify-between py-6 px-12 items-center">
             <Link href="/" prefetch={false}>
               <FaHome className="text-[24px] text-[#707070]" />
             </Link>

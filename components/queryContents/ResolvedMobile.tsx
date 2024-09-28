@@ -7,25 +7,11 @@ import { FaXTwitter } from "react-icons/fa6";
 
 import { FaTelegramPlane, FaDiscord } from "react-icons/fa";
 
-interface UnresolvedProps {
-  addQuery: (query: string) => void;
-  resolveComment: () => void;
-}
 
-const UnresolvedMobile: React.FC<UnresolvedProps> = ({
-  addQuery,
-  resolveComment,
-}) => {
+
+const ResolvedMobile = () => {
   
-  const router = useRouter();
-
-  const handleButtonClick = (query: string, name: string, img: any) => {
-    localStorage.setItem("redirectQuery", query);
-    localStorage.setItem("redirectName", name);
-
-    localStorage.setItem("redirectImg", img);
-    router.push("/querychat-mobile");
-  };
+  
 
   return (
     <div className="w-full">
@@ -41,9 +27,7 @@ border-[#373737] h-[40px] border-b bg-[#1D1D1D]
         className={`flex items-center gap-4 p-4 rounded-lg mb-2 ${
           index % 2 === 0 ? "bg-[#0A0908]" : "bg-[#1D1D1D]"
         }`}
-        onClick={() =>
-          handleButtonClick(row.query, row.name, row.img)
-        }
+       
       >
         {/* Avatar with Social Icon */}
         <div className="relative">
@@ -84,4 +68,4 @@ border-[#373737] h-[40px] border-b bg-[#1D1D1D]
   );
 };
 
-export default UnresolvedMobile;
+export default ResolvedMobile;

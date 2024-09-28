@@ -6,7 +6,7 @@ export const communityOwners = [
       "Intel AI Agents serve as a seamless extension of your team, providing high-quality feedback and engaging interactions that resonate with your community. ",
   },
 ];
-import {Ai, Alex, avatar, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, BackgroundImg, book, CableTag, community, ContentTag, DiscordLogo, EmilyChen, FeaturedIcon, GlowImg, Img1, Img2, Img3, MobileImg1, MobileImg2, MobileImg3, query, SarahThompson, StarImage, StarPro, TelegramIcon, Train1, Train2, Train3, TwitterMain, world} from "@/assets/images"
+import {Ai, Alex, avatar, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, BackgroundImg, book, CableTag, community, ContentTag, DiscordLogo, EmilyChen, FeaturedIcon, GlowImg, Img1, Img2, Img3, MobileImg1, MobileImg2, MobileImg3, query, SarahThompson, StarImage, StarPro, telegram, TelegramIcon, Train1, Train2, Train3, TwitterMain, world} from "@/assets/images"
 export const kolsInfluencers = [
   {
     img: Img2,
@@ -27,6 +27,7 @@ export const customAgents = [
 
 // Assuming you're using the baron import method for images
 import { CloudSvg, TraceSvg, VolumeSvg, RiseSvg, CluesSvg, CloudPng } from '@/assets/images'; 
+import { FaDiscord, FaTelegramPlane } from "react-icons/fa";
 
 // Updated mock data using image imports
 export const sponsors = [
@@ -205,35 +206,45 @@ export const token = [
   },
 ];
 
-export const escalationReport = [
+import { IconType } from "react-icons"; // Import the IconType from react-icons
+
+// Define the type for your escalationReport data
+interface EscalationReport {
+  img?: IconType; // Optional IconType for icons
+  title: string;
+  number: string;
+  percentage: string;
+}
+
+// Your escalationReport array with the correct type
+export const escalationReport: EscalationReport[] = [
   {
-    title: "Total Escallations",
+    title: "Total Escalations",
     number: "40",
     percentage: "5%",
   },
-
   {
+    
     title: "Successfully sorted",
     number: "20",
     percentage: "5%",
   },
-
   {
-    img: "/discord2.png",
+    img: FaDiscord, // Correct IconType usage
     title: "Discord",
     number: "08",
     percentage: "5%",
   },
-
   {
-    img: "/telegram2.png",
+    img: FaTelegramPlane,
     title: "Telegram",
     number: "10",
     percentage: "5%",
   },
 ];
 
-export const accordionData = [
+
+export const accordionLanding = [
   {
     trigger:
       "What is Intel AI and how does it benefit community managers and influencers?",
@@ -635,7 +646,7 @@ export const integrationDashboard = [
     title: " More integrations coming soon",
     content:
       " We are adding more channels for integrations. Discord, Notion, Zapier, Slack and many more",
-    button: "  Integrate now",
+    button: "Integrate now",
   },
 ];
 
@@ -699,12 +710,25 @@ export const form = [
   },
 ];
 
-export const unResolvedTable = [
+import { StaticImageData } from 'next/image';
+interface RowData {
+  img: StaticImageData | string;
+  name: string;
+  platform: IconType;
+  query: string;
+  altText: string;
+  number :string;
+  social:string;
+  time:string;
+  button:string;
+}
+
+export const unResolvedTable: RowData[] = [
   {
     number: "1.",
     img: avatar1,
     name: "@Ann928",
-    platform: DiscordLogo,
+    platform: FaDiscord,
     social: "Discord",
     query: "I encountered a bug while using the workspace. Can you help?",
     time: "10:15 am",
@@ -716,7 +740,7 @@ export const unResolvedTable = [
     number: "2.",
     img: avatar2,
     name: "@Roger20",
-    platform: TwitterMain,
+    platform: FaXTwitter,
     social: "Twitter",
     query: "I'm having trouble accessing certain features. Can you assist me?",
     time: "10:15 am",
@@ -728,7 +752,7 @@ export const unResolvedTable = [
     number: "3.",
     img: avatar3,
     name: "@Ahmad23",
-    platform: DiscordLogo,
+    platform: FaDiscord,
     social: "Discord",
     query: "Can we get an update on the project's timeline?",
     time: "10:15 am",
@@ -740,7 +764,7 @@ export const unResolvedTable = [
     number: "4.",
     img: avatar4,
     name: "@Justin32",
-    platform: TwitterMain,
+    platform: FaXTwitter,
     social: "twitter",
     query: "There seems to be a conflict in our team. Can we discuss this?",
     time: "10:15 am",
@@ -752,7 +776,7 @@ export const unResolvedTable = [
     number: "5.",
     img: avatar5,
     name: "@Jordyn10",
-    platform: TwitterMain,
+    platform: FaDiscord,
     social: "Twitter",
     query: "Can you clarify the guidelines for posting in the community?",
     time: "10:15 am",
@@ -764,7 +788,7 @@ export const unResolvedTable = [
     number: "6.",
     img: avatar6,
     name: "@Corey111",
-    platform: TelegramIcon,
+    platform: FaTelegramPlane,
     social: "Telegram",
     query:
       "'m not sure how to use the new tool that was introduced. Can someone explain?",
@@ -777,7 +801,7 @@ export const unResolvedTable = [
     number: "7.",
     img: avatar7,
     name: "@Jordyn10",
-    platform: TwitterMain,
+    platform: FaXTwitter,
     social: "Twitter",
     query:
       "I have a suggestion for improving the workspace. Who should I talk to?",
@@ -1008,7 +1032,7 @@ export const inputData = [
 
 export const chipsButton = [
   {
-    button: "What is get equity",
+    button: "What is get equity?",
   },
 
   {
@@ -1321,6 +1345,7 @@ export const responsesData = [
 
 import { GoPeople } from "react-icons/go";
 import { RiCodeSSlashFill } from "react-icons/ri";
+import { FaXTwitter } from "react-icons/fa6";
 
 export const persona = [
   {

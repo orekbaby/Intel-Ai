@@ -3,6 +3,7 @@ import { FaTimes, FaCheck } from "react-icons/fa";
 import { useToast } from "@/components/ui/use-toast"
 import { ring } from "@/assets";
 import { MdOutlineFileUpload } from "react-icons/md";
+import { FiPaperclip } from "react-icons/fi";
 
 interface UploadFileProps {
   value: File | null;
@@ -77,7 +78,7 @@ const UploadFile: React.FC<UploadFileProps> = ({ value, onChange }) => {
         accept=".pdf,.doc,.docx"
       />
       {!value && (
-         < MdOutlineFileUpload
+         < FiPaperclip
         className="w-[18px] h-[18px] text-[#707070]"
         onClick={handleButtonClick}
       />

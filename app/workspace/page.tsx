@@ -11,13 +11,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelectedCategory } from "@/context/SelectedCategoryContext"; 
 import { useUserInput } from "@/context//UserInputContext";
 import { ContentInside } from "@/assets";
+import { FiLoader } from "react-icons/fi";
+import { useToast } from "@/components/ui/use-toast"
 
 const Page: React.FC = () => {
  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [url, setUrl] = useState<string>("");
   const { projectName, setProjectName } = useUserInput();
   const [inputField, setInputField] = useState<string>("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
   const [category, setCategory] = useState<string>("");
@@ -43,7 +45,7 @@ const Page: React.FC = () => {
     setUrl(event.target.value);
   };
 
-  
+  const { toast } = useToast() 
 
   const handleInputChange = (value: string) => {
     setProjectName(value); // Store the input in the context
@@ -63,23 +65,69 @@ const Page: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
-    if (uploadedFile && url ) {
+  
+    // Check if file, URL, inputField, and category are all present
+    if (uploadedFile && url) {
+      // Validate the URL
       if (validateUrl(url)) {
-        router.push("/workspace-data");
+        setIsLoading(true); // Start loading state
+  
+        // Display the loading state for 3 seconds before routing
+        setTimeout(() => {
+          setIsLoading(false); // Stop loading
+          
+          // Check screen size and route accordingly
+          if (window.innerWidth <= 768) {
+            // Mobile screen
+            router.push("/workspace-data-mobile");  // Route to mobile workspace
+          } else {
+            // Desktop screen
+            router.push("/workspace-data");  // Route to desktop workspace
+          }
+        }, 3000);  // Wait 3 seconds before routing
+  
       } else {
-        toast.error("Please enter a valid URL.");
+        // Show toast for invalid URL
+        toast({
+          variant: "destructive",
+          description: "Please enter a valid URL.",
+        });
       }
     } else {
-      toast.error("Please fill out all required fields.");
+      // Show toast for missing required fields
+      toast({
+        variant: "destructive",
+        description: "Please fill out all required fields.",
+      });
     }
   };
+  
+  
 
   return (
     <div className="pl-0 md:pl-4 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
       <section className="relative w-full h-[100vh] overflow-y-auto scrollbar-hide pb-5 dashboard-color">
         <div className="w-full pl-0 md:pl-2 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
           <ToastContainer />
+          {isLoading ? (
+  <div className="absolute top-40 left-[20%] flex justify-center items-center">
+      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+        <div className="mx-auto">
+          <FiLoader
+          
+            className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+           
+          />
+          <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+            Please wait.....
+          </h3>
+          <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+            Now Submitting your information.
+          </p>
+        </div>
+      </div>
+      </div>
+    ) : (
           <div className="pt-5">
             <p className="font-medium text-base md:text-[20px] lg:text-[20px] xl:[20px] 2xl:[24px] mb-4 pl-6 md:pl-2 lg:pl-6">
               IntelAI Workspace
@@ -131,13 +179,13 @@ const Page: React.FC = () => {
                     </div>
 
                     <div className="flex md:hidden lg:hidden xl:hidden 2xl:hidden justify-center pt-3 items-center pb-16 md:pb-3 lg:pb-3 xl:pb-5 2xl:pb-5">
-                      <button
-                        type="submit"
-                        className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300  w-[370px] h-[52px] md:h-10 lg:h-10 xl:h-[43px] 2xl:h-[52px] md:w-[153px] lg:w-[153px] rounded-[24px] hover:bg-[#0B0F16] text-xs"
-                        onClick={() => router.push("/workSpace-data-mobile")}
-                      >
-                        Submit
-                      </button>
+                    <button
+  type="submit"
+  className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] flex justify-center gap-1 items-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 font-normal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 w-[370px] h-[52px] md:h-10 lg:h-10 xl:h-[43px] 2xl:h-[52px] md:w-[153px] lg:w-[153px] rounded-[24px] hover:bg-[#0B0F16] text-xs"
+>
+  Submit
+</button>
+
                     </div>
                   </form>
                 </div>
@@ -153,6 +201,7 @@ const Page: React.FC = () => {
               </div>
             </div>
           </div>
+    )}
         </div>
       </section>
     </div>
