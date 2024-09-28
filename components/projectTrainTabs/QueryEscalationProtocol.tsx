@@ -146,8 +146,8 @@ const Page = () => {
   };
   return (
     <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto overflow-x-hidden scrollbar-hide dashboard-color">
-      <div className="w-full md:w-full lg:w-[70%] h-full pt-5">
-        <div className="">
+      <div className="w-full md:w-full lg:w-[70%] h-full pt-5 overflow-x-hidden">
+        <div className="overflow-x-hidden">
           <div className="w-[150px] h-[35px] rounded-[25px] bg-[#1B1B1B] flex justify-center items-center mb-10">
             <p className="font-medium text-sm leading-[14.56px]">
               Escalation Report
@@ -185,7 +185,7 @@ const Page = () => {
           </div>
 
           {/* mobile */}
-          <div className="grid grid-cols-2 gap-6 items-center md:hidden lg:hidden">
+          <div className="grid grid-cols-2 gap-6 items-center md:hidden lg:hidden overflow-x-hidden">
             {escalationReport?.map((row, index) => (
               <div key={index} className="">
                 
@@ -220,9 +220,9 @@ const Page = () => {
             defaultValue="Unresolved"
             className="w-full pl-0 pr-0 md:pl-0 lg:pl-0 pt-5 md:pt-7 lg:pt-7 overflow-x-hidden"
           >
-            <TabsList className="flex mt-0 mb-0 items-center justify-between md:justify-start lg:justify-start gap-0 md:gap-2 lg:gap-1 px-0 md:px-0 lg:px-0 border w-fit rounded-[24px] border-[#1C1C1C]">
+            <TabsList className="flex mt-0 mb-0 items-center justify-between md:justify-start lg:justify-start gap-0 md:gap-2 lg:gap-1 px-0 md:px-0 lg:px-0 border w-fit rounded-[24px] border-[#1C1C1C] overflow-x-hidden">
               <TabsTrigger
-                className=" w-full md:w-fit lg:w-[100px] px-5 md:px-2 lg:px-2 bg-[#161616] text-[#666666] data-[state=active]:bg-white text-[9px] md:text-sm lg:text-sm gap-2 font-medium rounded-[24px]"
+                className=" w-full md:w-fit lg:w-[100px] px-5 md:px-2 lg:px-2 bg-[#161616] text-[#666666] data-[state=active]:bg-white  text-[9px] md:text-sm lg:text-sm gap-2 font-medium rounded-[24px]"
                 value="Unresolved"
               >
                 Unresolved
@@ -319,7 +319,7 @@ const Page = () => {
       </div>
       {/* desktop ends here */}
 
-      <div className="hidden md:hidden lg:block fixed top-10 right-0 h-[90vh] md:h-[100vh] lg:h-[100vh] w-full md:w-[30%] lg:w-[30%] pb-20 overflow-y-auto scrollbar-hide pt-10 md:pt-24 lg:pt-24">
+      <div className="hidden md:hidden lg:block fixed top-10 right-0 h-[90vh] md:h-[100vh] lg:h-[100vh] w-full md:w-[30%] lg:w-[30%] pb-20 overflow-y-auto scrollbar-hide pt-10 md:pt-24 lg:pt-24 overflow-x-hidden">
         <p className="font-normal text-base leading-[16.64px] mb-4">
           Query Sorting Portal
         </p>
@@ -341,7 +341,7 @@ const Page = () => {
             <CiMenuKebab className="text-base text-[#767676]" />
           </div>
           <div
-            className="p-4 overflow-y-auto"
+            className="p-4 overflow-y-auto overflow-x-hidden"
             style={{ height: "calc(100% - 130px)" }}
           >
             <div className="flex flex-col gap-4">
@@ -428,7 +428,7 @@ const Page = () => {
 
             {/* bg-[#181818] */}
             <div className="flex justify-center items-center gap-2">
-              <div className="">
+              <div className="overflow-x-hidden">
               <input
             type="text"
             id="inputField2"

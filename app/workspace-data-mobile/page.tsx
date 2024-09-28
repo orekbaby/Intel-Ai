@@ -36,7 +36,7 @@ const page = () => {
         <div className="w-full ml-4 md:ml-10 lg:ml-10 xl:ml-10 2xl:ml-10 border-l-2 border-[#03FFA3] px-2  h-[250px] md:h-[230px] lg:h-[230px] overflow-y-auto scrollbar-hide mb-5 overflow-x-hidden">
           {/* first content */}
           {userDocInfo?.map((row, index) => (
-            <div key={index} className="overflow-hidden">
+            <div key={index} className="overflow-x-hidden">
               <p className="font-[200] text-sm leading-[19.2px] mb-5 w-[95%] ">
                 {row.content}
               </p>

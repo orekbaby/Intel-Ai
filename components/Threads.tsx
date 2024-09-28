@@ -139,7 +139,7 @@ const Threads: React.FC<ThreadsProps> = ({
     <>
       <div className="pt-5 overflow-x-hidden">
          {isLoading ? (
-  <div className="absolute top-[-1%] md:top-0 lg:top-0 left-[20%] flex justify-center items-center">
+  <div className="absolute top-[-1%] md:top-0 lg:top-0 left-[20%] flex justify-center items-center overflow-x-hidden">
       <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
         <div className="mx-auto">
           <Image
@@ -199,7 +199,7 @@ const Threads: React.FC<ThreadsProps> = ({
               </div>
            )}
              
-         <div className="flex flex-col gap-6 pt-5 px-3 w-full h-auto">
+         <div className="flex flex-col gap-6 pt-5 px-3 w-full h-auto overflow-x-hidden">
             {threadsContent?.map((row, index) => (
               <div key={index}>
                 <p className="font-normal text-sm leading-[14.56px]">

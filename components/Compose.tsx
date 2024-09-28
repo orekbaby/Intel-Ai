@@ -389,10 +389,10 @@ const handleButtonClick = () => {
 return (
     <>
       <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto overflow-x-hidden scrollbar-hide dashboard-color">
-        <div className="w-full flex flex-col md:flex-row lg:flex-row justify-between overflow-auto h-full">
-          <div className="w-full md:w-[55%] lg:w-[60%] bg-[#181818] h-[781px] overflow-y-auto scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px] pb-40">
+        <div className="w-full flex flex-col md:flex-row lg:flex-row justify-between overflow-x-hidden overflow-auto h-full">
+          <div className="w-full md:w-[55%] lg:w-[60%] bg-[#181818] h-[781px] overflow-y-auto overflow-x-hidden scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px] pb-40">
             <div>
-              <div className="flex justify-center gap-4 md:gap-0 lg-gap-0 flex-col md:flex-row lg:flex-row items-center">
+              <div className="flex justify-center gap-4 md:gap-0 lg-gap-0 flex-col md:flex-row lg:flex-row items-center overflow-x-hidden">
                 <p className="font-medium text-[20px] leading-[20.8px]">
                   Tweet about something...
                 </p>
@@ -451,9 +451,9 @@ return (
                 </div>
               </div>
           {/* mobile */}
-             < div className="block md:hidden lg:hidden  bg-transparent w-full  h-[300px] overflow-y-auto scrollbar-hide relative rounded-[16px] overflow-hidden">
+             < div className="block md:hidden lg:hidden  bg-transparent w-full  h-[300px] overflow-y-auto scrollbar-hide relative rounded-[16px] overflow-x-hidden">
           <>
-        <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[165px]">
+        <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto overflow-x-hidden max-h-[165px]">
         <div className="flex flex-col-reverse space-y-4 space-y-reverse">
       <div className="flex justify-end mb-5">
               <div className="w-[325px] p-[10px] rounded-lg  bg-transparent md:bg-[#252525] lg:bg-[#252525] border-[#292929] border">
@@ -717,8 +717,8 @@ return (
             )}
           </div>
 
-          <div className="hidden md:block lg:block w-[40%] md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-1 lg:ml-2 h-auto rounded-[10px] overflow-hidden">
-            <div className="w-full">
+          <div className="hidden md:block lg:block w-[40%] md:w-[45%] lg:w-[40%] pb-6 ml-2 md:ml-1 lg:ml-2 h-auto rounded-[10px] overflow-x-hidden">
+            <div className="w-full overflow-x-hidden">
               <div className="bg-[#131313] h-auto w-full px-2">
                
                 {/* put your content here */}
@@ -746,13 +746,13 @@ return (
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[250px] md:h-[90vh] lg:h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[250px] md:h-[90vh] lg:h-[90vh] overflow-y-auto overflow-x-hidden bg-[#181818] pb-40 scrollbar-hide"
                       value="ScheduledTweet"
                     >
                       <ScheduleTweet />
                     </TabsContent>
                     <TabsContent
-                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[250px] md:h-[90vh] lg:h-[90vh] overflow-y-auto bg-[#181818] pb-40 scrollbar-hide"
+                      className="w-full pt-2 md:pt-0 lg:pt-0 h-[250px] md:h-[90vh] lg:h-[90vh] overflow-y-auto overflow-x-hidden bg-[#181818] pb-40 scrollbar-hide"
                       value="PostedContent"
                     >
                       <ContentPosted />

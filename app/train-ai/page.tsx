@@ -67,7 +67,7 @@ const Page = () => {
         <section className="w-full h-full mb-48 bg-[#131313] overflow-x-hidden">
           <div className="w-full px-3 md:px-6 lg:px-10 relative mb-0 md:mb-10 lg:mb-10 h-full overflow-x-hidden">
             <div className="w-full pt-2 md:pt-5 lg:pt-5 overflow-x-hidden">
-            <div className="flex md:hidden lg:hidden items-center justify-center pt-5 md:pt-0 lg:pt-0 gap-4 mx-auto pl-0 md:pl-[20rem] lg:pl-[20rem] mb-5">
+            <div className="flex md:hidden lg:hidden items-center justify-center pt-5 md:pt-0 lg:pt-0 gap-4 mx-auto pl-0 md:pl-[20rem] lg:pl-[20rem] mb-5 overflow-x-hidden">
   <Link href="/train-ai" prefetch={false}>
     <div className={`w-auto h-[37px] rounded-l-[24px] px-2 py-2 flex items-center gap-2 text-[14px] leading-[14.3px] font-medium ${
       pathname === "/train-ai" ? "bg-[#03FFA3] text-[#0d0d0d]" : "text-[#6A6A6A]"
@@ -96,7 +96,7 @@ const Page = () => {
 defaultValue="ProjectTraining"
                 className="w-full pl-0 pt-5 md:pt-5 lg:pt-5 overflow-x-hidden"
               >
-                <TabsList className="flex mt-0 mb-0 items-center justify-center md:justify-start lg:justify-start gap-2 md:gap-4 lg:gap-10 px-6 w-full border-b border-[#2B2B2B] pb-5">
+                <TabsList className="flex mt-0 mb-0 items-center justify-center md:justify-start lg:justify-start gap-2 md:gap-4 lg:gap-10 px-6 overflow-x-hidden w-full border-b border-[#2B2B2B] pb-5">
   <TabsTrigger
     className="w-fit md:w-fit lg:w-fit h-[38px] rounded-[8px] md:rounded-[24px] lg:rounded-[24px] px-4 md:px-2 lg:px-3 py-2 md:py-1 lg:py-1  
      data-[state=active]:bg-white text-[#6A6A6A] text-sm gap-2 font-medium flex items-center justify-center"

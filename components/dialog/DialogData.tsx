@@ -130,11 +130,11 @@ import { avatar, GlowImg, onboard } from '@/assets';
   const { toast } = useToast()
   return (
     <>
-      <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto scrollbar-hide outline-0 mb-5 pt-20 pb-20">
+      <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide outline-0 mb-5 pt-20 pb-20">
         <SocialMenu />
 
-        <div className="bg-[#181818] px-6 md:px-2 lg:px-6 rounded-[20px]">
-          <div className="flex w-full h-[60px] bg-[#1B1B1B] rounded-[20px] px-8 md:px-2 lg:px-8 mb-3 items-center justify-between">
+        <div className="bg-[#181818] px-6 md:px-2 lg:px-6 rounded-[20px] overflow-x-hidden">
+          <div className="flex w-full h-[60px] bg-[#1B1B1B] rounded-[20px] px-6 md:px-2 lg:px-8 mb-3 items-center justify-between">
             <p className="font-normal text-left text-sm leading-[14.56px] text-[#858585]">
               Simulation workspace
             </p>
