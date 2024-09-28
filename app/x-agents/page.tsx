@@ -72,9 +72,9 @@ const Page = () => {
   return (
     <>
       <div className="pl-0 md:pl-0 lg:pl-28 xl:pl-28 2xl:pl-24 w-full h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide mb-4">
-        <div className="w-full dashboard-color h-[100vh] overflow-y-auto scrollbar-hide pb-5">
-          <div className="w-full  mb-0 md:mb-10 lg:mb-10 h-full">
-            <div className= "w-full pt-5">
+        <div className="w-full dashboard-color h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide pb-5">
+          <div className="w-full  mb-0 md:mb-10 lg:mb-10 h-full overflow-x-hidden">
+            <div className= "w-full pt-5 overflow-x-hidden">
               <div className="border-[#1C1C1C] border w-[358px] rounded-[40px] h-auto">
             <div className="flex md:hidden lg:hidden items-center justify-center pt-2 md:pt-0 lg:pt-0 gap-6 mx-auto pl-0 md:pl-[20rem] lg:pl-[20rem] mb-5" >
         <Link href="/train-ai" prefetch={false}
@@ -105,7 +105,7 @@ const Page = () => {
       </div>
       </div>
               
-              <Tabs defaultValue="StrategyPlanning" className="w-full h-auto px-0 md:px-4 lg:px-4 pt-0 md:pt-2 lg:pt-2 pb-5">
+              <Tabs defaultValue="StrategyPlanning" className="w-full h-auto px-0 md:px-4 lg:px-4 pt-0 md:pt-2 lg:pt-2 pb-5 overflow-x-hidden">
               <TabsList className="w-fit max-w-none border-[#272727] rounded-[50px] gap-4 flex justify-center md:justify-start lg:justify-start border items-center mx-auto md:mx-0 lg:mx-0">
 
 <TabsTrigger
@@ -125,7 +125,7 @@ const Page = () => {
 </TabsList>
 
                 
-                <TabsContent className="w-full bg-[#181818]" value="StrategyPlanning">
+                <TabsContent className="w-full bg-[#181818] overflow-x-hidden" value="StrategyPlanning">
                   <StrategyPlanning
                     addStrategyContent={addStrategyContent}
                     handleSave={() => handleSave(0)}  
@@ -135,7 +135,7 @@ const Page = () => {
                   />
                 </TabsContent>
                 
-                <TabsContent className="w-full bg-[#181818]" value="PostNow">
+                <TabsContent className="w-full bg-[#181818] overflow-x-hidden" value="PostNow">
                   <Compose
                     addEditorContent={addEditorContent}
                   />

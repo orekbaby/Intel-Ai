@@ -10,7 +10,7 @@ import { IntelAi, loader } from "@/assets";
 const page = () => {
   return (
     <>
-      <div className="block md:hidden lg:hidden xl:hidden 2xl:hidden w-full md:w-[60%] lg:w-[60%] bg-[#181818] rounded-[20px] h-[80vh] md:h-[840px] overflow-y-auto scrollbar-hide relative">
+      <div className="block md:hidden lg:hidden xl:hidden 2xl:hidden w-full md:w-[60%] lg:w-[60%] bg-[#181818] rounded-[20px] h-[80vh] md:h-[840px] overflow-y-auto scrollbar-hide relative overflow-x-hidden">
         <div className="w-full h-[60px] rounded-[20px] bg-[#1B1B1B] flex justify-between items-center px-5 mb-10">
           <p className="font-normal text-sm leading-[14.56px] text-[#858585]">
             Test Area

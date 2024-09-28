@@ -64,9 +64,9 @@ const Page = () => {
   return (
     <>
       <div className="pl-0 md:pl-0 lg:pl-24 xl:pl-28 2xl:pl-24 w-full h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide mb-4">
-        <section className="w-full h-full mb-48 bg-[#131313]">
-          <div className="w-full px-3 md:px-6 lg:px-10 relative mb-0 md:mb-10 lg:mb-10 h-full">
-            <div className="w-full pt-2 md:pt-5 lg:pt-5">
+        <section className="w-full h-full mb-48 bg-[#131313] overflow-x-hidden">
+          <div className="w-full px-3 md:px-6 lg:px-10 relative mb-0 md:mb-10 lg:mb-10 h-full overflow-x-hidden">
+            <div className="w-full pt-2 md:pt-5 lg:pt-5 overflow-x-hidden">
             <div className="flex md:hidden lg:hidden items-center justify-center pt-5 md:pt-0 lg:pt-0 gap-4 mx-auto pl-0 md:pl-[20rem] lg:pl-[20rem] mb-5">
   <Link href="/train-ai" prefetch={false}>
     <div className={`w-auto h-[37px] rounded-l-[24px] px-2 py-2 flex items-center gap-2 text-[14px] leading-[14.3px] font-medium ${
@@ -92,9 +92,8 @@ const Page = () => {
     </div>
   </Link>
 </div>
-
-              <Tabs
-                defaultValue="ProjectTraining"
+<Tabs
+defaultValue="ProjectTraining"
                 className="w-full pl-0 pt-5 md:pt-5 lg:pt-5 overflow-x-hidden"
               >
                 <TabsList className="flex mt-0 mb-0 items-center justify-center md:justify-start lg:justify-start gap-2 md:gap-4 lg:gap-10 px-6 w-full border-b border-[#2B2B2B] pb-5">
