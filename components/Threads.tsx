@@ -137,9 +137,7 @@ const Threads: React.FC<ThreadsProps> = ({
   
   return (
     <>
-      <div className="pt-5">
-         
-        
+      <div className="pt-5 overflow-x-hidden">
          {isLoading ? (
   <div className="absolute top-[-1%] md:top-0 lg:top-0 left-[20%] flex justify-center items-center">
       <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
@@ -162,7 +160,7 @@ const Threads: React.FC<ThreadsProps> = ({
       </div>
     ) : (
 
-        <div className="w-full h-auto">
+        <div className="w-full h-auto overflow-x-hidden">
            {tweetHeading && (
           <div className="w-full flex justify-between h-[58px] border-[#262626] border-b bg-[#131313] px-0 md:px-3 lg:px-3">
             <div className="flex justify-start items-center">

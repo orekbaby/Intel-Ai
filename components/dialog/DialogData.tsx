@@ -195,7 +195,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
                 </div>
               </div>
 
-              <div className="relative mb-8">
+              <div className="relative pb-10 md:pb-20 lg:pb-20">
                 <div className="w-[339px] h-[120px] md:w-[375px] lg:w-[375px] xl:w-[380px] 2xl:w-[385px] md:h-[126px] lg:h-[126px] rounded-[20px] bg-[#2D2D2D] px-3 py-2">
                   <p className="font-normal text-xs leading-[16.48px]">
                     {entry.ai.response}
@@ -226,7 +226,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
           {/* conversation section ends here */}
 
           {/* like section starts */}
-          <div className="hidden  gap-2 pt-10 md:pt-5 lg:pt-5">
+          <div className="hidden  gap-2 pt-10 md:pt-5 lg:pt-10">
             <div className="w-[26px] h-[26px] rounded-full bg-[#2D2D2D] flex justify-center items-center">
               <FaRegThumbsUp className="text-[#8E8E8E] w-[14px] h-[14px]" />
             </div>
@@ -280,7 +280,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
 
       {/* Buttons to show after the prompt is sent */}
       {isPromptSent && (
-        <div className="flex flex-col gap-4 justify-center items-center pt-10">
+        <div className="flex flex-col gap-4 justify-center items-center pt-5">
            <Dialog>
               <div className="flex justify-center pt-0 ">
                 <DialogTrigger>
@@ -301,7 +301,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
             Complete Simulation
           </button>
           </DialogTrigger>
-                <DialogContent className="px-8 md:w-full lg:w-full border-none rounded-lg max-w-auto w-[540px] h-[401px] bg-[#181818]">
+                <DialogContent className="px-8 w-[410px] md:w-full lg:w-full border-none rounded-lg max-w-auto h-[401px] bg-[#181818]">
                   <div className="mx-auto">
                     <Image
                       width={120}

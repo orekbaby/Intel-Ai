@@ -158,7 +158,7 @@ const CommunityModal: FC = () => {
                  ):(
           <DialogContent
             className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px]
-                      h-[90vh] overflow-y-auto scrollbar-hide overflow-x-hidden border-0 outline-none p-6"
+                      h-[90vh] overflow-y-auto scrollbar-hide overflow-x-hidden border-0 outline-none p-8"
           >
             <div className="w-full bg-[#131313] h-auto rounded-[20px] border-b border-[#131313] pb-10">
               <div

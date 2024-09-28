@@ -38,7 +38,7 @@ const LaunchPadTraining = () => {
 
   return (
     <>
-    <div className="w-full h-auto mx-auto px-0 md:px-0 lg:px-10">
+    <div className="w-full h-auto mx-auto px-0 md:px-0 lg:px-10 overflow-x-hidden">
       <h2 className="font-medium text-[27px] md:text-[27px] lg:text-[27px] leading-[33.28px] md:leading-[37.44px] lg:leading-[37.44px] pt-5 md:pt-10 lg:pt-10 mb-7 text-center px-0 md:px-0 lg:px-0 w-[100%] md:w-full lg:w-full">
         What’s new with your launchpad projects?
       </h2>
@@ -101,7 +101,7 @@ const LaunchPadTraining = () => {
               <Button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 
               focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 
               dark:text-secondary
-               text-white transition ease-in-out delay-150 duration-300 h-[76px] md:h-[50px] lg:h-[50px] w-[354px] md:w-[266px] lg:w-[266px] rounded-[200px] hover:bg-[#0B0F16]">
+               text-white transition ease-in-out delay-150 duration-300 h-[53px] md:h-[50px] lg:h-[50px] w-[354px] md:w-[266px] lg:w-[266px] rounded-[200px] hover:bg-[#0B0F16]">
                 {selectedOption}
                 </Button>
               </div>

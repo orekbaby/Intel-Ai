@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import { FaArrowUp } from "react-icons/fa";
+import { FaArrowLeft, FaArrowUp } from "react-icons/fa";
 import { CiMenuKebab, CiPaperplane } from "react-icons/ci";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { avatar, GlowImg, onboard } from "@/assets";
 import { Dialog, DialogContent,  DialogTrigger } from "@/components/ui/dialog";
+import Link from "next/link";
 
 interface ChatItem {
   type: "query" | "response";
@@ -145,10 +146,19 @@ const Page = () => {
   };
 
   return (
-    <div className="fixed top-10 right-0 md:right-10 lg:right-0 h-[90vh] md:h-[90vh] lg:h-[100vh] w-full md:w-[90%] lg:w-[30%] pb-24 overflow-y-auto scrollbar-hide pt-10 md:pt-16 lg:pt-24 overflow-hidden">
-      <p className="font-normal text-base leading-[16.64px] mb-4">
+    
+    <div className="fixed top-10 left-0 md:right-10 lg:right-0 h-[90vh] md:h-[90vh] lg:h-[100vh] w-full md:w-[90%] lg:w-[30%] pb-24 overflow-y-auto scrollbar-hide pt-10 md:pt-16 lg:pt-24 overflow-x-hidden">
+      <p className="font-normal text-base leading-[16.64px] mb-4 relative">
         Query Sorting Portal
       </p>
+      <div className="mb-6 flex justify-start md:hidden lg:hidden absolute top-0 left-10">
+            <Link href="/train-ai">
+              <button className="flex items-center text-[#707070]">
+                <FaArrowLeft className="mr-2 text-[#707070]" />
+                Back
+              </button>
+            </Link>
+          </div>
       <div className="w-full h-full overflow-y-auto scrollbar-hide overflow-x-hidden bg-[#181818] rounded-[20px] pb-5">
         <div className="bg-[#252525] w-[397px] md:w-full lg:w-[397px] flex justify-between px-6 items-center h-[65px] rounded-[20px]">
           {showUserInfo && (

@@ -71,7 +71,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="pl-0 md:pl-0 lg:pl-28 xl:pl-28 2xl:pl-24 w-full h-[100vh] overflow-y-auto scrollbar-hide mb-4">
+      <div className="pl-0 md:pl-0 lg:pl-28 xl:pl-28 2xl:pl-24 w-full h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide mb-4">
         <div className="w-full dashboard-color h-[100vh] overflow-y-auto scrollbar-hide pb-5">
           <div className="w-full  mb-0 md:mb-10 lg:mb-10 h-full">
             <div className= "w-full pt-5">

@@ -46,7 +46,7 @@ const ApeTerminalTraining = () => {
   };
 
   return (
-    <div className="w-full h-auto mx-auto px-0 md:px-0 lg:px-10">
+    <div className="w-full h-auto mx-auto px-0 md:px-0 lg:px-10 overflow-x-hidden">
       <h2 className="font-medium text-[27px] md:text-[27px] lg:text-[27px] leading-[35.28px] md:leading-[37.44px] lg:leading-[37.44px] pt-5 md:pt-10 lg:pt-2 mb-7 text-center px-0 md:px-0 lg:px-0 w-[100%] md:w-full lg:w-full">
         What’s happening in your Community?
       </h2>
@@ -72,7 +72,7 @@ const ApeTerminalTraining = () => {
               Upcoming Announcements
             </div>
           </DialogTrigger>
-          <DialogContent className="absolute top-[56%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
+          <DialogContent className="pt-5 absolute top-[56%] max-w-auto w-[420px] md:w-[562px] lg:w-[562px] px-6 md:px-4 lg:px-4 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
             <div className="w-full md:w-full lg:w-full h-[80vh] md:h-[80vh] lg:h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
               <AnnouncementModal />
             </div>
@@ -107,7 +107,7 @@ const ApeTerminalTraining = () => {
       </div>
 
       {/* Mobile Dialog based on Select Option */}
-      <div className="block md:hidden">
+      <div className="block md:hidden lg:hidden">
         {selectedOption === 'Upcoming Announcements' && (
           <Dialog>
             <DialogTrigger className="cursor-pointer" asChild>
@@ -116,7 +116,7 @@ const ApeTerminalTraining = () => {
               </div>
             </DialogTrigger>
             <DialogContent className="absolute top-[56%] max-w-auto w-[420px] px-6 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
-              <div className="w-full h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+              <div className="w-full h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0 pt-5">
                 <AnnouncementModal />
               </div>
             </DialogContent>
@@ -130,7 +130,7 @@ const ApeTerminalTraining = () => {
               </div>
             </DialogTrigger>
             <DialogContent className="absolute top-[56%] max-w-auto w-[420px] px-6 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
-              <div className="w-full h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+              <div className="w-full h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0 pt-5">
                 <CommunityModal />
               </div>
             </DialogContent>
@@ -144,7 +144,7 @@ const ApeTerminalTraining = () => {
               </div>
             </DialogTrigger>
             <DialogContent className="absolute top-[56%] max-w-auto w-[420px] px-6 bg-[#0D0D0D] border-b border-[#1B1B1B] rounded-[20px]">
-              <div className="w-full h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0">
+              <div className="w-full h-[80vh] overflow-y-auto scrollbar-hide border-b-transparent outline-0 pt-5">
                 <OtherInformationModal />
               </div>
             </DialogContent>

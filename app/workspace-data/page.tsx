@@ -42,7 +42,7 @@ const Page = () => {
           </div>
         </div>
       ) : (
-        <div className="pl-0 md:pl-4 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-full overflow-hidden mb-4 ">
+        <div className="pl-0 md:pl-4 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-full overflow-x-hidden mb-4 ">
           <section className="relative w-full h-full mb-48 bg-[#131313]">
             <div className="w-full pl-0 md:pl-2 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
               <div className="pt-5 pl-2 md:pl-2 lg:pl-6 xl:pl-8 2xl:pl-10  h-full overflow-hidden">

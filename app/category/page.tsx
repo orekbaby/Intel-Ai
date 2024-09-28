@@ -53,7 +53,7 @@ const Page = () => {
   };
 
   return (
-    <div className="mt-10 md:mt-20 lg:mt-16 mx-auto overflow-hidden w-full h-[100vh]">
+    <div className="mt-10 md:mt-20 lg:mt-10 mx-auto overflow-hidden w-full h-[100vh]">
       <section className="first-gradient section relative w-full h-full z-10 mx-auto mb-48">
       <div
           style={style2}

@@ -424,7 +424,7 @@ const handleContinueChatting = async () => {
 
   return (
     
-    <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color pb-0 md:pb-40 lg:pb-10">
+    <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide overflow-x-hidden dashboard-color pb-0 md:pb-40 lg:pb-10">
         <div className="w-full flex h-full flex-col md:flex-row lg:flex-row justify-between">
          <div className="w-full md:w-[55%] lg:w-[60%] h-full md:[781px] lg:[781px] overflow-y-auto scrollbar-hide pt-0 md:pt-5 lg:pt-5 border-r border-[#252525] rounded-[20px] pb-0 md:pb-10 lg:pb-10">
          <div className="flex flex-col gap-4 justify-center items-center">
@@ -442,7 +442,7 @@ const handleContinueChatting = async () => {
         <option value="Next Week" className="font-normal text-base leading-[16.64px]">Next Week</option>
         <option value="This Month" className="font-normal text-base leading-[16.64px]">This Month</option>
       </select>
-      <ChevronDownIcon className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white pointer-events-none" />
+      <ChevronDownIcon className="absolute right-2 top-9 transform -translate-y-1/2 h-4 w-4 text-white pointer-events-none" />
     </div>
 </div>
 {isLoading ? (

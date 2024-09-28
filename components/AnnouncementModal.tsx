@@ -166,8 +166,8 @@ const AnnouncementModal: FC = () => {
             className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px]
                       h-[90vh] overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none"
           >
-            <div className="w-full bg-[#131313] h-auto rounded-[20px] border-b border-[#131313] pb-10 p-2">
-              <div className="bg-[#101010] border-[#181818] border-b px-2 md:px-4 lg:px-4 py-[10px] w-[460px] h-[47px] mb-3">
+            <div className="w-full bg-[#131313] h-auto rounded-[20px] border-b border-[#131313] pb-10 p-6 md:p-2 lg:p-2">
+              <div className="bg-[#101010] border-[#181818] border-b px-4 md:px-4 lg:px-4 py-[10px] w-[460px] h-[47px] mb-3">
                 <h5 className="font-semibold text-sm text-[14.56px]">
                   {row.title}
                 </h5>

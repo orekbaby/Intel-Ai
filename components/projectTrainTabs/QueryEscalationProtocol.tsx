@@ -136,6 +136,7 @@ const Page = () => {
   const handleResolveComment = () => {
     setChatItems([]);
     setShowResolveButton(false);
+    
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -144,7 +145,7 @@ const Page = () => {
     }
   };
   return (
-    <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
+    <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto overflow-x-hidden scrollbar-hide dashboard-color">
       <div className="w-full md:w-full lg:w-[70%] h-full pt-5">
         <div className="">
           <div className="w-[150px] h-[35px] rounded-[25px] bg-[#1B1B1B] flex justify-center items-center mb-10">

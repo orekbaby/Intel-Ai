@@ -388,7 +388,7 @@ const handleButtonClick = () => {
 
 return (
     <>
-      <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide dashboard-color">
+      <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto overflow-x-hidden scrollbar-hide dashboard-color">
         <div className="w-full flex flex-col md:flex-row lg:flex-row justify-between overflow-auto h-full">
           <div className="w-full md:w-[55%] lg:w-[60%] bg-[#181818] h-[781px] overflow-y-auto scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px] pb-40">
             <div>
