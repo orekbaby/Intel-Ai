@@ -28,6 +28,7 @@ interface ThreadsProps {
   handleAddImage: (index: number, imageUrl: string) => void;
   handleDeleteThread: (index: number) => void;
   handleCopyContent: (content: string) => void;
+  tweetHeading:boolean;
 }
 
 const Threads: React.FC<ThreadsProps> = ({
@@ -37,6 +38,7 @@ const Threads: React.FC<ThreadsProps> = ({
   handleAddImage,
   threadsText,
   handleDeleteThread,
+  tweetHeading,
 }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -161,6 +163,7 @@ const Threads: React.FC<ThreadsProps> = ({
     ) : (
 
         <div className="w-full h-auto">
+           {tweetHeading && (
           <div className="w-full flex justify-between h-[58px] border-[#262626] border-b bg-[#131313] px-0 md:px-3 lg:px-3">
             <div className="flex justify-start items-center">
               <h5 className="hidden md:block lg:block font-semibold text-[15.6px] leading-[15.6px]">
@@ -196,6 +199,7 @@ const Threads: React.FC<ThreadsProps> = ({
               </Button>
               </div>
               </div>
+           )}
              
          <div className="flex flex-col gap-6 pt-5 px-3 w-full h-auto">
             {threadsContent?.map((row, index) => (

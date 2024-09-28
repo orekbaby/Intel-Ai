@@ -572,6 +572,7 @@ return (
                 handleAddImage={handleAddImage}
                 handleDeleteThread={handleDeleteThread}
                 handleCopyContent={handleCopyContent}
+                tweetHeading={tweetHeading}
               />
             )}
     
@@ -710,6 +711,7 @@ return (
                 handleAddImage={handleAddImage}
                 handleDeleteThread={handleDeleteThread}
                 handleCopyContent={handleCopyContent}
+                tweetHeading={tweetHeading}
               />
               </div>
             )}

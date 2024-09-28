@@ -376,3 +376,11 @@ input {
 	}  
   
 }
+
+@media (max-width: 768px) { // Adjust the width as needed
+	.scrollbar-hide {
+		
+	  overflow-x: hidden !important; // Hide all overflow
+	}
+  }
+  

@@ -34,11 +34,11 @@ const CardComponent: React.FC<CardProps> = ({
           <div className="text-[#707070]">
           {icon}
           </div>
-          <h3 className="font-medium text-[18px] md:text-base lg:text-base mb-2 text-center">
+          <h3 className="font-medium text-[16px] md:text-base lg:text-base mb-2 text-center">
             {title}
           </h3>
           <p
-            className="font-[300] text-base w-full h-auto text-[#707070] text-center"
+            className="font-[300] text-sm w-full h-auto text-[#707070] text-center"
             style={{ fontWeight: 300 }}
           >
             {description}
