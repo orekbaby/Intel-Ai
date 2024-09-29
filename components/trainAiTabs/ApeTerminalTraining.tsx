@@ -111,7 +111,7 @@ const ApeTerminalTraining = () => {
         {selectedOption === 'Upcoming Announcements' && (
           <Dialog>
             <DialogTrigger className="cursor-pointer" asChild>
-              <div className="flex items-center justify-center text-center font-medium text-sm leading-[14.56px] w-full h-[50px] rounded-[200px] border-[#202020] bg-[#181818]">
+              <div className="flex items-center px-3 justify-center text-center font-medium text-sm leading-[14.56px] w-full h-[50px] rounded-[200px] border-[#202020] bg-[#181818]">
                 {selectedOption}
               </div>
             </DialogTrigger>
@@ -125,7 +125,7 @@ const ApeTerminalTraining = () => {
         {selectedOption === 'Community Engagement' && (
           <Dialog>
             <DialogTrigger className="cursor-pointer" asChild>
-              <div className="flex items-center justify-center text-center font-medium text-sm leading-[14.56px] w-full h-[50px] rounded-[200px] border-[#202020] bg-[#181818]">
+              <div className="flex items-center justify-center px-3 text-center font-medium text-sm leading-[14.56px] w-full h-[50px] rounded-[200px] border-[#202020] bg-[#181818]">
                 {selectedOption}
               </div>
             </DialogTrigger>
@@ -139,7 +139,7 @@ const ApeTerminalTraining = () => {
         {selectedOption === 'Other Information' && (
           <Dialog>
             <DialogTrigger className="cursor-pointer" asChild>
-              <div className="flex items-center justify-center text-center font-medium text-sm leading-[14.56px] w-full h-[50px] rounded-[200px] border-[#202020] bg-[#181818]">
+              <div className="flex items-center justify-center px-3 text-center font-medium text-sm leading-[14.56px] w-full h-[50px] rounded-[200px] border-[#202020] bg-[#181818] px-3">
                 {selectedOption}
               </div>
             </DialogTrigger>
