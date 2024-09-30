@@ -1,0 +1,74 @@
+const addPostedContent = (content: string, date: string, time: string) => {
+    let currentContent = Cookies.get("postedContents");
+    console.log("Current Cookie Content:", currentContent);
+  
+    let contentArray = currentContent ? JSON.parse(currentContent) : [];
+    
+    // Add the new content along with the current date and time
+    contentArray.push({ content, date, time });
+  
+    let updatedContent = JSON.stringify(contentArray);
+    Cookies.set("postedContents", updatedContent, {
+      expires: 7,
+      path: "/",
+      secure: true,
+    });
+  };
+  
+  const handleSave = (content?: string) => {
+    const finalContent = content || editorContent;
+  
+    if (!finalContent) {
+      console.log("No content to post");
+      return;
+    }
+  
+    const formattedDate = new Date().toDateString();
+    const currentTime = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  
+    addPostedContent(finalContent, formattedDate, currentTime);
+  
+    setProgress(25);
+    setTimeout(() => {
+      setProgress(100);
+      setTimeout(() => {
+        setShowSuccessMessage(true);
+        setTimeout(() => setShowSuccessMessage(false), 3000);
+      }, 300);
+    }, 3000);
+  };
+  
+  const handlePostDirectly = (index: number | null) => {
+    if (index === null) {
+      console.error("No card selected to post.");
+      return;
+    }
+  
+    const selectedResponse = generatedResponses[index]?.response || "";
+    setIsPosting(true); // Set to true for posting
+    setIsScheduling(false); // Ensure scheduling is false
+    handleSave(selectedResponse); // Directly post the selected response
+  };
+
+
+  {isPosting && progress > 0 && (
+    <div className="flex flex-col items-start gap-3 px-4 py-4 w-[400px] md:w-[609px] lg:w-[609px] h-[73px] rounded-[16px] bg-[#131313] border-[#303030] absolute left-2 md:left-[10%] lg:left-[10%] top-[20%]">
+      <div>
+        {progress < 100
+          ? progress === 25
+            ? "Posting tweet"
+            : null
+          : "Your tweet has been posted"}
+      </div>
+      <div className="flex justify-center items-center w-[400px] md:w-[571px] h-[9px] rounded-[24px] bg-[#1E1E1E] absolute bottom-0">
+        <div
+          className="h-full rounded-[24px] bg-gradient-to-r from-[#03FFA3] to-[#7F56D9]"
+          style={{ width: `${progress}%` }}
+        ></div>
+      </div>
+    </div>
+  )}

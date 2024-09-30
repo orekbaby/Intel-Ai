@@ -72,25 +72,26 @@ const Unresolved: React.FC<UnresolvedProps> = ({
                 </div>
               </TableCell>
               <TableCell>
-                <div className="flex items-center gap-1">
-                <div
-  className={`absolute bottom-0 right-0 w-4 h-4 flex items-center justify-center rounded-full ${
-    row.platform ===  FaDiscord
-      ? "bg-[#7289DA]"
-      : row.platform === FaTelegramPlane
-      ? "bg-[#0088cc]"
-      : row.platform === FaXTwitter
-      ? "bg-[#0d0d0d]"
-      : ""
-  }`}
->
-  <row.platform className="text-white w-3 h-3" />
-</div>
-                  <p className="font-medium text-[9px] leading-[12px]">
-                    {row.social}
-                  </p>
-                </div>
-              </TableCell>
+  <div className="flex items-center gap-1">
+    <div
+      className={`w-4 h-4 flex items-center justify-center rounded-full ${
+        row.platform === FaDiscord
+          ? "bg-[#7289DA]"
+          : row.platform === FaTelegramPlane
+          ? "bg-[#0088cc]"
+          : row.platform === FaXTwitter
+          ? "bg-[#0d0d0d]"
+          : ""
+      }`}
+    >
+      {React.createElement(row.platform, { className: "text-white w-3 h-3" })}
+    </div>
+    <p className="font-medium text-[9px] leading-[12px] flex items-center">
+      {row.social}
+    </p>
+  </div>
+</TableCell>
+
               <TableCell className="text-left">
                 <div className="w-[180px]">
                   <p className="font-medium text-[9px] leading-[12px]">

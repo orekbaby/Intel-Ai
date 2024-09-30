@@ -37,7 +37,7 @@ const ScheduledPosts: React.FC<{ savedStrategyContents?: StrategyContent[] }> = 
   };
 
   return (
-    <div className="pt-5">
+    <div className="pt-10 md:pt-5 lg:pt-5">
       {strategyContents.length === 0 ? (
         <div className="pt-5 flex flex-col items-center mx-auto gap-2 justify-center">
           <p className="font-semibold text-sm text-[14.56px]">

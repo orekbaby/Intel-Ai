@@ -119,7 +119,7 @@ const CommunityModal: FC = () => {
         >
           <DialogTrigger asChild>
             <div
-              className="flex flex-col mb-5 pb-5 border-[#1E1E1E] border-b text-left cursor-pointer hover:bg-[#1d1d1d] gap-3"
+              className="flex flex-col mb-5 pb-5 pt-5 rounded-lg border-[#1E1E1E] border-b text-left cursor-pointer hover:bg-[#1d1d1d] gap-3"
               onClick={() =>
                 setOpenModals((prev) => {
                   const newOpenModals = [...prev];
@@ -157,8 +157,8 @@ const CommunityModal: FC = () => {
          </div>
                  ):(
           <DialogContent
-            className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px]
-                      h-[90vh] overflow-y-auto scrollbar-hide overflow-x-hidden border-0 outline-none p-8"
+            className="absolute top-[52%] left-[48%] max-w-auto w-[410px] md:w-[460px]  lg:w-[460px]
+                      h-[90vh] overflow-y-auto scrollbar-hide overflow-x-hidden border-0 outline-none py-8 pr-24 pl-4"
           >
             <div className="w-full bg-[#131313] h-auto rounded-[20px] border-b border-[#131313] pb-10">
               <div
@@ -218,7 +218,7 @@ const CommunityModal: FC = () => {
                   {showCalendar && <Calendar onSave={handleDateSave} />}
                 </div>
               </div>
-              <div className="w-[460px] h-auto bg-[#1B1B1B] pt-2 pb-4 px-4 rounded-bl">
+              <div className="w-[90%] md:w-[460px] lg:w-[460px] h-auto bg-[#1B1B1B] pt-2 pb-4 px-4 rounded-bl">
                 <h5 className="font-semibold text-sm text-[#f9f9f9] mb-4">
                   Instructions:
                 </h5>

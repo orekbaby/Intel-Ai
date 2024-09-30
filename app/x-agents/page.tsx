@@ -135,7 +135,7 @@ const Page = () => {
                   />
                 </TabsContent>
                 
-                <TabsContent className="w-full bg-[#181818] overflow-x-hidden" value="PostNow">
+                <TabsContent className="w-full bg-[#181818]  overflow-x-hidden" value="PostNow">
                   <Compose
                     addEditorContent={addEditorContent}
                   />

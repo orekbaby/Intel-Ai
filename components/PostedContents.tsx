@@ -28,7 +28,7 @@ const ContentPosted: React.FC = () => {
   };
 
   return (
-    <div className="pt-5">
+    <div className="pt-16 md:pt-5 lg:pt-5">
       <div className="flex flex-col items-center justify-between gap-5">
         {postedContent.map((row: PostedContent, index: number) => (
           <ContentPostedCard

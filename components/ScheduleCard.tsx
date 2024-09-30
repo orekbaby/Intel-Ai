@@ -27,7 +27,7 @@ const ScheduleCard: React.FC<CardProps> = ({ strategy, date, time, onDelete }) =
 
   return (
     <div
-  className="w-[363px] md:w-[100%] lg:w-[410px] h-auto pb-4 rounded-[20px] bg-[#252525] py-2 px-4 cursor-pointer"
+  className="w-[373px] md:w-[400px] lg:w-[410px] h-auto pb-4 rounded-[20px] bg-[#252525] py-2 px-4 cursor-pointer"
   onClick={() => setIsExpanded(!isExpanded)}
 >
   <div className="flex flex-col justify-between h-full">
@@ -38,7 +38,7 @@ const ScheduleCard: React.FC<CardProps> = ({ strategy, date, time, onDelete }) =
         </p>
       </div>
       <div className="w-full md:w-[25%] flex justify-end mt-4 md:mt-0">
-        <div className="flex flex-col gap-8 items-end">
+        <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 items-end">
           {/* Dialog Trigger and Content */}
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>

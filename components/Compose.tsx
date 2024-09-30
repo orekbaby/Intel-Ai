@@ -389,8 +389,9 @@ const handleButtonClick = () => {
 return (
     <>
       <div className="w-full h-[80vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto overflow-x-hidden scrollbar-hide dashboard-color">
-        <div className="w-full flex flex-col md:flex-row lg:flex-row justify-between overflow-x-hidden overflow-auto h-full">
-          <div className="w-full md:w-[55%] lg:w-[60%] bg-[#181818] h-[781px] overflow-y-auto overflow-x-hidden scrollbar-hide pt-10 border-r border-[#252525] rounded-[20px] pb-40">
+        <div className="w-full flex flex-col md:flex-row lg:flex-row justify-between  h-full">
+          <div className="w-full md:w-[55%] lg:w-[60%] bg-[#181818] h-[781px] overflow-y-auto  scrollbar-hide pt-10
+           px-2 border-r border-[#252525] rounded-[20px] pb-10 md:pb-40 lg:pb-40">
             <div>
               <div className="flex justify-center gap-4 md:gap-0 lg-gap-0 flex-col md:flex-row lg:flex-row items-center overflow-x-hidden">
                 <p className="font-medium text-[20px] leading-[20.8px]">
@@ -483,7 +484,7 @@ return (
         {/* First Modal Content: Select Options */}
         <DialogContent
           className="block md:hidden lg:hidden bg-[#131313] absolute text-left top-[40%]
-          w-[400px] h-[212px] border-b-[1px] border-[#333333] rounded-t-[16px] overflow-y-auto"
+          w-[400px] h-[212px] border-b-[1px] px-2 pt-5 border-[#333333] rounded-t-[16px] overflow-y-auto"
         >
           <div className="text-xs font-semibold text-white">
             <ul className="flex flex-col space-y-4 px-4tab">
@@ -608,15 +609,16 @@ return (
                   </div>
                </div>
     
-            <div className="flex items-center justify-between w-full h-[48px] px-4 md:px-6 lg:px-6 bg-[#1f1f1f] md:bg-[#1F1F1F] lg:bg-[#1F1F1F] border-t border-[#2B2B2B] pt-8 pb-8">
+            <div className="flex items-center justify-between w-[95%] h-[48px] px-6 md:px-6 lg:px-6 bg-[#1f1f1f] rounded-[16px] border-t border-[#2B2B2B] pt-8 pb-8">
              <input
             type="text"
             placeholder="What is on your mind?"
             value={userInput}
             onChange={handleInputChange} // Use the combined handler
             content={threadsText}
-           className="flex-1 input-area bg-transparent border-white border-none outline-none font-normal text-xs italic text-white placeholder-[#707070]"
+           className="flex-1 input-area bg-transparent border-none outline-none font-normal text-xs italic text-white placeholder-[#707070]"
           />
+          
         <div className="absolute bottom-3 right-7">
           <button
             className="flex justify-center items-center w-[37px] h-[37px] rounded-full bg-[#03ffa3]"
@@ -632,7 +634,7 @@ return (
 
               {/* Progress bar */}
               {progress > 0 && (
-                <div className="flex flex-col items-start gap-3 px-4 py-4  w-[609px] h-[73px] rounded-[16px] bg-[#131313] border-[#303030] absolute left-[10%] top-[20%]">
+                <div className="flex flex-col items-start gap-3 px-4 py-4 w-[400px] md:w-[609px] lg:w-[609px] h-[73px] rounded-[16px] bg-[#131313] border-[#303030] absolute left-2 md:left-[10%] lg:left-[10%] top-[20%]">
                   <div>
                     {progress < 100
                       ? progress === 25
@@ -644,7 +646,7 @@ return (
                       ? "Your tweet has been scheduled"
                       : "Tweet has been posted"}
                   </div>
-                  <div className="flex justify-center items-center w-[571px] h-[9px] rounded-[24px] bg-[#1E1E1E] absolute bottom-0">
+                  <div className="flex justify-center items-center w-[400px] md:w-[571px] h-[9px] rounded-[24px] bg-[#1E1E1E] absolute bottom-0">
                     <div
                       className="h-full rounded-[24px]  bg-gradient-to-r from-[#03FFA3] to-[#7F56D9]"
                       style={{ width: `${progress}%` }}

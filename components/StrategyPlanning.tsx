@@ -424,7 +424,7 @@ const handleContinueChatting = async () => {
 
   return (
     
-    <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide overflow-x-hidden dashboard-color pb-0 md:pb-40 lg:pb-10">
+    <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide overflow-x-hidden dashboard-color pb-0 md:pb-40 lg:pb-10 bg-lime-500">
         <div className="w-full flex h-full flex-col md:flex-row lg:flex-row justify-between">
          <div className="w-full md:w-[55%] lg:w-[60%] h-full md:[781px] lg:[781px] overflow-y-auto scrollbar-hide pt-0 md:pt-5 lg:pt-5 border-r border-[#252525] rounded-[20px] pb-0 md:pb-10 lg:pb-10">
          <div className="flex flex-col gap-4 justify-center items-center">
@@ -432,7 +432,7 @@ const handleContinueChatting = async () => {
                 <p className="font-normal text-[14px] leading-[14.56px]">
                 Create a tailored strategy for your community or project.
                 </p>
-                <div className="relative inline-block text-left pt-5">
+                <div className="relative inline-block text-left pt-5 pb-5 md:pb-0 lg:pb-0">
       <select
         className="custom-dropdown block w-[150px] h-[32px] bg-[#121212] text-white"
         value={selectedOption}
@@ -447,13 +447,13 @@ const handleContinueChatting = async () => {
 </div>
 {isLoading ? (
   <div className="flex justify-center items-center">
-      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-2 md:mt-10 lg:mt-10">
         <div className="mx-auto">
           <Image
             width={48}
             height={48}
             src={loader}
-            className="mx-auto mb-5 pt-5 bg-[#181818]"
+            className="mx-auto mb-3 md:mb-5 lg:mb-5  pt-3 md:pt-5 lg:pt-5 bg-[#181818]"
             alt=""
           />
           <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
@@ -468,7 +468,7 @@ const handleContinueChatting = async () => {
     ) : (
 
 <div className="flex flex-col items-center pt-0 md:pt-10 lg:pt-10 w-full">
-  <div className="custom-textarea bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] w-full max-w-[610px] h-[220px] overflow-auto scrollbar-hide relative rounded-[16px]">
+  <div className="custom-textarea bg-transparent bg-red-500 md:bg-[#1F1F1F] lg:bg-[#1F1F1F] w-full max-w-[610px] h-[220px] overflow-auto scrollbar-hide relative rounded-[16px]">
     <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[165px]">
       <div className="flex flex-col-reverse space-y-4 space-y-reverse">
         {chats.map((chat, index) => (

@@ -106,22 +106,22 @@ const Page: React.FC = () => {
 
   return (
     <div className="pl-0 md:pl-4 lg:pl-16 xl:pl-20 zxl:pl-24 w-full h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide mb-4">
-      <section className="relative w-full h-[100vh] overflow-y-auto scrollbar-hide pb-5 dashboard-color overflow-x-hidden">
+      <section className="relative w-full h-[100vh] overflow-y-auto scrollbar-hide pb-5 overflow-x-hidden">
         <div className="w-full pl-0 md:pl-2 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative overflow-x-hidden mb-0 md:mb-10 lg:mb-10 h-full">
-          <ToastContainer />
+        
           {isLoading ? (
-  <div className="absolute top-20 left-[20%] flex justify-center items-center">
-      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+  <div className="absolute top-20 left-[20%] flex justify-center items-center overflow-x-hidden">
+      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-5">
         <div className="mx-auto">
           <FiLoader
           
-            className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+            className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-5 bg-[#181818]"
            
           />
           <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
             Please wait.....
           </h3>
-          <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+          <p className="font-medium text-center text-sm leading-[18.56px] mx-auto">
             Now Submitting your information.
           </p>
         </div>

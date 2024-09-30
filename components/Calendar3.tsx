@@ -162,23 +162,22 @@ const Calendar3: FC<CalendarProps> = ({
   return (
     <div className="flex justify-center items-center px-24 md:px-6 lg:px-6">
        {isLoading ? (
-  <div className="absolute top-20 left-[20%] flex justify-center items-center">
-      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
-        <div className="mx-auto">
-          <FiLoader
-          
-            className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
-           
-          />
-          <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
-            Please wait.....
-          </h3>
-          <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
-            Now scheduling your tweet.
-          </p>
-        </div>
-      </div>
-      </div>
+ <div className="absolute top-20 left-[20%] flex justify-center items-center w-[100%]">
+ <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] py-10">
+   <div className="mx-auto">
+     <FiLoader
+       className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5"
+     />
+     <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+       Please wait.....
+     </h3>
+     <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+       Now scheduling your tweet.
+     </p>
+   </div>
+ </div>
+</div>
+
     ) : (
       <div className="bg-[#181818] w-fit mt-5 rounded-[20px] pb-5">
         <div className={`py-3 ${className}`}>

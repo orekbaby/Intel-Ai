@@ -16,7 +16,7 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDele
 
   return (
     <div
-      className={`relative w-fit md:w-fit lg:w-[95%] h-auto rounded-[24px] p-[1px] cursor-pointer ${
+      className={`relative w-[373px] md:w-full lg:w-[410px] h-auto rounded-[24px] p-[1px] cursor-pointer px-1 md:px-2 lg:px-2 ${
         isActive
           ? "border-[1px] border-transparent bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)] rounded-[24px]"
           : ""
@@ -24,7 +24,7 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDele
       onClick={onClick}
        // Adjust padding for border space
     >
-      <div className="bg-[#1d1d1d] rounded-[24px] flex flex-col justify-between h-full px-2 py-2">
+      <div className="bg-[#1d1d1d] w-full rounded-[24px] flex flex-col justify-between h-full px-2 py-2">
         <div className="flex justify-between items-center">
           <div>
             <h5 className="font-medium text-xs leading-[12.48px] pb-2 pt-1">Strategy Created</h5>
@@ -51,7 +51,7 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDele
               </div>
               <div className="flex justify-center gap-4">
                 <button
-                  className="w-[80px] px-4 rounded-[20px] text-sm h-10 py-2 bg-red-500 text-white font-medium"
+                  className="w-[80px] px-4 rounded-[20px] text-sm h-10 py-2 text-white font-medium"
                   onClick={() => {
                     onDelete(); // Call delete handler
                     setIsDialogOpen(false); // Close modal

@@ -19,7 +19,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Button } from "@/components/ui/button";
-import { avatar, GlowImg } from "@/assets";
+import { avatar, GlowImg, onboard } from "@/assets";
 import ResolvedMobile from "../queryContents/ResolvedMobile";
 
 interface ChatItem {
@@ -39,7 +39,7 @@ const Page = () => {
   const latestMessageRef = useRef<HTMLDivElement>(null);
   const [userData, setUserData] = useState({ name: "", img: "" });
   const [showUserData, setShowUserData] = useState(false);
-
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   // useEffect(() => {
   //   const name = localStorage.getItem("redirectName") || "";
   //   const img = localStorage.getItem("redirectImg") || "";
@@ -133,11 +133,18 @@ const Page = () => {
     }
   };
 
+  
   const handleResolveComment = () => {
     setChatItems([]);
-    setShowResolveButton(false);
-    
-  };
+  setShowResolveButton(false);  // Hide the resolve button
+  setShowSuccessMessage(true);  // Show the success message
+
+  // Set timeout to hide the success message after 3 seconds
+  setTimeout(() => {
+    setShowSuccessMessage(false);
+  }, 3000);
+ 
+};
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -145,9 +152,9 @@ const Page = () => {
     }
   };
   return (
-    <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto overflow-x-hidden scrollbar-hide dashboard-color">
-      <div className="w-full md:w-full lg:w-[70%] h-full pt-5 overflow-x-hidden">
-        <div className="overflow-x-hidden">
+    <div className="w-full h-full md:h-[100vh] lg:h-[100vh] relative overflow-y-auto  scrollbar-hide dashboard-color">
+      <div className="w-full md:w-full lg:w-[70%] h-full pt-5">
+        <div className="w-full pl-1 md:pl-0 lg:pl-0">
           <div className="w-[150px] h-[35px] rounded-[25px] bg-[#1B1B1B] flex justify-center items-center mb-10">
             <p className="font-medium text-sm leading-[14.56px]">
               Escalation Report
@@ -185,36 +192,35 @@ const Page = () => {
           </div>
 
           {/* mobile */}
-          <div className="grid grid-cols-2 gap-6 items-center md:hidden lg:hidden overflow-x-hidden">
-            {escalationReport?.map((row, index) => (
-              <div key={index} className="">
-                
-                <div className="w-[189px] h-[137px] rounded-[20px] bg-[#181818] flex flex-col py-4 px-3">
-                {row.img && (
-                <div className="flex items-center justify-start gap-2">
-               <div className="w-[21px] h-[21px] rounded-full bg-[#7289DA] flex justify-center items-center">
-              <row.img className="w-[10px] h-[10px]" /> {/* Render the icon */}
-            </div>
-         <p className="font-medium text-xs leading-[12.48px] mb-5 pt-5">
-                    {row.title}
-                  </p>
-                  </div> 
-                   )}
-                  <p className="font-[300] text-[40px] leading-[41.6px]">
-                    {row.number}
-                  </p>
-                  <div className="w-[21px] h-[10px] rounded-[2px] flex justify-center items-center bg-[#03FFA3] bg-opacity-[11%]">
-                    <div className="flex justify-center items-center gap-1">
-                      <p className="font-[500] text-[6px] text-[#76CA43]">
-                        {row.percentage}
-                      </p>
-                      <FaArrowUp className="w-[5px] h-[3px] text-[#76CA43] rotate-6" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-2 gap-3 items-center md:hidden lg:hidden overflow-x-hidden">
+          {escalationReport?.map((row, index) => (
+  <div key={index} className="">
+    <div className="w-[169px] h-[157px] rounded-[20px] bg-[#181818] flex flex-col py-4 px-3">
+      {row.img && (
+        <div className="flex items-center justify-start gap-2">
+          <div className="w-[21px] h-[21px] rounded-full bg-[#7289DA] flex justify-center items-center">
+            <row.img className="w-[10px] h-[10px]" /> {/* Render the icon */}
           </div>
+        </div>
+      )}
+      <p className="font-medium text-xs leading-[12.48px] mb-5 pt-5">
+        {row.title} {/* Always render the title */}
+      </p>
+      <p className="font-[300] text-[40px] leading-[41.6px]">
+        {row.number}
+      </p>
+      <div className="w-[21px] h-[10px] rounded-[2px] flex justify-center items-center bg-[#03FFA3] bg-opacity-[11%]">
+        <div className="flex justify-center items-center gap-1">
+          <p className="font-[500] text-[6px] text-[#76CA43]">
+            {row.percentage}
+          </p>
+          <FaArrowUp className="w-[5px] h-[3px] text-[#76CA43] rotate-6" />
+        </div>
+      </div>
+    </div>
+  </div>
+))}
+</div>
 
           <Tabs
             defaultValue="Unresolved"
@@ -413,6 +419,21 @@ const Page = () => {
               {/* scroll to this element  */}
             </div>
           </div>
+
+          {showSuccessMessage && (
+      <div className="flex justify-center pt-20  absolute top-20 left-10 ">
+       <div className="w-[292px] flex justify-center items-center flex-col gap-4 h-auto px-8 md:w-full lg:w-full border-none rounded-lg max-w-auto py-6  bg-[#1b1b1b] shadow-lg border-white border">
+              <Image className=""
+              width={120}
+              height={119}
+              src={onboard}
+              alt="success"
+              />
+              <h2 className="font-medium text-[24px] text-white">Success!</h2>
+              <p className="font-medium text-sm text-[#c1c1c1]">Your comment has been resolved.</p>
+            </div>
+            </div>
+      )}
           <div className="bg-[#181818] absolute pb-16  w-full h-fit bottom-0 right-0 ">
             {showResolveButton && (
               <div className="mb-5 px-4">
@@ -426,7 +447,7 @@ const Page = () => {
               </div>
             )}
 
-            {/* bg-[#181818] */}
+        {/* bg-[#181818] */}
             <div className="flex justify-center items-center gap-2">
               <div className="overflow-x-hidden">
               <input

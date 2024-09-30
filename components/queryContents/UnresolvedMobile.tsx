@@ -28,7 +28,7 @@ const UnresolvedMobile: React.FC<UnresolvedProps> = ({
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full px-1">
    <div className="flex justify-start px-2 items-center font-normal text-[11.5px] text-[#898989] mb-4
 border-[#373737] h-[40px] border-b bg-[#1D1D1D]
 ">

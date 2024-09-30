@@ -137,7 +137,7 @@ const StrategyButton: React.FC<StrategyButtonProps> = ({
       </div>
     </div>
     {isInputVisible && (
-       <div className="flex items-center justify-between w-full h-[48px] px-6 bg-[#1F1F1F] border-t border-[#2B2B2B] pt-8 pb-8 [rounded-[16px]">
+       <div className="flex items-center justify-between w-full h-[48px] px-6 bg-[#1F1F1F] border-t border-[#2B2B2B] pt-8 pb-8 rounded-[16px]">
         <input
             type="text"
             placeholder="What is on your mind?"

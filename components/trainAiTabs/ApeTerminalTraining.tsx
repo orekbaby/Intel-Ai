@@ -139,7 +139,7 @@ const ApeTerminalTraining = () => {
         {selectedOption === 'Other Information' && (
           <Dialog>
             <DialogTrigger className="cursor-pointer" asChild>
-              <div className="flex items-center justify-center px-3 text-center font-medium text-sm leading-[14.56px] w-full h-[50px] rounded-[200px] border-[#202020] bg-[#181818] px-3">
+              <div className="flex items-center justify-center text-center font-medium text-sm leading-[14.56px] w-full h-[50px] rounded-[200px] border-[#202020] bg-[#181818] px-3">
                 {selectedOption}
               </div>
             </DialogTrigger>
@@ -196,7 +196,7 @@ const ApeTerminalTraining = () => {
        
      
         <>
-          <div className="block md:hidden lg:hidden mx-auto text-left">
+          <div className="block md:hidden lg:hidden mx-auto text-left pl-2">
             <p className="font-medium text-[18px] leading-[13px] mb-5">
               Training History
             </p>

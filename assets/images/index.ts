@@ -98,7 +98,7 @@ import VolumeSvg from "./VolumeSvg.svg";
 import world from "./world.png";
 import twitter from "./twitter.png";
 import greenBox from "./greenBox.png"
-
+import mobileLogo from "./mobileLogo.png"
 export {
   AccordionBgImg,
   ActivityChart,
@@ -115,6 +115,7 @@ export {
   avatar7,
   greenBox,
   BackgroundImg,
+  mobileLogo,
   BarChart,
   book,
   CableTag,

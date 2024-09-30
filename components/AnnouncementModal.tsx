@@ -107,7 +107,7 @@ const AnnouncementModal: FC = () => {
   };
 
   return (
-    <div className="w-full h-full ">
+    <div className="w-full h-full">
       
       {announcementsModal?.map((row, index) => (
         <Dialog
@@ -132,7 +132,7 @@ const AnnouncementModal: FC = () => {
                 })
               }
             >
-              <div className="">
+              <div className="pt-5 rouned-lg">
               <h5 className="font-semibold text-sm leading-[14.56px] mb-2">
                 {row.title}
               </h5>

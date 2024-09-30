@@ -29,10 +29,11 @@ const TweetCard: React.FC<CardProps> = ({ tweet, date, onDelete, time }) => {
 
   return (
     <div
-  className="w-full max-w-[410px] h-auto rounded-[20px] bg-[#252525] p-4 mx-auto cursor-pointer"
+  className=" w-[373px] md:-w-[400px] lg:w-[410px]  max-w-[410px] h-auto rounded-[20px]
+   bg-[#252525] p-4 mx-auto cursor-pointer"
   onClick={() => setIsExpanded(!isExpanded)}
 >
-  <div className="flex flex-col justify-between gap-6">
+  <div className="flex flex-col justify-between gap-2 md:gap-6 lg:gap-6">
     <div className="w-full">
       <p className="font-normal text-sm leading-[14.56px]">
         {isExpanded ? stripHtmlTags(tweet) : truncatedTweet}

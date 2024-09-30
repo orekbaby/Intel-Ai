@@ -98,21 +98,21 @@ interface StrategyResponsesProps {
   return (
     <>
      {showContent && (
-        <div className="space-y-4 pb-0 md:pb-10 lg:pb-10 pt-10 md:pt-16 lg:pt-16">
+        <div className="space-y-4 pb-0 md:pb-10 lg:pb-10 pt-5 md:pt-16 lg:pt-16 px-1">
           <div className="flex justify-between items-center">
-          <h5 className="font-medium text-base leading-[16.64px] pb-2">Actionable Recommendations</h5>
+          <h5 className="font-medium text-base leading-[16.64px] pb-2 pl-2">Actionable Recommendations</h5>
           <div className="relative">
       {/* First Modal Trigger: CiMenuKebab */}
       <Dialog>
         <DialogTrigger asChild>
-          <button>
-            <CiMenuKebab className="w-[24px] h-[24px] text-white" />
-          </button>
+          <Button>
+            <CiMenuKebab className="w-[24px] h-[24px] text-white block md:hidden lg:hidden" />
+          </Button>
         </DialogTrigger>
 
         {/* First Modal Content: Select Options */}
         <DialogContent
-  className="block md:hidden lg:hidden bg-[#131313] absolute text-left top-[50%] w-full h-[388px] border-b-[1px] border-[#333333] rounded-t-[16px] overflow-y-auto"
+  className="block md:hidden lg:hidden bg-[#131313] absolute text-left top-[40%] w-full h-[400px] border-b-[1px] border-[#333333] py-4 rounded-t-[16px] overflow-y-auto"
 >
   <div className="text-xs font-semibold text-white">
     <ul className="flex flex-col space-y-4 px-4">
@@ -124,7 +124,7 @@ interface StrategyResponsesProps {
               All Strategies
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-[#131313] w-full h-full md:w-[430px] md:h-[388px] border-b-[1px] border-[#333333] rounded-t-[16px]">
+          <DialogContent className="bg-[#131313] py-4 w-full h-[400px] overflow-y-auto border-b-[1px] border-[#333333] rounded-t-[16px]">
             <AllStrategies
               strategies={finalizedStrategies}  // Pass the entire array of strategies
               onDeleteStrategy={onDeleteStrategy}
@@ -141,7 +141,7 @@ interface StrategyResponsesProps {
               Scheduled Post
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-[#131313] w-full h-full md:w-[430px] md:h-[388px] border-b-[1px] border-[#333333] rounded-t-[16px]">
+          <DialogContent className="bg-[#131313] w-full  overflow-y-auto h-[388px] lg:h-[388px] border-b-[1px] border-[#333333] rounded-t-[16px]">
             <ScheduledPosts />
           </DialogContent>
         </Dialog>

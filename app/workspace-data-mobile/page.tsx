@@ -33,7 +33,7 @@ const page = () => {
           className="ml-10 mb-1"
         />
 
-        <div className="w-full ml-4 md:ml-10 lg:ml-10 xl:ml-10 2xl:ml-10 border-l-2 border-[#03FFA3] px-2  h-[250px] md:h-[230px] lg:h-[230px] overflow-y-auto scrollbar-hide mb-5 overflow-x-hidden">
+        <div className="w-full ml-3 md:ml-10 lg:ml-10 xl:ml-10 2xl:ml-10 border-l-2 border-[#03FFA3] px-4  h-[250px] md:h-[230px] lg:h-[230px] overflow-y-auto scrollbar-hide mb-5 overflow-x-hidden">
           {/* first content */}
           {userDocInfo?.map((row, index) => (
             <div key={index} className="overflow-x-hidden">

@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Image from "next/image";
 import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import { CiPaperplane } from "react-icons/ci";
@@ -15,6 +14,7 @@ import {
 } from "@/config/mockData";
 import SocialMenu from "./SocialMenu";
 import { avatar, GlowImg } from "@/assets";
+import { toast } from "./ui/use-toast";
 interface DialogData2Props {
   onCompleteSimulation: () => void;
 }
@@ -25,12 +25,19 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
   const [promptCount, setPromptCount] = useState<number>(0);
   const [inputValue, setInputValue] = useState<string>("");
   const latestMessageRef = useRef<HTMLDivElement>(null);
+  const [isPromptSent, setIsPromptSent] = useState(false);
+  const [hasPerformedAction, setHasPerformedAction] = useState(false);
 
   useEffect(() => {
     if (latestMessageRef.current) {
       latestMessageRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [conversation]);
+
+  const handleContinueChatting = () => {
+    setIsPromptSent(false); // Show input, hide buttons
+    setInputValue(''); // Clear input field
+  };
 
   const handleButtonClick = (index: number) => {
     if (promptCount < 15) {
@@ -54,6 +61,10 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
       setConversation(newConversation);
       setPromptCount(newConversation.length);
       setActiveIndex(index === activeIndex ? null : index);
+     
+      setHasPerformedAction(true);
+      setIsPromptSent(true);
+   
     }
   };
 
@@ -85,6 +96,9 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
       setConversation(newConversation);
       setPromptCount(promptCount + 1);
       setInputValue("");
+
+      setHasPerformedAction(true);
+      setIsPromptSent(true);
     }
   };
 
@@ -96,10 +110,10 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
 
   return (
     <>
-      <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto scrollbar-hide outline-0 mb-5 pt-20 pb-20">
+      <div className="relative w-full px-2 md:w-full lg:w-full h-[100vh] overflow-y-auto scrollbar-hide outline-0 mb-5 pt-20 pb-20">
         <SocialMenu />
 
-        <div className="bg-[#181818] px-6 rounded-[20px]">
+        <div className="bg-[#181818]  px-6 rounded-[20px]">
           <div className="flex w-full h-[60px] bg-[#1B1B1B] rounded-[20px] px-8 mb-3 items-center justify-between">
             <p className="font-normal text-left text-sm leading-[14.56px] text-[#858585]">
               Simulation workspace
@@ -115,18 +129,18 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
           </div>
           {/* chips options */}
           <div className="flex justify-center gap-0 md:gap-1 lg:gap-1 xl:gap-2 2xl:gap-2 items-center mb-14 px-6">
-            {chipsButton?.map((row, index) => (
+          {chipsButton?.map((row, index) => (
               <div
                 key={index}
-                className={`relative w-fit rounded-[8px] p-[1px] ${
+                className={`relative w-fit rounded-[24px] md:rounded-xl lg:rounded-xl p-[1px] ${
                   activeIndex === index
-                    ? "bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]"
+                    ? "md:bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)] lg:"
                     : ""
                 }`}
               >
                 <Button
                   key={index}
-                  className={`w-[126px] md:w-[149px] lg:w-[149px] xl:w-[149px] 2xl:w-[163px] h-[37px] flex justify-center items-center rounded-[8px] py-2 px-6 font-medium text-[12.76px] bg-[#2C2C2C]`}
+                  className={`w-[120px] md:w-[149px] lg:w-[149px] xl:w-[149px] 2xl:w-[163px] h-[38px] flex justify-center items-center rounded-[24px] md:rounded-xl lg:rounded-xl] py-2 px-6 border border-white md:border-none lg:border-none font-medium text-[12.76px] bg-[#2C2C2C]`}
                   onClick={() => handleButtonClick(index)}
                 >
                   {row.button}
@@ -206,40 +220,83 @@ const DialogData2: React.FC<DialogData2Props> = ({ onCompleteSimulation }) => {
 
           <div className="fixed pb-16 bg-[#181818] w-full h-fit bottom-0 left-0 pt-5 md:pt-0 lg:pt-0">
             <div className="flex justify-center items-center gap-2 md:gap-4 lg:gap-4 xl:gap-4 2xl:gap-4">
+            {!isPromptSent && (
+              <>
               <div className="pl-2 md:pl-0 lg:pl-0">
-                <input
-                  type="text"
-                  id="inputField2"
-                  className="text-input pt-1 font-[300px] text-sm leading-[22.68px]"
-                  placeholder="Ask any question"
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  onKeyDown={handleKeyDown}
-                  autoComplete="off"
-                />
-              </div>
-              <button
-                className="w-[50px] h-[60px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] rounded-lg md:rounded-[20px] lg:rounded-[20px] bg-[#03FFA3] flex justify-center items-center"
-                onClick={handleSendPrompt}
-              >
-                <CiPaperplane className="w-[26px] h-[26px] text-black" />
-              </button>
+            <input
+            type="text"
+            id="inputField2"
+            className="
+              w-[300px] sm:w-[300px] md:w-[300px] lg:w-[383px]
+              h-[45px] sm:h-[50px] md:h-[55px] lg:h-[50px]
+              rounded-[15px] bg-[#0d0d0d] border border-gray-500 text-white
+              italic font-light text-sm md:text-base lg:text-lg
+              px-4 outline-none focus:ring-2 focus:ring-blue-500 outline-0
+            "
+            placeholder="Ask any question"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            autoComplete="off"
+          />
+             
+          </div>
+          
+              <Button
+            className="
+              w-[50px] h-[50px] sm:w-[50px] sm:h-[50px] md:w-[55px] md:h-[55px] lg:w-[60px] lg:h-[60px]
+              rounded-[15px] sm:rounded-[16px] md:rounded-[18px] lg:rounded-[20px]
+              bg-[#03FFA3] flex justify-center items-center
+            "
+            onClick={handleSendPrompt}
+          >
+            <CiPaperplane
+              className="
+                w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] lg:w-[26px] lg:h-[26px]
+                text-black
+              "
+            />
+          </Button>
+          </>
+          )}
             </div>
 
             {/* stimulate your telegram button */}
-
-            <div className="flex justify-center pt-6 ">
+            {isPromptSent && (
+            <div className="flex flex-col gap-4 justify-center pt-6 ">
               <div className="flex justify-center items-center pt-1">
                 <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] w-fit rounded-[66px] py-[2px] px-[2px] shadow-drop">
                   <Button
-                    className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-10 w-[177px] rounded-[66px] hover:bg-[#0B0F16] font-normal text-xs"
-                    onClick={onCompleteSimulation}
+                    className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300  w-[297px] h-[55px]  rounded-[66px] hover:bg-[#0B0F16] font-normal text-xs"
+                    onClick={(e) => {
+                      if (!hasPerformedAction) {
+                        e.preventDefault();
+                        toast({
+                          variant: "destructive",
+                         description: "Please complete a simulation or send a prompt before proceeding.",
+                         
+                        });
+                      } else {
+                        onCompleteSimulation(); // Call the function to complete the simulation
+                        
+                      }
+                    }}
+                    
                   >
                     Complete Simulation
                   </Button>
                 </div>
               </div>
+              <div className="flex items-center justify-center">
+              <button
+            className="w-[297px] h-[55px] flex justify-center items-center rounded-[24px] bg-[#4C4C4C] border border-white text-white text-medium text-xs leading-[12.48px] py-[10px] px-4"
+            onClick={handleContinueChatting}
+          >
+            Continue Chatting
+          </button>
+          </div>
             </div>
+            )}
           </div>
         </div>
       </div>

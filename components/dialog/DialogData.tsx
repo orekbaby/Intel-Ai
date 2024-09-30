@@ -130,7 +130,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
   const { toast } = useToast()
   return (
     <>
-      <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide outline-0 mb-5 pt-20 pb-20">
+      <div className="relative w-full md:w-full lg:w-full h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide outline-0 mb-5 pt-20 px-2 pb-20">
         <SocialMenu />
 
         <div className="bg-[#181818] px-6 md:px-2 lg:px-6 rounded-[20px] overflow-x-hidden">
@@ -148,7 +148,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
             </div>
           </div>
           {/* chips options */}
-          <div className="flex justify-center md:justify-start lg:justify-center gap-2 md:gap-1 lg:gap-1 xl:gap-2 2xl:gap-2 items-center mb-14 px-12 md:px-0 lg:px-6 rounded-[24px] md:rounded-xl lg:rounded-xl">
+          <div className="flex justify-center md:justify-start lg:justify-center gap-1 md:gap-1 lg:gap-1 xl:gap-2 2xl:gap-2 items-center mb-14 px-16 md:px-0 lg:px-6 rounded-[24px] md:rounded-xl lg:rounded-xl">
             {chipsButton?.map((row, index) => (
               <div
                 key={index}
@@ -301,32 +301,33 @@ import { avatar, GlowImg, onboard } from '@/assets';
             Complete Simulation
           </button>
           </DialogTrigger>
-                <DialogContent className="px-8 w-[410px] md:w-full lg:w-full border-none rounded-lg max-w-auto h-[401px] bg-[#181818]">
-                  <div className="mx-auto">
-                    <Image
-                      width={120}
-                      height={120}
-                      src={onboard}
-                      className="mx-auto mb-5 pt-10"
-                      alt=""
-                    />
-                    <h3 className="font-medium text-center text-[20px] leading-[26px] w-[80%] mx-auto mb-4">
-                      Congratulations on Completing Your Initial Training!
-                    </h3>
-                    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-[383px] mb-5">
-                      The next step is to integrate your Telegram community
-                    </p>
-                    {/* button */}
-                    <button
-                      onClick={handleNavigation}
-                      className="bg-white items-center flex justify-center text-center 
-                text-xs font-normal ring-offset-white focus-visible:outline-none
-                text-[#0D0D0D] h-10 w-[199px] rounded-[66px] mx-auto shadow-drop2"
-                    >
-                      Integrate your community now
-                    </button>
-                  </div>
-                </DialogContent>
+          <DialogContent className="px-4 sm:px-8 w-full max-w-[410px] border-none rounded-lg h-auto bg-[#181818] py-5">
+  <div className="mx-auto">
+    <Image
+      width={120}
+      height={120}
+      src={onboard}
+      className="mx-auto mb-5 pt-5"
+      alt=""
+    />
+    <h3 className="font-medium text-center text-[20px] leading-[26px] w-[90%] sm:w-[80%] mx-auto mb-4">
+      Congratulations on Completing Your Initial Training!
+    </h3>
+    <p className="font-medium text-sm mx-auto text-center text-[#C1C1C1] w-[90%] sm:w-[383px] mb-5">
+      The next step is to integrate your Telegram community
+    </p>
+    {/* button */}
+    <button
+      onClick={handleNavigation}
+      className="bg-white items-center flex justify-center text-center 
+        text-xs font-normal ring-offset-white focus-visible:outline-none
+        text-[#0D0D0D] h-10 w-full max-w-[199px] rounded-[66px] mx-auto shadow-drop2"
+    >
+      Integrate your community now
+    </button>
+  </div>
+</DialogContent>
+
               </div>
             </Dialog>
           <button

@@ -96,7 +96,7 @@ const Page = () => {
 defaultValue="ProjectTraining"
                 className="w-full pl-0 pt-5 md:pt-5 lg:pt-5 overflow-x-hidden"
               >
-                <TabsList className="flex mt-0 mb-0 items-center justify-center md:justify-start lg:justify-start gap-2 md:gap-4 lg:gap-10 px-6 overflow-x-hidden w-full border-b border-[#2B2B2B] pb-5">
+                <TabsList className="flex mt-0 mb-5 items-center justify-center md:justify-start lg:justify-start gap-2 md:gap-4 lg:gap-10 px-6  py-4  w-full border-b border-[#2B2B2B] pb-10">
   <TabsTrigger
     className="w-fit md:w-fit lg:w-fit h-[38px] rounded-[8px] md:rounded-[24px] lg:rounded-[24px] px-4 md:px-2 lg:px-3 py-2 md:py-1 lg:py-1  
      data-[state=active]:bg-white text-[#6A6A6A] text-sm gap-2 font-medium flex items-center justify-center"
@@ -142,7 +142,7 @@ defaultValue="ProjectTraining"
                 </TabsContent>
 
                 <TabsContent
-                  className="w-full h-full pt-0 md:pt-0 lg:pt-0 overflow-x-hidden"
+                  className="w-full h-full pt-0 md:pt-0 lg:pt-0"
                   value="QueryEscalationProtocol"
                 >
                   <QueryEscalationProtocol />
