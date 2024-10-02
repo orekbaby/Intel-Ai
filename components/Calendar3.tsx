@@ -174,7 +174,7 @@ const Calendar3: FC<CalendarProps> = ({
   return (
     <div className="flex justify-center items-center px-24 md:px-6 lg:px-6">
        {isLoading ? (
- <div className="absolute top-20 left-[20%] flex justify-center items-center w-[100%]">
+ <div className="absolute top-20 left-[5%] md:left-[20%] lg:left-[20%] flex justify-center items-center w-[100%]">
  <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] py-10">
    <div className="mx-auto">
      <FiLoader

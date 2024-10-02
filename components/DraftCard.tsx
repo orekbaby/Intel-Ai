@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaRegClock } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { FiLoader } from "react-icons/fi";
 
 interface CardProps {
   content: string;
@@ -29,6 +30,7 @@ const DraftCard: React.FC<CardProps> = ({
   onDelete,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
     const stripHtmlTags = (html: string) => {
     const doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent || "";
@@ -43,6 +45,24 @@ const DraftCard: React.FC<CardProps> = ({
   
   return (
     <>
+     {isLoading ? (
+ <div className="absolute top-20 left-[5%] md:left-[20%] lg:left-[20%] flex justify-center items-center w-[100%]">
+ <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] py-10">
+   <div className="mx-auto">
+     <FiLoader
+       className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5"
+     />
+     <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+       Please wait.....
+     </h3>
+     <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
+       Now scheduling your tweet.
+     </p>
+   </div>
+ </div>
+</div>
+
+    ) : (
       <div className="w-[373px] md:w-[410px] lg:w-[410px] h-auto rounded-[20px] bg-[#252525] px-4 py-3"
       onClick={() => setIsExpanded(!isExpanded)}>
         <p className="font-normal text-xs md:text-xs lg:text-[13.56px] w-full md:w-[80%] lg:w-full leading-[16.1px] mb-3">
@@ -97,6 +117,7 @@ const DraftCard: React.FC<CardProps> = ({
           </div>
         </div>
       </div>
+    )}
     </>
   );
 };

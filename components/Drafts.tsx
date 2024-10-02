@@ -43,7 +43,7 @@ const Drafts: React.FC = () => {
             retweetSpan="retweets"
             date={row.date}
             time={row.time}
-            onDelete={() => handleDelete(index)} // Pass the delete handler
+            onDelete={() => handleDelete(index)} 
           />
         ))}
       </div>

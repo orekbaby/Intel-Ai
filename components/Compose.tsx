@@ -94,7 +94,8 @@ const Compose: React.FC<ComposeProps> = ({ addEditorContent }) => {
   >([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  
+  const [isHookListOpen, setIsHookListOpen] = useState(false);
+  const [isClearDialogOpen, setIsClearDialogOpen] = useState(false);
 
   const handleToggle = () => {
     setIsTweetMode((prev) => !prev);
@@ -657,12 +658,12 @@ return (
     </>
 
   <div className="fixed bottom-20 w-full">
-    <div className="flex justify-between items-center bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2">
-   
-      <div className=" w-full h-[54px] border-b border-[#272727] flex justify-between items-center px-4">
-                   
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                      <DialogTrigger className="cursor-pointer" asChild>
+  <div className="flex justify-between items-center bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2">
+      <div className="w-full h-[54px] border-b border-[#272727] flex justify-between items-center px-4">
+        
+        {/* Hook List Dialog */}
+        <Dialog open={isHookListOpen} onOpenChange={setIsHookListOpen}>
+        <DialogTrigger className="cursor-pointer" asChild>
                         <Button className="font-medium text-[12px] leading-[12.48px] bg-[#303030] w-auto h-[36px] rounded-[50px] py-[10px] px-4">
                           {selectedContent}
                         </Button>
@@ -676,44 +677,42 @@ return (
                         </div>
                       </DialogContent>
                     </Dialog>
-                    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                     <DialogTrigger asChild>
-                    <Button
-                      className="font-medium text-[12px] w-[83px] h-[36px] rounded-[50px] bg-[#0D0D0D] leading-[12.48px]"
-                    
-                    >
-                      Clear
-                    </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-[300px] py-6 md:py-6 lg:py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
-  <div className="text-[14px] font-normal text-white text-center mb-4">
-    Would you like to save your thread contents to draft?
-  </div>
-  <div className="flex justify-center gap-4 ">
-    <button
-      className="w-[80px] h-10 px-4 py-2 rounded-[20px] text-sm bg-green-500 text-white font-medium hover:bg-green-200 transition-colors duration-200"
-      onClick={() => {
-      handleDraftSave() // Call delete handler
-        setIsDialogOpen(false); // Close modal
-      }}
-    >
-      Yes
-    </button>
-    <button
-      className="w-[80px] h-10 px-4 py-2 rounded-[20px] text-sm text-white font-medium border border-neutral-500 hover:bg-neutral-600 transition-colors duration-200"
-     onClick={() => {
-        setIsDialogOpen(false) // Call delete handler
-          setIsDialogOpen(false); // Close modal
-          clearInput();
-        }}
-    >
-      No
-    </button>
-  </div>
-</DialogContent>
-</Dialog>
-                  </div>
-               </div>
+
+        {/* Clear Dialog */}
+        <Dialog open={isClearDialogOpen} onOpenChange={setIsClearDialogOpen}>
+          <DialogTrigger asChild>
+            <Button className="font-medium text-[12px] w-[83px] h-[36px] rounded-[50px] bg-[#0D0D0D] leading-[12.48px]">
+              Clear
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-[300px] py-6 md:py-6 lg:py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
+            <div className="text-[14px] font-normal text-white text-center mb-4">
+              Would you like to save your thread contents to draft?
+            </div>
+            <div className="flex justify-center gap-4">
+              <button
+                className="w-[80px] h-10 px-4 py-2 rounded-[20px] text-sm bg-green-500 text-white font-medium hover:bg-green-200 transition-colors duration-200"
+                onClick={() => {
+                  handleDraftSave(); // Call save handler
+                  setIsClearDialogOpen(false); // Close modal
+                }}
+              >
+                Yes
+              </button>
+              <button
+                className="w-[80px] h-10 px-4 py-2 rounded-[20px] text-sm text-white font-medium border border-neutral-500 hover:bg-neutral-600 transition-colors duration-200"
+                onClick={() => {
+                  setIsClearDialogOpen(false); // Close modal
+                  clearInput(); // Clear input
+                }}
+              >
+                No
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+    </div>
     
             <div className="flex items-center justify-between w-[95%] h-[48px] 
             px-6 md:px-6 lg:px-6 bg-[#1f1f1f] rounded-[16px] border-t

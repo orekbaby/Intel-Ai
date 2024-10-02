@@ -162,7 +162,7 @@ const Threads: React.FC<ThreadsProps> = ({
     ) : (
 
         <div className="w-full h-auto overflow-x-hidden">
-           {tweetHeading && (
+          {tweetHeading && (
           <div className="w-full flex justify-between h-[58px] border-[#262626] border-b bg-[#131313] px-0 md:px-3 lg:px-3">
             <div className="flex justify-start items-center">
               <h5 className="hidden md:block lg:block font-semibold text-[15.6px] leading-[15.6px]">
@@ -199,7 +199,7 @@ const Threads: React.FC<ThreadsProps> = ({
               </Button>
               </div>
               </div>
-           )}
+              )}
              
          <div className="flex flex-col gap-6 pt-5 px-3 w-full h-auto overflow-x-hidden">
             {threadsContent?.map((row, index) => (
