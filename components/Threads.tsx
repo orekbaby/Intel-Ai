@@ -107,8 +107,8 @@ const Threads: React.FC<ThreadsProps> = ({
   };
   
   const handlePostSave = () => {
-    if (!threadsText) {
-      console.log('Textarea content is empty');
+    if (threadsContent.length === 0) {
+      console.log('No threads to post');
       return;
     }
   
@@ -120,21 +120,22 @@ const Threads: React.FC<ThreadsProps> = ({
       hour12: true,
     }); // Format the time in 12-hour format with AM/PM
   
-    // Pass the content, date, and time to addPostedContent
-    addPostedContent(threadsText, currentDate, currentTime);
+    // Loop through threadsContent and add each thread's content to posted contents
+    const combinedContent = threadsContent.map(thread => thread.content).join('\n');
+      addPostedContent(combinedContent, currentDate, currentTime);
+  
+  
     setIsLoading(true);
     // Set progress to 25% and start updating progress
     setTimeout(() => {
-       setIsLoading(false); // Hide loading state
-  }, 3000);
+      setIsLoading(false); // Hide loading state
+    }, 3000);
   };
-  
-
-    
-    
 
 
   
+  
+
   return (
     <>
       <div className="pt-5 overflow-x-hidden">
@@ -185,6 +186,7 @@ const Threads: React.FC<ThreadsProps> = ({
                       setProgress={setProgress}
                       onSave={handleSave}
                       onCloseModal={closeModal}
+                      threadsContent={threadsContent}
                     />
                   </div>
                 </DialogContent>

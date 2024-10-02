@@ -11,7 +11,6 @@ import { Button } from "./ui/button";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { IoMdCheckmark } from "react-icons/io";
 import { IoBulbOutline } from "react-icons/io5";
-
 import Image from "next/image";
 import Calendar4 from "./Calendar4";
 import Cookies from "js-cookie";
@@ -58,7 +57,6 @@ interface StrategyPlanningProps {
 
 
 const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strategies, accordionData, onCloseModal, addStrategyContent }) => {
-
   const [isReadMoreStatic, setIsReadMoreStatic] = useState<boolean>(false);
   const [isReadMore, setIsReadMore] = useState<Record<number, boolean>>({});
   const [text, setText] = useState<string>('');

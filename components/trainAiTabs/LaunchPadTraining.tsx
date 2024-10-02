@@ -39,7 +39,7 @@ const LaunchPadTraining = () => {
   return (
     <>
     <div className="w-full h-auto mx-auto px-0 md:px-0 lg:px-10 overflow-x-hidden">
-      <h2 className="font-medium text-[27px] md:text-[27px] lg:text-[27px] leading-[33.28px] md:leading-[37.44px] lg:leading-[37.44px] pt-5 md:pt-10 lg:pt-10 mb-7 text-center px-0 md:px-0 lg:px-0 w-[100%] md:w-full lg:w-full">
+      <h2 className="font-medium text-[20px] md:text-[27px] lg:text-[27px] leading-[33.28px] md:leading-[37.44px] lg:leading-[37.44px] pt-5 md:pt-10 lg:pt-10 mb-7 text-center px-4 md:px-0 lg:px-0 w-[100%] md:w-full lg:w-full">
         What’s new with your launchpad projects?
       </h2>
 

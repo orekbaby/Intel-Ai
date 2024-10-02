@@ -54,28 +54,29 @@ const ScheduleCard: React.FC<CardProps> = ({ strategy, date, time, onDelete }) =
             </DialogTrigger>
 
             {/* Modal content */}
-            <DialogContent className="max-w-[300px] py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
-              <div className="text-[14px] font-normal text-white text-center mb-4">
-                Are you sure you want to delete your scheduled strategy post?
-              </div>
-              <div className="flex justify-center gap-4">
-                <button
-                  className="w-[80px] px-4 rounded-[20px] text-sm h-10 py-2 bg-red-500 text-white font-medium"
-                  onClick={() => {
-                    onDelete(); // Call delete handler
-                    setIsDialogOpen(false); // Close modal
-                  }}
-                >
-                  Yes
-                </button>
-                <button
-                  className="py-2 w-[80px] px-4 rounded-[20px] text-sm h-10  text-white font-medium border border-neutral-500"
-                  onClick={() => setIsDialogOpen(false)} // Close modal without deleting
-                >
-                  No
-                </button>
-              </div>
-            </DialogContent>
+            <DialogContent className="max-w-[300px] py-6 md:py-6 lg:py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
+  <div className="text-[14px] font-normal text-white text-center mb-4">
+    Are you sure you want to delete your scheduled strategy post?
+  </div>
+  <div className="flex justify-center gap-4 ">
+    <button
+      className="w-[80px] h-10 px-4 py-2 rounded-[20px] text-sm bg-red-500 text-white font-medium hover:bg-red-600 transition-colors duration-200"
+      onClick={() => {
+        onDelete(); // Call delete handler
+        setIsDialogOpen(false); // Close modal
+      }}
+    >
+      Yes
+    </button>
+    <button
+      className="w-[80px] h-10 px-4 py-2 rounded-[20px] text-sm text-white font-medium border border-neutral-500 hover:bg-neutral-600 transition-colors duration-200"
+      onClick={() => setIsDialogOpen(false)} // Close modal without deleting
+    >
+      No
+    </button>
+  </div>
+</DialogContent>
+
           </Dialog>
 
           <div className="flex items-center gap-1 bg-[#131313] p-[3px] rounded-[12px] whitespace-nowrap">

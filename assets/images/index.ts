@@ -99,12 +99,14 @@ import world from "./world.png";
 import twitter from "./twitter.png";
 import greenBox from "./greenBox.png"
 import mobileLogo from "./mobileLogo.png"
+import pinkWallet from "./pinkWallet.svg"
 export {
   AccordionBgImg,
   ActivityChart,
   AiImg,
   Ai,
   Alex,
+  pinkWallet,
   avatar,
   avatar1,
   avatar2,

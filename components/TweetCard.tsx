@@ -52,10 +52,10 @@ const TweetCard: React.FC<CardProps> = ({ tweet, date, onDelete, time }) => {
             </div>
           </DialogTrigger>
           <DialogContent className="max-w-[300px] py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
-            <div className="text-[14px] font-normal text-white text-center mb-4">
+            <div className="text-[14px] font-normal text-white text-center pt-2 mb-4">
               Are you sure you want to delete your scheduled tweet?
             </div>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4 pb-3">
               <button
                 className="w-[80px] px-4 rounded-[20px] text-sm h-10 py-2 bg-red-500 text-white font-medium"
                 onClick={() => {

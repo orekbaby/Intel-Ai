@@ -46,12 +46,12 @@ const StrategyCard: React.FC<CardProps> = ({ strategy, isActive, onClick, onDele
 
             {/* Modal content */}
             <DialogContent className="max-w-[300px] py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
-              <div className="text-[14px] font-normal text-white text-center mb-4">
+              <div className="text-[14px] font-normal text-white text-center pt-5 mb-4">
                 Are you sure you want to delete your strategy?
               </div>
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center gap-4 pb-3">
                 <button
-                  className="w-[80px] px-4 rounded-[20px] text-sm h-10 py-2 text-white font-medium"
+                  className="w-[80px] h-10 px-4 py-2 rounded-[20px] text-sm bg-red-500 text-white font-medium hover:bg-red-600 transition-colors duration-200"
                   onClick={() => {
                     onDelete(); // Call delete handler
                     setIsDialogOpen(false); // Close modal

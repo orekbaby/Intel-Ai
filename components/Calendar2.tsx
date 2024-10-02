@@ -58,6 +58,8 @@ const Calendar2: FC<CalendarProps> = ({
     setSelectedDate(newDate);
   }, [currentMonth, currentYear]);
 
+
+  
   const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newMonth = parseInt(event.target.value, 10);
     setCurrentMonth(newMonth);
@@ -99,30 +101,43 @@ const Calendar2: FC<CalendarProps> = ({
   };
   
   const handleSave = (content: string, time: string, date: string) => {
-    // Your save logic here
     console.log('Saving with', { content, time, date });
-
+  
     setIsScheduling(true); // Set the mode to scheduling
-
+  
     const finalContent = content || editorContent;
-
+  
     if (!finalContent) {
       console.log('No content to post');
       return;
     }
-
+  
     addEditorContent(date || '', time || '', finalContent);
-
+  
     // Close the modal immediately after saving
     onSave();
     onCloseModal();
-
+  
     // Set progress to 25% and start updating progress
     setProgress(25);
     setTimeout(() => {
       setProgress(100); // Update progress to 100%
+  
+      // Show success message
+      setShowSuccessMessage(true);
+  
+      // Timer to hide the success message and reset progress after 3 seconds
+      const timer = setTimeout(() => {
+        setShowSuccessMessage(false); // Hide success message
+        setProgress(0); // Reset progress
+      }, 3000);
+  
+      // Cleanup function to clear the timer if the component unmounts
+      return () => clearTimeout(timer);
     }, 1000);
   };
+  
+  
 
   const handleScheduleClick = (index: number | null) => {
     if (index === null) {

@@ -7,7 +7,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ContentPosted from "./ContentPosted";
 import { useToast } from "@/components/ui/use-toast";
 import ScheduleTweet from "./ScheduleTweet";
-
 import Card from "./Card";
 import Threads from "./Threads";
 import TextEditor from "./TextEditor";
@@ -19,6 +18,7 @@ import { Progress } from "@/components/ui/progress";
 import { maxIndex } from "d3-array";
 import ToggleButtonMobile from "./TogleButtonMobile";
 import { CiMenuKebab } from "react-icons/ci";
+import Drafts from "./Drafts";
 
 interface Response {
   title: string;
@@ -86,11 +86,13 @@ const Compose: React.FC<ComposeProps> = ({ addEditorContent }) => {
   const [customContents, setCustomContents] = useState<object[]>([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [progress, setProgress] = useState(0); 
+  const [postProgress, setPostProgress] = useState(0); 
   const [isScheduling, setIsScheduling] = useState<boolean>(true);
-
+  const [isPosting, setIsPosting] = useState<boolean>(true);
   const [threadsContent, setThreadsContent] = useState<
     Array<{ content: string; count: number; countNum: string }>
   >([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   
 
@@ -153,23 +155,23 @@ const handleEditSave = (index: number) => {
   useEffect(() => {
     let timer: NodeJS.Timeout;
 
-    if (progress === 100) {
+    if (postProgress === 100) {
       setShowSuccessMessage(true);
       timer = setTimeout(() => {
-        setProgress(0); 
+        setPostProgress(0); 
         setShowSuccessMessage(false);
       }, 3000);
     }
 
     return () => clearTimeout(timer);
-  }, [progress]);
+  }, [postProgress]);
 
   const handleThreads = () => {
     if (!userInput.trim()) return;
     const maxThreadLength = 500; // Adjust this value as needed
     const text = userInput.trim();
     const threads = [];
-
+  
     for (let i = 0; i < text.length; i += maxThreadLength) {
       const chunk = text.slice(i, i + maxThreadLength);
       threads.push({
@@ -178,10 +180,10 @@ const handleEditSave = (index: number) => {
         countNum: `${i + 1}-${Math.min(i + maxThreadLength, text.length)}`,
       });
     }
-
-    // Update state or pass threads to the component that will display them
-    setThreadsContent(threads); // Assuming you have a state or method to update this
-    
+  
+    // Update state for threads and clear images
+    setThreadsContent(threads); // Update threads
+   resetImages();// Clear images when new threads are generated
   };
 
   const handleDivideThread = (index: number) => {
@@ -207,9 +209,22 @@ const handleEditSave = (index: number) => {
       [index]: [...(prev[index] || []), imageUrl],
     }));
   };
+  
 
   const handleDeleteThread = (index: number) => {
     setThreadsContent((prev) => prev.filter((_, i) => i !== index));
+    
+    // Remove images associated with the deleted thread
+    setImages((prev) => {
+      const newImages = { ...prev };
+      delete newImages[index]; // Remove the images for the deleted thread
+      return newImages;
+    });
+  };
+  
+  // Optionally, if you want to ensure images don't reappear when generating threads
+  const resetImages = () => {
+    setImages({});
   };
 
   const handleCopyContent = (content: string) => {
@@ -290,9 +305,9 @@ const handleEditSave = (index: number) => {
     // Call addPostedContent with the content, date, and time
     addPostedContent(finalContent, formattedDate, currentTime);
   
-    setProgress(25);
+    setPostProgress(25);
     setTimeout(() => {
-      setProgress(100);
+      setPostProgress(100);
       setTimeout(() => {
         setShowSuccessMessage(true);
         setTimeout(() => setShowSuccessMessage(false), 3000);
@@ -308,6 +323,52 @@ const handleEditSave = (index: number) => {
   
     const selectedResponse = generatedResponses[index]?.response || "";
     handleSave(selectedResponse); // Directly post the selected response
+  };
+
+  //draft section
+  const addDraftContent = (content: string, date: string, time: string) => {
+    let currentContent = Cookies.get('draftContents');
+    let contentArray = currentContent ? JSON.parse(currentContent) : [];
+  
+    // Push the new content along with the current date and time
+    contentArray.push({
+      content: content,
+      date: date,
+      time: time,
+    });
+  
+    let updatedContent = JSON.stringify(contentArray);
+    Cookies.set('draftContents', updatedContent, {
+      expires: 7,
+      path: '/',
+      secure: true,
+    });
+  };
+  
+  const handleDraftSave = () => {
+    if (!threadsText) {
+      console.log('No threads to post');
+      return;
+    }
+  
+    // Get the current date and time at the moment of posting
+    const currentDate = new Date().toDateString(); // Format the date
+    const currentTime = new Date().toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    }); // Format the time in 12-hour format with AM/PM
+  
+    // Loop through threadsContent and add each thread's content to posted contents
+    
+      addDraftContent(threadsText, currentDate, currentTime);
+  
+  
+    setIsLoading(true);
+    // Set progress to 25% and start updating progress
+    setTimeout(() => {
+      setIsLoading(false); // Hide loading state
+    }, 3000);
   };
   
   
@@ -374,16 +435,18 @@ useEffect(() => {
 const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
   const inputValue = e.target.value;
   setUserInput(inputValue); // This will keep your original functionality
-  setThreadsText(inputValue); // This will handle the new functionality
+  
 };
 
 const handleButtonClick = () => {
-
   handleGenerateResponses();
   handleThreads();
   setThreadsText(userInput);
   setUserInput(""); 
+  
 };
+
+
 
 
 return (
@@ -442,7 +505,7 @@ return (
                       checked={!isTweetMode}
                       onToggle={handleToggle}
                     />
-                    <Button
+                     <Button
                       className="font-medium text-[12px] w-[83px] h-[36px] rounded-[50px] bg-[#0D0D0D] leading-[12.48px]"
                       onClick={clearInput}
                     >
@@ -455,7 +518,7 @@ return (
              < div className="block md:hidden lg:hidden  bg-transparent w-full  h-[300px] overflow-y-auto scrollbar-hide relative rounded-[16px] overflow-x-hidden">
           <>
         <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto overflow-x-hidden max-h-[165px]">
-        <div className="flex flex-col-reverse space-y-4 space-y-reverse">
+       
       <div className="flex justify-end mb-5">
               <div className="w-[325px] p-[10px] rounded-lg  bg-transparent md:bg-[#252525] lg:bg-[#252525] border-[#292929] border">
                 <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
@@ -463,7 +526,7 @@ return (
                 </p>
               </div>
             </div>
-         </div>
+        
      {/* mobile response */}
      {tweetHeading && (
   <div className="flex justify-between md:hidden lg:hidden pt-5 px-2 md:px-4 lg:px-4">
@@ -512,6 +575,19 @@ return (
                   </DialogTrigger>
                   <DialogContent className="bg-[#131313] w-full h-[500px] overflow-y-auto scrollbar-hide md:w-[430px] md:h-[388px] border-b-[1px] border-[#333333] rounded-t-[16px]">
                     <ContentPosted />
+                  </DialogContent>
+                </Dialog>
+              </li>
+
+              <li>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="block text-left w-full py-2 px-4 bg-transparent hover:bg-gray-700 rounded-lg">
+                      Drafts
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="bg-[#131313] w-full h-[500px] overflow-y-auto scrollbar-hide md:w-[430px] md:h-[388px] border-b-[1px] border-[#333333] rounded-t-[16px]">
+                    <Drafts />
                   </DialogContent>
                 </Dialog>
               </li>
@@ -600,23 +676,56 @@ return (
                         </div>
                       </DialogContent>
                     </Dialog>
-                   <Button
+                    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                     <DialogTrigger asChild>
+                    <Button
                       className="font-medium text-[12px] w-[83px] h-[36px] rounded-[50px] bg-[#0D0D0D] leading-[12.48px]"
-                      onClick={clearInput}
+                    
                     >
                       Clear
                     </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-[300px] py-6 md:py-6 lg:py-6 px-4 rounded-[20px] outline-none border-none bg-[#181818]">
+  <div className="text-[14px] font-normal text-white text-center mb-4">
+    Would you like to save your thread contents to draft?
+  </div>
+  <div className="flex justify-center gap-4 ">
+    <button
+      className="w-[80px] h-10 px-4 py-2 rounded-[20px] text-sm bg-green-500 text-white font-medium hover:bg-green-200 transition-colors duration-200"
+      onClick={() => {
+      handleDraftSave() // Call delete handler
+        setIsDialogOpen(false); // Close modal
+      }}
+    >
+      Yes
+    </button>
+    <button
+      className="w-[80px] h-10 px-4 py-2 rounded-[20px] text-sm text-white font-medium border border-neutral-500 hover:bg-neutral-600 transition-colors duration-200"
+     onClick={() => {
+        setIsDialogOpen(false) // Call delete handler
+          setIsDialogOpen(false); // Close modal
+          clearInput();
+        }}
+    >
+      No
+    </button>
+  </div>
+</DialogContent>
+</Dialog>
                   </div>
                </div>
     
-            <div className="flex items-center justify-between w-[95%] h-[48px] px-6 md:px-6 lg:px-6 bg-[#1f1f1f] rounded-[16px] border-t border-[#2B2B2B] pt-8 pb-8">
+            <div className="flex items-center justify-between w-[95%] h-[48px] 
+            px-6 md:px-6 lg:px-6 bg-[#1f1f1f] rounded-[16px] border-t
+             border-[#2B2B2B] pt-8 pb-8">
              <input
             type="text"
             placeholder="What is on your mind?"
             value={userInput}
-            onChange={handleInputChange} // Use the combined handler
+             onChange={handleInputChange} 
             content={threadsText}
-           className="flex-1 input-area bg-transparent border-none outline-none font-normal text-xs italic text-white placeholder-[#707070]"
+           className="flex-1 input-area bg-transparent border-none outline-none font-normal 
+           text-xs italic text-white placeholder-[#707070]"
           />
           
         <div className="absolute bottom-3 right-7">
@@ -634,27 +743,47 @@ return (
 
               {/* Progress bar */}
               {progress > 0 && (
-                <div className="flex flex-col items-start gap-3 px-4 py-4 w-[400px] md:w-[609px] lg:w-[609px] h-[73px] rounded-[16px] bg-[#131313] border-[#303030] absolute left-2 md:left-[10%] lg:left-[10%] top-[20%]">
-                  <div>
-                    {progress < 100
-                      ? progress === 25
-                        ? isScheduling
-                          ? "Scheduling tweet"
-                          : "Posting tweet"
-                        : null
-                      : isScheduling
-                      ? "Your tweet has been scheduled"
-                      : "Tweet has been posted"}
-                  </div>
-                  <div className="flex justify-center items-center w-[400px] md:w-[571px] h-[9px] rounded-[24px] bg-[#1E1E1E] absolute bottom-0">
-                    <div
-                      className="h-full rounded-[24px]  bg-gradient-to-r from-[#03FFA3] to-[#7F56D9]"
-                      style={{ width: `${progress}%` }}
-                    ></div>
-                  </div>
-                </div>
-              )}
-            </div>
+  <div className="flex flex-col items-start gap-3 px-4 py-4 w-[70%] md:w-[609px] lg:w-[609px] h-[73px] rounded-[16px] bg-[#131313] border-[#303030] absolute left-[15%] md:left-[5%] lg:left-[5%] top-[20%] overflow-hidden">
+    <div className="text-xs md:text-sm lg:text-sm">
+      {progress < 100
+        ? progress === 25
+          ? isScheduling
+            ? "Scheduling..."
+            : null
+          : null
+        : "Your scheduling is complete."}
+    </div>
+    <div className="flex justify-center items-center w-[400px] md:w-[571px] h-[9px] rounded-[24px] bg-[#1E1E1E] absolute bottom-0">
+      <div
+        className="h-full rounded-[24px] bg-gradient-to-r from-[#03FFA3] to-[#7F56D9]"
+        style={{ width: `${progress}%` }}
+      ></div>
+    </div>
+  </div>
+)}
+
+
+{postProgress > 0 && (
+  <div className="flex flex-col items-start gap-3 px-4 py-4 w-[70%] md:w-[609px] lg:w-[609px] h-[73px] rounded-[16px] bg-[#131313] border-[#303030] absolute left-[15%] md:left-[10%]
+   lg:left-[10%] top-[20%]">
+    <div>
+      {postProgress < 100
+        ? postProgress === 25
+          ? isPosting
+            ? "Posting tweet..."
+            : null
+          : null
+        : "Your tweet is posted"}
+    </div>
+    <div className="flex justify-center items-center w-[400px] md:w-[571px] h-[9px] rounded-[24px] bg-[#1E1E1E] absolute bottom-0">
+      <div
+        className="h-full rounded-[24px] bg-gradient-to-r from-[#03FFA3] to-[#7F56D9]"
+        style={{ width: `${postProgress}%` }}
+      ></div>
+    </div>
+  </div>
+)}
+</div>
 
 
 

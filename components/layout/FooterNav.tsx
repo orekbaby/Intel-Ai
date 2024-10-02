@@ -10,6 +10,8 @@ import { SiBentobox } from "react-icons/si";
 import { MdOutlineSignalCellularAlt } from "react-icons/md";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { persona } from "@/config/mockData";
+import { RiDashboardHorizontalLine } from "react-icons/ri";
+import { pinkWallet, profile } from "@/assets/images";
 
 const FooterNav = () => {
   const pathname = usePathname();
@@ -52,19 +54,28 @@ const FooterNav = () => {
   return (
     <>
       {showFooter && (
-        <div className="bg-[#0B0F16] w-full h-[70px] fixed bottom-0 left-0 block md:block lg:hidden">
-          <div className="flex justify-between py-6 px-12 items-center">
+        <div className="bg-[#0B0F16] w-full h-[75px] fixed bottom-0 left-0 block md:block lg:hidden">
+          <div className="flex justify-between pt-3 pb-6 px-4 items-center">
+            {/* <div className="flex flex-col items-center justify-center">
             <Link href="/" prefetch={false}>
               <FaHome className="text-[24px] text-[#707070]" />
             </Link>
-
+            <p className="font-normal text-xs">Home</p>
+            </div> */}
+      <div className="flex flex-col gap-1 items-center justify-center">
             <Link href="/dashboard" prefetch={false}>
-              <SiBentobox className="w-[24px] h-[24px] text-[#707070]" />
+              <RiDashboardHorizontalLine className="w-[32px] h-[32px] text-white" />
             </Link>
-
+            <p className="font-normal text-xs">Dashboard</p>
+            </div>
             <Dialog>
   <DialogTrigger>
-    <currentPersona.icon className="w-[24px] h-[24px] text-[#707070]" />
+    <div className="flex flex-col gap-1 justify-center items-center">
+    <currentPersona.icon className="w-[32px] h-[32px] text-[#707070]" />
+    <p className="font-normal text-xs text-[#707070]">
+    {currentPersona.name}
+    </p>
+    </div>
   </DialogTrigger>
   <DialogContent className="px-8 border-none rounded-lg max-w-auto w-[380px] h-[257px] bg-[#181818]">
     {currentPersona.name === 'Community Workspace' && !aiTrainCompleted ? (
@@ -114,7 +125,23 @@ const FooterNav = () => {
      )}
   </DialogContent>
 </Dialog>
+<div className="flex flex-col gap-1 justify-center items-center">
+    <div>
+      <Image
+        src={pinkWallet} // Ensure `profile` is defined and imported correctly
+        width={32}
+        height={32}
+        alt="profile"
+        className="rounded-full"
+      />
+    </div>
+
+    {/* Conditionally render the wallet text based on hover state */}
+    <p className="font-normal text-xs leading text-[#707070]">
+      0x35b...a36b
+    </p>
 </div>
+  </div>
      </div>
       )}
     </>

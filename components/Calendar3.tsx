@@ -7,6 +7,12 @@ import moment from 'moment-timezone';
 import { toast, useToast } from "@/components/ui/use-toast"
 import { FiLoader } from "react-icons/fi";
 
+interface Thread {
+  content: string;
+  count: number;
+  countNum: string;
+}
+
 interface CalendarProps {
   className?: string;
   showOutsideDays?: boolean;
@@ -14,12 +20,14 @@ interface CalendarProps {
   setProgress: (progress: number) => void;
   onSave: () => void;
   onCloseModal: () => void;
+  threadsContent: Thread[];
 }
 
 const Calendar3: FC<CalendarProps> = ({
   className,
   showOutsideDays = true,
   threadsText,
+  threadsContent,
   onSave,
   setProgress,
   onCloseModal,
@@ -133,17 +141,20 @@ const Calendar3: FC<CalendarProps> = ({
     const formattedTime = selectedDateTime.format('hh:mm A'); // Format time
     const formattedDate = selectedDateTime.format('YYYY-MM-DD'); // Format date
   
-    // Ensure textarea content is not empty
-    if (!threadsText) {
-      console.log("Textarea content is empty");
+    // Ensure threadsContent is not empty
+    if (threadsContent.length === 0) {
+      console.log("No threads to save");
       return;
     }
   
     // Show loading image before proceeding with save
     setIsLoading(true);
   
+    // Combine the contents of all threads into a single string
+    const combinedContent = threadsContent.map(thread => thread.content).join('\n'); // Join with new line or any other separator
+  
     // Proceed with saving the content
-    addThreadContent(formattedDate, formattedTime, threadsText);
+    addThreadContent(formattedDate, formattedTime, combinedContent);
   
     // Handle post-save actions
     onSave();
@@ -154,6 +165,7 @@ const Calendar3: FC<CalendarProps> = ({
       setIsLoading(false);  // Stop loading after modal closes
     }, 3000); // Adjust this delay as needed for smoother UX
   };
+  
   
   
   
