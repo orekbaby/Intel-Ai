@@ -105,7 +105,7 @@ const Compose: React.FC<ComposeProps> = ({ addEditorContent }) => {
 
   const handleSelect = (content: string) => {
     setSelectedContent(content);
-    setIsDialogOpen(false); // Close the modal
+    setIsHookListOpen(false); // Close the modal
   };
 
   const handleEditorChange = (content: string) => {
@@ -663,20 +663,20 @@ return (
         
         {/* Hook List Dialog */}
         <Dialog open={isHookListOpen} onOpenChange={setIsHookListOpen}>
-        <DialogTrigger className="cursor-pointer" asChild>
-                        <Button className="font-medium text-[12px] leading-[12.48px] bg-[#303030] w-auto h-[36px] rounded-[50px] py-[10px] px-4">
-                          {selectedContent}
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent
-                        className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[397px]
-                  h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide border-0 outline-none"
-                      >
-                        <div className="w-full bg-[#0d0d0d] h-auto rounded-[20px] border-b border-[#131313] pb-5 px-4 pt-2">
-                          <HookList onSelect={handleSelect} />
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+          <DialogTrigger className="cursor-pointer" asChild>
+            <Button className="font-medium text-[12px] leading-[12.48px] bg-[#303030] w-auto h-[36px] rounded-[50px] py-[10px] px-4">
+              {selectedContent}
+            </Button>
+          </DialogTrigger>
+          <DialogContent
+            className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[397px]
+            h-[100vh] overflow-y-auto overflow-x-hidden scrollbar-hide border-0  px-12 outline-none"
+          >
+            <div className="w-full bg-[#0d0d0d] h-auto rounded-[20px] border-b border-[#131313] pb-5 px-4 pt-2">
+              <HookList onSelect={handleSelect} />
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Clear Dialog */}
         <Dialog open={isClearDialogOpen} onOpenChange={setIsClearDialogOpen}>
