@@ -64,14 +64,14 @@ const FooterNav = () => {
             </div> */}
       <div className="flex flex-col gap-1 items-center justify-center">
             <Link href="/dashboard" prefetch={false}>
-              <RiDashboardHorizontalLine className="w-[32px] h-[32px] text-white" />
+              <RiDashboardHorizontalLine className="w-[24px] h-[24px] text-white" />
             </Link>
             <p className="font-normal text-xs">Dashboard</p>
             </div>
             <Dialog>
   <DialogTrigger>
     <div className="flex flex-col gap-1 justify-center items-center">
-    <currentPersona.icon className="w-[32px] h-[32px] text-[#707070]" />
+    <currentPersona.icon className="w-[24px] h-[24px] text-[#707070]" />
     <p className="font-normal text-xs text-[#707070]">
     {currentPersona.name}
     </p>
@@ -129,8 +129,8 @@ const FooterNav = () => {
     <div>
       <Image
         src={pinkWallet} // Ensure `profile` is defined and imported correctly
-        width={32}
-        height={32}
+        width={24}
+        height={24}
         alt="profile"
         className="rounded-full"
       />
