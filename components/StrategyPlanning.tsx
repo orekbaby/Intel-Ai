@@ -115,7 +115,7 @@ const StrategyPlanning: React.FC<StrategyPlanningProps> = ({ handleSave, strateg
         setHasRequested(true);
         setIsQuickStrategyClicked(true);
         setAreButtonsVisible(true);
-
+        setShowContent(false);
         await delayResponse();
 
         const updatedResponse = "I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?";
@@ -164,7 +164,7 @@ const handleKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
           setIsQuickStrategyClicked(true);
           setHasRequested(true);
           setAreButtonsVisible(true);
-
+          setShowContent(false);
           await delayResponse();
 
           const updatedResponse = "I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?";
@@ -211,7 +211,7 @@ const handleQuickStrategyClick = async () => {
   setHasRequested(true);
   setIsQuickStrategyClicked(true);
   setAreButtonsVisible(true);
-
+  setShowContent(false);
   await delayResponse();
 
   const updatedResponse = "I understand that your strategy this week is to increase engagement through interactive polls and AMAs. This aligns well with your community's current activity levels. Would you like to add a daily discussion thread to further boost engagement?";
@@ -239,11 +239,12 @@ const handleQuickStrategyClick = async () => {
   
 
   const handleClearChat = () => {
-    setChats([]); // Clear the chat history
+    setChats([]); 
     setText('');
+    setShowContent(false);
     setIsInputVisible(true);
     setHasRequested(false);
-    setIsQuickStrategyClicked(false); // Reset the button state to "Quick Strategy"
+    setIsQuickStrategyClicked(false); 
   };
 
   const scrollToBottom = () => {
@@ -330,9 +331,9 @@ const handleContinueChatting = async () => {
             // After 3 seconds, perform the rest of the operations
             setTimeout(() => {
                 setShowContent(true);
-                setChats([]); // Clear the chat history after finalizing
-                setText('');
-                setIsInputVisible(true);
+                // setChats([]); // Clear the chat history after finalizing
+                // setText('');
+                setIsInputVisible(true)
                 setIsLoading(false); // Hide loading state
             }, 3000); // 3 seconds delay
         }
@@ -347,8 +348,7 @@ const handleContinueChatting = async () => {
     });
   };
   
-
-  const handleCopy = (text: string) => {
+ const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
       setCopiedContent(text);
       setShowCopyMessage(true);
@@ -365,8 +365,7 @@ const handleContinueChatting = async () => {
     }));
   };
 
-
-    useEffect(() => {
+  useEffect(() => {
     // Save each item's text to cookies
     accordionData.forEach((item:any, index:any,) => {
       Cookies.set(`accordionText_${item.id}`, item.text);
@@ -418,10 +417,7 @@ const handleContinueChatting = async () => {
     setOpenModal(false);
   };
 
-
-
-  return (
-    
+    return (
     <div className="w-full h-[100vh] md:h-[100vh] lg:h-[100vh] relative overflow-y-auto scrollbar-hide overflow-x-hidden dashboard-color pb-0 md:pb-40 lg:pb-10 bg-lime-500">
         <div className="w-full flex h-full flex-col md:flex-row lg:flex-row justify-between">
          <div className="w-full md:w-[55%] lg:w-[60%] h-full md:[781px] lg:[781px] overflow-y-auto scrollbar-hide pt-0 md:pt-5 lg:pt-5 border-r border-[#252525] rounded-[20px] pb-0 md:pb-10 lg:pb-10">
@@ -467,7 +463,7 @@ const handleContinueChatting = async () => {
 
 <div className="flex flex-col items-center pt-0 md:pt-10 lg:pt-10 w-full">
   <div className="custom-textarea bg-transparent bg-red-500 md:bg-[#1F1F1F] lg:bg-[#1F1F1F] w-full max-w-[610px] h-[220px] overflow-auto scrollbar-hide relative rounded-[16px]">
-    <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[165px]">
+    <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[185px] md:h-[165px] lg:h-[165px]">
       <div className="flex flex-col-reverse space-y-4 space-y-reverse">
         {chats.map((chat, index) => (
           <div key={index} className="mb-4">
