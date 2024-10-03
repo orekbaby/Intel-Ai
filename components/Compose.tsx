@@ -19,7 +19,8 @@ import { maxIndex } from "d3-array";
 import ToggleButtonMobile from "./TogleButtonMobile";
 import { CiMenuKebab } from "react-icons/ci";
 import Drafts from "./Drafts";
-
+import { BiLoaderCircle } from "react-icons/bi";
+import { FiLoader } from "react-icons/fi";
 interface Response {
   title: string;
   response: string;
@@ -265,6 +266,8 @@ const handleEditSave = (index: number) => {
   };
   const clearInput = () => {
     setUserInput("");
+    setThreadsText("")
+    setThreadsContent([]);
   };
 
   // posted content function
@@ -367,6 +370,8 @@ const handleEditSave = (index: number) => {
   
     setIsLoading(true);
     // Set progress to 25% and start updating progress
+    setThreadsText("")
+    setThreadsContent([]);
     setTimeout(() => {
       setIsLoading(false); // Hide loading state
     }, 3000);
@@ -656,6 +661,25 @@ return (
     
   </div>
     </>
+    {isLoading ? (
+  <div className="absolute top-0 left-[20%] flex justify-center items-center overflow-auto">
+      <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-5">
+        <div className="mx-auto">
+          <FiLoader
+          
+            className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-5 bg-[#181818]"
+           
+          />
+          <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+            Please wait.....
+          </h3>
+          <p className="font-medium text-center text-sm leading-[16.56px] mx-auto">
+            Now saving your content to draft.
+          </p>
+        </div>
+      </div>
+      </div>
+    ) : (
 
   <div className="fixed bottom-20 w-full">
   <div className="flex justify-between items-center bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2">
@@ -679,6 +703,7 @@ return (
         </Dialog>
 
         {/* Clear Dialog */}
+        
         <Dialog open={isClearDialogOpen} onOpenChange={setIsClearDialogOpen}>
           <DialogTrigger asChild>
             <Button className="font-medium text-[12px] w-[83px] h-[36px] rounded-[50px] bg-[#0D0D0D] leading-[12.48px]">
@@ -711,6 +736,7 @@ return (
             </div>
           </DialogContent>
         </Dialog>
+  
       </div>
     </div>
     
@@ -738,6 +764,7 @@ return (
       </div>
     
   </div>
+    )}
 </div>
 
               {/* Progress bar */}
