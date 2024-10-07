@@ -379,10 +379,10 @@ const handlePersonaSwitch = (persona: string) => {
       {/* TrainAi navigation  */}
 
       {train && (
-  <header className="flex md:flex lg:flex w-full absolute z-40 top-0 left-[1px] justify-center bg-[#0D0D0D] h-[60px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-2">
+  <header className="flex md:flex lg:flex w-full absolute z-40 top-0 left-[1px] justify-center bg-[#0D0D0D] h-[40px] md:h-[70px] lg:h-[72px] px-3 md:px-20 lg:px-2">
     <div
       ref={menuRef}
-      className="block text-white ml-0 md:ml-6 lg:ml-6 text-[24px] h-[24px] pt-5 md:hidden lg:hidden cursor-pointer"
+      className="block text-white ml-0 md:ml-6 lg:ml-6 text-[24px] h-[12px] pt-5 md:hidden lg:hidden cursor-pointer"
       onClick={toggleMenu}
     >
       <FiMenu />
@@ -390,7 +390,7 @@ const handlePersonaSwitch = (persona: string) => {
 
     {/* Menu Contents  */}
     {menuOpen && (
-      <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-8 px-4">
+      <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-full bg-[#181818] py-2 px-4">
         <div className="flex flex-col justify-center gap-6 text-sm font-normal">
           <Link href="/communityManager">
             <MenuItem label="Community Manager" />

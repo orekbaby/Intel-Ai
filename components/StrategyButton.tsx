@@ -61,7 +61,7 @@ const StrategyButton: React.FC<StrategyButtonProps> = ({
     <>
   
     
-    <div className="flex justify-between items-center pb-2 md:bg-[#1F1F1F] lg:bg-[#1F1F1F] rounded-md">
+    <div className="flex justify-between items-center pb-2 bg-[#1f1f1f] md:bg-[#1F1F1F] lg:bg-[#1F1F1F] rounded-md">
       {/* Left-aligned Buttons */}
       <div className="flex space-x-4">
         {areButtonsVisible && (
@@ -137,7 +137,7 @@ const StrategyButton: React.FC<StrategyButtonProps> = ({
       </div>
     </div>
     {isInputVisible && (
-       <div className="flex items-center justify-between w-full h-[48px] px-6 bg-[#1F1F1F] border-t border-[#2B2B2B] pt-8 pb-8 rounded-[16px]">
+       <div className="fixed bottom-0 left-0 right-0 flex items-center justify-between w-full h-[48px] px-6 bg-[#1F1F1F] border-t border-[#2B2B2B] pt-8 pb-8 rounded-[16px]">
         <input
             type="text"
             placeholder="What is on your mind?"

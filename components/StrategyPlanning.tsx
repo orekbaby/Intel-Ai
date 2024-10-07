@@ -19,7 +19,7 @@ import { CiMenuKebab } from "react-icons/ci";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import StrategyResponses from "./StrategyResponses";
 import StrategyButton from "./StrategyButton";
-
+import { useRouter } from 'next/navigation';
 
 interface Strategy {
   strategy: string;
@@ -303,42 +303,52 @@ const handleContinueChatting = async () => {
   
   const [finalizedStrategies, setFinalizedStrategies] = useState<Strategy[]>([]);
 
-  const handleFinalizeStrategyClick = () => {
-    if (chats.length > 0) {
-        // Filter out empty or duplicate strategies
-        const newStrategies: Strategy[] = chats
-            .filter(chat => chat.request.trim() !== '' && chat.response.trim() !== '')
-            .map(chat => ({
-                strategy: chat.request, // Use the request string as the strategy
-                content: chat.response || "Default content", // Use the response as content or provide a default value
-                timestamp: chat.timestamp // Include the timestamp from the chat
-            }));
+   // Assuming you're using react-router for routing
+   const router = useRouter(); 
+   
+   
 
-        if (newStrategies.length > 0) {
-            // Update the finalized strategies state with the new strategies
-            setFinalizedStrategies(prevStrategies => [...prevStrategies, ...newStrategies]);
 
-            // Save finalized strategies to local storage
-            const storedFinalizedStrategies = JSON.parse(localStorage.getItem('finalizedStrategies') || '[]');
-            const updatedStrategies = [...storedFinalizedStrategies, ...newStrategies];
-            localStorage.setItem('finalizedStrategies', JSON.stringify(updatedStrategies));
 
-            setIsDialogOpen(false); // Close the modal
 
-            // Show loading state
-            setIsLoading(true);
+const handleFinalizeStrategyClick = () => {
+  if (chats.length > 0) {
+      // Filter out empty or duplicate strategies
+      const newStrategies: Strategy[] = chats
+          .filter(chat => chat.request.trim() !== '' && chat.response.trim() !== '')
+          .map(chat => ({
+              strategy: chat.request, // Use the request string as the strategy
+              content: chat.response || "Default content", // Use the response as content or provide a default value
+              timestamp: chat.timestamp // Include the timestamp from the chat
+          }));
 
-            // After 3 seconds, perform the rest of the operations
-            setTimeout(() => {
-                setShowContent(true);
-                // setChats([]); // Clear the chat history after finalizing
-                // setText('');
-                setIsInputVisible(true)
-                setIsLoading(false); // Hide loading state
-            }, 3000); // 3 seconds delay
-        }
-    }
+      if (newStrategies.length > 0) {
+          // Update the finalized strategies state with the new strategies
+          setFinalizedStrategies(prevStrategies => [...prevStrategies, ...newStrategies]);
+
+          // Save finalized strategies to local storage
+          const storedFinalizedStrategies = JSON.parse(localStorage.getItem('finalizedStrategies') || '[]');
+          const updatedStrategies = [...storedFinalizedStrategies, ...newStrategies];
+          localStorage.setItem('finalizedStrategies', JSON.stringify(updatedStrategies));
+
+          setIsDialogOpen(false); // Close the modal
+
+          // Show loading state
+          setIsLoading(true);
+
+          // After 3 seconds, perform the rest of the operations
+          setTimeout(() => {
+              setShowContent(true);
+              // setChats([]); // Clear the chat history after finalizing
+              // setText('');
+              setIsInputVisible(true)
+              setIsLoading(false); // Hide loading state
+          }, 3000); // 3 seconds delay
+      }
+  }
 };
+
+  
   
   const handleDeleteStrategy = (strategyToDelete: string) => {
     setFinalizedStrategies(prevStrategies => {
@@ -461,9 +471,9 @@ const handleContinueChatting = async () => {
       </div>
     ) : (
 
-<div className="flex flex-col items-center pt-0 md:pt-10 lg:pt-10 w-full">
-  <div className="custom-textarea bg-transparent bg-red-500 md:bg-[#1F1F1F] lg:bg-[#1F1F1F] w-full max-w-[610px] h-[220px] overflow-auto scrollbar-hide relative rounded-[16px]">
-    <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[185px] md:h-[165px] lg:h-[165px]">
+<div className="flex flex-col items-center pt-0 md:pt-10 lg:pt-10 w-full relative">
+  <div className="custom-textarea bg-transparent  md:bg-[#1F1F1F] lg:bg-[#1F1F1F] w-full max-w-[610px] h-[200px] md:h-[220px] lg:h-[220px] overflow-auto scrollbar-hide relative rounded-[16px]">
+    <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto max-h-[165px] md:h-[165px] lg:h-[165px]">
       <div className="flex flex-col-reverse space-y-4 space-y-reverse">
         {chats.map((chat, index) => (
           <div key={index} className="mb-4">
@@ -490,29 +500,31 @@ const handleContinueChatting = async () => {
       </div>
     </div>
 
+    {/*  strategy response mobile */}
+
     <div className="block md:hidden lg:hidden">
-      <StrategyResponses
-        handleSave={handleSave}
-        showContent={showContent}
-        finalizedStrategies={finalizedStrategies}
-        onDeleteStrategy={handleDeleteStrategy}
-        renderTextStatic={renderTextStatic}
-        renderText={renderText}
-        isReadmore={isReadMore}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        addStrategyContent={addStrategyContent}
-        closeModal={closeModal}
-        showCopyMessage={showCopyMessage}
-        copiedContent={copiedContent}
-        onCloseModal={onCloseModal}
-        strategies={strategies}
-        handleCopy={handleCopy}
-      />
-    </div>
+<StrategyResponses
+  handleSave={handleSave}
+  showContent={showContent}
+  finalizedStrategies={finalizedStrategies}
+  onDeleteStrategy={handleDeleteStrategy}
+  renderTextStatic={renderTextStatic}
+  renderText={renderText}
+  isReadmore={isReadMore}
+  openModal={openModal}
+  setOpenModal={setOpenModal}
+  addStrategyContent={addStrategyContent}
+  closeModal={closeModal}
+  showCopyMessage={showCopyMessage}
+  copiedContent={copiedContent}
+  onCloseModal={onCloseModal}
+  strategies={strategies}
+  handleCopy={handleCopy}
+/>
+</div>
   </div>
 
-  <div className="fixed bottom-[10%] left-0 right-0 p-4 block md:hidden lg:hidden">
+  <div className="fixed bottom-[10%] left-0 right-0 p-4 block md:hidden lg:hidden bg-[#1f1f1f]">
     <StrategyButton
       areButtonsVisible={areButtonsVisible}
       isDialogOpen={isDialogOpen}

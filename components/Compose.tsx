@@ -523,11 +523,11 @@ return (
                 </div>
               </div>
           {/* mobile */}
-             < div className="block md:hidden lg:hidden  bg-transparent w-full  h-[300px] overflow-y-auto scrollbar-hide relative rounded-[16px] overflow-x-hidden">
+             <div className="block md:hidden lg:hidden  bg-transparent w-full h-[300px] overflow-y-auto scrollbar-hide relative rounded-[16px] overflow-x-hidden">
           <>
         <div className="bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2 h-auto overflow-y-auto overflow-x-hidden max-h-[165px]">
        
-      <div className="flex justify-end mb-5">
+      <div className="flex justify-end mb-5 pt-10 pb-5">
               <div className="w-[325px] p-[10px] rounded-lg  bg-transparent md:bg-[#252525] lg:bg-[#252525] border-[#292929] border">
                 <p className="font-medium text-xs leading-[12.48px] text-[#B3B3B3]">
                  {threadsText}
@@ -684,7 +684,7 @@ return (
     ) : (
 
   <div className="fixed bottom-20 w-full">
-  <div className="flex justify-between items-center bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] p-2">
+  <div className="flex justify-between items-center bg-transparent md:bg-[#1F1F1F] lg:bg-[#1F1F1F] pt-5 px-2">
       <div className="w-full h-[54px] border-b border-[#272727] flex justify-between items-center px-4">
         
         {/* Hook List Dialog */}
@@ -742,20 +742,20 @@ return (
       </div>
     </div>
     
-            <div className="flex items-center justify-between w-[95%] h-[48px] 
-            px-6 md:px-6 lg:px-6 bg-[#1f1f1f] rounded-[16px] border-t
-             border-[#2B2B2B] pt-8 pb-8">
+            <div className="flex items-center justify-between w-[95%] h-auto 
+            px-6 md:px-6 lg:px-6 bg-[#1f1f1f] rounded-[16px] border-2
+             border-[#2B2B2B] py-4">
              <input
             type="text"
             placeholder="What is on your mind?"
             value={userInput}
              onChange={handleInputChange} 
             content={threadsText}
-           className="flex-1 input-area bg-transparent border-none outline-none font-normal 
+           className="flex-1 input-area bg-transparent border-none border outline-none font-normal 
            text-xs italic text-white placeholder-[#707070]"
           />
           
-        <div className="absolute bottom-3 right-7">
+        <div className="absolute bottom-1 right-7">
           <button
             className="flex justify-center items-center w-[37px] h-[37px] rounded-full bg-[#03ffa3]"
             onClick={handleButtonClick}
