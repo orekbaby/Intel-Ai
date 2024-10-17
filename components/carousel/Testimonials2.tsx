@@ -7,10 +7,10 @@ const Testimonials2 = () => {
       {luis?.map((row, index) => (
         <div
           key={index}
-          className="bg-[#04150F] rounded-[5.98px] border-[#3A3A3A] border text-[#BDBDBD]  w-[323.81px] md:w-[383.79px] h-[350.53px] md:h-[310.53px] lg:[310.53px]
-          px-6 md:px-8 lg:px-8 py-10 "
+          className="bg-[#04150F] rounded-[5.98px] border-[#3A3A3A] border text-[#BDBDBD] w-[323.81px] md:w-[383.79px] h-[280px] md:h-[310.53px] lg:h-[310.53px]
+          px-6 md:px-8 lg:px-8 py-5 md:py-10 "
         >
-          <p className="font-normal text-[17.94px] leading-[22.93px] mb-12 md:mb-8 lg:mb-8 padding-[29.91px] w-[284px] md:w-[323.98px] lg:w-[323.98px] h-[161px]">
+          <p className="font-normal text-sm md:text-[17.94px] lg:text-[17.94px] text-[#BDBDBD] leading-[22.93px] mb-2 md:mb-8 lg:mb-8 padding-[29.91px] w-[284px] md:w-[323.98px] lg:w-[323.98px] h-[161px]">
             {row.testimony}
           </p>
           <div className="flex gap-4 flex-row">

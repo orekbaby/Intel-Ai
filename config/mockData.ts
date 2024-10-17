@@ -60,50 +60,26 @@ export const sponsors = [
 
 export const integration = [
   {
-    img: CableTag,
     title: "Train, Simulate, Update, Re-Train, Repeat!!!",
     description:
-      "0xAI learns from every interaction, constantly refining its knowledge engine to better serve your community. As your community evolves, 0xAI evolves with it—adapting, improving, and delivering with no limits, no downtime, just unstoppable progress.",
-    img2: ContentTag,
-    name: "Content Strategy Setup",
-    img3: query,
-    name2: "Query Escalation Protocol",
+    "0xAI learns from every interaction, constantly refining its knowledge engine to better serve your community. As your community evolves, 0xAI evolves with it—adapting, improving, and delivering with no limits, no downtime, just unstoppable progress.",
     integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729096702/solana_zebvf8.svg",
-    mobileImg: MobileImg1,
   },
-];
-
-export const content = [
   {
-    img: CableTag,
-    title: "Intelligent Automation on Steroids",
-    description:
-      "Our context aware smart engine streamlines the handling of out-of-scope user inquiries by automatically identifying, categorizing, and routing complex queries to the most suitable responder within your organization. Tailored to consider complexity, urgency, and subject matter, this protocol ensures timely, informed, and contextually relevant responses, elevating user experience within your community.",
-    img2: ContentTag,
-    name: "Context-aware AI co-pilot",
-    img3: query,
-    name2: "Query Escalation Protocol",
-    backgroundimg: BackgroundImg,
-    integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729072784/queryEscalation_xfs6ao.svg",
-    mobileImg: MobileImg2,
-  },
-];
-
-export const sorting = [
-  {
-    img: CableTag,
     title: "Advanced Query Escalation Protocol",
     description:
-      "Your privacy and data security are paramount to us, You have complete control over your data and can delete it from our systems at any time.",
-    img2: ContentTag,
-    name: "Smart Escalation for Complex Queries",
-    img3: query,
-    name2: "Content Strategy Setup",
-    backgroundimg: BackgroundImg,
+    "Our context aware smart engine streamlines the handling of out-of-scope user inquiries by automatically identifying, categorizing, and routing complex queries to the most suitable responder within your organization. Tailored to consider complexity, urgency, and subject matter, this protocol ensures timely, informed, and contextually relevant responses, elevating user experience within your community.",
+    integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729072784/queryEscalation_xfs6ao.svg",
+  },
+  {
+    title: "Your Privacy is Our Priority.",
+    description:
+    "Your privacy and data security are paramount to us, You have complete control over your data and can delete it from our systems at any time.",
     integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729096645/privacy_oiniat.svg",
-    mobileImg: MobileImg3,
   },
 ];
+
+
 
 export const advantages = [
   {
