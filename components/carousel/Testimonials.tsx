@@ -1,10 +1,10 @@
 import React from "react";
-import { emily } from "@/config/mockData";
+import { david,} from "@/config/mockData";
 import Image from "next/image";
 const Testimonials = () => {
   return (
     <>
-      {emily?.map((row, index) => (
+      {david?.map((row, index) => (
         <div
           key={index}
           className="bg-[#04150F] rounded-[5.98px] border-[#3A3A3A] border
@@ -15,15 +15,7 @@ const Testimonials = () => {
             {row.testimony}
           </p>
           <div className="flex gap-4 flex-row">
-            <div className="flex items-center">
-              <Image
-                src={row.img}
-                alt="emily"
-                width={59.81}
-                height={59.81}
-                className=""
-              />
-            </div>
+          
             <div className="flex flex-1 flex-col gap-[8px] p-1">
               <p className="font-medium text-[19.94px]">{row.name}</p>
               <div className="flex items-center gap-2">

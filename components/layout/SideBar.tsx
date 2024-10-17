@@ -343,11 +343,11 @@ const SideBar = () => {
       {/* sidebar for dashboard */}
       {show && (
         <div className="hidden md:hidden lg:block absolute top-0 left-0 w-[290px] h-[100vh] border-[#363636] border px-12 z-40">
-          <div className="flex justify-center items-center w-full h-auto mb-20 pb-5 border-b border-[#363636]">
+          <div className="flex justify-start items-start w-full h-auto mb-20 pb-5 border-b border-[#363636]">
             <Image
               src={Logo}
-              width={99}
-              height={40}
+              width={32}
+              height={23}
               alt="logo"
               className="pt-5"
             />

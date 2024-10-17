@@ -13,6 +13,7 @@ import { useUserInput } from "@/context//UserInputContext";
 import { ContentInside } from "@/assets";
 import { FiLoader } from "react-icons/fi";
 import { useToast } from "@/components/ui/use-toast"
+import { FaSpinner } from "react-icons/fa";
 
 const Page: React.FC = () => {
  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -110,12 +111,12 @@ const Page: React.FC = () => {
         <div className="w-full pl-0 md:pl-2 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative overflow-x-hidden mb-0 md:mb-10 lg:mb-10 h-full">
         
           {isLoading ? (
-  <div className="absolute top-20 left-[20%] flex justify-center items-center overflow-x-hidden">
+  <div className="absolute top-10 left-[35%] flex justify-center items-center overflow-x-hidden">
       <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-5">
-        <div className="mx-auto">
+      <div className="flex flex-col justify-center items-center">
           <FiLoader
           
-            className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-5 bg-[#181818]"
+          className="w-[48px] h-[48px] text-gray-600 mb-5 animate-spin-fast"
            
           />
           <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
@@ -130,7 +131,7 @@ const Page: React.FC = () => {
     ) : (
           <div className="pt-5 overflow-x-hidden">
             <p className="font-medium text-base md:text-[20px] lg:text-[20px] xl:[20px] 2xl:[24px] mb-4 pl-6 md:pl-2 lg:pl-6">
-              IntelAI Workspace
+              0x AI Workspace
             </p>
             <div className="w-full flex flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row justify-between gap-4 h-full px-4 overflow-x-hidden">
               {/* Input section */}

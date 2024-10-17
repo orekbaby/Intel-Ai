@@ -4,10 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { useWeb3Modal } from "@web3modal/wagmi/react";
-import { useAccount, useDisconnect } from "wagmi";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from '@/store/combinedStore'; // Adjust import path as neededimport dynamic from "next/dynamic";
+
 
 const Page = () => {
   const style2: React.CSSProperties = {

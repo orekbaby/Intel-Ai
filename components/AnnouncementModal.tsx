@@ -145,22 +145,21 @@ const AnnouncementModal: FC = () => {
           {isLoading ? (
              
              <div className="absolute top-20 left-[20%] flex justify-center items-center">
-         <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
-           <div className="mx-auto">
-             <FiLoader
-             
-               className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
-              
-             />
-             <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
-               Please wait.....
-             </h3>
-             <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">
-               Now saving your contents.
-             </p>
+             <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
+               <div className="flex flex-col justify-center items-center">
+                 <FiLoader
+                   className="w-[48px] h-[48px] text-gray-600 mb-5 animate-spin-fast"
+                 />
+                 <h3 className="font-medium text-[20px] text-center text-[#C1C1C1] leading-[24px] mb-3">
+                   Please wait.....
+                 </h3>
+                 <p className="font-medium text-center text-sm leading-[14.56px]">
+                   Now saving your contents.
+                 </p>
+               </div>
+             </div>
            </div>
-         </div>
-         </div>
+           
                  ):(
           <DialogContent
             className="absolute top-[52%] left-[48%] max-w-auto w-[430px] md:w-[460px] lg:w-[460px]

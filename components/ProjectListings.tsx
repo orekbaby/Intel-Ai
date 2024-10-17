@@ -122,10 +122,10 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
              
              <div className="absolute top-[20%] left-[20%] flex justify-center items-center">
          <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
-           <div className="mx-auto">
+           <div className="flex flex-col justify-center items-center">
              <FiLoader
              
-               className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+               className="w-[48px] h-[48px] text-gray-600 mx-auto mb-5 animate-spin-fast"
               
              />
              <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
@@ -146,7 +146,7 @@ const ProjectListings: React.FC<ProjectListingsProps> = ({ onClose }) => {
               <p className="font-normal text-[13.5px] md:text-sm lg:text-sm leading-[16.55px] text-[#E4E4E4] mb-3 w-[95%] md:w-full lgw-full">
                 {row.insructionText}
               </p>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col items-center gap-1">
                 <div className="flex items-center gap-2">
                   <FaCircle className="text-[#858585] text-[6px]" />
                   <p className="font-[300] text-[#858585] text-sm leading-[14.56px] italic">

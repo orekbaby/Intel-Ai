@@ -6,12 +6,11 @@ import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import {book, IntelLogo, Logo, telegram, twitter} from "@/assets/images"
+import {Logo, telegram, twitter} from "@/assets/images"
 import { FaTelegramPlane, FaDiscord } from 'react-icons/fa';
 import { setUser } from '@/store/reducers/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { PiTelegramLogo } from "react-icons/pi";
-import { BsTwitterX } from "react-icons/bs";
+
 const Navigation = () => {
  const pathname = usePathname();
 
@@ -84,7 +83,7 @@ const handlePersonaSwitch = (persona: string) => {
     <>
       {pathName === "/" && (
         <header className="w-full absolute top-0 left-0 z-40 flex items-center justify-between bg-[#0A0908] h-[60px] md:h-[70px] lg:h-[70px] px-3 md:px-6 lg:px-20">
-          <Image src={Logo} width={99} height={40} alt="logo" />
+          <Image src={Logo} width={60} height={41.25} alt="logo" />
 
           {/* Menu Contents */}
           <div
@@ -112,12 +111,12 @@ const handlePersonaSwitch = (persona: string) => {
 
           <div className="hidden md:flex lg:flex items-center gap-8">
             <Link href="/intel-docs" className="">
-              <h3 className="text-base font-medium hover:underline hover:underline-offset-4">
+              <h3 className="text-sm font-medium hover:underline hover:underline-offset-4">
                 Docs
               </h3>
             </Link>
             <Link href="/advantages" className="">
-              <p className="text-base font-medium hover:underline hover:underline-offset-4">
+              <p className="text-sm font-medium hover:underline hover:underline-offset-4">
                 Advantages
               </p>
             </Link>
@@ -470,7 +469,7 @@ const handlePersonaSwitch = (persona: string) => {
       {visible && (
         <header className="fixed z-40 top-0 left-0 flex justify-between items-center h-[60px] md:h-[70px] lg:h-[80px] px-3 md:px-20 lg:px-10 py-4 bg-[#181818] w-full border-b border-[#363636]">
           <div className="flex justify-end pr-10">
-            <Image src={Logo}width={97} height={30} alt="logo" />
+            <Image src={Logo}width={50.91} height={35} alt="logo" />
           </div>
 
           {/* Menu Contents */}

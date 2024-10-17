@@ -666,10 +666,10 @@ return (
     {isLoading ? (
   <div className="absolute top-1 left-[20%] flex justify-center items-center overflow-auto">
       <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] shadow-lg mt-5">
-        <div className="mx-auto">
+        <div className="flex flex-col justify-center items-center">
           <FiLoader
           
-            className="w-[80px] h-[80px] text-[#707070] mx-auto mb-5 pt-2 bg-[#181818]"
+            className="w-[48px] h-[48px] text-[#707070] mx-auto mb-5  bg-[#181818] animate-spin-fast"
            
           />
           <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">

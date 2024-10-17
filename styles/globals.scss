@@ -384,3 +384,20 @@ input {
 	}
   }
   
+  @keyframes spin {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+  
+  .animate-spin-fast {
+	animation: spin 1s linear infinite; /* Faster spin with 1s duration */
+	will-change: transform; /* Optimizes for smoother animation */
+	transform: translateZ(0); /* GPU acceleration for smoother performance */
+	display: inline-block; /* Ensures proper layout */
+  }
+  
+  

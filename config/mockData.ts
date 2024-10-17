@@ -1,59 +1,58 @@
 export const communityOwners = [
   {
-    img: Img1,
-    heading: "Community Owners & Managers",
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729074542/Img1_ckmavm.svg",
+    heading: "Build better, faster, and more secure smart contracts.",
     content:
-      "Intel AI Agents serve as a seamless extension of your team, providing high-quality feedback and engaging interactions that resonate with your community. ",
+      "Intelligent workflows designed for smart contract developers of all skill levels on Solana & EVM Chains.",
   },
 ];
-import {Ai, Alex, avatar, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, BackgroundImg, book, CableTag, community, ContentTag, DiscordLogo, EmilyChen, FeaturedIcon, GlowImg, Img1, Img2, Img3, MobileImg1, MobileImg2, MobileImg3, query, SarahThompson, StarImage, StarPro, telegram, TelegramIcon, Train1, Train2, Train3, TwitterMain, world} from "@/assets/images"
+import {Ai, Alex, avatar, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, BackgroundImg, book, CableTag, community, ContentTag, DiscordLogo, EmilyChen, FeaturedIcon, GlowImg, Img1, Img2, Img3, MobileImg1, MobileImg2, MobileImg3, query, SarahThompson, StarImage, StarPro, telegram, TelegramIcon,  TwitterMain, world} from "@/assets/images"
 export const kolsInfluencers = [
   {
-    img: Img2,
-    heading: "KOLs & Influencers",
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729074542/Img2svg_p4g4tb.svg",
+    heading: "Build Custom AI Agents on 0xAI’s Powerful APIs",
     content:
-      "Engage your social following and audience on twitter, reddit and others using Intelai",
+      "Leverage our advanced architecture to create custom agents tailored to your Web3 use cases. Whether for smart contract codebase audits, community management, our APIs give you the tools to build intelligent, precise, and powerful solutions.",
   },
 ];
 
 export const customAgents = [
   {
-    img: Img3,
-    heading: "Build Custom AI Agents",
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729074556/speed_xqwzas.svg",
+    heading: "Breakthrough Speed, Unmatched Precision, and Smarter Development",
     content:
-      "Explore our SDKs and APIs for versatile app development. Our Custom AI Agents Stack provides advanced tools to innovate projects.",
+      "0xAI amplifies your abilities, freeing you to focus on innovation while it handles the heavy lifting—redefining what's possible.",
   },
 ];
 
-// Assuming you're using the baron import method for images
-import { CloudSvg, TraceSvg, VolumeSvg, RiseSvg, CluesSvg, CloudPng } from '@/assets/images'; 
+import {CloudPng } from '@/assets/images'; 
 import { FaDiscord, FaTelegramPlane } from "react-icons/fa";
 
-// Updated mock data using image imports
+
 export const sponsors = [
   {
-    img: CloudSvg,    // Using the correctly imported 'CloudSvg' variable
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729095338/CloudSvg_ri5fdv.svg",    
   },
   {
-    img: TraceSvg,    // Using the correctly imported 'TraceSvg' variable
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729095427/TraceSvg_cvfwas.svg",  
   },
   {
-    img: VolumeSvg,   // Using the correctly imported 'VolumeSvg' variable
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729095465/VolumeSvg_ahpgbz.svg",   
   },
   {
-    img: RiseSvg,     // Using the correctly imported 'RiseSvg' variable
+    img:"https://res.cloudinary.com/dy9f5rcat/image/upload/v1729095393/RiseSvg_x5dpvt.svg",    
   },
   {
-    img: CluesSvg,    // Using the correctly imported 'CluesSvg' variable
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729095338/CluesSvg_puaoxg.svg",    
   },
   {
-    img: CloudSvg,    // Using the correctly imported 'CloudPng' variable
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729095338/CloudSvg_ri5fdv.svg",   
   },
   {
-    img: TraceSvg,    // Reusing the 'TraceSvg' variable
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729095427/TraceSvg_cvfwas.svg"   
   },
   {
-    img: VolumeSvg,   // Reusing the 'VolumeSvg' variable
+    img: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729095465/VolumeSvg_ahpgbz.svg",   
   }
 ];
 
@@ -64,12 +63,12 @@ export const integration = [
     img: CableTag,
     title: "Train, Simulate, Update, Re-Train, Repeat!!!",
     description:
-      "Intel AI learns from each interaction, continuously updating its knowledge base and response strategies to better serve your community. As your community evolves, so does Intel AI.",
+      "0xAI learns from every interaction, constantly refining its knowledge engine to better serve your community. As your community evolves, 0xAI evolves with it—adapting, improving, and delivering with no limits, no downtime, just unstoppable progress.",
     img2: ContentTag,
     name: "Content Strategy Setup",
     img3: query,
     name2: "Query Escalation Protocol",
-    integration: Train3,
+    integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729096702/solana_zebvf8.svg",
     mobileImg: MobileImg1,
   },
 ];
@@ -79,13 +78,13 @@ export const content = [
     img: CableTag,
     title: "Intelligent Automation on Steroids",
     description:
-      "Introducing your personal social media strategist driven by AI, streamlining content planning, scheduling, and interaction on twitter and other platforms. Leveraging data to grasp your audience's behavior and preferences, we optimize your content strategy for unparalleled engagement.",
+      "Our context aware smart engine streamlines the handling of out-of-scope user inquiries by automatically identifying, categorizing, and routing complex queries to the most suitable responder within your organization. Tailored to consider complexity, urgency, and subject matter, this protocol ensures timely, informed, and contextually relevant responses, elevating user experience within your community.",
     img2: ContentTag,
     name: "Context-aware AI co-pilot",
     img3: query,
     name2: "Query Escalation Protocol",
     backgroundimg: BackgroundImg,
-    integration: Train2,
+    integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729072784/queryEscalation_xfs6ao.svg",
     mobileImg: MobileImg2,
   },
 ];
@@ -95,13 +94,13 @@ export const sorting = [
     img: CableTag,
     title: "Advanced Query Escalation Protocol",
     description:
-      "Our  context aware smart engine  streamlines the handling of out of scope  user inquiries by automatically identifying, categorizing, and routing complex queries to the most suitable responder within your organization. Tailored to consider complexity, urgency, and subject matter, this protocol ensures  timely, informed, and contextually relevant responses, elevating user experience within your community.",
+      "Your privacy and data security are paramount to us, You have complete control over your data and can delete it from our systems at any time.",
     img2: ContentTag,
     name: "Smart Escalation for Complex Queries",
     img3: query,
     name2: "Content Strategy Setup",
     backgroundimg: BackgroundImg,
-    integration: Train1,
+    integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729096645/privacy_oiniat.svg",
     mobileImg: MobileImg3,
   },
 ];
@@ -150,30 +149,30 @@ export const advantages = [
   },
 ];
 
-export const emily = [
+export const david = [
   {
     testimony:
-      "Fast Theme Changes in Glossy have transformed the way I work. Switching between themes on-the-fly helps me align my coding environment with different project requirements swiftly. Glossy has truly streamlined my workflow.",
+      "0xAI's AI agents are pure magic! It handles the complex tasks while I focus on the creative side of building dApps. The continuous learning and personalized support have truly elevated my productivity.",
     img: EmilyChen,
-    name: "Emily Chen",
-    work: "Devops Specialist",
+    name: "David R.",
+    work: "Fullstack Developer",
   },
 ];
 
-export const sarah = [
+export const luis = [
   {
     testimony:
-      "Glossy has redefined my coding experience. The Profile View feature allows me to seamlessly switch between different project setups, enhancing my efficiency. It's become an indispensable companion in my quest for coding perfection.",
+      "With 0xAI, I can focus on innovation instead of getting bogged down with tedious details. It’s like having an entire team supporting me—faster code, better results, and zero downtime!",
     img: SarahThompson,
-    name: "Sarah Thompson",
-    work: "Senior Software Engineer",
+    name: "Luis C.",
+    work: "Web3 Entrepreneur",
   },
 ];
 
-export const alex = [
+export const rachel = [
   {
     testimony:
-      "Editor Color Changes in Glossy let me curate a visually pleasing environment for coding. The diverse color themes not only boost my creativity but also contribute to a more enjoyable and less stressful coding experience.",
+      "The Query Escalation feature alone is worth it! It ensures every question gets answered, and I never feel stuck. 0xAI keeps my workflow smooth and efficient",
     img: Alex,
     name: "Alex Rodriguez",
     work: "UX/UI Frontend Developer",
@@ -247,14 +246,14 @@ export const escalationReport: EscalationReport[] = [
 export const accordionLanding = [
   {
     trigger:
-      "What is Intel AI and how does it benefit community managers and influencers?",
+      "What is 0xAI?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "1",
   },
 
   {
-    trigger: "How do I get started with training an AI on Intel AI?",
+    trigger: "How does 0xAI help developers?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "2",
@@ -262,14 +261,14 @@ export const accordionLanding = [
 
   {
     trigger:
-      "What are 'Animation Steroids' and how can they enhance my projects?",
+      "Can I train my own AI agents with 0xAI?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "3",
   },
 
   {
-    trigger: "How does the 'Advanced Query Escalation Protocol' work?",
+    trigger: "What is Query Escalation Protocol?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "4",
@@ -277,17 +276,34 @@ export const accordionLanding = [
 
   {
     trigger:
-      "hat role does Cloud Integration play in Glossy, and how does it benefit users?",
+      "Does 0xAI work with popular blockchain protocols?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "5",
   },
 
   {
-    trigger: "Is Intel AI secure and how does it protect my data?",
+    trigger: "How does 0xAI improve over time?",
     content:
       "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     value: "6",
+    
+  },
+
+  {
+    trigger:
+      "Is my data secure with 0xAI?",
+    content:
+      "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
+    value: "7",
+  },
+
+  {
+    trigger:
+      "How can 0xAI help onboard more developers to blockchain?",
+    content:
+      "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
+    value: "8",
   },
 ];
 
@@ -1007,7 +1023,7 @@ export const responseSection = [
       "**I'm sorry to hear you're experiencing a bug! Your issue has been escalated to our community manager, who will assist you shortly. In the meantime, could you please provide more details about the bug, such as what you were doing when it occurred and any error messages you received? This will help us resolve the issue more efficiently. Thank you for your patience!**",
     time: "11:00 am",
     img: GlowImg,
-    name: "Intel",
+    name: "0x",
     span: "ai",
   },
 ];
@@ -1075,7 +1091,7 @@ export const aiResponse = [
     response:
       "With a commitment to providing tools for investment, asset organization, and management in one convenient platform, GetEquity ensures a safe and efficient investment experience for accredited investors, from high-net-worth individuals to industry veterans.",
     aiImage: GlowImg,
-    name: " Intel",
+    name: " 0x",
     span: "ai",
   },
 ];

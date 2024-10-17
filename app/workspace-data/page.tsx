@@ -47,7 +47,7 @@ const Page = () => {
             <div className="w-full pl-0 md:pl-2 lg:pl-8 xl:pl-10 2xl:pl-12 pr-0 md:pr-4 lg:pr-4 xl:pr-6 2xl:pr-8 relative mb-0 md:mb-10 lg:mb-10 h-full">
               <div className="pt-5 pl-2 md:pl-2 lg:pl-6 xl:pl-8 2xl:pl-10  h-full overflow-hidden">
                 <p className="font-medium text-base md:text-[20px] lg:text-[20px] xl:[20px] 2xl:[24px] mb-4">
-                  IntelAI Workspace
+                 0x AI Workspace
                 </p>
                 <div className="w-full flex flex-col gap-4 md:flex-row lg:flex-row xl:flex-row 2xl:flex-rowjustify-between h-full">
                   <div className="w-full md:w-[45%] lg:w-[40%] xl:w-[40%] 2xl:w-[45%] bg-transparent h-[840px] overflow-y-auto scrollbar-hide rounded-[20px] overflow-hidden ">

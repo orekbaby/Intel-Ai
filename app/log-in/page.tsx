@@ -85,14 +85,14 @@ const Page = () => {
                 text-transparent font-medium text-[40px] md:text-[60px] lg:text-[36px] 
                 leading-[40px] md:leading-[64px] pt-0 md:pt-3 lg:pt-5 lg:leading-[64px] text-center w-[378px] md:w-full lg:w-full mb-6 mx-auto"
               >
-                Welcome to Intel AI
+              Welcome to 0x AI
               </h1>
 
               <p className="font-normal text-sm text-white text-center mb-20 md:mb-10 lg:mb-10 px-0 w-[332px] h-[36px] leading-[18.8px] md:w-[80%] lg:w-[393px] md:h-full lg:h-[51px] mx-auto">
                 Discover cutting-edge AI solutions designed to transform your
                 business and unlock new possibilities. Dive in and explore how{" "}
                 <span className="font-medium text-sm leading-[18.8px]">
-                  Intel AI
+                  0x AI
                 </span>{" "}
                 can power your next innovation.
               </p>

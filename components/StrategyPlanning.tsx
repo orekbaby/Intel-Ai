@@ -20,6 +20,7 @@ import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import StrategyResponses from "./StrategyResponses";
 import StrategyButton from "./StrategyButton";
 import { useRouter } from 'next/navigation';
+import { FiLoader } from "react-icons/fi";
 
 interface Strategy {
   strategy: string;
@@ -452,14 +453,12 @@ const handleFinalizeStrategyClick = () => {
 {isLoading ? (
   <div className="flex justify-center items-center">
       <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-2 md:mt-10 lg:mt-10">
-        <div className="mx-auto">
-          <Image
-            width={48}
-            height={48}
-            src={loader}
-            className="mx-auto mb-3 md:mb-5 lg:mb-5  pt-3 md:pt-5 lg:pt-5 bg-[#181818]"
-            alt=""
-          />
+        <div className="flex flex-col justify-center items-center">
+        <FiLoader
+             
+             className="w-[48px] h-[48px] text-gray-600 mx-auto mb-5 animate-spin-fast"
+            
+           />
           <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
             Please wait.....
           </h3>

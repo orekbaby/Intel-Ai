@@ -1,6 +1,6 @@
 import AccordionBgImg from "./AccordionBgImg.png";
 import ActivityChart from "./ActivityChart.png";
-import AiImg from "./AiImg.png";
+import AiImg from "./AiImg.svg";
 import Ai from "./Ai.png";
 import Alex from "./Alex.png";
 import avatar from "./avatar.png";
@@ -50,7 +50,7 @@ import IntelAi from "./IntelAi.png";
 import IntelLogo from "./IntelLogo.png";
 import LineChart from "./LineChart.png";
 import loader from "./loader.png";
-import Logo from "./Logo.png";
+import Logo from "./Logo.svg";
 import manager from "./manager.png";
 import MarketCap from "./MarketCap.png";
 import metamask from "./metamask.png";
@@ -100,6 +100,7 @@ import twitter from "./twitter.png";
 import greenBox from "./greenBox.png"
 import mobileLogo from "./mobileLogo.png"
 import pinkWallet from "./pinkWallet.svg"
+
 export {
   AccordionBgImg,
   ActivityChart,

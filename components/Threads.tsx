@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { HiOutlineArrowPath } from "react-icons/hi2";
 import Cookies from "js-cookie";
 import { loader, onboard } from "@/assets";
+import { FiLoader } from "react-icons/fi";
 
 interface Thread {
   content: string;
@@ -142,15 +143,12 @@ const Threads: React.FC<ThreadsProps> = ({
          {isLoading ? (
   <div className="absolute top-[-1%] md:top-0 lg:top-0 left-[20%] flex justify-center items-center overflow-x-hidden">
       <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
-        <div className="mx-auto">
-          <Image
-            width={48}
-            height={48}
-            src={loader}
-            className="mx-auto mb-5 pt-5 bg-[#181818]"
-            alt=""
+        <div className="flex flex-col justify-center items-center">
+        <FiLoader
+          
+          className="w-[48px] h-[48px] text-gray-600 mx-auto mb-5 bg-[#181818] animate-spin-fast"
           />
-          <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">
+          <h3 className="font-medium text-[20px]  text-center text-[#C1C1C1] leading-[24px] mb-3">
             Please wait.....
           </h3>
           <p className="font-medium text-center text-sm leading-[14.56px] mx-auto">

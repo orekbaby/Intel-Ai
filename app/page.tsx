@@ -32,12 +32,12 @@ import {
   AccordionTrigger1,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import LazyLoad from 'react-lazy-load'; 
+
 import Link from "next/link";
 import Image from "next/image";
 import {   accordionLanding } from "@/config/mockData";
-import { AiImg, Ellipse3, VectorQuestion } from "@/assets";
-import router from "next/router";
+import { Ellipse3, VectorQuestion } from "@/assets";
+
 import { useRouter } from "next/navigation";
 const Footer = dynamic(() => import("@/components/Footer"), {
   ssr: false,
@@ -74,6 +74,13 @@ export default function Home() {
     backgroundBlendMode: "darken",
     filter: "blur(50px)",
   };
+  const moon: React.CSSProperties = {
+    background:
+      "radial-gradient(circle, rgba(220, 31, 255, 0.2), rgba(3, 255, 163, 0.4))",
+    backgroundBlendMode: "darken",
+    filter: "blur(50px)",
+  };
+  
 
   const style3: React.CSSProperties = {
     background:
@@ -109,7 +116,7 @@ export default function Home() {
   return (
     <main className="mt-4 md:mt-20 lg:mt-20">
       {/* hero-section */}
-      <section className="first-gradient section relative w-full h-auto overflow-hidden mx-auto ">
+      <section className="first-gradient section relative w-full h-auto overflow-hidden mx-auto z-10 ">
         <div className=" w-full ">
           <div className="px-0 md:px-28 lg:px-16">
             {/* Gradient background with lower z-index */}
@@ -121,6 +128,13 @@ export default function Home() {
               style={style6}
               className="bottom-0 -left-[50%] absolute w-[100%] md:w-[60%] lg:w-[30%] h-[130px] md:h-[360px] lg:h-[160px] -translate-x-1/2 z-[-1]"
             ></div>
+
+<div
+           style={moon}
+            className="absolute bottom-[-5%] left-[50%] w-[30%] h-[150px] -translate-x-1/2 z-5"
+          >
+
+          </div>
             <h2
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
@@ -130,8 +144,8 @@ export default function Home() {
               Collaboration Protocol of Autonomous AI Agents
             </h2>
             <p className="font-normal text-sm md:text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[24px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-0  leading-[20px] md:leading-[26px] lg:leading-[28px] xl:leading-[30px] mx-auto w-full md:w-full lg:w-[55%]">
-  Tailored Intelligence built from the ground up specifically for
-  the Web3 Ecosystem.
+      Tailored Intelligence built from the ground up specifically for
+        the Web3 Ecosystem.
 </p>
 
 
@@ -168,14 +182,14 @@ export default function Home() {
       autoPlay
       muted
       playsInline
-      preload="auto" // Preload video for smoother playback
-      controls={false} // Optional: Hide controls if not needed
-      onCanPlayThrough={() => console.log("Mobile video ready to play smoothly")} // Log when video is ready for smooth playback
+      preload="auto" 
+      controls={false} 
+      onCanPlayThrough={() => console.log("Mobile video ready to play smoothly")} 
       onError={() => console.error("Error loading mobile video")}
     >
       <source 
         src={videoUrl} 
-        type="video/mp4" // Correct video format
+        type="video/mp4" 
       />
       Your browser does not support the video tag.
     </video>
@@ -210,7 +224,7 @@ export default function Home() {
 
 
             {/* Hero image with higher z-index  */}
-            <div className="pb-0 md:pb-10 lg:pb-10 px-12">
+            <div className="pb-0 md:pb-10 lg:pb-20 px-12">
               <div
                 className="hidden md:block lg:block rounded-[20px] h-full"
               >
@@ -240,34 +254,77 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      
       {/* Second section */}
-      <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-32 px-4 md:px-24 lg:px-0 text-center pb-10 md:pb-20 lg:pb-20 mx-auto">
-  <h2 className="font-medium text-[24px] md:text-[27px] lg:text-[32px] xl:text-[60px] 2xl:text-[64px] mb-4 md:mb-8 lg:mb-8 leading-[28px] md:leading-[40px] lg:leading-[65.5px] text-center w-full md:w-[90%] lg:w-[70%] mx-auto">
+      <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-20 px-4 md:px-24 lg:px-0 text-center pb-10 md:pb-20 lg:pb-20 mx-auto">
+  <h3 className="font-medium text-[24px] md:text-[27px] lg:text-[32px] xl:text-[60px] 2xl:text-[64px] mb-4 md:mb-8 lg:mb-8 leading-[28px] md:leading-[40px] lg:leading-[65.5px] text-center w-full md:w-[90%] lg:w-[80%] mx-auto">
     Meticulously Engineered To Deliver {""}
     <span
       style={bgClipText}
       className="bg-gradient-to-r from-[#03FFA3] to-[#7F56D9] text-transparent"
     >
-      Human-Like Responses
+      Human-Like Intelligence {""}
     </span>
-  </h2>
+    at every level
+  </h3>
   <p className="font-normal text-[13px] md:text-[16px] lg:text-[20px] xl:text-[20px] 2xl:text-[22px] 
-  px-2 md:px-8 lg:px-12 mb-4 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[31.2px] mx-auto w-full md:w-full lg:w-[65%]">
-    Experience the sophistication of AI Agents that talk like a human but
-    work like a supercomputer. Intel AI&apos;s deep learning algorithms
-    are crafted to replicate the warmth, empathy, and complexity of human
-    interaction, ensuring that every message, reply, or announcement feels
-    genuinely personal.
+  px-2 md:px-8 lg:px-12 mb-4 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[31.2px] mx-auto w-full md:w-full lg:w-[70%]">
+  Experience AI Agents that interact like humans but operate with the power of a supercomputer. 0Xai&apos;s deep learning algorithms are designed to replicate the intricate workflows of blockchain engineers and communities, ensuring every interaction feels personal while delivering unmatched precision and efficiency.
   </p>
-  <Image
-    src={AiImg}
-    width={1002}
-    height={361.55}
-    alt="hero-img"
-    className="object-cover mx-auto max-w-full h-auto"
-  />
-</div>
+ 
+  <div className="mx-auto px-0 md:px-20 lg:px-20 h-full">
+  <div
+    className="p-[1px] rounded-[8px] bg-gradient-to-r hidden md:block lg:block"
+    style={{
+      background: "linear-gradient(135deg, rgba(58, 58, 58, 1), rgba(0, 0, 0, 1))",
+    }}
+  >
+    <video
+      className="object-cover mx-auto max-w-full h-auto  rounded-[8px]"
+      loop
+      autoPlay
+      muted
+      playsInline
+      preload="auto"
+      onCanPlayThrough={() => console.log('Video ready to play smoothly')}
+      onError={() => console.error('Error loading video')}
+    >
+      <source
+        src="https://res.cloudinary.com/dy9f5rcat/video/upload/v1729154644/B7BBAE94-E274-4508-94B8-367ABC6B69CF_j4fxno.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  {/* Mobile Video */}
+  <div
+    className="p-[1px] rounded-[8px] bg-gradient-to-r block md:hidden lg:hidden"
+    style={{
+      background: "linear-gradient(135deg, rgba(58, 58, 58, 1), rgba(0, 0, 0, 1))",
+    }}
+  >
+    <video
+      className="object-cover w-full h-full rounded-[8px] text-center block"
+      loop
+      autoPlay
+      muted
+      playsInline
+      preload="auto"
+      controls={false}
+      onCanPlayThrough={() => console.log('Mobile video ready to play smoothly')}
+      onError={() => console.error('Error loading mobile video')}
+    >
+      <source
+        src="https://res.cloudinary.com/dy9f5rcat/video/upload/v1729154644/B7BBAE94-E274-4508-94B8-367ABC6B69CF_j4fxno.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  </div>
+  </div>
+
 
 
       {/* custom ai */}
@@ -298,12 +355,10 @@ export default function Home() {
 
         <div className="mx-auto px-0 md:px-28 lg:px-32 xl:px-40 2xl:px-48 text-center pt-16 md:pt-28 lg:pt-32 mb-7 md:mb-16 lg:mb-16">
           <h3 className="font-medium text-center text-[20px] md:text-[27px] lg:text-[32px] mb-5">
-            Custom AI Agents Like Never Before
+          Custom AI Agents That Truly  Understand Web3
           </h3>
-          <p className="font-normal text-center text-[13px] md:text-[14px] lg:text-[20px] w-[90%] md:w-full lg:w-[90%] h-auto mx-auto px-0 md:px-28 lg:px-0 xl:px-40 2xl:px-48 text-[#8A8A8A] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[18.45px] lg:leading-[31.2px]">
-            Intel AI leverages a custom LLM architecture that&apos;s fine-tuned
-            to grasp the intricacies of blockchain technology, its narratives,
-            trends, & community nuances with unparalleled precision
+          <p className="font-normal text-center text-[13px] md:text-[14px] lg:text-[20px] w-[90%] md:w-full lg:w-full h-auto mx-auto px-0 md:px-28 lg:px-0 xl:px-40 2xl:px-48 text-[#B6B5B5] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[18.45px] lg:leading-[31.2px]">
+          0Xai leverages a custom <span className="font-semibold text-center text-[13px] md:text-[14px] lg:text-[20px] text-[#B6B5B5] ">LLM architecture</span> that&apos;s fine-tuned to grasp the intricacies of blockchain technology use cases with unparalleled precision.
           </p>
         </div>
         {/* custom ai */}
@@ -311,7 +366,7 @@ export default function Home() {
   {communityOwners?.map((row, index) => (
    <div
    key={index}
-   className="flex-1 h-[314px] md:h-auto lg:h-[355px] bg-[#070707] rounded-lg px-4 md:px-6 lg:px-6 py-4 md:py-6 lg:py-8 mb-6 md:mb-8 lg:mb-10 mx-auto"
+   className="flex-1 h-[314px] md:h-auto lg:h-[422px] bg-[#070707] rounded-lg px-4 md:px-6 lg:px-6 py-4 md:py-6 lg:py-8 mb-6 md:mb-8 lg:mb-10 mx-auto"
  >
    <Image
      src={row.img}
@@ -320,7 +375,10 @@ export default function Home() {
      alt="custom-img"
      className="object-cover w-full h-auto max-w-full mx-auto mb-4"
    />
-   <h4 className="font-medium text-base md:text-sm lg:text-[18px] mb-3">{row.heading}</h4>
+   <h4 className="font-medium text-base md:text-sm lg:text-[18px] mb-3 leading-normal md:leading-relaxed lg:leading-[1.4]">
+  {row.heading}
+</h4>
+
    <p className="font-normal text-xs text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed">
      {row.content}
    </p>
@@ -329,29 +387,33 @@ export default function Home() {
 
   {/* second column */}
   {kolsInfluencers?.map((row, index) => (
-    <div
-      key={index}
-      className="flex-1 h-[314px] md:h-auto lg:h-[355px] bg-[#070707] rounded-lg px-4 md:px-6 lg:px-6 py-4 md:py-6 lg:py-8 mb-6 md:mb-8 lg:mb-10 mx-auto"
-    >
-      <Image
-        src={row.img}
-        width={340}
-        height={200}
-        alt="custom-img"
-        className="object-cover w-full h-auto max-w-full mx-auto mb-4"
-      />
-      <h4 className="font-medium text-base md:text-sm lg:text-[18px] mb-3">{row.heading}</h4>
-      <p className="font-normal text-xs text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed">
-        {row.content}
-      </p>
-    </div>
-  ))}
+  <div
+    key={index}
+    className="flex-1 h-[422px] bg-[#070707] rounded-lg px-4 md:px-6 lg:px-6 py-4 md:py-6 lg:py-4 mb-6 md:mb-8 lg:mb-10 mx-auto"
+  >
+    <Image
+      src={row.img}
+      width={340}
+      height={200}
+      alt="custom-img"
+      className="object-cover w-full h-auto max-w-full mx-auto"
+    />
+<h4 className="font-medium text-base md:text-sm lg:text-[18px] mb-3 leading-normal md:leading-relaxed lg:leading-[1.4]">
+  {row.heading}
+</h4>
+
+    <p className="font-normal text-xs text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed break-words overflow-wrap">
+      {row.content}
+    </p>
+  </div>
+))}
+
 
   {/* third column */}
   {customAgents?.map((row, index) => (
     <div
       key={index}
-      className="flex-1 h-[336px] md:h-auto lg:h-[355px] bg-[#070707] rounded-lg px-4 md:px-6 lg:px-6 py-4 md:py-6 lg:py-8 mb-6 md:mb-8 lg:mb-10 mx-auto"
+      className="flex-1 h-[336px] md:h-auto lg:h-[422px] bg-[#070707] rounded-lg px-4 md:px-6 lg:px-6 py-4 md:py-6 lg:py-8 mb-6 md:mb-8 lg:mb-10 mx-auto"
     >
       <Image
         src={row.img}
@@ -359,8 +421,11 @@ export default function Home() {
         height={173}
         alt="custom-img"
         className="object-cover w-full h-auto max-w-full mx-auto mb-4"
-      />
-      <h4 className="font-medium text-base md:text-sm lg:text-[18px] mb-3">{row.heading}</h4>
+      /> 
+      <h4 className="font-medium text-base md:text-sm lg:text-[18px] mb-3 leading-normal md:leading-relaxed lg:leading-[1.4]">
+  {row.heading}
+</h4>
+
       <p className="font-normal text-xs text-[#8A8A8A] w-full md:w-auto h-auto leading-relaxed">
         {row.content}
       </p>
@@ -371,13 +436,13 @@ export default function Home() {
 {/* stop here */}
 
 
-        <div className="mx-auto px-4 md:px-0 lg:px-40 xl:px-40 2xl:px-48 text-center">
+        <div className="mx-auto px-4 md:px-0 lg:px-40 xl:px-40 2xl:px-48 text-center pt-28">
           <h5
             style={bgClipText}
             className="font-normal text-[20px] md:text-[27px] lg:text-[32px] xl:text-[32px] 2xl:text-[36px] leading-[26.88px] md:leading-[51.84px] lg:leading-[51.84px] mb-10 md:mb-6 lg:mb-6 bg-gradient-to-r from-[#03FFA3] 
              to-[#7F56D9] text-transparent" 
           >
-            Join the top companies already using Intel AI
+            Join the top companies already using 0x AI
           </h5>
         </div>
         <Marquee className="py-2" pauseOnHover={true}>
@@ -425,42 +490,15 @@ export default function Home() {
     className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20 gap-4 md:gap-6 lg:gap-8 mb-10 md:mb-20 lg:mb-20"
   >
     <div className="w-full md:w-1/2 px-2 md:px-4 lg:px-6">
-      <Image
-        src={row.img}
-        width={45}
-        height={45}
-        alt="cable-icon"
-        className="mb-4 md:mb-6"
-      />
+     
       <h5 className="font-medium text-base md:text-[18px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-[36px] mb-4 md:mb-6 lg:mb-6">
         {row.title}
       </h5>
       <p className="font-normal text-[13px] md:text-[12px] lg:text-[10px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
         {row.description}
       </p>
-      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
-        <Image
-          src={row.img2}
-          width={25}
-          height={25}
-          alt="content-tag"
-        />
-        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
-          {row.name}
-        </p>
-      </div>
-      <div className="flex gap-2 items-center">
-        <Image
-          src={row.img3}
-          width={25}
-          height={25}
-          alt="query"
-        />
-        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
-          {row.name2}
-        </p>
-      </div>
-    </div>
+      
+       </div>
     {/* background-img */}
     <div className="hidden md:block lg:block w-full md:w-1/2 relative">
       <div
@@ -493,27 +531,10 @@ export default function Home() {
 {content?.map((row, index) => (
   <div
     key={index}
-    className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20 gap-4 md:gap-6 lg:gap-8 mb-10 md:mb-20 lg:mb-20"
+    className="flex flex-col md:flex-row-reverse lg:flex-row-reverse justify-center items-center mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20 gap-4 md:gap-6 lg:gap-8 mb-10 md:mb-20 lg:mb-20"
   >
+    {/* Text section */}
     <div className="w-full md:w-1/2 px-2 md:px-4 lg:px-6">
-      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
-        <Image
-          src={row.img}
-          width={25}
-          height={25}
-          alt="cable-tag"
-        />
-        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
-          {row.name}
-        </p>
-      </div>
-      <Image
-        src={row.img2}
-        width={45}
-        height={45}
-        alt="content-tag"
-        className="mb-4 md:mb-6 lg:mb-6"
-      />
       <h5
         className="font-medium text-base md:text-[18px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6"
       >
@@ -522,19 +543,9 @@ export default function Home() {
       <p className="font-normal text-[13px] md:text-[12px] lg:text-[10px] xl:text-[20px] 2xl:text-[22px] text-[#BDBDBD] mb-6 md:mb-8 lg:mb-8 leading-normal md:leading-normal lg:leading-normal">
         {row.description}
       </p>
-      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
-        <Image
-          src={row.img3}
-          width={25}
-          height={25}
-          alt="query"
-        />
-        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
-          {row.name2}
-        </p>
-      </div>
     </div>
-    {/* background-img */}
+
+    {/* Desktop Image (on left for large screens) */}
     <div className="hidden md:block lg:block w-full md:w-1/2 relative">
       <div
         className="bg-background-image w-full h-auto bg-center bg-no-repeat bg-cover"
@@ -549,7 +560,7 @@ export default function Home() {
       </div>
     </div>
 
-    {/* mobile img */}
+    {/* Mobile Image (still on top for small screens) */}
     <div className="block md:hidden lg:hidden w-full mb-6">
       <Image
         src={row.mobileImg}
@@ -561,6 +572,7 @@ export default function Home() {
     </div>
   </div>
 ))}
+
 
 {/* sorting section */}
 {sorting?.map((row, index) => (
@@ -569,35 +581,9 @@ export default function Home() {
     className="flex flex-col md:flex-row lg:flex-row justify-center mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-20 gap-4 md:gap-6 lg:gap-8 mb-10 md:mb-20 lg:mb-20"
   >
     <div className="w-full md:w-1/2 px-2 md:px-4 lg:px-6">
-      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
-        <Image
-          src={row.img}
-          width={25}
-          height={25}
-          alt="cable-tag"
-        />
-        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
-          {row.name}
-        </p>
-      </div>
-      <div className="flex gap-2 items-center mb-4 md:mb-6 lg:mb-6">
-        <Image
-          src={row.img2}
-          width={25}
-          height={25}
-          alt="content-tag"
-        />
-        <p className="font-normal text-[12px] md:text-[14px] lg:text-[16px] text-[#BDBDBD]">
-          {row.name2}
-        </p>
-      </div>
-      <Image
-        src={row.img3}
-        width={45}
-        height={45}
-        alt="query"
-        className="mb-4 md:mb-6 lg:mb-6"
-      />
+     
+     
+    
       <h5
         className="font-medium text-base md:text-[18px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] leading-tight md:leading-tight lg:leading-tight mb-4 md:mb-6 lg:mb-6"
       >
@@ -636,47 +622,9 @@ export default function Home() {
 ))}
 
 
-        {/* Advantages Section */}
-        <div className="text center mx-auto px-0 md:px-40 lg:px-40 mb-10 md:mb-10 lg:mb-16">
-          <h5 className="font-normal md:font-medium lg:font-medium text-[20px] md:text-[36px] lg:text-[32px] leading-[58.15px] mt-10 mb-3 text-center mx-auto">
-            Advantages
-          </h5>
 
-          <p
-            className="font-normal text-sm
-             text-[#BDBDBD] w-[333px] md:w-[95%] lg:w-[55%] 
-          h-[69px] mx-auto px-0 md:px-0 lg:px-0 mb-5 text-center leading-[22.68px] md:leading-[22.68px] lg:leading-[24.92px]"
-          >
-            Discover a world of possibilities with Glossy&apos; exceptional
-            features tailored to enhance your coding journey.
-          </p>
-        </div>
-        {/* grid section */}
-
-        <div
-  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
-  gap-8 md:gap-12 lg:gap-16 pb-6 md:pb-12 lg:pb-12 px-4 md:px-6 lg:px-8 bg-transparent 
-  md:border-b lg:border-b md:border-[#272727] lg:border-[#272727] w-full mx-auto"
->
-  {advantages?.map((row, index) => (
-    <div key={index} className="flex flex-col items-center text-center">
-      <Image
-        src={row.img}
-        width={48} // Use relative units or appropriate sizes
-        height={48}
-        alt="icon"
-        className="mb-4"
-      />
-      <h5 className="font-medium text-base md:text-xl lg:text-[20px] mb-3">
-        {row.title}
-      </h5>
-      <p className="font-normal text-xs md:text-base lg:text-sm text-[#BDBDBD] opacity-[45%]">
-        {row.description}
-      </p>
-    </div>
-  ))}
-</div>
-</div>
+        
+      </div>
       {/* testimonials section */}
       <div className="text center mx-auto px-0 md:px-12 lg:px-40 mb-16 md:mb-36 lg:mb-36 mt-20">
         <h5 className="font-medium text-[24px] md:text-[27px] lg:text-[32px]leading-[38px] md:leading-[45.15px] leading-[58.77px] mt-10 mb-5 text-center mx-auto">
@@ -698,24 +646,16 @@ export default function Home() {
         <div className="relative w-full h-auto overflow-hidden">
           <div
             style={style2}
-            className="-bottom-[3%] left-[50%] absolute w-[60%] h-[300px] -translate-x-1/2"
+            className="-bottom-[3%] left-[50%] absolute w-[60%] h-[350px] -translate-x-1/2"
           ></div>
           {/* rainbow- style */}
-          <Image
-            src={Ellipse3}
-            width={562.86}
-            height={100}
-            alt="eclipse"
-            className="absolute bottom-0 left-[30%]"
-          />
+          <div
+           style={moon}
+            className="absolute bottom-[-5%] left-[50%] w-[30%] h-[150px] -translate-x-1/2"
+          >
+         </div>
 
-          {/* eclipse style */}
-
-          {/* <div
-            style={style2}
-            className="-bottom-[3%] left-[50%] absolute w-[60%] h-[500px] -translate-x-1/2"
-          ></div> */}
-          <div className="text center mx-auto px-0 md:px-24 lg:px-40 mb-5 md:mb-12 lg:mb-12">
+      <div className="text center mx-auto px-0 md:px-24 lg:px-40 mb-5 md:mb-12 lg:mb-12">
             <h5 className="font-medium text-[24px] md:text-[27px] lg:text-[36px] text-center mb-5 md:mb-5 lg:mb-10 w-[323px] md:w-full lg:w-full h-[39px] mx-auto">
               Frequently asked questions
             </h5>
@@ -723,7 +663,7 @@ export default function Home() {
               Everything you need to know
             </p>
           </div>
-          <div className="relative mx-auto max-w-screen-lg w-[100%] px-4 md:w-[70%] lg:w-[70%] mb-20 md:mb-48 lg:mb-48">
+          <div className="relative mx-auto max-w-screen-lg w-[100%] px-4 md:w-[70%] lg:w-[60%] mb-20 md:mb-48 lg:mb-48">
             {accordionLanding?.map((row, index) => (
               <div key={index} className="">
                 <Accordion className="" type="single" collapsible>
@@ -746,7 +686,7 @@ export default function Home() {
                   width={350}
                   height={250}
                   alt="bg-img"
-                  className="relative bottom-7 left-0 opacity-[60%]"
+                  className="relative bottom-7 left-0 opacity-[60%] hidden"
                 />
               </div>
               <div className="relative z-10">

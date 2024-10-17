@@ -90,7 +90,7 @@ import { avatar, GlowImg, onboard } from '@/assets';
         response:
           "With a commitment to providing tools for investment, asset organization, and management in one convenient platform, GetEquity ensures a safe and efficient investment experience for accredited investors, from high-net-worth individuals to industry veterans.",
         aiImage: GlowImg,
-        name: " Intel",
+        name: " 0x",
         span: "ai",
       };
   

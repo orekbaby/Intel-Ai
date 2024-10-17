@@ -121,12 +121,12 @@ const PreviouslyListed: React.FC = () => {
             </DialogTrigger>
             {isLoading ? (
              
-             <div className="absolute top-[-40%] left-[20%] flex justify-center items-center">
+             <div className="absolute top-[-10%] left-[20%] flex justify-center items-center">
          <div className="px-8 border-none rounded-[20px] flex justify-center items-center max-w-auto w-[262px] h-[252px] bg-[#181818] mt-10">
-           <div className="mx-auto">
+           <div className="flex flex-col justify-center items-center">
              <FiLoader
              
-               className="w-[80px] h-[80px] text-gray-600 mx-auto mb-5 pt-10 bg-[#181818]"
+               className="w-[48px] h-[48px] text-gray-600 mx-auto mb-5 animate-spin-fast"
               
              />
              <h3 className="font-medium text-[20px] mx-auto text-center text-[#C1C1C1] leading-[24px] mb-3">

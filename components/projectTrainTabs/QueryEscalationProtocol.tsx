@@ -83,7 +83,7 @@ const Page = () => {
           "**I'm sorry to hear you're experiencing a bug! Your issue has been escalated to our community manager, who will assist you shortly. In the meantime, could you please provide more details about the bug, such as what you were doing when it occurred and any error messages you received? This will help us resolve the issue more efficiently. Thank you for your patience!**",
         time: "Now",
         img: GlowImg,
-        responderName: "Intel",
+        responderName: "0x",
         responderSpan: "ai",
       };
       simulateTyping(newResponse);

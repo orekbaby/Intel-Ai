@@ -75,7 +75,7 @@ const Page = () => {
                       </div>
                       <div className="flex justify-between items-center">
                         <p className="font-medium md:font-normal lg:font-normal text-[11px] md:text-[10px] lg:text-[10px] leading-[12.8px] text-[#969696] w-[169px] h-[22px]">
-                          Train IntelAI to suit your tweets and requirements
+                          Train 0x AI to suit your tweets and requirements
                           seamlessly.
                         </p>
                         <div>
@@ -357,7 +357,7 @@ const Page = () => {
               </div>
               <div className="w-full md:w-[50%] lg:w-[50%] h-[187px] bg-[#181818] rounded-[20px] py-4 px-5">
                 <p className="font-medium text-[10px] leading-[10.4px] text-[#969696] mb-5">
-                  INTEL AI ACTIVITY
+                  0x AI ACTIVITY
                 </p>
                 <p className="font-normal text-[#969696] text-xs leading-[12.48px]">
                   avg proficiency:{" "}
@@ -392,7 +392,7 @@ const Page = () => {
           <div className="w-full max-w-[186px] h-[44px] p-2 rounded-lg mx-auto mb-3">
             <div className="w-full max-w-[159px] h-[48px] border-[#181818] border px-2 py-2 rounded-[10px] z-20">
               <p className="text-[8px] font-normal leading-[9.76px] mb-2">Mozihla</p>
-              <p className="text-[8px] font-normal leading-[9.76px] text-[#6D6D6D] w-full">Intel <span className="font-[900] text-[8px] text-white leading-[9.76px]">ai</span> automatically blocks spams and tracks the progress.</p>
+              <p className="text-[8px] font-normal leading-[9.76px] text-[#6D6D6D] w-full">0x<span className="font-[900] text-[8px] text-white leading-[9.76px]">ai</span> automatically blocks spams and tracks the progress.</p>
             </div>
           </div>
           
@@ -400,13 +400,13 @@ const Page = () => {
           <div className="w-full max-w-[186px] h-[44px] p-2 rounded-lg mx-auto">
             <div className="w-full max-w-[159px] h-[48px] border-[#181818] border px-2 py-2 rounded-[10px] ml-5">
               <p className="text-[8px] font-normal leading-[9.76px] mb-2">Mozihla</p>
-              <p className="text-[8px] font-normal leading-[9.76px] text-[#6D6D6D] w-full">Intel <span className="font-[900] text-[8px] text-white leading-[9.76px]">ai</span> automatically blocks spams and tracks the progress.</p>
+              <p className="text-[8px] font-normal leading-[9.76px] text-[#6D6D6D] w-full">0x<span className="font-[900] text-[8px] text-white leading-[9.76px]">ai</span> automatically blocks spams and tracks the progress.</p>
             </div>
           </div>
         </div>
       </div>
       <p className="pt-5 font-medium text-base leading-[14.64px] mb-3">Spam blocking and tracking</p>
-      <p className="text-[12px] font-normal leading-[16.64px] text-[#6D6D6D] w-full">Intel <span className="font-[900] text-[12px] text-white leading-[14.64px]">ai</span> automatically blocks spams and tracks the progress.</p>
+      <p className="text-[12px] font-normal leading-[16.64px] text-[#6D6D6D] w-full">0x <span className="font-[900] text-[12px] text-white leading-[14.64px]">ai</span> automatically blocks spams and tracks the progress.</p>
     </div>
 
     {/* second box */}

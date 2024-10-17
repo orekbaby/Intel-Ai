@@ -33,7 +33,7 @@ const Page: React.FC = () => {
 
             <p className="leading-[18.8px] font-normal text-sm w-[359px] h-auto text-[#A9A9A9] mb-5 md:mb-10 lg:mb-10">
             To get started,
-Train IntelAI with your community data to test & simulate its capabilities. <Link className="text-green-500 border-b border-b-green-500" rel="stylesheet" href="/workspace" prefetch={false}>Click here to begin.</Link>
+Train 0xai with your community data to test & simulate its capabilities. <Link className="text-green-500 border-b border-b-green-500" rel="stylesheet" href="/workspace" prefetch={false}>Click here to begin.</Link>
 
             </p>
 
@@ -91,8 +91,8 @@ Train IntelAI with your community data to test & simulate its capabilities. <Lin
                   </div>
                   <div className="w-full md:w-1/2 lg:w-1/2 flex items-center justify-between">
                     <p className="font-normal text-[10px] leading-[12.8px] text-[#969696] w-[231px] md:w-[247px] lg:w-[247px] h-auto">
-                      Train IntelAI to suit your community and requirements
-                      seamlessly.Train IntelAI to suit your community and
+                      Train 0x AI to suit your community and requirements
+                      seamlessly.Train 0x AI to suit your community and
                       requirements seamlessly.
                     </p>
                     <div className="pt-8">
