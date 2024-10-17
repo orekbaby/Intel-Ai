@@ -267,7 +267,7 @@ export default function Home() {
     </span>
     at every level
   </h3>
-  <p className="font-normal text-[13px] md:text-[16px] lg:text-[20px] xl:text-[20px] 2xl:text-[22px] 
+  <p className="font-normal text-[13px] md:text-base lg:text-[20px] xl:text-[20px] 2xl:text-[22px] 
   px-2 md:px-8 lg:px-12 mb-4 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[31.2px] mx-auto w-full md:w-full lg:w-[70%]">
   Experience AI Agents that interact like humans but operate with the power of a supercomputer. 0Xai&apos;s deep learning algorithms are designed to replicate the intricate workflows of blockchain engineers and communities, ensuring every interaction feels personal while delivering unmatched precision and efficiency.
   </p>
