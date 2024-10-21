@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { CldVideoPlayer } from "next-cloudinary";
 import "next-cloudinary/dist/cld-video-player.css";
 
-  const Carousel = dynamic(() => import("@/components/Carousel"), {
+  const TestimonialCarousel = dynamic(() => import("@/components/TestimonialCarousel"), {
   ssr: false,
   loading: () => (
     <div className="flex-col justify-center items-center w-full h-24 hidden md:flex lg:flex xl:flex 2xl:flex">
@@ -37,6 +37,7 @@ import {   accordionLanding } from "@/config/mockData";
 import { Ellipse3, VectorQuestion } from "@/assets";
 
 import { useRouter } from "next/navigation";
+
 const Footer = dynamic(() => import("@/components/Footer"), {
   ssr: false,
   loading: () => (
@@ -149,7 +150,7 @@ export default function Home() {
 
             {/* mobile button */}
             <Link href="/log-in" prefetch={false}>
-              <div className="shadow-drop block md:hidden lg:hidden bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[24px] py-[2px] px-[2px] mb-10 h-[43px] md:h-[70px] lg:h-[70px] w-fit justify-center text-center mx-auto">
+              <div className="shadow-drop block md:hidden lg:hidden bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[24px] py-[2px] px-[2px] mb-0 h-[43px] md:h-[70px] lg:h-[70px] w-fit justify-center text-center mx-auto">
                 <button className="flex items-center w-full justify-center gap-2 bg-gradient-to-r from-[#3A3A3A] to-[#000000] rounded-[24px] py-2 md:py-5 h-[43px] lg:py-5 px-12 md:px-28 lg:px-28 text-center font-medium text-sm">
                   Request Early Access
                   <span className="text-[#03FFA3]">
@@ -254,7 +255,7 @@ export default function Home() {
       </section>
       
       {/* Second section */}
-      <div className="bg-[#181818] pt-16 md:pt-32 lg:pt-20 px-4 md:px-24 lg:px-0 text-center pb-7 md:pb-20 lg:pb-20 mx-auto">
+      <div className="bg-[#181818] pt-10 md:pt-32 lg:pt-20 px-4 md:px-24 lg:px-0 text-center pb-7 md:pb-20 lg:pb-20 mx-auto">
   <h3 className="font-medium text-[24px] md:text-[27px] lg:text-[56px] mb-4 md:mb-8 lg:mb-8 leading-[28.32px] md:leading-[40px] lg:leading-[65.5px] text-center w-full md:w-[90%] lg:w-[80%] mx-auto">
     Meticulously Engineered To Deliver {""}
     <span
@@ -326,17 +327,17 @@ export default function Home() {
 
 
       {/* custom ai */}
-      <div className="relative w-full h-auto overflow-hidden ">
+      <div className="relative w-full h-auto overflow-hidden z-10 ">
         {/* first right gradient */}
         <div
           style={style2}
-          className="-top-[3%] left-[98%] absolute w-[50%] h-[350px] -translate-x-1/2"
+          className="-top-[3%] left-[98%] absolute w-[50%] h-[350px] -translate-x-1/2 z-5"
         ></div>
 
         {/* second left gradient */}
         <div
           style={style2}
-          className="top-[35%] -left-[7%] absolute w-[50%] h-[350px] -translate-x-1/2 overflow-hidden"
+          className="top-[35%] -left-[7%] absolute w-[50%] h-[350px] -translate-x-1/2 overflow-hidden z-5"
         ></div>
 
         {/* third gradient */}
@@ -348,7 +349,7 @@ export default function Home() {
         {/* fouurth gradient */}
         <div
           style={style2}
-          className="-bottom-[3%] left-[98%] absolute w-[50%] h-[450px] -translate-x-1/2"
+          className="-bottom-[3%] left-[98%] absolute w-[50%] h-[450px] -translate-x-1/2 z-5"
         ></div>
 
         <div className="mx-auto px-0 md:px-28 lg:px-40 text-center pt-16 md:pt-28 lg:pt-32 mb-7 md:mb-16 lg:mb-16">
@@ -490,7 +491,7 @@ export default function Home() {
       <h5 className="text-xl md:text-2xl lg:text-2xl font-medium mb-4 w-full md:w-[90%]">{row.title}</h5>
       <p className="text-sm md:text-base text-[#BDBDBD]">{row.description}</p>
     </div>
-
+   
     {/* Image Section */}
     <div className="w-full md:w-1/2 relative">
       <div className="w-full h-auto bg-center bg-cover">
@@ -499,7 +500,15 @@ export default function Home() {
           width={600}
           height={532}
           alt="Integration Image"
-          className="object-cover w-full h-auto"
+          className="object-cover w-full h-auto hidden md:block lg:block"
+        />
+
+        <Image
+          src={row.mobileImg}
+          width={389}
+          height={379}
+          alt="Integration Image"
+          className="object-cover w-full h-auto block md:hidden lg:hidden"
         />
       </div>
     </div>
@@ -521,8 +530,8 @@ export default function Home() {
         </p>
       </div>
       {/* carousel for testimonials */}
-      <div className="mx-auto px-2 md:px-32 lg:px-32 mb-14 md:mb-60 lg:mb-60">
-        <Carousel />
+      <div className="mx-auto px-2 md:px-32 lg:px-24 mb-14 md:mb-60 lg:mb-60">
+        <TestimonialCarousel />
       </div>
 
       {/* FAQ */}

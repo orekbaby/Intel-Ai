@@ -72,18 +72,18 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
- // Update the handlePersonaSwitch function to route directly to /dashboard
+ 
 const handlePersonaSwitch = (persona: string) => {
   dispatch(setUser(persona));
-  router.push('/dashboard');  // Directly route to dashboard after persona switch
+  router.push('/dashboard');  
 };
 
 
   return (
     <>
       {pathName === "/" && (
-        <header className="w-full absolute top-0 left-0 z-40 flex items-center justify-between bg-[#0A0908] h-[60px] md:h-[70px] lg:h-[70px] px-3 md:px-6 lg:px-20">
-          <Image src={Logo} width={60} height={41.25} alt="logo" />
+      <header className="w-full absolute top-0 left-0 z-50 flex items-center justify-between bg-[#0A0908] bg-opacity-10 backdrop-blur-md border-b border-white/10 h-[60px] md:h-[70px] lg:h-[70px] px-3 md:px-6 lg:px-20 shadow-lg">
+    <Image src={Logo} width={60} height={41.25} alt="logo" />
 
           {/* Menu Contents */}
           <div
@@ -94,20 +94,48 @@ const handlePersonaSwitch = (persona: string) => {
             <FiMenu />
           </div>
           {menuOpen && (
-            <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-3/6 bg-[#181818] py-8 px-4">
-              <div className="flex flex-col justify-center gap-6 text-sm font-normal">
-                <Link href="/intel-docs">
-                  <MenuItem label="Docs" />
-                </Link>
-                <Link href="/advantages">
-                  <MenuItem label="Advantages" />
-                </Link>
-                {/* <Link href="/metadappDocs">
-              <MenuItem label="Docs" />
-            </Link> */}
-              </div>
-            </div>
-          )}
+  <div className="block md:hidden lg:hidden fixed top-[75px] right-1 w-3/6 bg-[#181818] py-8 px-4">
+    <div className="flex flex-col justify-center gap-6 text-sm font-normal">
+
+      {/* Docs */}
+      <Link href="/intel-docs">
+        <MenuItem label="Docs" />
+      </Link>
+
+      {/* Join Our Community */}
+      <MenuItem label="Join Our Community" />
+
+      {/* Twitter Section */}
+      <div className="flex items-center gap-2">
+        <a href="https://t.me/mylabwork" target="_blank" rel="noopener noreferrer">
+          <Image src={twitter} width={16} height={16} alt="Twitter" />
+        </a>
+        <span className="font-normal text-sm">Twitter</span>
+      </div>
+
+      {/* Telegram Section */}
+      <div className="flex items-center gap-2">
+        <a href="https://t.me/mylabwork" target="_blank" rel="noopener noreferrer">
+          <Image src={telegram} width={16} height={16} alt="Telegram" />
+        </a>
+        <span className="font-normal text-sm">Telegram</span>
+      </div>
+
+      {/* Request Access Button */}
+      <Link href="/log-in" prefetch={false}>
+      <div className="flex justify-center mr-8 items-center">
+      <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] w-fit to-[rgba(127,86,217,.9)] rounded-[24px] py-[2px] px-[2px] shadow-drop">
+        <button className="bg-gradient-to-r from-[#3A3A3A] to-[#000000] flex gap-2 items-center justify-center text-xs font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-800 hover:scale-95 dark:text-secondary text-white transition ease-in-out delay-150 duration-300 h-[32px] w-[110px] rounded-[24px] hover:bg-[#0B0F16]">
+          Request Access
+        </button>
+      </div>
+      </div>
+      </Link>
+
+    </div>
+  </div>
+)}
+
 
           <div className="hidden md:flex lg:flex items-center gap-8">
             <Link href="/intel-docs" className="">

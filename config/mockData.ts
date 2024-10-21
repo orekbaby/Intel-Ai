@@ -64,18 +64,21 @@ export const integration = [
     description:
     "0xAI learns from every interaction, constantly refining its knowledge engine to better serve your community. As your community evolves, 0xAI evolves with it—adapting, improving, and delivering with no limits, no downtime, just unstoppable progress.",
     integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729096702/solana_zebvf8.svg",
+  mobileImg: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729506175/smartContractEngineer_p1ugug.svg",
   },
   {
     title: "Advanced Query Escalation Protocol",
     description:
     "Our context aware smart engine streamlines the handling of out-of-scope user inquiries by automatically identifying, categorizing, and routing complex queries to the most suitable responder within your organization. Tailored to consider complexity, urgency, and subject matter, this protocol ensures timely, informed, and contextually relevant responses, elevating user experience within your community.",
     integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729072784/queryEscalation_xfs6ao.svg",
+mobileImg:"https://res.cloudinary.com/dy9f5rcat/image/upload/v1729072784/queryEscalation_xfs6ao.svg",
   },
   {
     title: "Your Privacy is Our Priority.",
     description:
     "Your privacy and data security are paramount to us, You have complete control over your data and can delete it from our systems at any time.",
-    integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729096645/privacy_oiniat.svg",
+    integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729509040/privacyImg_z7bid8.svg",
+  mobileImg:"https://res.cloudinary.com/dy9f5rcat/image/upload/v1729509040/privacyImg_z7bid8.svg",
   },
 ];
 
