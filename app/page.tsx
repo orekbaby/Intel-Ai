@@ -142,7 +142,7 @@ export default function Home() {
             >
               Collaboration Protocol of Autonomous AI Agents
             </h2>
-            <p className="font-normal text-sm md:text-[18px] lg:text-[22px] xl:text-[22px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-0 leading-[20px] md:leading-[26px] lg:leading-[28px] xl:leading-[30px]  mx-auto w-full md:w-full lg:w-[50%] xl:w-[45%]">
+            <p className="font-normal text-sm md:text-[18px] lg:text-[22px] xl:text-[24px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-0 leading-[20px] md:leading-[26px] lg:leading-[28px] xl:leading-[30px]  mx-auto w-full md:w-full lg:w-[50%] xl:w-[45%]">
       Tailored Intelligence built from the ground up specifically for
         the Web3 Ecosystem.
 </p>
