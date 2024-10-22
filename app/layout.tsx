@@ -3,6 +3,8 @@ import "@/styles/globals.scss";
 import Navigation from "@/components/layout/Navigation";
 import SideBar from "@/components/layout/SideBar";
 import FooterNav from "@/components/layout/FooterNav";
+import QueryClientProvider from "@/lib/QueryClientProvider";
+
 import { headers } from "next/headers";
 import { Toaster } from "@/components/ui/toaster";
 import ClientProviders from "@/components/ClientProviders";
@@ -19,30 +21,29 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
- 
-
   return (
     <html lang="en">
       <body className="font-guaruja Neue">
-      <ClientProviders>
-         
-           <SelectedCategoryProvider>
-            <UserInputProvider>
-              <div className="flex w-full h-auto relative">
-                <SideBar /> 
-                <div className="relative w-full h-auto">
-                  <Navigation />
-                  <div className="scrollbar-hide overflow-y-auto h-[100vh] w-full overflow-x-hidden pt-20">
-                    {children}
+        <QueryClientProvider>
+          <ClientProviders>
+            <SelectedCategoryProvider>
+              <UserInputProvider>
+                <div className="flex w-full h-auto relative">
+                  <SideBar />
+                  <div className="relative w-full h-auto">
+                    <Navigation />
+                    <div className="scrollbar-hide overflow-y-auto h-[100vh] w-full overflow-x-hidden pt-20">
+                      {children}
+                    </div>
+                    <FooterNav />
                   </div>
-                  <FooterNav />
                 </div>
-              </div>
               </UserInputProvider>
-              </SelectedCategoryProvider>
-           
+            </SelectedCategoryProvider>
           </ClientProviders>
-         <Toaster /> 
+        </QueryClientProvider>
+
+        <Toaster />
       </body>
     </html>
   );

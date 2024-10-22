@@ -4,18 +4,36 @@ import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane, FaArrowLeft } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { ToastAction } from "@/components/ui/toast"
-import { toast, useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast";
+import { toast, useToast } from "@/components/ui/use-toast";
 
+const useVerifyInviteCode = () => {
+  return useMutation({
+    mutationFn: async (code: string) => {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_OXAI_URL}/invite-code/join`,
+        null,
+        {
+          params: { inv: code },
+        },
+      );
+      return response.data;
+    },
+  });
+};
 
 const Page = () => {
   const [invitationCode, setInvitationCode] = useState("");
+  // const { mutate, isLoading } = useVerifyInviteCode();
+
   const router = useRouter();
-  
+
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    
+
     // Check if the input is empty
     if (invitationCode.trim() === "") {
       toast({
@@ -24,7 +42,7 @@ const Page = () => {
         description: "Please enter your invitation code.",
         action: <ToastAction altText="Okay">Okay</ToastAction>,
       });
-    } 
+    }
     // Check if the input matches the exact invitation code
     else if (invitationCode.trim() !== "N@v*Uc8TK") {
       toast({
@@ -33,13 +51,12 @@ const Page = () => {
         description: "The invitation code you entered is incorrect.",
         action: <ToastAction altText="Okay">Okay</ToastAction>,
       });
-    } 
+    }
     // Proceed if the code is correct
     else {
       router.push("/connect-web3");
     }
   };
-  
 
   const style2: React.CSSProperties = {
     background:
@@ -56,7 +73,6 @@ const Page = () => {
   return (
     <>
       <div className="mt-10 md:mt-20 lg:mt-10 mx-auto h-[100vh] overflow-hidden">
-        
         <section className="first-gradient section relative w-full h-[80vh] md:h-[100vh] lg:h-[100vh] z-10 mb-48 ">
           <div className="w-full px-0 md:px-0 lg:px-6 relative mb-0 md:mb-10 lg:mb-10 h-full">
             {/* top-gradient */}
@@ -85,7 +101,7 @@ const Page = () => {
                 text-transparent font-medium text-[40px] md:text-[60px] lg:text-[36px] 
                 leading-[40px] md:leading-[64px] pt-0 md:pt-3 lg:pt-5 lg:leading-[64px] text-center w-[378px] md:w-full lg:w-full mb-6 mx-auto"
               >
-              Welcome to 0x AI
+                Welcome to 0x AI
               </h1>
 
               <p className="font-normal text-sm text-white text-center mb-20 md:mb-10 lg:mb-10 px-0 w-[332px] h-[36px] leading-[18.8px] md:w-[80%] lg:w-[393px] md:h-full lg:h-[51px] mx-auto">
