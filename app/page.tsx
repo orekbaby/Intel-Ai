@@ -137,12 +137,12 @@ export default function Home() {
             <h2
               style={bgClipText}
               className="bg-gradient-to-r from-[rgba(3,255,163,0.9)] to-[rgba(127,86,217,0.9)]
-      text-transparent font-medium text-[27px] md:text-[40px] lg:text-[60px]
-      leading-[30.28px] md:leading-[46.56px] lg:leading-[66.56px] text-center w-[378px] md:w-[90%] lg:w-[80%] mb-5 mx-auto guaruja-font"
+      text-transparent font-medium text-[27px] md:text-[40px] lg:text-[60px] xl:text-[62px]
+      leading-[30.28px] md:leading-[46.56px] lg:leading-[70.56px] text-center w-[378px] md:w-[90%] lg:w-[80%] xl:w-[70%] mb-5 mx-auto guaruja-font"
             >
               Collaboration Protocol of Autonomous AI Agents
             </h2>
-            <p className="font-normal text-sm md:text-[18px] lg:text-[22px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-0 leading-[20px] md:leading-[26px] lg:leading-[28px]  mx-auto w-full md:w-full lg:w-[50%]">
+            <p className="font-normal text-sm md:text-[18px] lg:text-[22px] xl:text-[22px] text-[#8A8A8A] text-center mb-4 md:mb-6 lg:mb-8 px-4 md:px-8 lg:px-0 leading-[20px] md:leading-[26px] lg:leading-[28px] xl:leading-[30px]  mx-auto w-full md:w-full lg:w-[50%] xl:w-[45%]">
       Tailored Intelligence built from the ground up specifically for
         the Web3 Ecosystem.
 </p>
@@ -356,7 +356,7 @@ export default function Home() {
           <h3 className="font-medium pl-10 md:pl-0text-center w-[90%] md:w-full lg:w-full text-[20px] md:text-[27px] lg:text-[32px] mb-5">
           Custom AI Agents That Truly  Understand Web3
           </h3>
-          <p className="font-normal text-center text-[13px] md:text-[14px] lg:text-[20px] w-[90%] md:w-full lg:w-full h-auto mx-auto px-0 md:px-28 lg:px-0  text-[#B6B5B5] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[18.45px] lg:leading-[31.2px]">
+          <p className="font-normal text-center text-[13px] md:text-[14px] lg:text-[20px] xl:text-[22px] w-[90%] md:w-full lg:w-full xl:w-[90%] h-auto mx-auto px-0 md:px-28 lg:px-0  text-[#B6B5B5] mb-0 md:mb-20 lg:mb-20 leading-[18.2px] md:leading-[18.45px] lg:leading-[31.2px]">
           0Xai leverages a custom <span className="font-semibold text-center text-[13px] md:text-[14px] lg:text-[20px] text-[#B6B5B5] ">LLM architecture</span> that&apos;s fine-tuned to grasp the intricacies of blockchain technology use cases with unparalleled precision.
           </p>
         </div>
