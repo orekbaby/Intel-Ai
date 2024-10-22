@@ -3,7 +3,7 @@ import "@/styles/globals.scss";
 import Navigation from "@/components/layout/Navigation";
 import SideBar from "@/components/layout/SideBar";
 import FooterNav from "@/components/layout/FooterNav";
-import QueryClientProvider from "@/lib/QueryClientProvider";
+import Providers from "@/lib/Providers";
 
 import { headers } from "next/headers";
 import { Toaster } from "@/components/ui/toaster";
@@ -21,10 +21,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookie = headers().get("cookie");
   return (
     <html lang="en">
       <body className="font-guaruja Neue">
-        <QueryClientProvider>
+        <Providers cookie={cookie}>
           <ClientProviders>
             <SelectedCategoryProvider>
               <UserInputProvider>
@@ -41,8 +42,7 @@ export default function RootLayout({
               </UserInputProvider>
             </SelectedCategoryProvider>
           </ClientProviders>
-        </QueryClientProvider>
-
+        </Providers>
         <Toaster />
       </body>
     </html>

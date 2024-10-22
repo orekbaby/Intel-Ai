@@ -5,16 +5,28 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane, FaArrowLeft } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { setCookie } from "cookies-next";
 import { Button } from "@/components/ui/button";
 import { ToastAction } from "@/components/ui/toast";
 import { toast, useToast } from "@/components/ui/use-toast";
 
+const apiUrl = process.env.NEXT_PUBLIC_OXAI_URL;
+interface VerifyInviteCodeResponse {
+  inviteCode: {
+    code: string;
+    rate_limit_month: number;
+    rate_limit_second: number;
+  };
+  token: string;
+}
+
 const useVerifyInviteCode = () => {
-  return useMutation({
+  return useMutation<VerifyInviteCodeResponse, Error, string>({
     mutationFn: async (code: string) => {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_OXAI_URL}/invite-code/join`,
+      console.log(apiUrl);
+      const response = await axios.post<VerifyInviteCodeResponse>(
+        `${apiUrl}/invite-code/join`,
         null,
         {
           params: { inv: code },
@@ -24,17 +36,14 @@ const useVerifyInviteCode = () => {
     },
   });
 };
-
 const Page = () => {
   const [invitationCode, setInvitationCode] = useState("");
-  // const { mutate, isLoading } = useVerifyInviteCode();
-
+  const { mutate, isError, error, isPending } = useVerifyInviteCode();
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    // Check if the input is empty
     if (invitationCode.trim() === "") {
       toast({
         variant: "destructive",
@@ -42,20 +51,58 @@ const Page = () => {
         description: "Please enter your invitation code.",
         action: <ToastAction altText="Okay">Okay</ToastAction>,
       });
+      return;
     }
-    // Check if the input matches the exact invitation code
-    else if (invitationCode.trim() !== "N@v*Uc8TK") {
+
+    // If the invitation code matches the hardcoded string, skip the API call
+    if (invitationCode.trim() === "N@v*Uc8TK") {
       toast({
-        variant: "destructive",
-        title: "Invalid code!",
-        description: "The invitation code you entered is incorrect.",
-        action: <ToastAction altText="Okay">Okay</ToastAction>,
+        title: "Success!",
+        description: "Your invitation code has been verified.",
       });
-    }
-    // Proceed if the code is correct
-    else {
+
+      // Redirect to the next page
       router.push("/connect-web3");
+      return;
     }
+
+    // Make the API call if the code does not match
+    mutate(invitationCode.trim(), {
+      onSuccess: (data) => {
+        // Store the JWT in a cookie
+        setCookie("auth_token", data.token, {
+          maxAge: 2147483647, // Set maxAge to a large value to prevent expiration
+          path: "/",
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+        });
+
+        toast({
+          title: "Success!",
+          description: "Your invitation code has been verified.",
+        });
+
+        router.push("/connect-web3");
+      },
+      onError: (error: any) => {
+        if (error.response?.status === 404) {
+          toast({
+            variant: "destructive",
+            title: "Error!",
+            description:
+              "The invitation code you entered is incorrect or expired.",
+            action: <ToastAction altText="Okay">Okay</ToastAction>,
+          });
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Error!",
+            description: "An error occurred. Please try again.",
+            action: <ToastAction altText="Okay">Okay</ToastAction>,
+          });
+        }
+      },
+    });
   };
 
   const style2: React.CSSProperties = {
@@ -149,7 +196,7 @@ const Page = () => {
                 text-xs font-medium ring-offset-white focus-visible:outline-none
                 text-[#0D0D0D] h-[52px] md:h-10 lg:h-10 w-[317px] md:w-[170px] lg:w-[170px] rounded-[40px] md:rounded-[20px] lg:rounded-[20px] mx-auto shadow-drop2"
                 >
-                  Submit
+                  {isPending ? "Verifying..." : "Submit"}
                 </button>
 
                 <div className="bg-gradient-to-r from-[rgba(3,255,163,.9)] to-[rgba(127,86,217,.9)] rounded-[16px] md:rounded-[66px] lg:rounded-[66px] py-[2px] px-[2px]  mt-10 shadow-drop w-fit mx-auto">
