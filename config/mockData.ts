@@ -73,13 +73,13 @@ export const integration = [
     integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729072784/queryEscalation_xfs6ao.svg",
 mobileImg:"https://res.cloudinary.com/dy9f5rcat/image/upload/v1729072784/queryEscalation_xfs6ao.svg",
   },
-  {
-    title: "Your Privacy is Our Priority.",
-    description:
-    "Your privacy and data security are paramount to us, You have complete control over your data and can delete it from our systems at any time.",
-    integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729509040/privacyImg_z7bid8.svg",
-  mobileImg:"https://res.cloudinary.com/dy9f5rcat/image/upload/v1729509040/privacyImg_z7bid8.svg",
-  },
+  // {
+  //   title: "Your Privacy is Our Priority.",
+  //   description:
+  //   "Your privacy and data security are paramount to us, You have complete control over your data and can delete it from our systems at any time.",
+  //   integration: "https://res.cloudinary.com/dy9f5rcat/image/upload/v1729509040/privacyImg_z7bid8.svg",
+  // mobileImg:"https://res.cloudinary.com/dy9f5rcat/image/upload/v1729509040/privacyImg_z7bid8.svg",
+  // },
 ];
 
 

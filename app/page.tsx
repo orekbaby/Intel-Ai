@@ -170,6 +170,8 @@ export default function Home() {
                 </button>
               </div>
             </Link>
+          
+
 
             {/* mobile picture */}
         <div className="mx-auto block md:hidden lg:hidden rounded-[20px] px-4 relative overflow-hidden">
@@ -256,7 +258,7 @@ export default function Home() {
       
       {/* Second section */}
       <div className="bg-[#181818] pt-10 md:pt-32 lg:pt-20 px-4 md:px-24 lg:px-0 text-center pb-7 md:pb-20 lg:pb-20 mx-auto">
-  <h3 className="font-medium text-[24px] md:text-[27px] lg:text-[56px] mb-4 md:mb-8 lg:mb-8 leading-[28.32px] md:leading-[40px] lg:leading-[65.5px] text-center w-full md:w-[90%] lg:w-[80%] mx-auto">
+  <h3 className="font-medium text-[24px] md:text-[27px] lg:text-[56px] xl:text-[60px] mb-4 md:mb-8 lg:mb-8 leading-[28.32px] md:leading-[40px] lg:leading-[65.5px] xl:leading-[70.5px] text-center w-full md:w-[90%] lg:w-[80%] mx-auto">
     Meticulously Engineered To Deliver {""}
     <span
       style={bgClipText}
@@ -266,8 +268,8 @@ export default function Home() {
     </span>
     at every level
   </h3>
-  <p className="font-normal text-[14px] md:text-base lg:text-[20px] xl:text-[20px] 2xl:text-[22px] 
-  px-2 md:px-8 lg:px-12 mb-6 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[31.2px] mx-auto w-full md:w-full lg:w-[70%]">
+  <p className="font-normal text-[14px] md:text-base lg:text-[20px] xl:text-[22px]
+  px-2 md:px-8 lg:px-12 mb-6 md:mb-6 lg:mb-6 text-[#8A8A8A] leading-[20px] md:leading-[24px] lg:leading-[31.2px] mx-auto w-full md:w-full lg:w-[75%] xl:w-[70%]">
   Experience AI Agents that interact like humans but operate with the power of a supercomputer. 0Xai&apos;s deep learning algorithms are designed to replicate the intricate workflows of blockchain engineers and communities, ensuring every interaction feels personal while delivering unmatched precision and efficiency.
   </p>
  
@@ -487,7 +489,7 @@ export default function Home() {
     } justify-center items-center mx-auto gap-10 mb-16`}
   >
     {/* Text Section */}
-    <div className="w-full md:w-1/2 text-left px-4">
+    <div className="w-full md:w-1/2 text-left px-2 md:px-4">
       <h5 className="text-xl md:text-2xl lg:text-2xl font-medium mb-4 w-full md:w-[90%]">{row.title}</h5>
       <p className="text-sm md:text-base text-[#BDBDBD]">{row.description}</p>
     </div>
@@ -514,18 +516,24 @@ export default function Home() {
     </div>
   </div>
 ))}
+</div>
 
+      {/* privacy section */}
 
-
-
-        
+      <div className="text center mx-auto px-0 md:px-12 lg:px-40 mb-16 md:mb-36 lg:mb-36 mt-20">
+        <h5 className="font-medium text-[24px] md:text-[27px] lg:text-[32px] leading-[38px] md:leading-[45.15px] lg:leading-[58.77px] mt-10 mb-5 text-center mx-auto">
+        Your Privacy is Our Priority.
+        </h5>
+        <p className=" w-[95%] md:w-[80%] lg:w-[85%] xl:w-[75%] font-normal text-sm leading-[22.68px] md:[27.68px] lg:leading-[27.68px] xl:leading-[31.2px] md:text-sm lg:text-[20px] xl:text-[22px] text-[#BDBDBD] mx-auto mb-5 text-center">
+        Your privacy and data security are paramount to us, You have complete control over your data and can delete it from our systems at any time.
+        </p>
       </div>
       {/* testimonials section */}
       <div className="text center mx-auto px-0 md:px-12 lg:px-40 mb-16 md:mb-36 lg:mb-36 mt-20">
         <h5 className="font-medium text-[24px] md:text-[27px] lg:text-[32px]leading-[38px] md:leading-[45.15px] leading-[58.77px] mt-10 mb-5 text-center mx-auto">
           Voices of Innovation, Testimonials
         </h5>
-        <p className="font-normal text-sm leading-[22.68px] md:[27.68px] lg:leading-[27.68px] md:text-sm lg:text-sm text-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-44 mb-5 text-center">
+        <p className="font-normal text-sm leading-[22.68px] md:[27.68px] lg:leading-[27.68px] md:text-sm lg:text-sm xl:text-base text-[#BDBDBD] mx-auto px-2 md:px-24 lg:px-44 mb-5 text-center">
         See what people say about 0x AI
         </p>
       </div>
